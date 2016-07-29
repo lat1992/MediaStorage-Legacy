@@ -4,4 +4,4 @@
 host = 'localhost'
 username = 'root'
 password = ''
-databasename = capitalvision
+databasename = mediastorage
