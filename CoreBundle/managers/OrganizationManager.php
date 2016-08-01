@@ -1,6 +1,6 @@
 <?php
 
-require_once('/CoreBundle/models/Organization.php');
+require_once('CoreBundle/models/Organization.php');
 
 class OrganizationManager {
 

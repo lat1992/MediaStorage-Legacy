@@ -1,8 +1,8 @@
 <?php
 
-require_once('/CoreBundle/models/User.php');
+require_once('CoreBundle/models/User.php');
 
-require_once('/CoreBundle/managers/LanguageManager.php');
+require_once('CoreBundle/managers/LanguageManager.php');
 
 class UserManager {
 

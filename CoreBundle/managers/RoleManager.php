@@ -1,6 +1,6 @@
 <?php
 
-require_once('/CoreBundle/models/Role.php');
+require_once('CoreBundle/models/Role.php');
 
 class RoleManager {
 

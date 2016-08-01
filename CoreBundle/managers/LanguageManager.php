@@ -1,6 +1,6 @@
 <?php
 
-require_once('/CoreBundle/models/Language.php');
+require_once('CoreBundle/models/Language.php');
 
 class LanguageManager {
 

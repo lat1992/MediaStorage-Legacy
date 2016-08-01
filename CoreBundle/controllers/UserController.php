@@ -1,9 +1,9 @@
 <?php
 
-require_once('/CoreBundle/managers/UserManager.php');
-require_once('/CoreBundle/managers/OrganizationManager.php');
-require_once('/CoreBundle/managers/RoleManager.php');
-require_once('/CoreBundle/managers/LanguageManager.php');
+require_once('CoreBundle/managers/UserManager.php');
+require_once('CoreBundle/managers/OrganizationManager.php');
+require_once('CoreBundle/managers/RoleManager.php');
+require_once('CoreBundle/managers/LanguageManager.php');
 
 class UserController {
 
