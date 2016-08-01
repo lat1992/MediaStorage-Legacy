@@ -12,7 +12,7 @@ class Route {
 
 	public function loadRoutes() {
 
-		require_once('/CoreBundle/routes/route.php');
+		require_once('CoreBundle/routes/route.php');
 	}
 
 	public function getController($page) {
