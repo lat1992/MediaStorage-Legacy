@@ -9,5 +9,16 @@
 </head>
 
 <body>
-	
-<h1>Bienvenido</h1>
+
+<?php
+
+if (isset($_SESSION['username_mediastorage']) && isset($_SESSION['role_mediastorage'])) {
+	echo 'Connecté en tant que ' . $_SESSION['username_mediastorage'];
+}
+else {
+	echo 'Non connecté';
+}
+
+?>
+
+<h1>MediaStorage</h1>

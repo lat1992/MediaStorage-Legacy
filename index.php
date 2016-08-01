@@ -1,21 +1,36 @@
 <?php
 
+/*
+** ALL CHECKS
+*/
+
 if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+	session_start();
 }
 
-$settings = parse_ini_file('config.ini.php', true);
+require_once('translation/index.php');
 
-require_once('route.php');
+if (isset($_SESSION['username_mediastorage']) && isset($_SESSION['role_mediastorage']) && isset($_GET['page'])) {
+	$page = $_GET['page'];
+}
+else {
+	$page = 'login';
+}
+
+/*
+** CHECK ROUTES
+*/
+
+require_once('Route.php');
 
 $route = new Route();
-$controller = $route->getController('login');
+$controller = $route->getController($page);
 
 if (!$controller) {
 	echo 'NOT FOUND';
 	return;
 }
-else {
+else {	
 	require_once($controller[1]);
 
 	$controllerObject = new $controller[2];
