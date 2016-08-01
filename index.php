@@ -36,5 +36,6 @@ else {
 	require_once($controller[1]);
 
 	$controllerObject = new $controller[2];
-	$controllerObject->$controller[3]();
+	$action = $controller[3];
+	$controllerObject->$action();
 }
