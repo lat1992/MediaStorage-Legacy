@@ -44,8 +44,7 @@ class UserController {
 	}
 
 	public function dashboardAction() {
-		echo 'LOGGED IN WITH : ' . $_SESSION['username_mediastorage'] . '<br /><a href="?page=logout">' . LOGOUT . '</a><br />
-<a href="?page=create">' . USER_CREATION_TITLE . '</a>';
+		echo 'LOGGED IN WITH : ' . $_SESSION['username_mediastorage'] . '<br /><a href="?page=logout">' . LOGOUT . '</a><br /><a href="?page=create">' . USER_CREATION_TITLE . '</a>';
 	}
 
 }
