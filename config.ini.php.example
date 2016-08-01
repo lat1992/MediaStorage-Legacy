@@ -5,3 +5,6 @@ host = 'localhost'
 username = 'root'
 password = ''
 databasename = mediastorage
+
+[language]
+default = 'fr_FR'
