@@ -1,13 +1,21 @@
 <?php
 
 require_once('/CoreBundle/managers/UserManager.php');
+require_once('/CoreBundle/managers/OrganizationManager.php');
+require_once('/CoreBundle/managers/RoleManager.php');
+require_once('/CoreBundle/managers/LanguageManager.php');
 
 class UserController {
 
-	public $_userManager;
+	private $_userManager;
+	private $_organizationManager;
+	private $_roleManager;
 
 	public function __construct() {
 		 $this->_userManager = new UserManager();
+		 $this->_organizationManager = new OrganizationManager();
+		 $this->_roleManager = new RoleManager();
+		 $this->_languageManager = new LanguageManager();
 	}
 
 	public function loginAction() {
@@ -39,6 +47,10 @@ class UserController {
 				}
 			}
 		}
+
+		$organizations = $this->_organizationManager->getAllOrganizationsDb();
+		$roles = $this->_roleManager->getAllRolesDb();
+		$languages = $this->_languageManager->getAllLanguagesDb();
 
 		include ('CoreBundle/views/user/user_create.php');
 	}

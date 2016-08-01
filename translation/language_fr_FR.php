@@ -10,6 +10,20 @@ define('LOGOUT', 'Logout');
 define('USERNAME', 'Nom d\'utilisateur');
 define('PASSWORD', 'Mot de passe');
 define('PASSWORD_BIS', 'Mot de passe bis');
+define('ORGANIZATION', 'Entreprise');
+define('ROLE', 'Role');
+define('LANGUAGE', 'Langue');
+define('FIRST_NAME', 'Prénom');
+define('LAST_NAME', 'Nom');
+define('EMAIL', 'Email');
+define('ADDRESS', 'Adresse');
+define('ZIPCODE', 'Code postal');
+define('CITY', 'Ville');
+define('COUNTRY', 'Pays');
+define('PHONE', 'Téléphone');
+define('MOBILE', 'Portable');
+define('COMPANY', 'Companie');
+define('JOB', 'Poste');
 
 // User creation page
 

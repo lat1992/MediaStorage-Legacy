@@ -2,23 +2,27 @@
 
 require_once('/CoreBundle/models/User.php');
 
+require_once('/CoreBundle/managers/LanguageManager.php');
+
 class UserManager {
 
 	private $_userModel;
 
+	private $_languageManager;
+
 	public function __construct() {
 		$this->_userModel = new User();
+
+		$this->_languageManager = new LanguageManager();
 	}
 
 	public function loginDb() {
 		$result = $this->_userModel->findUserByUsernameAndPassword($_POST['username_mediastorage'], $_POST['password_mediastorage']);
 
-		if ($result->num_rows == 1) {
-			while ($row = $result->fetch_assoc()) {
-				$_SESSION['username_mediastorage'] = $row['username'];
-				$_SESSION['role_mediastorage'] = 'TEMP';				
-			}
-
+		if ($result !== false) {
+			$_SESSION['username_mediastorage'] = $result['username'];
+			$_SESSION['role_mediastorage'] = $result['id_role'];
+			$_SESSION['language_mediastorage'] = $this->_languageManager->getLanguageCodeByIdDb($result['id_language']);
 	 		return true;
  		}
 
