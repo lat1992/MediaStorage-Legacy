@@ -1,17 +1,20 @@
 <?php
 
 require_once('CoreBundle/models/User.php');
+require_once('CoreBundle/models/UserInfo.php');
 
 require_once('CoreBundle/managers/LanguageManager.php');
 
 class UserManager {
 
 	private $_userModel;
+	private $_userInfoModel;
 
 	private $_languageManager;
 
 	public function __construct() {
 		$this->_userModel = new User();
+		$this->_userInfoModel = new UserInfo();
 
 		$this->_languageManager = new LanguageManager();
 	}
@@ -19,14 +22,44 @@ class UserManager {
 	public function loginDb() {
 		$result = $this->_userModel->findUserByUsernameAndPassword($_POST['username_mediastorage'], $_POST['password_mediastorage']);
 
-		if ($result !== false) {
-			$_SESSION['username_mediastorage'] = $result['username'];
-			$_SESSION['role_mediastorage'] = $result['id_role'];
-			$_SESSION['language_mediastorage'] = $this->_languageManager->getLanguageCodeByIdDb($result['id_language']);
-	 		return true;
+		if ($result['data'] !== false) {
+			$_SESSION['username_mediastorage'] = $result['data']['username'];
+			$_SESSION['role_mediastorage'] = $result['data']['id_role'];
+			$_SESSION['language_mediastorage'] = $this->_languageManager->getLanguageCodeByIdDb($result['data']['id_language']);
+			$_SESSION['id_language_mediastorage'] = $result['data']['id_language'];
+
+	 		return array(
+	 			'data' => true,
+	 			'error' => $result['data']['error'],
+	 		);
  		}
 
- 		return false;
+ 		return array(
+ 			'data' => false,
+ 			'error' => $result['data']['error'],
+	 	);
+	}
+
+	public function formatUserArrayWithPostData() {
+		$user = array();
+
+		$user['username'] = $_POST['username_mediastorage'];
+		$user['id_organization'] = $_POST['id_organization_mediastorage'];
+		$user['id_role'] = $_POST['id_role_mediastorage'];
+		$user['id_language'] = $_POST['id_language_mediastorage'];
+		$user['first_name'] = $_POST['first_name_mediastorage'];
+		$user['last_name'] = $_POST['last_name_mediastorage'];
+		$user['company'] = $_POST['company_mediastorage'];
+		$user['job'] = $_POST['job_mediastorage'];
+		$user['email'] = $_POST['email_mediastorage'];
+		$user['address'] = $_POST['address_mediastorage'];
+		$user['zipcode'] = $_POST['zipcode_mediastorage'];
+		$user['city'] = $_POST['city_mediastorage'];
+		$user['country'] = $_POST['country_mediastorage'];
+		$user['phone'] = $_POST['phone_mediastorage'];
+		$user['mobile'] = $_POST['mobile_mediastorage'];
+
+		return $user;
 	}
 
 	public function userCreateFormCheck() {
@@ -44,18 +77,153 @@ class UserManager {
 		if (strcmp($_POST['password_mediastorage'], $_POST['password_mediastorage_bis']) != 0) {
 			$errors_user_create[] = PASSWORD_NOT_MATCH;
 		}
-
-		return $errors_user_create;
-	}
-
-	public function userCreateDb() {
-		$errors_user_create = array();
-
-		if (!$this->_userModel->createNewUser($_POST['username_mediastorage'], $_POST['password_mediastorage'])) {
-			$errors_user_create[] = USER_CREATION_DATABASE_ERROR;
+		if (strlen($_POST['first_name_mediastorage']) > 50) {
+			$errors_user_create[] = INVALID_FIRST_NAME_TOO_LONG;
+		}
+		if (strlen($_POST['last_name_mediastorage']) > 50) {
+			$errors_user_create[] = INVALID_LAST_NAME_TOO_LONG;
+		}
+		if (strlen($_POST['address_mediastorage']) > 200) {
+			$errors_user_create[] = INVALID_ADDRESS_TOO_LONG;
+		}
+		if (strlen($_POST['zipcode_mediastorage']) > 8) {
+			$errors_user_create[] = INVALID_ZIP_TOO_LONG;
+		}
+		if (strlen($_POST['city_mediastorage']) > 50) {
+			$errors_user_create[] = INVALID_CITY_TOO_LONG;
+		}
+		if (strlen($_POST['country_mediastorage']) > 50) {
+			$errors_user_create[] = INVALID_COUNTRY_TOO_LONG;
+		}
+		if (strlen($_POST['phone_mediastorage']) > 12) {
+			$errors_user_create[] = INVALID_PHONE_TOO_LONG;
+		}
+		if (strlen($_POST['mobile_mediastorage']) > 12) {
+			$errors_user_create[] = INVALID_MOBILE_TOO_LONG;
+		}
+		if (strlen($_POST['company_mediastorage']) > 200) {
+			$errors_user_create[] = INVALID_COMPANY_TOO_LONG;
+		}
+		if (strlen($_POST['job_mediastorage']) > 200) {
+			$errors_user_create[] = INVALID_JOB_TOO_LONG;
 		}
 
 		return $errors_user_create;
 	}
 
+	public function userCreateDb() {
+		$return_value = $this->_userModel->findUserByUsernameAndIdOrganization($_POST['username_mediastorage'], $_POST['id_organization_mediastorage']);
+
+		if ($return_value['data']->num_rows != 0) {
+			return array(
+				'data' => false,
+				'error' => DUPLICATE_USERNAME,
+			);
+		}
+		if (!empty($return_value['error'])) {
+			return $return_value;
+		}
+
+		return $this->_userModel->createNewUser($_POST);
+	}
+
+	public function userEditDb($user_data) {
+		if (strcmp($user_data['username'], $_POST['username_mediastorage']) != 0) {
+
+			$return_value = $this->_userModel->findUserByUsernameAndIdOrganization($_POST['username_mediastorage'], $_POST['id_organization_mediastorage']);
+
+			if ($return_value['data']->num_rows != 0) {
+				return array(
+					'data' => false,
+					'error' => DUPLICATE_USERNAME,
+				);
+			}
+			if (!empty($return_value['error'])) {
+				return $return_value;
+			}
+
+			$return_value = $this->_userModel->updateUserUsernameWithId($_POST['username_mediastorage'], $user_data['id']);
+
+			if (!empty($return_value['error'])) {
+				return $return_value;
+			}
+		}
+
+		if ($_POST['password_mediastorage']) {
+			$return_value = $this->_userModel->updateUserPasswordWithId($_POST['password_mediastorage'], $user_data['id']);
+		}
+
+		$return_value = $this->_userModel->updateUserWithoutUsernameAndPasswordWithId($_POST, $user_data['id']);
+
+		if (!empty($return_value['error'])) {
+			return $return_value;
+		}
+
+		return $this->_userInfoModel->updateUserInfoWithId($_POST, $user_data['id']);
+	}
+
+	public function getAllUsersDb() {
+		return $this->_userModel->findAllUsers();
+	}
+
+	public function getUserByIdDb($user_id) {
+		return $this->_userModel->findUserById($user_id);
+	}
+
+	public function getUserInfoByIdDb($user_id) {
+		return $this->_userInfoModel->findUserInfoById($user_id);
+	}
+
+	public function userEditFormCheck() {
+		$errors_user_create = array();
+
+		if (strlen($_POST['username_mediastorage']) == 0) {
+			$errors_user_create[] = EMPTY_USERNAME;
+		}
+		if (strlen($_POST['username_mediastorage']) > 20) {
+			$errors_user_create[] = INVALID_USERNAME_TOO_LONG;
+		}
+		if (strlen($_POST['password_mediastorage']) != 0) {
+
+			if (strcmp($_POST['password_mediastorage'], $_POST['password_mediastorage_bis']) != 0) {
+				$errors_user_create[] = PASSWORD_NOT_MATCH;
+			}
+		}
+		if (strlen($_POST['first_name_mediastorage']) > 50) {
+			$errors_user_create[] = INVALID_FIRST_NAME_TOO_LONG;
+		}
+		if (strlen($_POST['last_name_mediastorage']) > 50) {
+			$errors_user_create[] = INVALID_LAST_NAME_TOO_LONG;
+		}
+		if (strlen($_POST['address_mediastorage']) > 200) {
+			$errors_user_create[] = INVALID_ADDRESS_TOO_LONG;
+		}
+		if (strlen($_POST['zipcode_mediastorage']) > 8) {
+			$errors_user_create[] = INVALID_ZIP_TOO_LONG;
+		}
+		if (strlen($_POST['city_mediastorage']) > 50) {
+			$errors_user_create[] = INVALID_CITY_TOO_LONG;
+		}
+		if (strlen($_POST['country_mediastorage']) > 50) {
+			$errors_user_create[] = INVALID_COUNTRY_TOO_LONG;
+		}
+		if (strlen($_POST['phone_mediastorage']) > 12) {
+			$errors_user_create[] = INVALID_PHONE_TOO_LONG;
+		}
+		if (strlen($_POST['mobile_mediastorage']) > 12) {
+			$errors_user_create[] = INVALID_MOBILE_TOO_LONG;
+		}
+		if (strlen($_POST['company_mediastorage']) > 200) {
+			$errors_user_create[] = INVALID_COMPANY_TOO_LONG;
+		}
+		if (strlen($_POST['job_mediastorage']) > 200) {
+			$errors_user_create[] = INVALID_JOB_TOO_LONG;
+		}
+
+		return $errors_user_create;
+	}
+
+	public function removeUserByIdDb($user_id) {
+		return $this->_userModel->deleteUserById($user_id);
+	}
 }

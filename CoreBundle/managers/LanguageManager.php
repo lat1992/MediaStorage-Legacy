@@ -13,9 +13,9 @@ class LanguageManager {
 	public function getLanguageCodeByIdDb($id) {
 		$result = $this->_languageModel->findLanguageById($id);
 
-		while ($row = $result->fetch_assoc()) {
+		while ($row = $result['data']->fetch_assoc()) {
 			return $row['code'];
-		}			
+		}
 	}
 
 	public function getAllLanguagesDb() {

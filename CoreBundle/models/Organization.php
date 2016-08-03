@@ -9,6 +9,11 @@ class Organization extends Model {
 	}
 
 	public function findAllOrganizations() {
-		return $this->_mysqli->query('SELECT id, reference, name FROM ' . $this->_table . ';');
+		$data = $this->_mysqli->query('SELECT id, reference, name FROM ' . $this->_table . ';');
+	
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllOrganizations: ' . $this->_mysqli->error : '',
+		);
 	}
 }

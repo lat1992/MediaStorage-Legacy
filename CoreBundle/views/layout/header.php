@@ -19,6 +19,15 @@ else {
 	echo 'Non connecté';
 }
 
+// ERROR MANAGEMENT
+
+if (!empty($this->_errorArray)) {
+
+	foreach ($this->_errorArray as $error) {
+		echo '<span style="color: red">' . $error . '</span><br />';
+	}
+}
+
 ?>
 
 <h1>MediaStorage</h1>

@@ -6,7 +6,7 @@ require_once('CoreBundle/views/layout/menu.php');
 
 ?>
 
-<span><?= USER_CREATION_TITLE ?></span>
+<span><?= USER_EDIT_TITLE ?></span>
 
 <div>
 	
