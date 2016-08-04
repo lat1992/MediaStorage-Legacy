@@ -17,6 +17,8 @@
 			echo '<option value="' . $permit['id'] . '" ' . ((intval($permit['id']) == intval($role_permit['id_permit'])) ? ' selected' : '') . '>' . $permit['permit'] . '</option>';
 		}
 ?>
+	</select>
+	<br />
 
 	<input type="hidden" name="id_role_permit_create_mediastorage" value="7645" />
 	<input type="submit" value="<?= VALIDATE ?>" />

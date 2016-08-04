@@ -85,6 +85,7 @@ define('INVALID_NAME_TOO_LONG', 'Nom trop long');
 // Group
 
 define('GROUP_CREATION_TITLE', 'Création d\'un groupe d\'entreprise');
+define('GROUP_LANGUAGE_CREATION_TITLE', 'Ajout d\'une langue a groupe d\'entretprise');
 define('FILESERVER', 'Serveur de fichier');
 define('EMPTY_FILESERVER', 'Serveur de fichier vide');
 define('INVALID_FILESERVER_TOO_LONG', 'Serveur de fichier trop long');

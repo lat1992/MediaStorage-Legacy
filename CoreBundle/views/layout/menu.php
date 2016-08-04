@@ -10,4 +10,5 @@
 	<li><a href="?page=create_sharelist_media"><?= SHARELIST_MEDIA_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_organization"><?= ORGANIZATION_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_group"><?= GROUP_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_group_language"><?= GROUP_LANGUAGE_CREATION_TITLE ?></a></li>
 </ul>

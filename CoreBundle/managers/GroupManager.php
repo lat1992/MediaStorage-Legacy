@@ -42,10 +42,10 @@ class GroupManager {
 		}
 
 		if (strlen($_POST['fileserver_mediastorage']) == 0) {
-			$error_group[] = EMPTY_NAME;
+			$error_group[] = EMPTY_FILESERVER;
 		}
-		if (strlen($_POST['fileserver_mediastorage']) > 30) {
-			$error_group[] = INVALID_NAME_TOO_LONG;
+		if (strlen($_POST['fileserver_mediastorage']) > 20) {
+			$error_group[] = INVALID_FILESERVER_TOO_LONG;
 		}
 
 

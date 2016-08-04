@@ -56,3 +56,7 @@ $this->_route[] = array('delete_organization', 'CoreBundle/controllers/Organizat
 $this->_route[] = array('create_group', 'CoreBundle/controllers/GroupController.php', 'GroupController', 'createAction');
 $this->_route[] = array('edit_group', 'CoreBundle/controllers/GroupController.php', 'GroupController', 'editAction');
 $this->_route[] = array('delete_group', 'CoreBundle/controllers/GroupController.php', 'GroupController', 'deleteAction');
+
+$this->_route[] = array('create_group_language', 'CoreBundle/controllers/GroupLanguageController.php', 'GroupLanguageController', 'createAction');
+$this->_route[] = array('edit_group_language', 'CoreBundle/controllers/GroupLanguageController.php', 'GroupLanguageController', 'editAction');
+$this->_route[] = array('delete_group_language', 'CoreBundle/controllers/GroupLanguageController.php', 'GroupLanguageController', 'deleteAction');

@@ -21,6 +21,8 @@
 			}
 		}
 ?>
+	</select>
+	<br />
 
 	<input type="hidden" name="id_role_language_create_mediastorage" value="12646" />
 	<input type="submit" value="<?= VALIDATE ?>" />
