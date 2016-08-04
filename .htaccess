@@ -7,4 +7,3 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{HTTP_HOST} !^(?:www) [NC]
 RewriteCond %{HTTP_HOST} ^([^.]+)\.[^.]+\.[^.]+$
 RewriteRule ^(.*)$ $1?plateform=%1 [L,QSA]
-
