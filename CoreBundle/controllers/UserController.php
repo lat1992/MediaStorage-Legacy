@@ -118,31 +118,35 @@ class UserController {
 		$this->mergeErrorArray($roles);
 		$this->mergeErrorArray($languages);
 
-		while ($user_data_temp = $user_data['data']->fetch_assoc()) {
-			$user = $user_data_temp;
-		}
+		if (count($this->_errorArray) == 0) {
 
-		while ($user_info_data_temp = $user_info_data['data']->fetch_assoc()) {
-			$user_info = $user_info_data_temp;
-		}
+			while ($user_data_temp = $user_data['data']->fetch_assoc()) {
+				$user = $user_data_temp;
+			}
 
-		if (isset($_POST['id_user_create_mediastorage']) && (strcmp($_POST['id_user_create_mediastorage'], '98475') == 0)) {
+			while ($user_info_data_temp = $user_info_data['data']->fetch_assoc()) {
+				$user_info = $user_info_data_temp;
+			}
 
-			$return_value['error'] = $this->_userManager->userEditFormCheck();
-			$this->mergeErrorArray($return_value);
+			if (isset($_POST['id_user_create_mediastorage']) && (strcmp($_POST['id_user_create_mediastorage'], '98475') == 0)) {
 
-			if (count($this->_errorArray) == 0) {
-
-				$return_value = $this->_userManager->userEditDb($user);
+				$return_value['error'] = $this->_userManager->userEditFormCheck();
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-					header('Location:' . '?page=dashboard');
+
+					$return_value = $this->_userManager->userEditDb($user);
+					$this->mergeErrorArray($return_value);
+
+					if (count($this->_errorArray) == 0) {
+						header('Location:' . '?page=dashboard');
+					}
 				}
 			}
-		}
 
-		$user = array_merge($user, $user_info);
+			$user = array_merge($user, $user_info);
+
+		}
 
 		include ('CoreBundle/views/user/user_edit.php');
 	}

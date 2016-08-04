@@ -89,3 +89,28 @@ define('GROUP_LANGUAGE_CREATION_TITLE', 'Ajout d\'une langue a groupe d\'entretp
 define('FILESERVER', 'Serveur de fichier');
 define('EMPTY_FILESERVER', 'Serveur de fichier vide');
 define('INVALID_FILESERVER_TOO_LONG', 'Serveur de fichier trop long');
+
+// Language
+
+define('LANGUAGE_CREATION_TITLE', 'Création d\'un langage');
+define('CODE', 'Code');
+define('EMPTY_CODE', 'Code vide');
+define('INVALID_CODE_TOO_LONG', 'Code trop long');
+
+// Tag
+
+define('TAG', 'Tag');
+define('TAG_CREATION_TITLE', 'Création d\'un tag');
+define('TAG_LANGUAGE_CREATION_TITLE', 'Ajout d\'une langue a tag');
+
+// Cart
+
+define('CART_CREATION_TITLE', 'Création d\'un panier');
+
+// Chapter
+
+define('CHAPTER_CREATION_TITLE', 'Création d\'un chapitre');
+define('CHAPTER_LANGUAGE_CREATION_TITLE', 'Ajout d\'un language au chapitre');
+define('CHAPTER', 'Chapitre');
+define('TC_IN', 'Tc in');
+define('TC_OUT', 'Tc out');

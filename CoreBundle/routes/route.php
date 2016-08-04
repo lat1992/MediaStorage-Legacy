@@ -53,7 +53,9 @@ $this->_route[] = array('delete_organization', 'CoreBundle/controllers/Organizat
 
 // LANGUAGE
 
-
+$this->_route[] = array('create_language', 'CoreBundle/controllers/LanguageController.php', 'LanguageController', 'createAction');
+$this->_route[] = array('edit_language', 'CoreBundle/controllers/LanguageController.php', 'LanguageController', 'editAction');
+$this->_route[] = array('delete_language', 'CoreBundle/controllers/LanguageController.php', 'LanguageController', 'deleteAction');
 
 // GROUP
 
@@ -72,3 +74,29 @@ $this->_route[] = array('list_media', 'CoreBundle/controllers/MediaController.ph
 $this->_route[] = array('create_media', 'CoreBundle/controllers/MediaController.php', 'MediaController', 'createAction');
 $this->_route[] = array('edit_media', 'CoreBundle/controllers/MediaController.php', 'MediaController', 'editAction');
 $this->_route[] = array('delete_media', 'CoreBundle/controllers/MediaController.php', 'MediaController', 'deleteAction');
+
+// TAG
+
+$this->_route[] = array('create_tag', 'CoreBundle/controllers/TagController.php', 'TagController', 'createAction');
+$this->_route[] = array('edit_tag', 'CoreBundle/controllers/TagController.php', 'TagController', 'editAction');
+$this->_route[] = array('delete_tag', 'CoreBundle/controllers/TagController.php', 'TagController', 'deleteAction');
+
+$this->_route[] = array('create_tag_language', 'CoreBundle/controllers/TagLanguageController.php', 'TagLanguageController', 'createAction');
+$this->_route[] = array('edit_tag_language', 'CoreBundle/controllers/TagLanguageController.php', 'TagLanguageController', 'editAction');
+$this->_route[] = array('delete_tag_language', 'CoreBundle/controllers/TagLanguageController.php', 'TagLanguageController', 'deleteAction');
+
+// Cart
+
+$this->_route[] = array('create_cart', 'CoreBundle/controllers/CartController.php', 'CartController', 'createAction');
+$this->_route[] = array('edit_cart', 'CoreBundle/controllers/CartController.php', 'CartController', 'editAction');
+$this->_route[] = array('delete_cart', 'CoreBundle/controllers/CartController.php', 'CartController', 'deleteAction');
+
+// Chapter
+
+$this->_route[] = array('create_chapter', 'CoreBundle/controllers/ChapterController.php', 'ChapterController', 'createAction');
+$this->_route[] = array('edit_chapter', 'CoreBundle/controllers/ChapterController.php', 'ChapterController', 'editAction');
+$this->_route[] = array('delete_chapter', 'CoreBundle/controllers/ChapterController.php', 'ChapterController', 'deleteAction');
+
+$this->_route[] = array('create_chapter_language', 'CoreBundle/controllers/ChapterLanguageController.php', 'ChapterLanguageController', 'createAction');
+$this->_route[] = array('edit_chapter_language', 'CoreBundle/controllers/ChapterLanguageController.php', 'ChapterLanguageController', 'editAction');
+$this->_route[] = array('delete_chapter_language', 'CoreBundle/controllers/ChapterLanguageController.php', 'ChapterLanguageController', 'deleteAction');

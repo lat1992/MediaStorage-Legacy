@@ -68,21 +68,25 @@ class GroupLanguageController {
 		$this->mergeErrorArray($groups);
 		$this->mergeErrorArray($languages);
 
-		while ($group_language_data_temp = $group_language_data['data']->fetch_assoc()) {
-			$group_language = $group_language_data_temp;
-		}
+		if (count($this->_errorArray) == 0) {
 
-		if (isset($_POST['id_group_language_create_mediastorage']) && (strcmp($_POST['id_group_language_create_mediastorage'], '12646') == 0)) {
-			$return_value['error'] = $this->_groupLanguageManager->groupLanguageCreateFormCheck();
-			$this->mergeErrorArray($return_value);
+			while ($group_language_data_temp = $group_language_data['data']->fetch_assoc()) {
+				$group_language = $group_language_data_temp;
+			}
 
-			if (count($this->_errorArray) == 0) {
-				$return_value = $this->_groupLanguageManager->groupLanguageEditDb($group_language);
+			if (isset($_POST['id_group_language_create_mediastorage']) && (strcmp($_POST['id_group_language_create_mediastorage'], '12646') == 0)) {
+				$return_value['error'] = $this->_groupLanguageManager->groupLanguageCreateFormCheck();
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-					header('Location:' . '?page=dashboard');
+					$return_value = $this->_groupLanguageManager->groupLanguageEditDb($group_language);
+					$this->mergeErrorArray($return_value);
+
+					if (count($this->_errorArray) == 0) {
+						header('Location:' . '?page=dashboard');
+					}
 				}
+
 			}
 
 		}

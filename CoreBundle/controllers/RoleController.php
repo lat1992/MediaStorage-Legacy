@@ -2,20 +2,17 @@
 
 require_once('CoreBundle/managers/RoleManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
-require_once('CoreBundle/managers/LanguageManager.php');
 
 class RoleController {
 
 	private $_roleManager;
 	private $_organizationManager;
-	private $_languageManager;
 
 	private $_errorArray;
 
 	public function __construct() {
 		$this->_roleManager = new RoleManager();
 		$this->_organizationManager = new OrganizationManager();
-		$this->_languageManager = new LanguageManager();
 
 		$this->_errorArray = array();
 	}
@@ -71,21 +68,25 @@ class RoleController {
 		$this->mergeErrorArray($role_data);
 		$this->mergeErrorArray($organizations);
 
-		while ($role_data_temp = $role_data['data']->fetch_assoc()) {
-			$role = $role_data_temp;
-		}
+		if (count($this->_errorArray) == 0) {
 
-		if (isset($_POST['id_role_create_mediastorage']) && (strcmp($_POST['id_role_create_mediastorage'], '984156') == 0)) {
-			$return_value['error'] = $this->_roleManager->roleCreateFormCheck();
-			$this->mergeErrorArray($return_value);
+			while ($role_data_temp = $role_data['data']->fetch_assoc()) {
+				$role = $role_data_temp;
+			}
 
-			if (count($this->_errorArray) == 0) {
-				$return_value = $this->_roleManager->roleEditDb($role);
+			if (isset($_POST['id_role_create_mediastorage']) && (strcmp($_POST['id_role_create_mediastorage'], '984156') == 0)) {
+				$return_value['error'] = $this->_roleManager->roleCreateFormCheck();
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-					header('Location:' . '?page=dashboard');
+					$return_value = $this->_roleManager->roleEditDb($role);
+					$this->mergeErrorArray($return_value);
+
+					if (count($this->_errorArray) == 0) {
+						header('Location:' . '?page=dashboard');
+					}
 				}
+
 			}
 
 		}

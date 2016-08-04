@@ -68,23 +68,26 @@ class RoleLanguageController {
 		$this->mergeErrorArray($roles);
 		$this->mergeErrorArray($languages);
 
-		while ($role_language_data_temp = $role_language_data['data']->fetch_assoc()) {
-			$role_language = $role_language_data_temp;
-		}
+		if (count($this->_errorArray) == 0) {
 
-		if (isset($_POST['id_role_language_create_mediastorage']) && (strcmp($_POST['id_role_language_create_mediastorage'], '12646') == 0)) {
-			$return_value['error'] = $this->_roleLanguageManager->roleLanguageCreateFormCheck();
-			$this->mergeErrorArray($return_value);
+			while ($role_language_data_temp = $role_language_data['data']->fetch_assoc()) {
+				$role_language = $role_language_data_temp;
+			}
 
-			if (count($this->_errorArray) == 0) {
-				$return_value = $this->_roleLanguageManager->roleLanguageEditDb($role_language);
+			if (isset($_POST['id_role_language_create_mediastorage']) && (strcmp($_POST['id_role_language_create_mediastorage'], '12646') == 0)) {
+				$return_value['error'] = $this->_roleLanguageManager->roleLanguageCreateFormCheck();
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-					header('Location:' . '?page=dashboard');
-				}
-			}
+					$return_value = $this->_roleLanguageManager->roleLanguageEditDb($role_language);
+					$this->mergeErrorArray($return_value);
 
+					if (count($this->_errorArray) == 0) {
+						header('Location:' . '?page=dashboard');
+					}
+				}
+
+			}
 		}
 
 		include ('CoreBundle/views/role/role_language_create.php');

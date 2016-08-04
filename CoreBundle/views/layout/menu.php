@@ -11,4 +11,10 @@
 	<li><a href="?page=create_organization"><?= ORGANIZATION_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_group"><?= GROUP_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_group_language"><?= GROUP_LANGUAGE_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_language"><?= LANGUAGE_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_tag"><?= TAG_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_tag_language"><?= TAG_LANGUAGE_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_cart"><?= CART_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_chapter"><?= CHAPTER_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_chapter_language"><?= CHAPTER_LANGUAGE_CREATION_TITLE ?></a></li>
 </ul>

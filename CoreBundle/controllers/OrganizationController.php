@@ -69,21 +69,25 @@ class OrganizationController {
 		$this->mergeErrorArray($organization_data);
 		$this->mergeErrorArray($groups);
 
-		while ($organization_data_temp = $organization_data['data']->fetch_assoc()) {
-			$organization = $organization_data_temp;
-		}
+		if (count($this->_errorArray) == 0) {
 
-		if (isset($_POST['id_organization_create_mediastorage']) && (strcmp($_POST['id_organization_create_mediastorage'], '87463975') == 0)) {
-			$return_value['error'] = $this->_organizationManager->organizationCreateFormCheck();
-			$this->mergeErrorArray($return_value);
+			while ($organization_data_temp = $organization_data['data']->fetch_assoc()) {
+				$organization = $organization_data_temp;
+			}
 
-			if (count($this->_errorArray) == 0) {
-				$return_value = $this->_organizationManager->organizationEditDb($organization);
+			if (isset($_POST['id_organization_create_mediastorage']) && (strcmp($_POST['id_organization_create_mediastorage'], '87463975') == 0)) {
+				$return_value['error'] = $this->_organizationManager->organizationCreateFormCheck();
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-					header('Location:' . '?page=dashboard');
+					$return_value = $this->_organizationManager->organizationEditDb($organization);
+					$this->mergeErrorArray($return_value);
+
+					if (count($this->_errorArray) == 0) {
+						header('Location:' . '?page=dashboard');
+					}
 				}
+
 			}
 
 		}

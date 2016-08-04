@@ -25,4 +25,44 @@ class Language extends Model {
 			'error' => ($this->_mysqli->error) ? 'findAllLanguages: ' . $this->_mysqli->error : '',
 		);
 	}
+
+	public function createNewLanguage($data) {
+		$name = $this->_mysqli->real_escape_string($data['name_mediastorage']);
+		$code = $this->_mysqli->real_escape_string($data['code_mediastorage']);
+
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(name, code)' .
+			' VALUES ("'. $name . '", "' . $code . '");'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'createNewLanguage: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function updateLanguageWithId($data, $language_id) {
+		$name = $this->_mysqli->real_escape_string($data['name_mediastorage']);
+		$code = $this->_mysqli->real_escape_string($data['code_mediastorage']);
+
+		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
+			' SET code = "' . $code . '", name = "' . $name . '"' .
+			' WHERE id = ' . $language_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'updateLanguageWithId: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function deleteLanguageById($language_id) {
+		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
+			' WHERE id = ' . $language_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'deleteLanguageById: ' . $this->_mysqli->error : '',
+		);
+	}
 }

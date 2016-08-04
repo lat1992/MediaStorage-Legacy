@@ -68,21 +68,25 @@ class RolePermitController {
 		$this->mergeErrorArray($roles);
 		$this->mergeErrorArray($permits);
 
-		while ($role_permit_data_temp = $role_permit_data['data']->fetch_assoc()) {
-			$role_permit = $role_permit_data_temp;
-		}
+		if (count($this->_errorArray) == 0) {
 
-		if (isset($_POST['id_role_permit_create_mediastorage']) && (strcmp($_POST['id_role_permit_create_mediastorage'], '7645') == 0)) {
-			$return_value['error'] = $this->_rolePermitManager->rolePermitCreateFormCheck();
-			$this->mergeErrorArray($return_value);
+			while ($role_permit_data_temp = $role_permit_data['data']->fetch_assoc()) {
+				$role_permit = $role_permit_data_temp;
+			}
 
-			if (count($this->_errorArray) == 0) {
-				$return_value = $this->_rolePermitManager->rolePermitEditDb($role_permit);
+			if (isset($_POST['id_role_permit_create_mediastorage']) && (strcmp($_POST['id_role_permit_create_mediastorage'], '7645') == 0)) {
+				$return_value['error'] = $this->_rolePermitManager->rolePermitCreateFormCheck();
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-					header('Location:' . '?page=dashboard');
+					$return_value = $this->_rolePermitManager->rolePermitEditDb($role_permit);
+					$this->mergeErrorArray($return_value);
+
+					if (count($this->_errorArray) == 0) {
+						header('Location:' . '?page=dashboard');
+					}
 				}
+
 			}
 
 		}

@@ -69,21 +69,25 @@ class SharelistController {
 		$this->mergeErrorArray($sharelist_data);
 		$this->mergeErrorArray($users);
 
-		while ($sharelist_data_temp = $sharelist_data['data']->fetch_assoc()) {
-			$sharelist = $sharelist_data_temp;
-		}
+		if (count($this->_errorArray) == 0) {
 
-		if (isset($_POST['id_sharelist_create_mediastorage']) && (strcmp($_POST['id_sharelist_create_mediastorage'], '54843') == 0)) {
-			$return_value['error'] = $this->_sharelistManager->sharelistCreateFormCheck();
-			$this->mergeErrorArray($return_value);
+			while ($sharelist_data_temp = $sharelist_data['data']->fetch_assoc()) {
+				$sharelist = $sharelist_data_temp;
+			}
 
-			if (count($this->_errorArray) == 0) {
-				$return_value = $this->_sharelistManager->sharelistEditDb($sharelist);
+			if (isset($_POST['id_sharelist_create_mediastorage']) && (strcmp($_POST['id_sharelist_create_mediastorage'], '54843') == 0)) {
+				$return_value['error'] = $this->_sharelistManager->sharelistCreateFormCheck();
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-					header('Location:' . '?page=dashboard');
+					$return_value = $this->_sharelistManager->sharelistEditDb($sharelist);
+					$this->mergeErrorArray($return_value);
+
+					if (count($this->_errorArray) == 0) {
+						header('Location:' . '?page=dashboard');
+					}
 				}
+
 			}
 
 		}

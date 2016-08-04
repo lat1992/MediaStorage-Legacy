@@ -60,23 +60,26 @@ class GroupController {
 
 		$this->mergeErrorArray($group_data);
 
-		while ($group_data_temp = $group_data['data']->fetch_assoc()) {
-			$group = $group_data_temp;
-		}
+		if (count($this->_errorArray) == 0) {
 
-		if (isset($_POST['id_group_create_mediastorage']) && (strcmp($_POST['id_group_create_mediastorage'], '87463975') == 0)) {
-			$return_value['error'] = $this->_groupManager->groupCreateFormCheck();
-			$this->mergeErrorArray($return_value);
+			while ($group_data_temp = $group_data['data']->fetch_assoc()) {
+				$group = $group_data_temp;
+			}
 
-			if (count($this->_errorArray) == 0) {
-				$return_value = $this->_groupManager->groupEditDb($group);
+			if (isset($_POST['id_group_create_mediastorage']) && (strcmp($_POST['id_group_create_mediastorage'], '87463975') == 0)) {
+				$return_value['error'] = $this->_groupManager->groupCreateFormCheck();
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-					header('Location:' . '?page=dashboard');
-				}
-			}
+					$return_value = $this->_groupManager->groupEditDb($group);
+					$this->mergeErrorArray($return_value);
 
+					if (count($this->_errorArray) == 0) {
+						header('Location:' . '?page=dashboard');
+					}
+				}
+
+			}
 		}
 
 		include ('CoreBundle/views/group/group_create.php');
