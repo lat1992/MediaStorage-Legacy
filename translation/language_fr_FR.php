@@ -31,8 +31,6 @@ define('USER_CREATION_TITLE', 'Creation utilisateur');
 define('USER_LIST_TITLE', 'Liste d\'utilisateur');
 define('USER_EDIT_TITLE', 'Edition utilisateur');
 
-// User forms errors
-
 define('USER_CREATION_DATABASE_ERROR', 'Creation d\'utilisateur impossible : Ajout impossible en database');
 define('EMPTY_USERNAME', 'Nom d\'utilisateur vide');
 define('DUPLICATE_USERNAME', 'Nom d\'utilisateur déjà existant');
@@ -56,11 +54,37 @@ define('USERS_NOT_FOUND', 'Aucun utilisateurs trouvés');
 define('ROLE_LIST_TITLE', 'Liste des roles');
 define('ROLE_CREATION_TITLE', 'Création d\'un role');
 
-define('ROLE_LANGUAGE_CREATION_TITLE', 'Ajout d\'une traduction pour role');
+define('ROLE_LANGUAGE_CREATION_TITLE', 'Ajout de traduction pour role');
+define('ROLE_PERMIT_CREATION_TITLE', 'Ajout de permission pour role');
 define('DATA', 'Contenu');
-
-// Role forms errors
+define('PERMIT', 'Permission');
 
 define('EMPTY_ROLE', 'Role vide');
 define('EMPTY_ROLE_LANGUAGE', 'Contenu vide');
 define('INVALID_ROLE_LANGUAGE_TOO_LONG', 'Contenu trop long');
+
+// Sharelist
+
+define('SHARELIST_CREATION_TITLE', 'Création d\'une liste de partage');
+define('SHARELIST_MEDIA_CREATION_TITLE', 'Ajout d\'un média pour liste de partage');
+define('SHARELIST', 'Liste de partage');
+define('REFERENCE', 'Référence');
+define('USER', 'Utilisateur');
+define('MEDIA', 'Média');
+
+// Organization
+
+define('NAME', 'Nom');
+define('GROUP', 'Groupe d\'entreprise');
+define('ORGANIZATION_CREATION_TITLE', 'Création d\'entreprise');
+define('EMPTY_REFERENCE', 'Référence vide');
+define('INVALID_REFERENCE_TOO_LONG', 'Référence trop long');
+define('EMPTY_NAME', 'Nom vide');
+define('INVALID_NAME_TOO_LONG', 'Nom trop long');
+
+// Group
+
+define('GROUP_CREATION_TITLE', 'Création d\'un groupe d\'entreprise');
+define('FILESERVER', 'Serveur de fichier');
+define('EMPTY_FILESERVER', 'Serveur de fichier vide');
+define('INVALID_FILESERVER_TOO_LONG', 'Serveur de fichier trop long');

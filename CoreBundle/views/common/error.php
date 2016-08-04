@@ -6,13 +6,7 @@ require_once('CoreBundle/views/layout/menu.php');
 
 ?>
 
-<span><?= USER_CREATION_TITLE ?></span>
-
-<div>
-
-	<?php require_once('CoreBundle/views/user/user_create_form.php'); ?>
-
-</div>
+<h2> ERRORS </h2><br />
 
 <?php
 

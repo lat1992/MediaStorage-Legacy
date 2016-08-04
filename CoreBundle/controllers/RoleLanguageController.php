@@ -36,7 +36,7 @@ class RoleLanguageController {
 		$role = array();
 
 		if (isset($_POST['id_role_language_create_mediastorage']) && (strcmp($_POST['id_role_language_create_mediastorage'], '12646') == 0)) {
-			$role = $this->_roleLanguageManager->formatRoleLanguageArrayWithPostData();
+			$role_language = $this->_roleLanguageManager->formatRoleLanguageArrayWithPostData();
 			$return_value['error'] = $this->_roleLanguageManager->roleLanguageCreateFormCheck();
 			$this->mergeErrorArray($return_value);
 
@@ -101,6 +101,6 @@ class RoleLanguageController {
 			}
 		}
 
-		header('Location:' . '?page=dashboard');
+		include ('CoreBundle/views/common/error.php');
 	}
 }

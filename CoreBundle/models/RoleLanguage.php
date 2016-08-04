@@ -54,6 +54,8 @@ class RoleLanguage extends Model {
 	}
 
 	public function deleteRoleLanguageById($role_language_id) {
+		$role_language_id = $this->_mysqli->real_escape_string($role_language_id);
+
 		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
 			' WHERE id = ' . $role_language_id . ';'
 		);

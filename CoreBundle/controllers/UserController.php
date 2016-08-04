@@ -159,7 +159,7 @@ class UserController {
 			}
 		}
 
-		header('Location:' . '?page=dashboard');
+		include ('CoreBundle/views/common/error.php');
 	}
 
 	public function dashboardAction() {

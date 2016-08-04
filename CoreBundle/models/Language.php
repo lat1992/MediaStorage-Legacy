@@ -3,7 +3,6 @@
 require_once('Model.php');
 
 class Language extends Model {
-	
 
 	public function __construct() {
 		parent::__construct('language');

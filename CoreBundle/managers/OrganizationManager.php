@@ -11,6 +11,56 @@ class OrganizationManager {
 	}
 
 	public function getAllOrganizationsDb() {
-		return $this->_organizationModel->findAllOrganizations();			
+		return $this->_organizationModel->findAllOrganizations();
+	}
+
+	public function formatOrganizationArrayWithPostData() {
+		$organization = array();
+
+		$organization['reference'] = $_POST['reference_mediastorage'];
+		$organization['name'] = $_POST['name_mediastorage'];
+		$organization['id_group'] = $_POST['id_group_mediastorage'];
+
+		return $organization;
+	}
+
+	public function organizationCreateFormCheck() {
+		$error_organization = array();
+
+		if (strlen($_POST['reference_mediastorage']) == 0) {
+			$error_organization[] = EMPTY_REFERENCE;
+		}
+		if (strlen($_POST['reference_mediastorage']) > 30) {
+			$error_organization[] = INVALID_REFERENCE_TOO_LONG;
+		}
+
+		if (strlen($_POST['name_mediastorage']) == 0) {
+			$error_organization[] = EMPTY_NAME;
+		}
+		if (strlen($_POST['name_mediastorage']) > 30) {
+			$error_organization[] = INVALID_NAME_TOO_LONG;
+		}
+
+		return $error_organization;
+	}
+
+	public function organizationCreateDb() {
+		return $this->_organizationModel->createNewOrganization($_POST);
+	}
+
+	public function getOrganizationByIdDb($organization_id) {
+		return $this->_organizationModel->findOrganizationById($organization_id);
+	}
+
+	public function organizationEditDb($organization_data) {
+		return $this->_organizationModel->updateOrganizationWithId($_POST, $organization_data['id']);
+	}
+
+	public function removeOrganizationByIdDb($organization_id) {
+		// $data = $this->_organizationLanguageManager->deleteOrganizationLanguageByOrganizationId($organization_id);
+		// if (!empty($data['error']))
+		// 	return $data;
+
+		return $this->_organizationModel->deleteOrganizationById($organization_id);
 	}
 }

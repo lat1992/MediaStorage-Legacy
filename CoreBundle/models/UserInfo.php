@@ -3,7 +3,7 @@
 require_once('Model.php');
 
 class UserInfo extends Model {
-	
+
 	public function __construct() {
 		parent::__construct('user_info');
 	}
@@ -19,7 +19,7 @@ class UserInfo extends Model {
 		$mobile = $this->_mysqli->real_escape_string($data['mobile_mediastorage']);
 		$company = $this->_mysqli->real_escape_string($data['company_mediastorage']);
 		$job = $this->_mysqli->real_escape_string($data['job_mediastorage']);
-		
+
 		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id, first_name, last_name, address, zipcode, city, country, phone, mobile, company, job) VALUES ("'. $user_id . '", "' . $first_name . '", "' . $last_name . '", "' . $address . '", "' . $zipcode . '", "' . $city . '", "' . $country . '", "' . $phone . '", "' . $mobile . '", "' . $company . '", "' . $job . '");');
 
 		return array(

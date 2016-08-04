@@ -5,4 +5,9 @@
 	<li><a href="?page=list_role"><?= ROLE_LIST_TITLE ?></a></li>
 	<li><a href="?page=create_role"><?= ROLE_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_role_language"><?= ROLE_LANGUAGE_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_role_permit"><?= ROLE_PERMIT_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_sharelist"><?= SHARELIST_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_sharelist_media"><?= SHARELIST_MEDIA_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_organization"><?= ORGANIZATION_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_group"><?= GROUP_CREATION_TITLE ?></a></li>
 </ul>

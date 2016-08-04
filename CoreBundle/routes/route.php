@@ -25,6 +25,34 @@ $this->_route[] = array('list_role', 'CoreBundle/controllers/RoleController.php'
 $this->_route[] = array('create_role', 'CoreBundle/controllers/RoleController.php', 'RoleController', 'createAction');
 $this->_route[] = array('edit_role', 'CoreBundle/controllers/RoleController.php', 'RoleController', 'editAction');
 $this->_route[] = array('delete_role', 'CoreBundle/controllers/RoleController.php', 'RoleController', 'deleteAction');
+
 $this->_route[] = array('create_role_language', 'CoreBundle/controllers/RoleLanguageController.php', 'RoleLanguageController', 'createAction');
 $this->_route[] = array('edit_role_language', 'CoreBundle/controllers/RoleLanguageController.php', 'RoleLanguageController', 'editAction');
 $this->_route[] = array('delete_role_language', 'CoreBundle/controllers/RoleLanguageController.php', 'RoleLanguageController', 'deleteAction');
+
+$this->_route[] = array('create_role_permit', 'CoreBundle/controllers/RolePermitController.php', 'RolePermitController', 'createAction');
+$this->_route[] = array('edit_role_permit', 'CoreBundle/controllers/RolePermitController.php', 'RolePermitController', 'editAction');
+$this->_route[] = array('delete_role_permit', 'CoreBundle/controllers/RolePermitController.php', 'RolePermitController', 'deleteAction');
+
+// SHARELIST
+
+$this->_route[] = array('create_sharelist', 'CoreBundle/controllers/SharelistController.php', 'SharelistController', 'createAction');
+$this->_route[] = array('edit_sharelist', 'CoreBundle/controllers/SharelistController.php', 'SharelistController', 'editAction');
+$this->_route[] = array('delete_sharelist', 'CoreBundle/controllers/SharelistController.php', 'SharelistController', 'deleteAction');
+
+
+$this->_route[] = array('create_sharelist_media', 'CoreBundle/controllers/SharelistMediaController.php', 'SharelistMediaController', 'createAction');
+$this->_route[] = array('edit_sharelist_media', 'CoreBundle/controllers/SharelistMediaController.php', 'SharelistMediaController', 'editAction');
+$this->_route[] = array('delete_sharelist_media', 'CoreBundle/controllers/SharelistMediaController.php', 'SharelistMediaController', 'deleteAction');
+
+// ORGANIZATION
+
+$this->_route[] = array('create_organization', 'CoreBundle/controllers/OrganizationController.php', 'OrganizationController', 'createAction');
+$this->_route[] = array('edit_organization', 'CoreBundle/controllers/OrganizationController.php', 'OrganizationController', 'editAction');
+$this->_route[] = array('delete_organization', 'CoreBundle/controllers/OrganizationController.php', 'OrganizationController', 'deleteAction');
+
+// GROUP
+
+$this->_route[] = array('create_group', 'CoreBundle/controllers/GroupController.php', 'GroupController', 'createAction');
+$this->_route[] = array('edit_group', 'CoreBundle/controllers/GroupController.php', 'GroupController', 'editAction');
+$this->_route[] = array('delete_group', 'CoreBundle/controllers/GroupController.php', 'GroupController', 'deleteAction');
