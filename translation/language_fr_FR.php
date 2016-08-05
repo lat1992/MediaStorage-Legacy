@@ -60,8 +60,8 @@ define('DATA', 'Contenu');
 define('PERMIT', 'Permission');
 
 define('EMPTY_ROLE', 'Role vide');
-define('EMPTY_ROLE_LANGUAGE', 'Contenu vide');
-define('INVALID_ROLE_LANGUAGE_TOO_LONG', 'Contenu trop long');
+define('EMPTY_DATA', 'Contenu vide');
+define('INVALID_DATA_TOO_LONG', 'Contenu trop long');
 
 // Sharelist
 
@@ -120,3 +120,11 @@ define('TC_OUT', 'Tc out');
 define('EMPTY_EMAIL', 'Email vide');
 define('INVALID_EMAIL_TOO_LONG', 'Email trop long');
 define('MAILLIST_CREATION_TITLE', 'Création de maillist');
+
+// Folder
+
+define('FOLDER', 'Dossier');
+define('PARENT_FOLDER', 'Dossier parent');
+define('FOLDER_CREATION_TITLE', 'Création d\'un dossier');
+define('FOLDER_LANGUAGE_CREATION_TITLE', 'Ajout d\'une langue a dossier');
+define('FOLDER_MEDIA_CREATION_TITLE', 'Ajout d\'un media a dossier');

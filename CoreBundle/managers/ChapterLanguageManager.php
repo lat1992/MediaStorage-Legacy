@@ -13,7 +13,7 @@ class ChapterLanguageManager {
 	public function formatChapterLanguageArrayWithPostData() {
 		$chapter = array();
 
-		$chapter['name'] = $_POST['name_mediastorage'];
+		$chapter['data'] = $_POST['data_mediastorage'];
 		$chapter['id_chapter'] = $_POST['id_chapter_mediastorage'];
 		$chapter['id_language'] = $_POST['id_language_mediastorage'];
 
@@ -23,11 +23,11 @@ class ChapterLanguageManager {
 	public function chapterLanguageCreateFormCheck() {
 		$error_chapter_language = array();
 
-		if (strlen($_POST['name_mediastorage']) == 0) {
-			$error_chapter_language[] = EMPTY_NAME;
+		if (strlen($_POST['data_mediastorage']) == 0) {
+			$error_chapter_language[] = EMPTY_DATA;
 		}
-		if (strlen($_POST['name_mediastorage']) > 50) {
-			$error_chapter_language[] = INVALID_NAME_TOO_LONG;
+		if (strlen($_POST['data_mediastorage']) > 100) {
+			$error_chapter_language[] = INVALID_DATA_TOO_LONG;
 		}
 
 		return $error_chapter_language;

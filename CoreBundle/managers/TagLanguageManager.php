@@ -24,10 +24,10 @@ class TagLanguageManager {
 		$error_tag_language = array();
 
 		if (strlen($_POST['data_mediastorage']) == 0) {
-			$error_tag_language[] = EMPTY_ROLE_LANGUAGE;
+			$error_tag_language[] = EMPTY_DATA;
 		}
 		if (strlen($_POST['data_mediastorage']) > 100) {
-			$error_tag_language[] = INVALID_ROLE_LANGUAGE_TOO_LONG;
+			$error_tag_language[] = INVALID_DATA_TOO_LONG;
 		}
 
 		return $error_tag_language;

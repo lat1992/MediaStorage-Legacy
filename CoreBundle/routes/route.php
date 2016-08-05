@@ -106,3 +106,17 @@ $this->_route[] = array('delete_chapter_language', 'CoreBundle/controllers/Chapt
 $this->_route[] = array('create_maillist', 'CoreBundle/controllers/MaillistController.php', 'MaillistController', 'createAction');
 $this->_route[] = array('edit_maillist', 'CoreBundle/controllers/MaillistController.php', 'MaillistController', 'editAction');
 $this->_route[] = array('delete_maillist', 'CoreBundle/controllers/MaillistController.php', 'MaillistController', 'deleteAction');
+
+// Folder
+
+$this->_route[] = array('create_folder', 'CoreBundle/controllers/FolderController.php', 'FolderController', 'createAction');
+$this->_route[] = array('edit_folder', 'CoreBundle/controllers/FolderController.php', 'FolderController', 'editAction');
+$this->_route[] = array('delete_folder', 'CoreBundle/controllers/FolderController.php', 'FolderController', 'deleteAction');
+
+$this->_route[] = array('create_folder_language', 'CoreBundle/controllers/FolderLanguageController.php', 'FolderLanguageController', 'createAction');
+$this->_route[] = array('edit_folder_language', 'CoreBundle/controllers/FolderLanguageController.php', 'FolderLanguageController', 'editAction');
+$this->_route[] = array('delete_folder_language', 'CoreBundle/controllers/FolderLanguageController.php', 'FolderLanguageController', 'deleteAction');
+
+$this->_route[] = array('create_folder_media', 'CoreBundle/controllers/FolderMediaController.php', 'FolderMediaController', 'createAction');
+$this->_route[] = array('edit_folder_media', 'CoreBundle/controllers/FolderMediaController.php', 'FolderMediaController', 'editAction');
+$this->_route[] = array('delete_folder_media', 'CoreBundle/controllers/FolderMediaController.php', 'FolderMediaController', 'deleteAction');

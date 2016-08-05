@@ -1,5 +1,5 @@
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
-	<label for="name_mediastorage"><?= NAME ?></label>
+	<label for="name_mediastorage"><?= DATA ?></label>
 	<input type="text" name="name_mediastorage" id="name_mediastorage" value="<?= (isset($chapter_language['name'])) ? $chapter_language['name'] : '' ?>" /><br />
 
 	<label for="id_chapter_mediastorage"><?= CHAPTER ?></label>

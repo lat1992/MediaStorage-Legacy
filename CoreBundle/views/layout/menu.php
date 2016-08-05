@@ -18,4 +18,7 @@
 	<li><a href="?page=create_chapter"><?= CHAPTER_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_chapter_language"><?= CHAPTER_LANGUAGE_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_maillist"><?= MAILLIST_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_folder"><?= FOLDER_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_folder_language"><?= FOLDER_LANGUAGE_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_folder_media"><?= FOLDER_MEDIA_CREATION_TITLE ?></a></li>
 </ul>

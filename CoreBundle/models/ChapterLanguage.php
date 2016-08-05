@@ -9,11 +9,11 @@ class ChapterLanguage extends Model {
 	}
 
 	public function createNewChapterLanguage($data) {
-		$data_media = $this->_mysqli->real_escape_string($data['name_mediastorage']);
+		$data_media = $this->_mysqli->real_escape_string($data['data_mediastorage']);
 		$id_chapter = $this->_mysqli->real_escape_string($data['id_chapter_mediastorage']);
 		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id, name, id_chapter, id_language)' .
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(data, id_chapter, id_language)' .
 			' VALUES ("'. $data_media . '", ' . $id_chapter . ', ' . $id_language . ');'
 		);
 
@@ -24,12 +24,12 @@ class ChapterLanguage extends Model {
 	}
 
 	public function updateChapterLanguageWithId($data, $chapter_language_id) {
-		$name_media = $this->_mysqli->real_escape_string($data['name_mediastorage']);
+		$data_media = $this->_mysqli->real_escape_string($data['data_mediastorage']);
 		$id_chapter = $this->_mysqli->real_escape_string($data['id_chapter_mediastorage']);
 		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
 
 		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
-			' SET id_chapter = ' . $id_chapter . ', name = "' . $name_media . '", id_language = ' . $id_language.
+			' SET id_chapter = ' . $id_chapter . ', data = "' . $data_media . '", id_language = ' . $id_language.
 			' WHERE id = ' . $chapter_language_id . ';'
 		);
 
@@ -42,7 +42,7 @@ class ChapterLanguage extends Model {
 	public function findChapterLanguageById($chapter_language_id) {
 		$chapter_language_id = $this->_mysqli->real_escape_string($chapter_language_id);
 
-		$data = $this->_mysqli->query('SELECT id, name, id_chapter, id_language' .
+		$data = $this->_mysqli->query('SELECT id, data, id_chapter, id_language' .
 									' FROM ' . $this->_table .
 									' WHERE id = ' . $chapter_language_id . ';'
 		);
