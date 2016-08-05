@@ -70,7 +70,6 @@ $this->_route[] = array('delete_group_language', 'CoreBundle/controllers/GroupLa
 
 // MEDIA
 
-$this->_route[] = array('list_media', 'CoreBundle/controllers/MediaController.php', 'MediaController', 'listAction');
 $this->_route[] = array('create_media', 'CoreBundle/controllers/MediaController.php', 'MediaController', 'createAction');
 $this->_route[] = array('edit_media', 'CoreBundle/controllers/MediaController.php', 'MediaController', 'editAction');
 $this->_route[] = array('delete_media', 'CoreBundle/controllers/MediaController.php', 'MediaController', 'deleteAction');
