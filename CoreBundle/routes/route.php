@@ -74,6 +74,10 @@ $this->_route[] = array('create_media', 'CoreBundle/controllers/MediaController.
 $this->_route[] = array('edit_media', 'CoreBundle/controllers/MediaController.php', 'MediaController', 'editAction');
 $this->_route[] = array('delete_media', 'CoreBundle/controllers/MediaController.php', 'MediaController', 'deleteAction');
 
+$this->_route[] = array('create_media_info', 'CoreBundle/controllers/MediaInfoController.php', 'MediaInfoController', 'createAction');
+$this->_route[] = array('edit_media_info', 'CoreBundle/controllers/MediaInfoController.php', 'MediaInfoController', 'editAction');
+$this->_route[] = array('delete_media_info', 'CoreBundle/controllers/MediaInfoController.php', 'MediaInfoController', 'deleteAction');
+
 // TAG
 
 $this->_route[] = array('create_tag', 'CoreBundle/controllers/TagController.php', 'TagController', 'createAction');

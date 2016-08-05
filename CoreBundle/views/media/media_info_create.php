@@ -6,11 +6,11 @@ require_once('CoreBundle/views/layout/menu.php');
 
 ?>
 
-<span><?= ROLE_LANGUAGE_CREATION_TITLE ?></span>
+<span><?= MEDIA_INFO_CREATION_TITLE ?></span>
 
 <div>
 
-	<?php require_once('CoreBundle/views/role/role_language_create_form.php'); ?>
+	<?php require_once('CoreBundle/views/media/media_info_create_form.php'); ?>
 
 </div>
 

@@ -128,3 +128,18 @@ define('PARENT_FOLDER', 'Dossier parent');
 define('FOLDER_CREATION_TITLE', 'Création d\'un dossier');
 define('FOLDER_LANGUAGE_CREATION_TITLE', 'Ajout d\'une langue a dossier');
 define('FOLDER_MEDIA_CREATION_TITLE', 'Ajout d\'un media a dossier');
+
+// Media
+
+define('INVALID_EPISODE_NUMBER_TOO_LONG', 'Numéro episode trop long');
+define('INVALID_IMAGE_VERSION_DATA_TOO_LONG', 'Version d\'image trop long');
+define('INVALID_SOUND_VERSION_DATA_TOO_LONG', 'Version de son trop long');
+define('MEDIA_INFO_CREATION_TITLE', 'Ajout d\'info a un media');
+
+define('TITLE', 'Titre');
+define('SUBTITLE', 'Sous Titre');
+define('DESCRIPTION', 'Description');
+define('EPISODE_NUMBER', 'N° episode');
+define('IMAGE_VERSION', 'Version d\'image');
+define('SOUND_VERSION', 'Version du son');
+define('HANDOVER_DATE', 'Date de prise en charge');
