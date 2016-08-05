@@ -23,11 +23,11 @@
 	</select>
 	<br />
 
-	<label for="type_mediastorage"><?= MEDIA_TYPE ?></label>
-	<select name="type_mediastorage" id="type_mediastorage"/>
-	<option value="Programme" <?php if (isset($media['type']) && $media['type'] == 'Programme') echo 'selected' ?>><?= MEDIA_TYPE_PROGRAMME ?>
-	<option value="Content" <?php if (isset($media['type']) && $media['type'] == 'Content') echo 'selected' ?>><?= MEDIA_TYPE_CONTENT ?>
-	<option value="Essence" <?php if (isset($media['type']) && $media['type'] == 'Essence') echo 'selected' ?>><?= MEDIA_TYPE_ESSENCE ?>
+	<label for="id_type_mediastorage"><?= MEDIA_TYPE ?></label>
+	<select name="id_type_mediastorage" id="id_type_mediastorage"/>
+	<option value="1" <?php if (isset($media['id_type']) && $media['id_type'] == 1) echo 'selected' ?>><?= MEDIA_TYPE_PROGRAMME ?>
+	<option value="2" <?php if (isset($media['id_type']) && $media['id_type'] == 2) echo 'selected' ?>><?= MEDIA_TYPE_CONTENT ?>
+	<option value="3" <?php if (isset($media['id_type']) && $media['id_type'] == 3) echo 'selected' ?>><?= MEDIA_TYPE_ESSENCE ?>
 	</select>
 	<br />
 
