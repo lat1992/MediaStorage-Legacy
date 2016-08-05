@@ -54,8 +54,9 @@ class MediaController {
 		}
 
 		$parents = $this->_mediaManager->getAllMediasDb();
-		$this->mergeErrorArray($parents);
 		$organizations = $this->_organizationManager->getAllOrganizationsDb();
+
+		$this->mergeErrorArray($parents);
 		$this->mergeErrorArray($organizations);
 
 		include ('CoreBundle/views/media/media_create.php');

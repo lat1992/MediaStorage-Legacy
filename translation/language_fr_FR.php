@@ -157,3 +157,11 @@ define('MEDIA_REFERENCE', 'Référence');
 define('MEDIA_RIGHT_VIEW', 'Droit de lecture');
 define('MEDIA_RIGHT_DOWNLOAD', 'Droit de téléchargement');
 define('MEDIA_CREATION_TITLE', 'Ajout d\'un media');
+
+define('MEDIA_INFO_EXTRA_FIELD_CREATION_TITLE', 'create media_info_extra_field');
+define('MEDIA_INFO_EXTRA_FIELD', 'media_info_extra_field');
+define('TYPE', 'Type');
+define('ELEMENT', 'Element');
+define('EMPTY_ELEMENT', 'Element vide');
+define('INVALID_ELEMENT_TOO_LONG', 'Element trop long');
+define('MEDIA_INFO_EXTRA_ARRAY_CREATION_TITLE', 'create medi_info_extra_array');

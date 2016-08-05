@@ -23,4 +23,6 @@
 	<li><a href="?page=create_folder_media"><?= FOLDER_MEDIA_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_media_info"><?= MEDIA_INFO_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_media"><?= MEDIA_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_media_info_extra_field"><?= MEDIA_INFO_EXTRA_FIELD_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_media_info_extra_array"><?= MEDIA_INFO_EXTRA_ARRAY_CREATION_TITLE ?></a></li>
 </ul>
