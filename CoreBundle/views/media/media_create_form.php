@@ -5,6 +5,7 @@
 	<select name="id_parent_mediastorage" id="id_parent_mediastorage"/>
 	<option value="NULL"><?= NULL ?></option>
 <?php
+	var_dump($parents['data']);
 		while ($parent = $parents['data']->fetch_assoc()) {
 			echo '<option value="' . $parent['id'] . '" ' . ((intval($parent['id']) == intval($media['id_parent'])) ? ' selected' : '') . '>' . $parent['reference'] . '</option>';
 		}
@@ -24,9 +25,9 @@
 
 	<label for="type_mediastorage"><?= MEDIA_TYPE ?></label>
 	<select name="type_mediastorage" id="type_mediastorage"/>
-	<option value="Programme" <? if (isset($media['type']) && $media['type'] == 'Programme') echo 'selected' ?>><?= MEDIA_TYPE_PROGRAMME ?>
-	<option value="Content" <? if (isset($media['type']) && $media['type'] == 'Content') echo 'selected' ?>><?= MEDIA_TYPE_CONTENT ?>
-	<option value="Essence" <? if (isset($media['type']) && $media['type'] == 'Essence') echo 'selected' ?>><?= MEDIA_TYPE_ESSENCE ?>
+	<option value="Programme" <?php if (isset($media['type']) && $media['type'] == 'Programme') echo 'selected' ?>><?= MEDIA_TYPE_PROGRAMME ?>
+	<option value="Content" <?php if (isset($media['type']) && $media['type'] == 'Content') echo 'selected' ?>><?= MEDIA_TYPE_CONTENT ?>
+	<option value="Essence" <?php if (isset($media['type']) && $media['type'] == 'Essence') echo 'selected' ?>><?= MEDIA_TYPE_ESSENCE ?>
 	</select>
 	<br />
 
@@ -36,16 +37,15 @@
 
 	<label for="right_view_mediastorage"><?= MEDIA_RIGHT_VIEW ?></label>
 	<select name="right_view_mediastorage" id="right_view_mediastorage"/>
-	<option value="1" <? if (isset($media['right_view']) && $media['right_view'] == 1) echo 'selected' ?>><?= YES ?></option>
-	<option value="1" <? if (isset($media['right_view']) && $media['right_view'] == 1) echo 'selected' ?>><?= YES ?></option>
-	<option value="0" <? if (isset($media['right_view']) && $media['right_view'] == 0) echo 'selected' ?>><?= NO ?></option>
+	<option value="1" <?php if (isset($media['right_view']) && $media['right_view'] == 1) echo 'selected' ?>><?= YES ?></option>
+	<option value="0" <?php if (isset($media['right_view']) && $media['right_view'] == 0) echo 'selected' ?>><?= NO ?></option>
 	</select>
 	<br />
 
 	<label for="right_download_mediastorage"><?= MEDIA_RIGHT_DOWNLOAD ?></label>
 	<select name="right_download_mediastorage" id="right_download_mediastorage"/>
-	<option value="1" <? if (isset($media['right_view']) && $media['right_view'] == 1) echo 'selected' ?>><?= YES ?></option>
-	<option value="0" <? if (isset($media['right_view']) && $media['right_view'] == 0) echo 'selected' ?>><?= NO ?></option>
+	<option value="1" <?php if (isset($media['right_view']) && $media['right_view'] == 1) echo 'selected' ?>><?= YES ?></option>
+	<option value="0" <?php if (isset($media['right_view']) && $media['right_view'] == 0) echo 'selected' ?>><?= NO ?></option>
 	</select>
 	<br />
 
