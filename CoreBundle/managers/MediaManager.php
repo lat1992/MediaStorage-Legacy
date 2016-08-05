@@ -21,7 +21,7 @@ class MediaManager {
 		if (!isset($media['id_parent']))
 			$media['id_parent'] = 'NULL';
 		$media['id_organization'] = $_POST['id_organization_mediastorage'];
-		$media['type'] = $_POST['type_mediastorage'];
+		$media['id_type'] = $_POST['id_type_mediastorage'];
 		$media['reference'] = $_POST['reference_mediastorage'];
 		$media['right_view'] = $_POST['right_view_mediastorage'];
 		$media['right_download'] = $_POST['right_download_mediastorage'];
