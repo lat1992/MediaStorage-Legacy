@@ -17,4 +17,5 @@
 	<li><a href="?page=create_cart"><?= CART_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_chapter"><?= CHAPTER_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_chapter_language"><?= CHAPTER_LANGUAGE_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_maillist"><?= MAILLIST_CREATION_TITLE ?></a></li>
 </ul>

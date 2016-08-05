@@ -24,10 +24,10 @@ class ChapterLanguageManager {
 		$error_chapter_language = array();
 
 		if (strlen($_POST['name_mediastorage']) == 0) {
-			$error_chapter_language[] = EMPTY_ROLE_LANGUAGE;
+			$error_chapter_language[] = EMPTY_NAME;
 		}
 		if (strlen($_POST['name_mediastorage']) > 50) {
-			$error_chapter_language[] = INVALID_ROLE_LANGUAGE_TOO_LONG;
+			$error_chapter_language[] = INVALID_NAME_TOO_LONG;
 		}
 
 		return $error_chapter_language;

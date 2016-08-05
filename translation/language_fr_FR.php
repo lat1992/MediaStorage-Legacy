@@ -114,3 +114,9 @@ define('CHAPTER_LANGUAGE_CREATION_TITLE', 'Ajout d\'un language au chapitre');
 define('CHAPTER', 'Chapitre');
 define('TC_IN', 'Tc in');
 define('TC_OUT', 'Tc out');
+
+// Maillist
+
+define('EMPTY_EMAIL', 'Email vide');
+define('INVALID_EMAIL_TOO_LONG', 'Email trop long');
+define('MAILLIST_CREATION_TITLE', 'Création de maillist');

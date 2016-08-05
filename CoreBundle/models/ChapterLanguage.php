@@ -13,7 +13,7 @@ class ChapterLanguage extends Model {
 		$id_chapter = $this->_mysqli->real_escape_string($data['id_chapter_mediastorage']);
 		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(name, id_chapter, id_language)' .
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id, name, id_chapter, id_language)' .
 			' VALUES ("'. $data_media . '", ' . $id_chapter . ', ' . $id_language . ');'
 		);
 

@@ -100,3 +100,9 @@ $this->_route[] = array('delete_chapter', 'CoreBundle/controllers/ChapterControl
 $this->_route[] = array('create_chapter_language', 'CoreBundle/controllers/ChapterLanguageController.php', 'ChapterLanguageController', 'createAction');
 $this->_route[] = array('edit_chapter_language', 'CoreBundle/controllers/ChapterLanguageController.php', 'ChapterLanguageController', 'editAction');
 $this->_route[] = array('delete_chapter_language', 'CoreBundle/controllers/ChapterLanguageController.php', 'ChapterLanguageController', 'deleteAction');
+
+// Maillist
+
+$this->_route[] = array('create_maillist', 'CoreBundle/controllers/MaillistController.php', 'MaillistController', 'createAction');
+$this->_route[] = array('edit_maillist', 'CoreBundle/controllers/MaillistController.php', 'MaillistController', 'editAction');
+$this->_route[] = array('delete_maillist', 'CoreBundle/controllers/MaillistController.php', 'MaillistController', 'deleteAction');
