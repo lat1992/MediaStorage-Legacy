@@ -46,11 +46,19 @@ class MediaManager {
 		return $this->_mediaModel->createNewMedia($_POST);
 	}
 
-	public function getMediaByIdDb($media_data) {
+	public function getMediaByIdDb($media_id) {
 		return $this->_mediaModel->findMediaByid($media_id);
 	}
 
 	public function mediaEditDb($media_data) {
-		return $this->_mediaModel->updateRoleWithId($_POST, $media_data['id']);
+		return $this->_mediaModel->updateMediaWithId($_POST, $media_data['id']);
+	}
+
+	public function removeMediaByIdDb($media_id) {
+		//$data = $this->_mediaInfoManager->deleteMediaInfoByMediaId($media_id);
+		if (!empty($data['error']))
+			return $data;
+
+		return $this->_mediaModel->deleteMediaById($media_id);
 	}
 }

@@ -1,8 +1,8 @@
 <?php
 
 require_once('CoreBundle/managers/MediaManager.php');
-require_once('CoreBundle/managers/MediaInfoManager.php');
-require_once('CoreBundle/managers/MediaInfoExtraManager.php');
+//require_once('CoreBundle/managers/MediaInfoManager.php');
+//require_once('CoreBundle/managers/MediaInfoExtraManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
 
 class MediaController {
@@ -17,8 +17,8 @@ class MediaController {
 	public function __construct() {
 		$this->_mediaManager = new MediaManager();
 		$this->_organizationManager = new OrganizationManager();
-		$this->_mediaInfoManager = new MediaInfoManager();
-		$this->_mediaInfoExtraManager = new MediaInfoExtraManager();
+//		$this->_mediaInfoManager = new MediaInfoManager();
+//		$this->_mediaInfoExtraManager = new MediaInfoExtraManager();
 
 		$this->_errorArray = array();
 	}
@@ -63,9 +63,11 @@ class MediaController {
 
 	public function editAction() {
 		$media_data = $this->_mediaManager->getMediaByIdDb($_GET['media_id']);
+		$parents = $this->_mediaManager->getAllMediasDb();
 		$organizations = $this->_organizationManager->getAllOrganizationsDb();
 
 		$this->mergeErrorArray($media_data);
+		$this->mergeErrorArray($parents);
 		$this->mergeErrorArray($organizations);
 
 		if (count($this->_errorArray) == 0) {

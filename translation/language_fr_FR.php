@@ -4,6 +4,9 @@
 
 define('VALIDATE', 'Valider');
 define('LOGOUT', 'Logout');
+define('NULL', 'Vide');
+define('YES', 'Oui');
+define('NO', 'No');
 
 // User
 
@@ -70,7 +73,6 @@ define('SHARELIST_MEDIA_CREATION_TITLE', 'Ajout d\'un média pour liste de parta
 define('SHARELIST', 'Liste de partage');
 define('REFERENCE', 'Référence');
 define('USER', 'Utilisateur');
-define('MEDIA', 'Média');
 
 // Organization
 
@@ -131,6 +133,7 @@ define('FOLDER_MEDIA_CREATION_TITLE', 'Ajout d\'un media a dossier');
 
 // Media
 
+
 define('INVALID_EPISODE_NUMBER_TOO_LONG', 'Numéro episode trop long');
 define('INVALID_IMAGE_VERSION_DATA_TOO_LONG', 'Version d\'image trop long');
 define('INVALID_SOUND_VERSION_DATA_TOO_LONG', 'Version de son trop long');
@@ -143,3 +146,14 @@ define('EPISODE_NUMBER', 'N° episode');
 define('IMAGE_VERSION', 'Version d\'image');
 define('SOUND_VERSION', 'Version du son');
 define('HANDOVER_DATE', 'Date de prise en charge');
+
+define('MEDIA', 'Média');
+define('MEDIA_PARENT', 'Parent');
+define('MEDIA_TYPE', 'Type du média');
+define('MEDIA_TYPE_PROGRAMME', 'Programme');
+define('MEDIA_TYPE_CONTENT', 'Contenu');
+define('MEDIA_TYPE_ESSENCE', 'Essence');
+define('MEDIA_REFERENCE', 'Référence');
+define('MEDIA_RIGHT_VIEW', 'Droit de lecture');
+define('MEDIA_RIGHT_DOWNLOAD', 'Droit de téléchargement');
+define('MEDIA_CREATION_TITLE', 'Ajout d\'un media');

@@ -22,4 +22,5 @@
 	<li><a href="?page=create_folder_language"><?= FOLDER_LANGUAGE_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_folder_media"><?= FOLDER_MEDIA_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_media_info"><?= MEDIA_INFO_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_media"><?= MEDIA_CREATION_TITLE ?></a></li>
 </ul>
