@@ -2,10 +2,8 @@
 
 	var controller = new slidebars();
 
-    // Initialize Slidebars
     controller.init();
 
-    // Left Slidebar controls
     $( '.js-open-left-slidebar' ).on( 'click', function ( event ) {
         event.stopPropagation();
         controller.open( 'slidebar-1' );
@@ -23,6 +21,5 @@
         event.stopPropagation();
         controller.close();
     } );
-
 
 } ) ( jQuery );
