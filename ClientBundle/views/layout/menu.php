@@ -1,6 +1,63 @@
+<style>
+
+li a {
+	text-decoration: none;
+	color: rgba(200, 200, 200, 0.9);
+	padding-left: 10px;
+	display: inline-block;
+
+	height: 40px;
+	line-height: 40px;
+	width: 100%;
+
+}
+
+li a:hover {
+	background-color: #FED500;
+	color: black;
+}
+
+li {
+	display: inline-block;
+	width: 100%;
+	vertical-align: middle;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	font-family: "Quicksand";
+	font-weight: bold;
+}
+
+.profile_button {
+	width:118px; float: left; text-align: center; padding: 0;background-color:  #404040;
+	border-right: 1px solid #262626;
+	color: white;
+}
+
+.profile_button:hover {
+	background-color:  #0099ff;
+	color: white;
+}
+
+.logout_button {
+	width:118px; text-align: center; padding:0;background-color: #404040;
+	color: white;
+}
+
+.logout_button:hover {
+	background-color: #b30000;
+	color: white;
+}
+
+</style>
+
 <div off-canvas="slidebar-1 left reveal">
 	<ul>
-		<li><a href="?page=logout"><?= LOGOUT ?></a></li>
+		<li><div><img style="max-width: 245px; max-height: 150px; display:table-cell; margin:auto; margin-top: 20px;margin-bottom: 20px;border: 1px solid rgba(0, 0, 0, 0.7);" src="https://pbs.twimg.com/profile_images/1179925665/media365_400.jpg" ></div></li>
+		<li><a class="logout_button" href="?page=logout"><?= LOGOUT ?></a><a class="profile_button" href="#">Profile</a></li>
 		<li><a href="?page=create_user"><?= USER_CREATION_TITLE ?></a></li>
 		<li><a href="?page=list_user"><?= USER_LIST_TITLE ?></a></li>
 		<li><a href="?page=list_role"><?= ROLE_LIST_TITLE ?></a></li>
