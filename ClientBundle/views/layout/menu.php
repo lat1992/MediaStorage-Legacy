@@ -2,7 +2,7 @@
 
 li a {
 	text-decoration: none;
-	color: rgba(200, 200, 200, 0.9);
+	color: #d9d9d9;
 	padding-left: 5%;
 	display: inline-block;
 
