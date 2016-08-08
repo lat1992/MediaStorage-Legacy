@@ -1,0 +1,139 @@
+[class*=js-] {
+    cursor: pointer;
+}
+
+nav[canvas] {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-bottom: 13px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    color:black; /* TEXT COLOR CANVAS -------------------------------------------*/
+    z-index:2;
+}
+
+[off-canvas] {
+  	background-color: #262626; /* MENU BACKGROUND COLOR  -------------------------------------------*/
+  	padding: 0px;
+}
+
+.js-open-left-slidebar {
+    padding: 5px;
+    float: left;
+    font-family: 'QuickSand'; /* FONT SIDEBAR ---------------------------------------------------------  */
+    margin-top: 15px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+nav[canvas] {
+    float: left;
+    background-color: #FED500; /* HEADER BACKGROUND COLOR  -------------------------------------------*/
+}
+
+#header_div {
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+#header_title_div {
+    margin: 0 auto;
+    padding-top: 13px;
+    font-family: 'QuickSand'; /* TITLE FONT  -------------------------------------------*/
+    font-weight: 900;
+    font-size: 23pt;
+    overflow: hidden;
+    display: block;
+}
+
+#header_title_div h1 {
+    height:36px;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+li a {
+    text-decoration: none;
+    color: #d9d9d9; /* MENU ITEM COLOR  -------------------------------------------*/
+    padding-left: 5%;
+    display: inline-block;
+
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+
+}
+
+li a:hover {
+    background-color: #FED500; /* MENU ITEM  BACKGROUND COLOR  -------------------------------------------*/
+    color: black;/* MENU ITEM COLOR  -------------------------------------------*/
+}
+
+li {
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    font-family: "Quicksand";
+    font-weight: bold;
+}
+
+.profile_button {
+    width:49%; float: left; text-align: center; padding: 0;background-color:  #404040;
+    border-right: 1px solid #262626;
+    color: white;
+}
+
+.profile_button:hover {
+    background-color:  #0099ff;
+    color: white;
+}
+
+.logout_button {
+    width:49%; float: right;text-align: center; padding:0;background-color: #404040;
+    color: white;
+}
+
+.logout_button:hover {
+    background-color: #b30000;
+    color: white;
+}
+
+#menu_logo_img {
+    max-width: 245px;
+    max-height: 150px;
+    display:table-cell;
+    margin: 20px auto 20px auto;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    display: block;
+}
+
+/*
+***
+*** SROLLBAR
+***
+*/
+
+/*
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    /*background: rgba(0,0,0,0.3);
+    background: #FED500;
+    border: 1px solid rgba(0, 0, 0, 0.1);;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  /*background: rgba(0,0,0,0.4);
+  background: #FED500;
+}
+*/
