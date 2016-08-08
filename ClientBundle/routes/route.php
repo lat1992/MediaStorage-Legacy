@@ -1,5 +1,5 @@
 <?php
 
-$this->_route[] = array('login', 'CoreBundle/controllers/UserController.php', 'UserController', 'loginAction');
+$this->_route[] = array('home', 'ClientBundle/controllers/HomeController.php', 'HomeController', 'HomeAction');
 
 ?>

@@ -13,6 +13,7 @@ class Route {
 	public function loadRoutes() {
 
 		require_once('CoreBundle/routes/route.php');
+		require_once('ClientBundle/routes/route.php');
 	}
 
 	public function getController($page) {
@@ -21,7 +22,7 @@ class Route {
 			if (strcmp($page, $value[0]) === 0)
 				return ($this->_route[$key]);
 		}
-		
+
 		return false;
 	}
 }
