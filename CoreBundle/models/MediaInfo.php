@@ -8,6 +8,18 @@ class MediaInfo extends Model {
 		parent::__construct('media_info');
 	}
 
+	public function findAllMediaInfos() {
+		$data = $this->_mysqli->query('SELECT id, title, subtitle, description, episode_number, image_version, sound_version, handover_date, created_date, modified_date, id_media, id_language ' .
+			' FROM ' . $this->_table
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllMediaInfos: ' . $this->_mysqli->error : '',
+		);
+	}
+
+
 	public function createNewMediaInfo($data) {
 		$title = $this->_mysqli->real_escape_string($data['title_mediastorage']);
 		$subtitle = $this->_mysqli->real_escape_string($data['subtitle_mediastorage']);

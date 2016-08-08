@@ -10,6 +10,10 @@ class MediaInfoManager {
 		$this->_mediaInfoModel = new MediaInfo();
 	}
 
+	public function getAllMediaInfosDb() {
+		return $this->_mediaInfoModel->findAllMediaInfos();
+	}
+
 	public function formatMediaInfoArrayWithPostData() {
 		$media_info = array();
 

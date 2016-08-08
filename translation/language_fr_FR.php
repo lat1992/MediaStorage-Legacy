@@ -165,3 +165,14 @@ define('ELEMENT', 'Element');
 define('EMPTY_ELEMENT', 'Element vide');
 define('INVALID_ELEMENT_TOO_LONG', 'Element trop long');
 define('MEDIA_INFO_EXTRA_ARRAY_CREATION_TITLE', 'create medi_info_extra_array');
+
+define('MEDIA_INFO_EXTRA_CREATION_TITLE', 'create media_info_extra');
+define('MEDIA_INFO', 'media_info');
+define('MEDIA_INFO_EXTRA_ARRAY', 'media_info_extra_array');
+
+define('EMPTY_TYPE', 'Type vide');
+define('INVALID_TYPE_TOO_LONG', 'Type trop long');
+define('MEDIA_TYPE_CREATION_TITLE', 'media_type_creation_title');
+
+define('MEDIA_TYPE_FIELD_CREATION_TITLE', 'media_type_field_creation_title');
+define('FIELD', 'Champ');

@@ -86,6 +86,18 @@ $this->_route[] = array('create_media_info_extra_array', 'CoreBundle/controllers
 $this->_route[] = array('edit_media_info_extra_array', 'CoreBundle/controllers/MediaInfoExtraArrayController.php', 'MediaInfoExtraArrayController', 'editAction');
 $this->_route[] = array('delete_media_info_extra_array', 'CoreBundle/controllers/MediaInfoExtraArrayController.php', 'MediaInfoExtraArrayController', 'deleteAction');
 
+$this->_route[] = array('create_media_info_extra', 'CoreBundle/controllers/MediaInfoExtraController.php', 'MediaInfoExtraController', 'createAction');
+$this->_route[] = array('edit_media_info_extra', 'CoreBundle/controllers/MediaInfoExtraController.php', 'MediaInfoExtraController', 'editAction');
+$this->_route[] = array('delete_media_info_extra', 'CoreBundle/controllers/MediaInfoExtraController.php', 'MediaInfoExtraController', 'deleteAction');
+
+$this->_route[] = array('create_media_type', 'CoreBundle/controllers/MediaTypeController.php', 'MediaTypeController', 'createAction');
+$this->_route[] = array('edit_media_type', 'CoreBundle/controllers/MediaTypeController.php', 'MediaTypeController', 'editAction');
+$this->_route[] = array('delete_media_type', 'CoreBundle/controllers/MediaTypeController.php', 'MediaTypeController', 'deleteAction');
+
+$this->_route[] = array('create_media_type_field', 'CoreBundle/controllers/MediaTypeFieldController.php', 'MediaTypeFieldController', 'createAction');
+$this->_route[] = array('edit_media_type_field', 'CoreBundle/controllers/MediaTypeFieldController.php', 'MediaTypeFieldController', 'editAction');
+$this->_route[] = array('delete_media_type_field', 'CoreBundle/controllers/MediaTypeFieldController.php', 'MediaTypeFieldController', 'deleteAction');
+
 // TAG
 
 $this->_route[] = array('create_tag', 'CoreBundle/controllers/TagController.php', 'TagController', 'createAction');

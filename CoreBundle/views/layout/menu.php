@@ -25,4 +25,7 @@
 	<li><a href="?page=create_media"><?= MEDIA_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_media_info_extra_field"><?= MEDIA_INFO_EXTRA_FIELD_CREATION_TITLE ?></a></li>
 	<li><a href="?page=create_media_info_extra_array"><?= MEDIA_INFO_EXTRA_ARRAY_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_media_info_extra"><?= MEDIA_INFO_EXTRA_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_media_type"><?= MEDIA_TYPE_CREATION_TITLE ?></a></li>
+	<li><a href="?page=create_media_type_field"><?= MEDIA_TYPE_FIELD_CREATION_TITLE ?></a></li>
 </ul>
