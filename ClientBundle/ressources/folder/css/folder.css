@@ -1,8 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 .container {
     /*background-color: #f5f4f2;*/
     color: white;
     float: left;
-    font-family: "Quicksand";
+    font-family: "roboto", "Quicksand";
 }
 
 .col {

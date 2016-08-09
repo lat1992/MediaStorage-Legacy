@@ -1,3 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+html, body {
+    font-family: "roboto", 'QuickSand'; /* FONT SIDEBAR ---------------------------------------------------------  */
+}
+
 [class*=js-] {
     cursor: pointer;
 }
@@ -21,7 +27,7 @@ nav[canvas] {
 .js-open-left-slidebar {
     padding: 5px;
     float: left;
-    font-family: 'QuickSand'; /* FONT SIDEBAR ---------------------------------------------------------  */
+    font-family: "roboto", 'QuickSand'; /* FONT SIDEBAR ---------------------------------------------------------  */
     margin-top: 15px;
     margin-left: 15px;
     font-weight: bold;
@@ -41,7 +47,7 @@ nav[canvas] {
 #header_title_div {
     margin: 0 auto;
     padding-top: 13px;
-    font-family: 'QuickSand'; /* TITLE FONT  -------------------------------------------*/
+    font-family: "roboto", 'QuickSand'; /* TITLE FONT  -------------------------------------------*/
     font-weight: 900;
     font-size: 23pt;
     overflow: hidden;
@@ -81,7 +87,7 @@ ul {
     list-style-type: none;
     padding: 0px;
     margin: 0px;
-    font-family: "Quicksand";
+    font-family: "roboto", "Quicksand";
     font-weight: bold;
 }
 

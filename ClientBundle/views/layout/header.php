@@ -34,5 +34,5 @@
 
 			</nav>
 
-			<div canvas="container" style="margin-top: 63px; background-color: #333333">
+			<div canvas="container" style="margin-top: 63px; padding-bottom: 63px; background-color: #f5f4f2">
 

@@ -16,27 +16,37 @@ video {
 	border: 1px solid black;
 }
 
+.container {
+}
+
 #video_div {
 	float: left;
 	width: 55%;
+	margin: 10px 10px 10px 10px;
 }
 
 #description_div {
 	float: left;
 	width: 42%;
 	border: 1px solid black;
+	margin: 10px 0px 0px 5px;
 }
 
-#description_div table th {
+#description_div table th, #download_link_div table th {
 	text-align: right;
+	vertical-align: top;
 }
 
 .video_content {
 	width: 10%;
-	height: 10%;
+	height: 40px;
 	border: 1px solid grey;
 	display: inline-block;
 	float: left;
+}
+
+#video_contents_div {
+	margin-top: 10px;
 }
 
 .clear {
@@ -46,6 +56,28 @@ video {
 #download_link_div {
 	float: left;
 	border: 1px solid red;
+	margin: 10px 0px 10px 5px;
+	width: 42%;
+
+}
+
+th {
+	white-space: nowrap;
+}
+
+@media only screen and (max-width: 900px) {
+    #video_div {
+        width:100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin: 0;
+    }
+
+    #description_div, #download_link_div {
+        width:100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 
 </style>
@@ -59,50 +91,29 @@ video {
 		</video>
 		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
 			<div class="video_content"></div>
-		</div>
-		<div id="video_contents_div">
+			<div class="video_content"></div>
+			<div class="video_content"></div>
+			<div class="video_content"></div>
+			<div class="video_content"></div>
+			<div class="video_content"></div>
+			<div class="video_content"></div>
+			<div class="video_content"></div>
+			<div class="video_content"></div>
+			<div class="video_content"></div>
 			<div class="video_content"></div>
 		</div>
 	</div>
@@ -130,8 +141,6 @@ video {
         </table>
 	</div>
 
-	<div class="clear"></div>
-
 	<div id="download_link_div">
         <table id="download_link_table">
             <tbody>
@@ -155,6 +164,7 @@ video {
         </table>
 	</div>
 
+	<div class="clear"></div>
 </div>
 
 
