@@ -8,4 +8,6 @@ $this->_route[] = array('content', 'ClientBundle/controllers/ContentPageControll
 
 $this->_route[] = array('profile', 'ClientBundle/controllers/ProfilePageController.php', 'ProfilePageController', 'profileAction');
 
+$this->_route[] = array('search', 'ClientBundle/controllers/SearchPageController.php', 'SearchPageController', 'searchPageAction');
+
 ?>
