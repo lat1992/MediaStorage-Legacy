@@ -4,112 +4,7 @@ require_once('ClientBundle/views/layout/header.php');
 
 ?>
 
-<!-- <link rel="stylesheet" href="ClientBundle/ressources/folder/css/folder.css">
-
-<script src="ClientBundle/ressources/folder/js/folder.js"></script>
- -->
-
-<style>
-    #container {
-        width: 90%;
-        margin: auto;
-        text-align: center;
-    }
-
-    label {
-        display: inline-block;
-        float: left;
-        width: 50%;
-        text-align: right;
-        margin: 10px 0 0 5px;
-    }
-
-    input, select {
-        float: left;
-        display: inline-block;
-        text-align: left;
-        margin: 10px 0 10px 15px;
-        border-style: none;
-        font-size: 0.9em;
-        padding: 3px;
-    }
-
-    input.submit {
-        float: none;
-    }
-
-    .clear {
-        clear: both;
-    }
-
-    form {
-        margin-top: 15px;
-    }
-
-    #cancel_button {
-        font-size: 0.9em;
-        padding: 6px 10px 6px 10px;
-        margin: 30px 0 0 70px;
-        width: 100px;
-    }
-
-    #validate_button {
-        padding: 7px 12px 7px 12px;
-        margin: 30px 0 0 10px;
-        width: 130px;
-    }
-
-    .form_button {
-        text-decoration: none;
-        display: inline-block;
-        background-color: red;
-        color: white;
-        font-weight: bold;
-        font-family: 'roboto', 'Quicksand';
-        background-color: #404040;
-        text-align: center;
-    }
-
-    #cancel_button:hover {
-        background-color: #b30000;
-        color: white;
-    }
-
-    #validate_button:hover {
-        background-color: #FED500;
-        color: black;
-    }
-
-@media only screen and (max-width: 500px) {
-    input, select {
-        width: 100%;
-        margin: 10px 0 0 0;
-    }
-
-    label {
-        width: 100%;
-        text-align: left;
-    }
-
-    .form_button {
-    }
-
-    #cancel_button {
-        width: 40%;
-        float: left;
-        margin: 20px 0 0 0 ;
-    }
-
-    #validate_button {
-        width: 40%;
-        float: right;
-        margin: 20px 0 0 0 ;
-        padding: 7px 12px 6px 12px;
-    }
-
-}
-
-</style>
+<link rel="stylesheet" href="ClientBundle/ressources/profile/css/profile.css">
 
 <div id="container">
 
@@ -122,26 +17,6 @@ require_once('ClientBundle/views/layout/header.php');
 
         <label for="password_mediastorage_bis"><?= PASSWORD_BIS ?> :</label>
         <input type="password" name="password_mediastorage_bis" id="password_mediastorage_bis"/><br />
-
-        <label for="id_organization_mediastorage"><?= ORGANIZATION ?> :</label>
-        <select name="id_organization_mediastorage" id="id_organization_mediastorage"/>
-    <?php
-            while ($organization = $organizations['data']->fetch_assoc()) {
-                echo '<option value="' . $organization['id'] . '" ' . ((intval($organization['id']) == intval($user['id_organization'])) ? ' selected' : '') . '>' . $organization['reference'] . ' / ' . $organization['name'] . '</option>';
-            }
-    ?>
-        </select>
-        <div class="clear"></div>
-
-        <label for="id_role_mediastorage"><?= ROLE ?> :</label>
-        <select name="id_role_mediastorage" id="id_role_mediastorage"/>
-    <?php
-            while ($role = $roles['data']->fetch_assoc()) {
-                echo '<option value="' . $role['id'] . '" ' . ((intval($role['id']) == intval($user['id_role'])) ? ' selected' : '') . '>' . $role['role'] . '</option>';
-            }
-    ?>
-        </select>
-        <br />
 
         <label for="id_language_mediastorage"><?= LANGUAGE ?> :</label>
         <select name="id_language_mediastorage" id="id_language_mediastorage"/>
