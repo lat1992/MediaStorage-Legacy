@@ -10,6 +10,7 @@ class UserController {
 	private $_userManager;
 	private $_organizationManager;
 	private $_roleManager;
+	private $_languageManager;
 
 	private $_errorArray;
 

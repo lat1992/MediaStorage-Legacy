@@ -21,8 +21,6 @@ class HomePageController {
 	}
 
 	public function homeAction() {
-		$cart = array();
-
-		include ('ClientBundle/views/home_page/home.php');
+		include ('ClientBundle/views/home/home.php');
 	}
 }

@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+body {
+    padding-bottom: 63px;
+}
+
 html, body {
     font-family: "roboto", 'QuickSand'; /* FONT SIDEBAR ---------------------------------------------------------  */
 }

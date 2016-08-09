@@ -21,8 +21,6 @@ class ContentPageController {
 	}
 
 	public function contentPageAction() {
-		$cart = array();
-
 		include ('ClientBundle/views/content/content.php');
 	}
 }

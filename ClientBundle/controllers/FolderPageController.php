@@ -21,8 +21,6 @@ class FolderPageController {
 	}
 
 	public function folderPageAction() {
-		$cart = array();
-
 		include ('ClientBundle/views/folder/folder.php');
 	}
 }

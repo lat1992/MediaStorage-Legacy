@@ -24,6 +24,7 @@ class UserManager {
 
 		if ($result['data'] !== false) {
 			$_SESSION['username_mediastorage'] = $result['data']['username'];
+			$_SESSION['user_id_mediastorage'] = $result['data']['id'];
 			$_SESSION['role_mediastorage'] = $result['data']['id_role'];
 			$_SESSION['language_mediastorage'] = $this->_languageManager->getLanguageCodeByIdDb($result['data']['id_language']);
 			$_SESSION['id_language_mediastorage'] = $result['data']['id_language'];
