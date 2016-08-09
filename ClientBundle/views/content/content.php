@@ -16,19 +16,22 @@ video {
 	border: 1px solid black;
 }
 
+table {
+	width: 100%;
+}
+
 .container {
 }
 
 #video_div {
 	float: left;
-	width: 55%;
+	width: 52%;
 	margin: 10px 10px 10px 10px;
 }
 
 #description_div {
 	float: left;
 	width: 42%;
-	border: 1px solid black;
 	margin: 10px 0px 0px 5px;
 }
 
@@ -40,9 +43,10 @@ video {
 .video_content {
 	width: 10%;
 	height: 40px;
-	border: 1px solid grey;
 	display: inline-block;
 	float: left;
+	background-color: #a6a6a6;
+	margin: 5px 5px 0 0;
 }
 
 #video_contents_div {
@@ -55,10 +59,14 @@ video {
 
 #download_link_div {
 	float: left;
-	border: 1px solid red;
 	margin: 10px 0px 10px 5px;
 	width: 42%;
 
+}
+
+#description_div, #download_link_div {
+	background-color: #a6a6a6;
+	padding: 10px 5px 10px 5px;
 }
 
 th {
@@ -145,19 +153,19 @@ th {
         <table id="download_link_table">
             <tbody>
                 <tr>
-                    <th>Titre :</th>
+                    <th>Téléchargement :</th>
                     <td>La rose des ventsLa rose des ventsLa rose des vents</td>
                 </tr>
                 <tr>
-                    <th>Sous-titre :</th>
+                    <th>Téléchargement :</th>
                     <td>Fast and furious</td>
                 </tr>
                 <tr>
-                    <th>Descriptif :</th>
+                    <th>Téléchargement :</th>
                     <td>film de voiture</td>
                 </tr>
                 <tr>
-                    <th>Auteur :</th>
+                    <th>Téléchargement :</th>
                     <td>jenesaispas</td>
                 </tr>
             </tbody>

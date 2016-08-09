@@ -10,7 +10,7 @@
 .col {
     float: left;
     max-width:280px;
-    background-color: #262626;
+    background-color: #cccccc;
     vertical-align: middle;
     text-align: center;
     margin: 25px 10px 10px 25px;
@@ -37,7 +37,7 @@
 }
 
 table {
-    color: white;
+    color: black;
     padding: 5px;
 }
 
@@ -68,7 +68,7 @@ th {
 
 .title_div {
     width: 100%;
-    background-color: #404040;
+    background-color: #737373;
     height: 30px;
     vertical-align: center;
     margin: 0 0 15px 0;
@@ -89,7 +89,7 @@ th {
 
 .more_info_div {
     width: 100%;
-    background-color: #404040;
+    background-color: #737373;
     height: 30px;
     vertical-align: center;
 }

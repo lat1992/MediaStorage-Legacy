@@ -35,13 +35,14 @@ nav[canvas] {
 
 nav[canvas] {
     float: left;
-    background-color: #FED500; /* HEADER BACKGROUND COLOR  -------------------------------------------*/
+    background-color: #262626; /* HEADER BACKGROUND COLOR  -------------------------------------------*/
 }
 
 #header_div {
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
+    color: #d9d9d9;
 }
 
 #header_title_div {
