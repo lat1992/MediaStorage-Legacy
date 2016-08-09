@@ -45,7 +45,7 @@ class UserController {
 			}
 		}
 
-		include ('CoreBundle/views/user/login.php');
+		include ('ClientBundle/views/login/login.php');
 	}
 
 	public function logoutAction() {

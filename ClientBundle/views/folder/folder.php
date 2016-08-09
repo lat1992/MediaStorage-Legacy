@@ -3,7 +3,6 @@
 require_once('ClientBundle/views/layout/header.php');
 
 ?>
-
 <style>
 
 .container {
