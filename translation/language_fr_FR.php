@@ -176,3 +176,6 @@ define('MEDIA_TYPE_CREATION_TITLE', 'media_type_creation_title');
 
 define('MEDIA_TYPE_FIELD_CREATION_TITLE', 'media_type_field_creation_title');
 define('FIELD', 'Champ');
+
+define('SEARCH', 'Recherche');
+define('CONTENT', 'Contenu');
