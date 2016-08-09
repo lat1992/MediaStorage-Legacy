@@ -1,62 +1,68 @@
-body {
-  background: #333;
-}
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-.login-form {
-  width: 300px;
-  margin: 40px auto;
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
 }
-
-.login-form .field {
-  background: linear-gradient(#fa7f2d, #ff6600, #fa7f2d);
-  padding: 5px;
-  box-shadow: inset 0 1px #fab587, 0 3px 3px #222;
-  border-radius: 3px;
-  margin-bottom: 9px;
+.logo {
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 50px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-
-.login-form .field input {
-  border: 1px solid #96450f;
-  display: block;
-  width: 277px;
-  padding: 5px;
-  font-size: 19px;
-  font-family: Helvetica Neue;
-  font-weight: 600;
-  box-shadow: 0 1px #fcb483, inset 0 3px 5px #aaa;
-  border-radius: 3px;
-  color: #666564;
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-
-.login-form .field input:focus {
-  outline: none;
-  color: #333;
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
 }
-
-.login-form .field.with-btn {
-  width: 200px;
-  float: left;
-}
-
-.login-form .field.with-btn input {
-  width: 188px;
-}
-
-input[type=submit] {
-  border: none;
-  display: block;
-  width: 81px;
-  height: 46px;
-  margin-left: 9px;
-  float: left;
-  border-radius: 3px;
-  background: linear-gradient(#70787e, #4b545b);
+.form button {
+  font-family: "Roboto", sans-serif;
   text-transform: uppercase;
-  font-family: Helvetica, Neue;
-  font-size: 13px;
-  font-weight: bold;
+  outline: 0;
+  background: a6a6a6;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
   cursor: pointer;
-  color: #11161a;
-  text-shadow: 0 1px 0 #727980;
-  box-shadow: 0 3px 3px #222, inset 0 1px 0 #a8a8a8;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: yellow;
+  color: a6a6a6;
+}
+body {
+  background: a6a6a6;
+  background: -webkit-linear-gradient(right, a6a6a6, a6a6a6);
+  background: -moz-linear-gradient(right, a6a6a6, a6a6a6);
+  background: -o-linear-gradient(right, a6a6a6, a6a6a6);
+  background: linear-gradient(to left, a6a6a6, a6a6a6);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
