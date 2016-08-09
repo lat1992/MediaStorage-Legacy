@@ -2,7 +2,10 @@
 	<ul>
 		<li><div><img id="menu_logo_img" src="https://pbs.twimg.com/profile_images/1179925665/media365_400.jpg" ></div></li>
 		<li><a class="logout_button" href="?page=logout"><?= LOGOUT ?></a><a class="profile_button" href="#">Profile</a></li>
-		<li><a href="?page=create_user"><?= USER_CREATION_TITLE ?></a></li>
+		<li><a href="?page=folder"><?= SEARCH ?></a></li>
+		<li><a href="?page=folder"><?= FOLDER ?></a></li>
+		<li><a href="?page=content"><?= CONTENT ?></a></li>
+		<!--<li><a href="?page=create_user"><?= USER_CREATION_TITLE ?></a></li>
 		<li><a href="?page=list_user"><?= USER_LIST_TITLE ?></a></li>
 		<li><a href="?page=list_role"><?= ROLE_LIST_TITLE ?></a></li>
 		<li><a href="?page=create_role"><?= ROLE_CREATION_TITLE ?></a></li>
@@ -29,6 +32,6 @@
 		<li><a href="?page=create_media_info_extra_array"><?= MEDIA_INFO_EXTRA_ARRAY_CREATION_TITLE ?></a></li>
 		<li><a href="?page=create_media_info_extra"><?= MEDIA_INFO_EXTRA_CREATION_TITLE ?></a></li>
 		<li><a href="?page=create_media_type"><?= MEDIA_TYPE_CREATION_TITLE ?></a></li>
-		<li><a href="?page=create_media_type_field"><?= MEDIA_TYPE_FIELD_CREATION_TITLE ?></a></li>
+		<li><a href="?page=create_media_type_field"><?= MEDIA_TYPE_FIELD_CREATION_TITLE ?></a></li>-->
 	</ul>
 </div>
