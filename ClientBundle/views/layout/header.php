@@ -27,7 +27,7 @@
 					</div>
 
 					<div id="header_title_div">
-						<h1>Titre trop long</h1>
+						<h1><?= (isset($title)) ? $title : 'Aucun titre' ?></h1>
 					</div>
 
 				</div>

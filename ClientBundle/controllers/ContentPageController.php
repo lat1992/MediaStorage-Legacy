@@ -21,6 +21,8 @@ class ContentPageController {
 	}
 
 	public function contentPageAction() {
+		$title = CONTENT;
+
 		include ('ClientBundle/views/content/content.php');
 	}
 }

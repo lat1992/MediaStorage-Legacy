@@ -27,6 +27,7 @@ define('PHONE', 'Téléphone');
 define('MOBILE', 'Portable');
 define('COMPANY', 'Companie');
 define('JOB', 'Poste');
+define('PROFILE', 'Profile');
 
 // User management page
 

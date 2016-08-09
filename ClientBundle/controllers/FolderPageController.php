@@ -21,6 +21,8 @@ class FolderPageController {
 	}
 
 	public function folderPageAction() {
+		$title = FOLDER;
+
 		include ('ClientBundle/views/folder/folder.php');
 	}
 }

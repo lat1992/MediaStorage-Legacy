@@ -79,6 +79,8 @@ class ProfilePageController {
 
 		}
 
+		$title = PROFILE;
+
 		include ('ClientBundle/views/profile/profile.php');
 	}
 }
