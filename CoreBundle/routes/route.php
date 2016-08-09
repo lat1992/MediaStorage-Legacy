@@ -19,6 +19,8 @@ $this->_route[] = array('delete_user', 'CoreBundle/controllers/UserController.ph
 
 $this->_route[] = array('dashboard', 'ClientBundle/controllers/FolderPageController.php', 'FolderPageController', 'FolderPageAction');
 
+$this->_route[] = array('search', 'ClientBundle/controllers/SearchPageController.php', 'SearchPageController', 'SearchPageAction');
+
 // MANAGE ROLE
 
 $this->_route[] = array('list_role', 'CoreBundle/controllers/RoleController.php', 'RoleController', 'listAction');

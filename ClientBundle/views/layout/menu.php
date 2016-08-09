@@ -2,7 +2,7 @@
 	<ul>
 		<li><div><img id="menu_logo_img" src="https://pbs.twimg.com/profile_images/1179925665/media365_400.jpg" ></div></li>
 		<li><a class="logout_button" href="?page=logout"><?= LOGOUT ?></a><a class="profile_button" href="?page=profile"><?= PROFILE ?></a></li>
-		<li><a href="?page=folder"><?= SEARCH ?></a></li>
+		<li><a href="?page=search"><?= SEARCH ?></a></li>
 		<li><a href="?page=folder"><?= FOLDER ?></a></li>
 		<li><a href="?page=content"><?= CONTENT ?></a></li>
 		<!--<li><a href="?page=create_user"><?= USER_CREATION_TITLE ?></a></li>
