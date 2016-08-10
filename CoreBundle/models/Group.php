@@ -9,7 +9,12 @@ class Group extends Model {
 	}
 
 	public function findAllGroups() {
-		$data = $this->_mysqli->query('SELECT id, reference, name, fileserver FROM `' . $this->_table . '`;');
+		$data = $this->_mysqli->query('SELECT group.id, group.reference, group.name, group.fileserver ' .
+			' FROM `' . $this->_table . '` ' .
+			' LEFT JOIN group_language ON group.id = group_language.id_group ' .
+			' LEFT JOIN language ON group_language.language_id = language.id ' .
+			' LEFT JOIN language ON group_language.language_id = language.id ' .
+			';');
 
 		return array(
 			'data' => $data,

@@ -14,6 +14,7 @@ class Route {
 
 		require_once('CoreBundle/routes/route.php');
 		require_once('ClientBundle/routes/route.php');
+		require_once('RootBundle/routes/route.php');
 	}
 
 	public function getController($page) {
