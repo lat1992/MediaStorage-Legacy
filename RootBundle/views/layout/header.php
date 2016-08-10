@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="ClientBundle/ressources/libs/Slidebars/dist/slidebars.min.css">
 		<link rel="stylesheet" href="RootBundle/ressources/layout/css/menu.css">
+		<link rel="stylesheet" href="RootBundle/ressources/layout/css/main.css">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
@@ -53,7 +54,7 @@
 ?>
 					<div class="success_div" style="background-color: green; width: 100%">
 <?php
-						echo $_SESSION['flash_message'];
+						echo '<span>' . $_SESSION['flash_message'] . '</span><br />';
 						unset($_SESSION['flash_message']);
 ?>
 					</div>

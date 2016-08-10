@@ -9,6 +9,9 @@ define('YES', 'Oui');
 define('NO', 'Non');
 define('MENU', 'Menu');
 define('ADMINISTRATOR', 'Administrateur');
+define('EDIT', 'Editer');
+define('DELETE', 'Supprimer');
+define('CANCEL', 'Annuler');
 
 // User
 
@@ -94,6 +97,10 @@ define('GROUP_LANGUAGE_CREATION_TITLE', 'Ajout d\'une langue a groupe d\'entretp
 define('FILESERVER', 'Serveur de fichier');
 define('EMPTY_FILESERVER', 'Serveur de fichier vide');
 define('INVALID_FILESERVER_TOO_LONG', 'Serveur de fichier trop long');
+
+define('NB_ORGANIZATION', 'Nb Entreprise');
+define('NB_LANGUAGE', 'Nb Langage');
+define('GROUP_LIST_TITLE', 'Liste des groupes');
 
 // Language
 

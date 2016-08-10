@@ -151,18 +151,26 @@ ul {
     background-color: #800000;
     width: 100%;
     text-align: center;
-    padding: 10px;
     color: white;
 }
 
+.error_div span {
+    margin: 10px;
+    display: inline-block;
+}
 
 .success_div {
     background-color: #003300;
     width: 100%;
     text-align: center;
-    padding: 10px;
     color: white;
 }
+
+.success_div span {
+    margin: 10px;
+    display: inline-block;
+}
+
 
 /*
 ***

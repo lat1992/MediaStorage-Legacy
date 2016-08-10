@@ -31,6 +31,8 @@ class GroupController {
 
 		$this->mergeErrorArray($groups);
 
+		$title = GROUP_LIST_TITLE;
+
 		include ('RootBundle/views/group/group_list.php');
 	}
 
@@ -52,7 +54,9 @@ class GroupController {
 			}
 		}
 
-		include ('CoreBundle/views/group/group_create.php');
+		$title = GROUP_CREATION_TITLE;
+
+		include ('RootBundle/views/group/group_create.php');
 	}
 
 	public function editAction() {

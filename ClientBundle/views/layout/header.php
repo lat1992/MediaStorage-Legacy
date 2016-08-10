@@ -59,7 +59,7 @@
 ?>
 					<div class="success_div" style="background-color: green; width: 100%">
 <?php
-						echo $_SESSION['flash_message'];
+						echo '<span>' . $_SESSION['flash_message'] . '</span><br />';
 						unset($_SESSION['flash_message']);
 ?>
 					</div>

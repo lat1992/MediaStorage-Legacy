@@ -58,18 +58,17 @@ nav[canvas] {
 
 #header_title_div {
     margin: 0 auto;
-    padding-top: 13px;
+    height:29px;
+    padding-top: 20px;
     font-family: "roboto", 'QuickSand'; /* TITLE FONT  -------------------------------------------*/
     font-weight: 900;
-    font-size: 23pt;
+    font-size: 0.7em;
     overflow: hidden;
     display: block;
 }
 
 #header_title_div h1 {
-    height:36px;
     margin: 0;
-    font-size: 0.9em;
 }
 
 li a {
@@ -85,7 +84,7 @@ li a {
 }
 
 li a:hover {
-    background-color: #FED500; /* MENU ITEM  BACKGROUND COLOR  -------------------------------------------*/
+    background-color: #cccccc; /* MENU ITEM  BACKGROUND COLOR  -------------------------------------------*/
     color: black;/* MENU ITEM COLOR  -------------------------------------------*/
 }
 
@@ -151,17 +150,24 @@ ul {
     background-color: #800000;
     width: 100%;
     text-align: center;
-    padding: 10px;
     color: white;
 }
 
+.error_div span {
+    margin: 10px;
+    display: inline-block;
+}
 
 .success_div {
     background-color: #003300;
     width: 100%;
     text-align: center;
-    padding: 10px;
     color: white;
+}
+
+.success_div span {
+    margin: 10px;
+    display: inline-block;
 }
 
 /*
