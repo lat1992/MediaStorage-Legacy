@@ -70,7 +70,9 @@ class ProfilePageController {
 					$this->mergeErrorArray($return_value);
 
 					if (count($this->_errorArray) == 0) {
+						$_SESSION['flash_message'] = 'Success';
 						header('Location:' . '?page=dashboard');
+						exit;
 					}
 				}
 			}

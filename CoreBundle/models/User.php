@@ -4,7 +4,7 @@ require_once('Model.php');
 require_once('CoreBundle/models/UserInfo.php');
 
 class User extends Model {
-	
+
 	private $_userInfoModel;
 
 	public function __construct() {
@@ -26,7 +26,7 @@ class User extends Model {
 						'data' => $row,
 						'error' => ($this->_mysqli->error) ? 'findUserByUsernameAndPassword: ' . $this->_mysqli->error : '',
 					);
-			}			
+			}
 		}
 
 		return array(
@@ -125,7 +125,7 @@ class User extends Model {
 		);
 	}
 
-	public function updateUserWithoutUsernameAndPasswordWithId($data, $user_id) {
+	public function updateUserWithoutUsernameAndPasswordWithIdAsAdmin($data, $user_id) {
 
 		$id_organization = $this->_mysqli->real_escape_string($data['id_organization_mediastorage']);
 		$id_role = $this->_mysqli->real_escape_string($data['id_role_mediastorage']);
@@ -133,6 +133,19 @@ class User extends Model {
 		$email = $this->_mysqli->real_escape_string($data['email_mediastorage']);
 
 		$data = $this->_mysqli->query('UPDATE ' . $this->_table . ' SET id_organization = ' . $id_organization . ', id_role = ' . $id_role . ', id_language = ' . $id_language . ', email = "' . $email . '" WHERE id = ' . $user_id . ';');
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'updateUserWithoutUsernameAndPasswordWithId: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function updateUserWithoutUsernameAndPasswordWithId($data, $user_id) {
+
+		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
+		$email = $this->_mysqli->real_escape_string($data['email_mediastorage']);
+
+		$data = $this->_mysqli->query('UPDATE ' . $this->_table . ' SET id_language = ' . $id_language . ', email = "' . $email . '" WHERE id = ' . $user_id . ';');
 
 		return array(
 			'data' => $data,

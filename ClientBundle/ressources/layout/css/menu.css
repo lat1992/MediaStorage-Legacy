@@ -2,6 +2,7 @@
 
 body {
     padding-bottom: 63px;
+    background-color: #262626;
 }
 
 html, body {
@@ -28,13 +29,19 @@ nav[canvas] {
   	padding: 0px;
 }
 
-.js-open-left-slidebar {
+.js-open-left-slidebar , .js-open-right-slidebar{
     padding: 5px;
     float: left;
     font-family: "roboto", 'QuickSand'; /* FONT SIDEBAR ---------------------------------------------------------  */
     margin-top: 15px;
     margin-left: 15px;
     font-weight: bold;
+}
+
+div.js-open-right-slidebar {
+    float: right;
+    margin-left: 0;
+    margin-right: 15px;
 }
 
 nav[canvas] {
@@ -138,6 +145,23 @@ ul {
   height: 150px;
   margin: 30px auto 30px auto;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.error_div {
+    background-color: #800000;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: white;
+}
+
+
+.success_div {
+    background-color: #003300;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: white;
 }
 
 /*

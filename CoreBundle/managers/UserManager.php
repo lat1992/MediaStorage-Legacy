@@ -88,7 +88,7 @@ class UserManager {
 			$errors_user_create[] = INVALID_ADDRESS_TOO_LONG;
 		}
 		if (strlen($_POST['zipcode_mediastorage']) > 8) {
-			$errors_user_create[] = INVALID_ZIP_TOO_LONG;
+			$errors_user_create[] = INVALID_ZIPCODE_TOO_LONG;
 		}
 		if (strlen($_POST['city_mediastorage']) > 50) {
 			$errors_user_create[] = INVALID_CITY_TOO_LONG;
@@ -128,10 +128,45 @@ class UserManager {
 		return $this->_userModel->createNewUser($_POST);
 	}
 
-	public function userEditDb($user_data) {
+	public function userEditAsAdminDb($user_data) {
 		if (strcmp($user_data['username'], $_POST['username_mediastorage']) != 0) {
 
 			$return_value = $this->_userModel->findUserByUsernameAndIdOrganization($_POST['username_mediastorage'], $_POST['id_organization_mediastorage']);
+
+			if ($return_value['data']->num_rows != 0) {
+				return array(
+					'data' => false,
+					'error' => DUPLICATE_USERNAME,
+				);
+			}
+			if (!empty($return_value['error'])) {
+				return $return_value;
+			}
+
+			$return_value = $this->_userModel->updateUserUsernameWithId($_POST['username_mediastorage'], $user_data['id']);
+
+			if (!empty($return_value['error'])) {
+				return $return_value;
+			}
+		}
+
+		if ($_POST['password_mediastorage']) {
+			$return_value = $this->_userModel->updateUserPasswordWithId($_POST['password_mediastorage'], $user_data['id']);
+		}
+
+		$return_value = $this->_userModel->updateUserWithoutUsernameAndPasswordWithIdAsAdmin($_POST, $user_data['id']);
+
+		if (!empty($return_value['error'])) {
+			return $return_value;
+		}
+
+		return $this->_userInfoModel->updateUserInfoWithId($_POST, $user_data['id']);
+	}
+
+	public function userEditDb($user_data) {
+		if (strcmp($user_data['username'], $_POST['username_mediastorage']) != 0) {
+
+			$return_value = $this->_userModel->findUserByUsernameAndIdOrganization($_POST['username_mediastorage'], $user_data['id_organization']);
 
 			if ($return_value['data']->num_rows != 0) {
 				return array(
@@ -200,7 +235,7 @@ class UserManager {
 			$errors_user_create[] = INVALID_ADDRESS_TOO_LONG;
 		}
 		if (strlen($_POST['zipcode_mediastorage']) > 8) {
-			$errors_user_create[] = INVALID_ZIP_TOO_LONG;
+			$errors_user_create[] = INVALID_ZIPCODE_TOO_LONG;
 		}
 		if (strlen($_POST['city_mediastorage']) > 50) {
 			$errors_user_create[] = INVALID_CITY_TOO_LONG;

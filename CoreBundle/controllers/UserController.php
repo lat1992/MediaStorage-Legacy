@@ -136,7 +136,7 @@ class UserController {
 
 				if (count($this->_errorArray) == 0) {
 
-					$return_value = $this->_userManager->userEditDb($user);
+					$return_value = $this->_userManager->userEditDbAsAdmin($user);
 					$this->mergeErrorArray($return_value);
 
 					if (count($this->_errorArray) == 0) {

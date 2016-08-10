@@ -32,7 +32,7 @@ if (!$controller) {
 	echo 'NOT FOUND';
 	return;
 }
-else {	
+else {
 	require_once($controller[1]);
 
 	$controllerObject = new $controller[2];

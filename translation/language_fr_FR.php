@@ -3,10 +3,12 @@
 // GLOBAL
 
 define('VALIDATE', 'Valider');
-define('LOGOUT', 'Logout');
+define('LOGOUT', 'Déconnecté');
 define('NULL', 'Vide');
 define('YES', 'Oui');
-define('NO', 'No');
+define('NO', 'Non');
+define('MENU', 'Menu');
+define('ADMINISTRATOR', 'Administrateur');
 
 // User
 

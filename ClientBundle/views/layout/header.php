@@ -18,12 +18,18 @@
 
 		<?php require_once('ClientBundle/views/layout/menu.php'); ?>
 
+		<?php require_once('AdminBundle/views/layout/menu.php'); ?>
+
 			<nav canvas class>
 
 				<div id="header_div">
 
 					<div class="js-open-left-slidebar" >
-						<span>&#9776; Menu</span>
+						<span>&#9776; <?= MENU ?></span>
+					</div>
+
+					<div class="js-open-right-slidebar" >
+						<span><?= ADMINISTRATOR ?> &#9776;</span>
 					</div>
 
 					<div id="header_title_div">
@@ -36,3 +42,27 @@
 
 			<div canvas="container" style="margin-top: 63px; padding-bottom: 63px; background-color: #f5f4f2">
 
+<?php
+				if (!empty($this->_errorArray)) {
+?>
+					<div class="error_div">
+<?php
+					foreach ($this->_errorArray as $error) {
+						echo '<span>' . $error . '</span><br />';
+					}
+?>
+					</div>
+<?php
+				}
+
+				if (isset($_SESSION['flash_message'])) {
+?>
+					<div class="success_div" style="background-color: green; width: 100%">
+<?php
+						echo $_SESSION['flash_message'];
+						unset($_SESSION['flash_message']);
+?>
+					</div>
+<?php
+				}
+?>
