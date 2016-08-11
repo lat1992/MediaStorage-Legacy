@@ -9,7 +9,9 @@ class Organization extends Model {
 	}
 
 	public function findAllOrganizations() {
-		$data = $this->_mysqli->query('SELECT id, reference, name FROM ' . $this->_table . ';');
+		$data = $this->_mysqli->query('SELECT organization.id, organization.reference, organization.name AS organization_name, `group`.name AS group_name FROM `' . $this->_table .
+			'` JOIN `group` ON organization.id_group = `group`.id' .
+			';');
 
 		return array(
 			'data' => $data,

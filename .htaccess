@@ -1,7 +1,7 @@
-RewriteEngine Off
+RewriteEngine On
 RewriteBase /
 
-RewriteRule ^(.+)$ index.php?page=$1 [QSA]
+#RewriteRule ^(.+)$ index.php?page=$1
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{HTTP_HOST} !^(?:www) [NC]
