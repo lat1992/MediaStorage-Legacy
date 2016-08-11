@@ -19,7 +19,8 @@ class OrganizationManager {
 
 		$organization['reference'] = $_POST['reference_mediastorage'];
 		$organization['name'] = $_POST['name_mediastorage'];
-		$organization['id_group'] = $_POST['id_group_mediastorage'];
+		if (isset($_POST['id_group_mediastorage']))
+			$organization['id_group'] = $_POST['id_group_mediastorage'];
 
 		return $organization;
 	}
@@ -30,14 +31,14 @@ class OrganizationManager {
 		if (strlen($_POST['reference_mediastorage']) == 0) {
 			$error_organization[] = EMPTY_REFERENCE;
 		}
-		if (strlen($_POST['reference_mediastorage']) > 30) {
+		if (strlen($_POST['reference_mediastorage']) > 10) {
 			$error_organization[] = INVALID_REFERENCE_TOO_LONG;
 		}
 
 		if (strlen($_POST['name_mediastorage']) == 0) {
 			$error_organization[] = EMPTY_NAME;
 		}
-		if (strlen($_POST['name_mediastorage']) > 30) {
+		if (strlen($_POST['name_mediastorage']) > 50) {
 			$error_organization[] = INVALID_NAME_TOO_LONG;
 		}
 
@@ -57,10 +58,6 @@ class OrganizationManager {
 	}
 
 	public function removeOrganizationByIdDb($organization_id) {
-		// $data = $this->_organizationLanguageManager->deleteOrganizationLanguageByOrganizationId($organization_id);
-		// if (!empty($data['error']))
-		// 	return $data;
-
 		return $this->_organizationModel->deleteOrganizationById($organization_id);
 	}
 }

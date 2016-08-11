@@ -51,6 +51,20 @@ class GroupLanguage extends Model {
 		);
 	}
 
+	public function findGroupLanguageByGroupId($group_id) {
+		$group_id = $this->_mysqli->real_escape_string($group_id);
+
+		$data = $this->_mysqli->query('SELECT id, id_group, id_language' .
+									' FROM ' . $this->_table .
+									' WHERE id_group = ' . $group_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findGroupLanguageByGroupId: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function deleteGroupLanguageById($group_language_id) {
 		$group_language_id = $this->_mysqli->real_escape_string($group_language_id);
 
