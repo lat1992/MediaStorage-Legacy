@@ -202,3 +202,4 @@ define('SEARCH', 'Recherche');
 define('CONTENT', 'Contenu');
 
 define('ORGANIZATION_LIST_TITLE', 'Liste des organizations');
+define('ORGANIZATION_EDIT_TITLE', 'Modification d\'organizations');
