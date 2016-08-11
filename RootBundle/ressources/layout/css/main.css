@@ -117,14 +117,25 @@ form label, form input, form select {
 
 #validate_button:hover {
     background-color: #0099ff;
-    color: black;
+    color: white;
 }
 
 .clear {
     clear: both;
 }
 
+.info_multiple_select {
+	display: inline-block;
+	float: left;
+	font-size: 0.7em;
+	color: #666666;
+}
+
 @media only screen and (max-width: 900px) {
+	#menu_text {
+		display: none;
+	}
+
 	#container {
 		margin: 0;
 	}

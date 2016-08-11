@@ -42,7 +42,7 @@ class Group extends Model {
 		$fileserver = $this->_mysqli->real_escape_string($data['fileserver_mediastorage']);
 
 		$data = $this->_mysqli->query('UPDATE `' . $this->_table .
-			'` SET fileserver = "' . $id_group . '", reference = "' . $reference . '", name="' . $name .
+			'` SET fileserver = "' . $fileserver . '", reference = "' . $reference . '", name="' . $name .
 			'" WHERE id = ' . $group_id . ';'
 		);
 

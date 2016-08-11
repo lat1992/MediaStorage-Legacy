@@ -1,15 +1,22 @@
 <?php
 
 require_once('CoreBundle/managers/GroupManager.php');
+require_once('CoreBundle/managers/LanguageManager.php');
+require_once('CoreBundle/managers/OrganizationManager.php');
 
 class GroupController {
 
 	private $_groupManager;
 
 	private $_errorArray;
+	private $_languageManager;
+	private $_organizationManager;
+
 
 	public function __construct() {
 		$this->_groupManager = new GroupManager();
+		$this->_languageManager = new LanguageManager();
+		$this->_organizationManager = new OrganizationManager();
 
 		$this->_errorArray = array();
 	}
@@ -41,18 +48,27 @@ class GroupController {
 
 		if (isset($_POST['id_group_create_mediastorage']) && (strcmp($_POST['id_group_create_mediastorage'], '87463975') == 0)) {
 			$group = $this->_groupManager->formatGroupArrayWithPostData();
+			$organization = $this->_organizationManager->formatOrganizationArrayWithPostData();
 			$return_value['error'] = $this->_groupManager->groupCreateFormCheck();
+			$this->mergeErrorArray($return_value);
+			$return_value['error'] = $this->_organizationManager->organizationCreateFormCheck();
 			$this->mergeErrorArray($return_value);
 
 			if (count($this->_errorArray) == 0) {
-				$return_value = $this->_groupManager->groupCreateDb();
-				$this->mergeErrorArray($return_value);
+				// $return_value = $this->_groupManager->groupCreateDb();
+				// $this->mergeErrorArray($return_value);
 
-				if (count($this->_errorArray) == 0) {
-					header('Location:' . '?page=dashboard');
-				}
+				// if (count($this->_errorArray) == 0) {
+				// 	$_SESSION['flash_message'] = ACTION_SUCCESS;
+				// 	header('Location:' . '?page=list_group_root');
+				// 	exit;
+				// }
 			}
 		}
+
+		$languages = $this->_languageManager->getAllLanguagesDb();
+
+		$this->mergeErrorArray($languages);
 
 		$title = GROUP_CREATION_TITLE;
 
@@ -79,14 +95,16 @@ class GroupController {
 					$this->mergeErrorArray($return_value);
 
 					if (count($this->_errorArray) == 0) {
-						header('Location:' . '?page=dashboard');
+						$_SESSION['flash_message'] = ACTION_SUCCESS;
+						header('Location:' . '?page=list_group_root');
+						exit;
 					}
 				}
 
 			}
 		}
 
-		include ('CoreBundle/views/group/group_create.php');
+		include ('RootBundle/views/group/group_create.php');
 	}
 
 	public function deleteAction() {

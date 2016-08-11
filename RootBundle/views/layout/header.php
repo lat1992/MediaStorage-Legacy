@@ -24,7 +24,7 @@
 				<div id="header_div">
 
 					<div class="js-open-left-slidebar" >
-						<span>&#9776; <?= MENU ?></span>
+						<span>&#9776;<span id="menu_text"> <?= MENU ?></span></span>
 					</div>
 
 					<div id="header_title_div">
@@ -35,7 +35,7 @@
 
 			</nav>
 
-			<div canvas="container" style="margin-top: 63px; padding-bottom: 63px; background-color: #f5f4f2">
+			<div canvas="container" style="margin-top: 47px; padding-bottom: 63px; background-color: #f5f4f2">
 
 <?php
 				if (!empty($this->_errorArray)) {

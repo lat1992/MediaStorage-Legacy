@@ -34,7 +34,7 @@ require_once('RootBundle/views/layout/header.php');
 				<td><?= $group['name'] ?></td>
 				<td><?= $group['fileserver'] ?></td>
 				<td><?= $group['organization_count'] ?></td>
-				<td class="button_td" ><a href="#" class="button_a edit"><?= EDIT ?></a></td>
+				<td class="button_td" ><a href="?page=edit_group_root&group_id=<?= $group['id'] ?>" class="button_a edit"><?= EDIT ?></a></td>
 				<td class="button_td" ><a href="#" class="button_a delete"><?= DELETE ?></a></td>
 			</tr>
 <?php
