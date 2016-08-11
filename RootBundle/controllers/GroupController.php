@@ -43,6 +43,7 @@ class GroupController {
 
 
 		$table_header = array(
+				'<th>' . ID . '</th>',
 				'<th>' . REFERENCE . '</th>',
 				'<th>' . NAME . '</th>',
 				'<th>' . FILESERVER . '</th>',
@@ -52,18 +53,22 @@ class GroupController {
 			);
 
 		$table_data[] = array();
-		while ($group = $groups['data']->fetch_assoc()) {
-			$table_data[] = array(
-				'<td>' . $group['reference'] . '</td>',
-				'<td>' . $group['name'] . '</td>',
-				'<td>' . $group['fileserver'] . '</td>',
-				'<td>' . $group['organization_count'] . '</td>',
-				'<td class="button_td edit" ><a href="?page=edit_group_root&group_id=' . $group['id'] . '" class="button_a edit">' . EDIT . '</a></td>',
-				'<td class="button_td delete" ><a href="?page=delete_group_root&group_id=' . $group['id'] . '" class="button_a delete">' . DELETE . '</a></td>',
-			);
+
+		if (count($this->_errorArray) == 0) {
+
+			while ($group = $groups['data']->fetch_assoc()) {
+				$table_data[] = array(
+					'<td>' . $group['id'] . '</td>',
+					'<td>' . $group['reference'] . '</td>',
+					'<td>' . $group['name'] . '</td>',
+					'<td>' . $group['fileserver'] . '</td>',
+					'<td>' . $group['organization_count'] . '</td>',
+					'<td class="button_td edit" ><a href="?page=edit_group_root&group_id=' . $group['id'] . '" class="button_a edit">' . EDIT . '</a></td>',
+					'<td class="button_td delete" ><a href="?page=delete_group_root&group_id=' . $group['id'] . '" class="button_a delete">' . DELETE . '</a></td>',
+				);
+			}
+
 		}
-
-
 
 		$title = GROUP_LIST_TITLE;
 

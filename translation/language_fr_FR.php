@@ -15,6 +15,7 @@ define('CANCEL', 'Annuler');
 define('ACTION_SUCCESS', 'Action effectué avec succès');
 define('INFO_MULTIPLE_SELECT', 'Maintenir CTRL pour selection multiple');
 define('RETURN_HOMEPAGE', 'Retourner a la page d\'accueil');
+define('ID', 'Id');
 
 // Errors
 

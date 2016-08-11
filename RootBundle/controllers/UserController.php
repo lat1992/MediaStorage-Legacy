@@ -91,22 +91,35 @@ class UserController {
 
 	public function listAction() {
 		$users = $this->_userManager->getAllUsersDb();
-		$organizations_data = $this->_organizationManager->getAllOrganizationsDb();
-		$roles_data = $this->_roleManager->getAllRolesDb();
 
 		$this->mergeErrorArray($users);
-		$this->mergeErrorArray($organizations_data);
-		$this->mergeErrorArray($roles_data);
 
-		while ($organizations_data_temp = $organizations_data['data']->fetch_assoc()) {
-			$organizations[] = $organizations_data_temp;
+		$table_header = array(
+				'<th>' . ID . '</th>',
+				'<th>' . REFERENCE . '</th>',
+				'<th>' . NAME . '</th>',
+				'<th>' . FILESERVER . '</th>',
+				'<th>' . NB_ORGANIZATION . '</th>',
+				'<th></th>',
+				'<th></th>',
+			);
+
+		$table_data[] = array();
+		while ($group = $groups['data']->fetch_assoc()) {
+			$table_data[] = array(
+				'<td>' . $group['id'] . '</td>',
+				'<td>' . $group['reference'] . '</td>',
+				'<td>' . $group['name'] . '</td>',
+				'<td>' . $group['fileserver'] . '</td>',
+				'<td>' . $group['organization_count'] . '</td>',
+				'<td class="button_td edit" ><a href="?page=edit_group_root&group_id=' . $group['id'] . '" class="button_a edit">' . EDIT . '</a></td>',
+				'<td class="button_td delete" ><a href="?page=delete_group_root&group_id=' . $group['id'] . '" class="button_a delete">' . DELETE . '</a></td>',
+			);
 		}
 
-		while ($roles_data_temp = $roles_data['data']->fetch_assoc()) {
-			$roles[] = $roles_data_temp;
-		}
+		$title = USER_LIST_TITLE;
 
-		include ('CoreBundle/views/user/user_list.php');
+		include ('RootBundle/views/user/user_list.php');
 	}
 
 	public function editAction() {
