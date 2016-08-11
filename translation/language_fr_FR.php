@@ -191,3 +191,5 @@ define('FIELD', 'Champ');
 
 define('SEARCH', 'Recherche');
 define('CONTENT', 'Contenu');
+
+define('ORGANIZATION_LIST_TITLE', 'Liste des organizations');

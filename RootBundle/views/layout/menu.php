@@ -1,7 +1,6 @@
 <div off-canvas="slidebar-1 left reveal">
 	<ul>
 		<li><div class= "logo" style="background-image: url(http://www.capitalvision.fr/main/squelettes/commun/logo_fr.gif); background-size: contain; background-position-y: center; background-color: white"></div></li>
-		<li><a class="logout_button" href="?page=logout"><?= LOGOUT ?></a><a class="profile_button" href="?page=profile"><?= PROFILE ?></a></li>
 
 		<li><a href="?page=create_user"><?= USER_CREATION_TITLE ?></a></li>
 		<li><a href="?page=list_user"><?= USER_LIST_TITLE ?></a></li>
