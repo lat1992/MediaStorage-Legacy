@@ -79,16 +79,9 @@ class OrganizationController {
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-
-					$_POST['id_organization_mediastorage'] = $return_value['id'];
-					$return_value = $this->_groupManager->groupCreateDb();
-					$this->mergeErrorArray($return_value);
-
-					if (count($this->_errorArray) == 0) {
-						$_SESSION['flash_message'] = ACTION_SUCCESS;
-						header('Location:' . '?page=list_organization_root');
-						exit;
-					}
+					$_SESSION['flash_message'] = ACTION_SUCCESS;
+					header('Location:' . '?page=list_organization_root');
+					exit;
 				}
 			}
 		}

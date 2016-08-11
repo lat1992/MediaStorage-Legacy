@@ -209,3 +209,7 @@ define('CONTENT', 'Contenu');
 
 define('ORGANIZATION_LIST_TITLE', 'Liste des organizations');
 define('ORGANIZATION_EDIT_TITLE', 'Modification d\'organizations');
+
+define('MAIL_LIST_TITLE', 'Liste des mails');
+define('MAIL_CREATION_TITLE', 'Ajouter un email');
+define('MAIL_EDIT_TITLE', 'Modifier un email');
