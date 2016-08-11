@@ -17,7 +17,7 @@ th, td {
 	border-right: 1px solid black;
 }
 
-td .button_a {
+td.button_td a {
 	text-decoration: none;
 	text-align: center;
 	width: 100%;
@@ -28,18 +28,20 @@ td .button_a {
 }
 
 .button_td {
-	padding: 0;
+	padding: 0 10px 0 10px;
 	vertical-align: middle;
 }
 
-a.edit:hover {
+td.edit:hover {
 	background-color:  #0099ff;
-	color: white;
 }
 
-a.delete:hover {
+td.delete:hover {
 	background-color: #b30000;
-    color: white;
+}
+
+td.edit a:hover, td.delete a:hover {
+	color: white;
 }
 
 div.add {
@@ -70,7 +72,7 @@ form {
 form label {
     display: inline-block;
     float: left;
-    width: 50%;
+    width: 40%;
 	white-space: nowrap;
 	text-align: right;
 	margin: 10px 0 0px 5px;
@@ -80,9 +82,16 @@ form label, form input, form select {
     float: left;
 	display: inline-block;
 	border-style: none;
-	margin: 10px 0 10px 5px;
     font-size: 0.9em;
     padding: 3px;
+}
+
+form input, form select {
+	margin: 10px 0 10px 5px;
+}
+
+form input {
+	width: 30%;
 }
 
 #cancel_button, #validate_button {

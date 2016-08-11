@@ -14,6 +14,12 @@ define('DELETE', 'Supprimer');
 define('CANCEL', 'Annuler');
 define('ACTION_SUCCESS', 'Action effectué avec succès');
 define('INFO_MULTIPLE_SELECT', 'Maintenir CTRL pour selection multiple');
+define('RETURN_HOMEPAGE', 'Retourner a la page d\'accueil');
+
+// Errors
+
+define('ERROR', 'Erreur');
+define('ID_NOT_FOUND', 'ID non trouvé');
 
 // User
 
@@ -95,6 +101,8 @@ define('INVALID_NAME_TOO_LONG', 'Nom trop long');
 // Group
 
 define('GROUP_CREATION_TITLE', 'Création d\'un groupe d\'entreprise');
+define('GROUP_EDIT_TITLE', 'Edition d\'un groupe d\'entreprise');
+define('GROUP_DELETE_TITLE', 'Suppression d\'un groupe d\'entreprise');
 define('GROUP_LANGUAGE_CREATION_TITLE', 'Ajout d\'une langue a groupe d\'entretprise');
 define('FILESERVER', 'Serveur de fichier');
 define('EMPTY_FILESERVER', 'Serveur de fichier vide');

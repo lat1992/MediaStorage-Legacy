@@ -33,6 +33,7 @@ class Group extends Model {
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'createNewGroup: ' . $this->_mysqli->error : '',
+			'id' => $this->_mysqli->insert_id,
 		);
 	}
 
