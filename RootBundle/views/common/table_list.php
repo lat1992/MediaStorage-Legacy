@@ -8,7 +8,7 @@
 		</tr>
 <?php
 
-		if (!$groups['error']) {
+		if (count($this->_errorArray) == 0) {
 
 			foreach ($table_data as $row) {
 ?>
