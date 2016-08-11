@@ -14,7 +14,7 @@
 		<select name="id_organization_mediastorage" id="id_organization_mediastorage"/>
 <?php
 			while ($organization = $organizations['data']->fetch_assoc()) {
-				echo '<option value="' . $organization['id'] . '" ' . ((intval($organization['id']) == intval($user['id_organization'])) ? ' selected' : '') . '>' . $organization['reference'] . ' / ' . $organization['name'] . '</option>';
+				echo '<option value="' . $organization['id'] . '" ' . ((intval($organization['id']) == intval($user['id_organization'])) ? ' selected' : '') . '>' . $organization['reference'] . ' / ' . $organization['organization_name'] . '</option>';
 			}
 ?>
 		</select>

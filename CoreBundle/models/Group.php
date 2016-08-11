@@ -22,8 +22,8 @@ class Group extends Model {
 	}
 
 	public function createNewGroup($data) {
-		$reference = $this->_mysqli->real_escape_string($data['reference_mediastorage']);
-		$name = $this->_mysqli->real_escape_string($data['name_mediastorage']);
+		$reference = $this->_mysqli->real_escape_string($data['reference_group_mediastorage']);
+		$name = $this->_mysqli->real_escape_string($data['name_group_mediastorage']);
 		$fileserver = $this->_mysqli->real_escape_string($data['fileserver_mediastorage']);
 
 		$data = $this->_mysqli->query('INSERT INTO `' . $this->_table . '`(reference, name, fileserver)' .
@@ -38,8 +38,8 @@ class Group extends Model {
 	}
 
 	public function updateGroupWithId($data, $group_id) {
-		$reference = $this->_mysqli->real_escape_string($data['reference_mediastorage']);
-		$name = $this->_mysqli->real_escape_string($data['name_mediastorage']);
+		$reference = $this->_mysqli->real_escape_string($data['reference_group_mediastorage']);
+		$name = $this->_mysqli->real_escape_string($data['name_group_mediastorage']);
 		$fileserver = $this->_mysqli->real_escape_string($data['fileserver_mediastorage']);
 
 		$data = $this->_mysqli->query('UPDATE `' . $this->_table .
@@ -59,6 +59,20 @@ class Group extends Model {
 		$data = $this->_mysqli->query('SELECT id, reference, name, fileserver' .
 									' FROM `' . $this->_table .
 									'` WHERE id = ' . $group_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findGroupById: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findGroupByReference($reference) {
+		$reference = $this->_mysqli->real_escape_string($reference);
+
+		$data = $this->_mysqli->query('SELECT id, reference, name, fileserver' .
+									' FROM `' . $this->_table .
+									'` WHERE reference = "' . $reference . '";'
 		);
 
 		return array(

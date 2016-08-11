@@ -43,6 +43,7 @@ class UserController {
 
 			if ($return_value['data']) {
 				header('Location:' . '?page=dashboard');
+				exit;
 			}
 		}
 
@@ -69,7 +70,9 @@ class UserController {
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-					header('Location:' . '?page=dashboard');
+					$_SESSION['flash_message'] = ACTION_SUCCESS;
+					header('Location:' . '?page=list_user_root');
+					exit;
 				}
 			}
 		}
@@ -158,11 +161,13 @@ class UserController {
 
 				if (count($this->_errorArray) == 0) {
 
-					$return_value = $this->_userManager->userEditDbAsAdmin($user);
+					$return_value = $this->_userManager->userEditAsAdminDb($user);
 					$this->mergeErrorArray($return_value);
 
 					if (count($this->_errorArray) == 0) {
-						header('Location:' . '?page=dashboard');
+						$_SESSION['flash_message'] = ACTION_SUCCESS;
+						header('Location:' . '?page=list_user_root');
+						exit;
 					}
 				}
 			}
@@ -171,7 +176,9 @@ class UserController {
 
 		}
 
-		include ('CoreBundle/views/user/user_edit.php');
+		$title = USER_EDIT_TITLE;
+
+		include ('RootBundle/views/user/user_create.php');
 	}
 
 	public function deleteAction() {

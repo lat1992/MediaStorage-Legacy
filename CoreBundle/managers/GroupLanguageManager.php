@@ -30,6 +30,7 @@ class GroupLanguageManager {
 	}
 
 	public function groupLanguageMultipleCreateDb() {
+
 		foreach ($_POST['id_language_mediastorage'] as $id_language) {
 			$data['id_language_mediastorage'] = $id_language;
 			$data['id_group_mediastorage'] = $_POST['id_group_mediastorage'];

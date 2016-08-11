@@ -46,6 +46,18 @@ class OrganizationManager {
 	}
 
 	public function organizationCreateDb() {
+		$return_value = $this->_organizationModel->findOrganizationByReference($_POST['reference_mediastorage']);
+
+		if ($return_value['data']->num_rows != 0) {
+			return array(
+				'data' => false,
+				'error' => DUPLICATE_REFERENCE,
+			);
+		}
+		if (!empty($return_value['error'])) {
+			return $return_value;
+		}
+
 		return $this->_organizationModel->createNewOrganization($_POST);
 	}
 
@@ -54,6 +66,23 @@ class OrganizationManager {
 	}
 
 	public function organizationEditDb($organization_data) {
+
+		if (strcmp($group_data['reference'], $_POST['reference_mediastorage']) != 0) {
+
+			$return_value = $this->_organizationModel->findOrganizationByReference($_POST['reference_mediastorage']);
+
+			if ($return_value['data']->num_rows != 0) {
+				return array(
+					'data' => false,
+					'error' => DUPLICATE_REFERENCE,
+				);
+			}
+			if (!empty($return_value['error'])) {
+				return $return_value;
+			}
+
+		}
+
 		return $this->_organizationModel->updateOrganizationWithId($_POST, $organization_data['id']);
 	}
 

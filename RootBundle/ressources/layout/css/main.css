@@ -8,8 +8,12 @@ table tr th {
 	background-color: #8c8c8c
 }
 
-table tr:hover {
+body table tr:hover {
 	background-color: #cccccc;
+}
+
+table tr:nth-child(odd) {
+	background-color: #b3b3b3;
 }
 
 th, td {

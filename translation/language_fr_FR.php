@@ -108,6 +108,7 @@ define('GROUP_LANGUAGE_CREATION_TITLE', 'Ajout d\'une langue a groupe d\'entretp
 define('FILESERVER', 'Serveur de fichier');
 define('EMPTY_FILESERVER', 'Serveur de fichier vide');
 define('INVALID_FILESERVER_TOO_LONG', 'Serveur de fichier trop long');
+define('DUPLICATE_REFERENCE', 'Référence déja existante');
 
 define('NB_ORGANIZATION', 'Nb Entreprise');
 define('NB_LANGUAGE', 'Nb Langage');
