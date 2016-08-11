@@ -52,5 +52,9 @@ class RoleLanguageManager {
 	public function removeRoleLanguageByRoleIdDb($role_id) {
 		return $this->_roleLanguageModel->deleteRoleLanguageByRoleId($role_id);
 	}
+
+	public function getRoleLanguageByRoleIdDb($role_id) {
+		return $this->_roleLanguageModel->findRoleLanguageByRoleId($role_id);
+	}
 }
 

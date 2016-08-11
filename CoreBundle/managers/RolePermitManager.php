@@ -25,6 +25,20 @@ class RolePermitManager {
 		return $error_role_permit;
 	}
 
+	public function rolePermitMultipleCreateDb() {
+
+		foreach ($_POST['id_permit_mediastorage'] as $id_permit) {
+			$data['id_permit_mediastorage'] = $id_permit;
+			$data['id_role_mediastorage'] = $_POST['id_role_mediastorage'];
+
+			$return_value = $this->_rolePermitModel->createNewRolePermit($data);
+			if (!empty($return_value['error']))
+				return $return_value;
+		}
+
+		return $return_value;
+	}
+
 	public function rolePermitCreateDb() {
 		return $this->_rolePermitModel->createNewRolePermit($_POST);
 	}
@@ -43,6 +57,21 @@ class RolePermitManager {
 
 	public function removeRolePermitByRoleIdDb($role_id) {
 		return $this->_rolePermitModel->deleteRolePermitByRoleId($role_id);
+	}
+
+	public function rolePermitMultipleUpdateByRoleIdDb($role_id) {
+		$return_value = $this->_rolePermitModel->deleteRolePermitByRoleId($role_id);
+		if (!empty($return_value['error'])) {
+			return $return_value;
+		}
+
+		$_POST['id_role_mediastorage'] = $role_id;
+
+		return $this->rolePermitMultipleCreateDb();
+	}
+
+	public function getRolePermitByRoleIdDb($role_id) {
+		return $this->_rolePermitModel->findRolePermitByRoleId($role_id);
 	}
 }
 

@@ -81,6 +81,11 @@ define('EMPTY_ROLE', 'Role vide');
 define('EMPTY_DATA', 'Contenu vide');
 define('INVALID_DATA_TOO_LONG', 'Contenu trop long');
 
+define('NB_PERMIT', 'Nb permission');
+define('LANGUAGE_TRANSLATE', 'Traduction');
+
+define('ROLE_EDIT_TITLE', 'Edition de role');
+
 // Sharelist
 
 define('SHARELIST_CREATION_TITLE', 'Création d\'une liste de partage');

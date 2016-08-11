@@ -51,6 +51,20 @@ class RolePermit extends Model {
 		);
 	}
 
+	public function findRolePermitByRoleId($role_id) {
+		$role_id = $this->_mysqli->real_escape_string($role_id);
+
+		$data = $this->_mysqli->query('SELECT id, id_role, id_permit' .
+									' FROM ' . $this->_table .
+									' WHERE id_role = ' . $role_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findRolePermitById: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function deleteRolePermitById($role_permit_id) {
 		$role_permit_id = $this->_mysqli->real_escape_string($role_permit_id);
 

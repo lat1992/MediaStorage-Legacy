@@ -53,6 +53,20 @@ class RoleLanguage extends Model {
 		);
 	}
 
+	public function findRoleLanguageByRoleId($role_id) {
+		$role_id = $this->_mysqli->real_escape_string($role_id);
+
+		$data = $this->_mysqli->query('SELECT id, data, id_role, id_language' .
+									' FROM ' . $this->_table .
+									' WHERE id_role = ' . $role_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findRoleLanguageById: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function deleteRoleLanguageById($role_language_id) {
 		$role_language_id = $this->_mysqli->real_escape_string($role_language_id);
 

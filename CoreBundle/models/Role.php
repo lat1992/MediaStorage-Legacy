@@ -22,9 +22,10 @@ class Role extends Model {
 	}
 
 	public function findAllRoles() {
-		$data = $this->_mysqli->query('SELECT id, role, id_organization, COUNT(role_permit.id) AS permit_count ' .
+		$data = $this->_mysqli->query('SELECT role.id, role, id_organization, organization.name, COUNT(role_permit.id) AS permit_count ' .
 			' FROM ' . $this->_table .
 			' LEFT JOIN role_permit ON role.id = role_permit.id_role' .
+			' LEFT JOIN organization on role.id_organization = organization.id ' .
 			' GROUP BY role.id '
 		);
 
@@ -45,6 +46,7 @@ class Role extends Model {
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'createNewRole: ' . $this->_mysqli->error : '',
+			'id' => $this->_mysqli->insert_id,
 		);
 	}
 
@@ -66,9 +68,13 @@ class Role extends Model {
 	public function findRoleById($role_id) {
 		$role_id = $this->_mysqli->real_escape_string($role_id);
 
-		$data = $this->_mysqli->query('SELECT id, role, id_organization' .
+		$data = $this->_mysqli->query('SELECT role.id, role, id_organization, data, id_language' .
 									' FROM ' . $this->_table .
-									' WHERE id = ' . $role_id . ';'
+									' LEFT JOIN role_language ON role.id = role_language.id_role' .
+									' WHERE role.id = ' . $role_id .
+									' GROUP BY role.id ' .
+									' LIMIT 1 ' .
+									';'
 		);
 
 		return array(
