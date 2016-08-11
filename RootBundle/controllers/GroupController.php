@@ -41,7 +41,6 @@ class GroupController {
 
 		$this->mergeErrorArray($groups);
 
-
 		$table_header = array(
 				'<th>' . ID . '</th>',
 				'<th>' . REFERENCE . '</th>',

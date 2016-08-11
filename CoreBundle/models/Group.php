@@ -9,7 +9,7 @@ class Group extends Model {
 	}
 
 	public function findAllGroups() {
-		$data = $this->_mysqli->query('SELECT grp.id, grp.reference, grp.name, grp.fileserver, COUNT(distinct organization.id) AS organization_count' .
+		$data = $this->_mysqli->query('SELECT grp.id, grp.reference, grp.name, grp.fileserver, COUNT(organization.id) AS organization_count' .
 			' FROM `' . $this->_table . '` grp' .
 			' LEFT JOIN organization ON grp.id = organization.id_group ' .
 			' GROUP BY grp.id ' .

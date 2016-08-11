@@ -22,8 +22,10 @@ class Role extends Model {
 	}
 
 	public function findAllRoles() {
-		$data = $this->_mysqli->query('SELECT id, role, id_organization ' .
-			' FROM ' . $this->_table
+		$data = $this->_mysqli->query('SELECT id, role, id_organization, COUNT(role_permit.id) AS permit_count ' .
+			' FROM ' . $this->_table .
+			' LEFT JOIN role_permit ON role.id = role_permit.id_role' .
+			' GROUP BY role.id '
 		);
 
 		return array(

@@ -30,7 +30,7 @@ class RoleController {
 	}
 
 	public function listAction() {
-		$roles = $this->_roleManager->getAllRolesWithRoleLanguageAndLanguageDb();
+		$roles = $this->_roleManager->findAllRoles();
 
 		$this->mergeErrorArray($roles);
 
