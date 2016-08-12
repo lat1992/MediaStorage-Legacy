@@ -24,4 +24,10 @@ $this->_route[] = array('create_mail_root', 'RootBundle/controllers/MailControll
 $this->_route[] = array('list_mail_root', 'RootBundle/controllers/MailController.php', 'MailController', 'listAction');
 $this->_route[] = array('edit_mail_root', 'RootBundle/controllers/MailController.php', 'MailController', 'editAction');
 $this->_route[] = array('delete_mail_root', 'RootBundle/controllers/MailController.php', 'MailController', 'deleteAction');
+
+$this->_route[] = array('create_language_root', 'RootBundle/controllers/LanguageController.php', 'LanguageController', 'createAction');
+$this->_route[] = array('list_language_root', 'RootBundle/controllers/LanguageController.php', 'LanguageController', 'listAction');
+$this->_route[] = array('edit_language_root', 'RootBundle/controllers/LanguageController.php', 'LanguageController', 'editAction');
+$this->_route[] = array('delete_language_root', 'RootBundle/controllers/LanguageController.php', 'LanguageController', 'deleteAction');
+
 ?>

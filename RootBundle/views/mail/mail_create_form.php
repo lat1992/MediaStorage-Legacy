@@ -14,7 +14,7 @@
 		</select>
 		<div class="clear"></div>
 
-		<label for="name_mediastorage"><?= EMAIL ?> : </label>
+		<label for="mail_mediastorage"><?= EMAIL ?> : </label>
 		<input type="text" name="mail_mediastorage" id="mail_mediastorage" value="<?= (isset($mail['email'])) ? $mail['email'] : '' ?>" /><br />
 
 		<div class="clear"></div>

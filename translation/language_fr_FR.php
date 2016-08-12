@@ -125,6 +125,8 @@ define('LANGUAGE_CREATION_TITLE', 'Création d\'un langage');
 define('CODE', 'Code');
 define('EMPTY_CODE', 'Code vide');
 define('INVALID_CODE_TOO_LONG', 'Code trop long');
+define('LANGUAGE_LIST_TITLE', 'Liste des langages');
+define('LANGUAGE_EDIT_TITLE', 'Editer un langage');
 
 // Tag
 
