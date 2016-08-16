@@ -65,4 +65,6 @@ class Language extends Model {
 			'error' => ($this->_mysqli->error) ? 'deleteLanguageById: ' . $this->_mysqli->error : '',
 		);
 	}
+
+	public function 
 }

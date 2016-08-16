@@ -65,4 +65,8 @@ class LanguageManager {
 	public function removeLanguageByIdDb($language_id) {
 		return $this->_languageModel->deleteLanguageById($language_id);
 	}
+
+	public function getLanguageByIdOrganizationDb($organization_id) {
+		return $this->_languageModel->findLanguageByIdOrganization($organization_id);
+	}
 }

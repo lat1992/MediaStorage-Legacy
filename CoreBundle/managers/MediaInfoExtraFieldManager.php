@@ -10,19 +10,30 @@ class MediaInfoExtraFieldManager {
 		$this->_mediaInfoExtraField = new MediaInfoExtraField();
 	}
 
-	public function getAllMediaInfoExtraFieldsWithMediaInfoExtraFieldLanguageAndLanguageDb() {
-		return $this->_mediaInfoExtraField->findAllMediaInfoExtraFieldsWithMediaInfoExtraFieldLanguageAndLanguage();
+	public function getMediaInfoExtraFieldsWithMediaInfoExtraFieldLanguageAndLanguageDb($id_organization) {
+		return $this->_mediaInfoExtraField->findMediaInfoExtraFieldsWithMediaInfoExtraFieldLanguageAndLanguage($id_organization);
 	}
 
 	public function getAllMediaInfoExtraFieldsDb() {
 		return $this->_mediaInfoExtraField->findAllMediaInfoExtraFields();
 	}
 
+	public function getAllMediaInfoExtraFieldsWithOrganizationDb($id_organization) {
+		return $this->_mediaInfoExtraField->findAllMediaInfoExtraFieldsWithOrganization($id_organization);
+	}
+
+	public function formatSelectOrganizationWithPostData() {
+		$media_info_extra_field = array();
+
+		$media_info_extra_field['id_organization'] = $_POST['id_organization_mediastorage'];
+
+		return $media_info_extra_field;
+	}
+
 	public function formatMediaInfoExtraFieldArrayWithPostData() {
 		$media_info_extra_field = array();
 
 		$media_info_extra_field['id_organization'] = $_POST['id_organization_mediastorage'];
-		$media_info_extra_field['id_language'] = $_POST['id_language_mediastorage'];
 		$media_info_extra_field['type'] = $_POST['type_mediastorage'];
 		$media_info_extra_field['name'] = $_POST['name_mediastorage'];
 

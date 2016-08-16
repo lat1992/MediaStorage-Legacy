@@ -215,3 +215,10 @@ define('ORGANIZATION_EDIT_TITLE', 'Modification d\'organizations');
 define('MAIL_LIST_TITLE', 'Liste des mails');
 define('MAIL_CREATION_TITLE', 'Ajouter un email');
 define('MAIL_EDIT_TITLE', 'Modifier un email');
+define('NEXT', 'Suivant');
+
+define('TEXT', 'Texte');
+define('DATE', 'Date');
+define('ARRAY_MUTIPLE', 'Table choix multiple');
+define('ARRAY_UNIQUE', 'Table choix unique');
+define('T_BOOLEAN', 'Case à coché');
