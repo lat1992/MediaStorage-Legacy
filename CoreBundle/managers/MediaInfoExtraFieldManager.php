@@ -33,9 +33,20 @@ class MediaInfoExtraFieldManager {
 	public function formatMediaInfoExtraFieldArrayWithPostData() {
 		$media_info_extra_field = array();
 
+		$translate = array();
+		$cpt = 0;
+		foreach ($_POST['media_info_extra_field_data_mediastorage'] as $key => $value) {
+			if ($value) {
+				$translate[$cpt]['id_language'] = $key;
+				$translate[$cpt]['data'] = $value;
+				$cpt++;
+			}
+		}
+		$_POST['media_info_extra_field_data_mediastorage'] = $translate;
+
 		$media_info_extra_field['id_organization'] = $_POST['id_organization_mediastorage'];
-		$media_info_extra_field['type'] = $_POST['type_mediastorage'];
-		$media_info_extra_field['name'] = $_POST['name_mediastorage'];
+		$media_info_extra_field['id_media_info_extra_field_type'] = $_POST['id_media_info_extra_field_type_mediastorage'];
+		$media_info_extra_field['translates'] = $_POST['media_info_extra_field_data_mediastorage'];
 
 		return $media_info_extra_field;
 	}

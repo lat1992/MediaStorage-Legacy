@@ -22,6 +22,11 @@ class LanguageManager {
 		return $this->_languageModel->findAllLanguages();
 	}
 
+	public function getAllLanguagesByGroupDb() {
+		return $this->_languageModel->findAllLanguagesByGroup($_SESSION['id_group']);
+	}
+
+
 	public function formatLanguageArrayWithPostData() {
 		$language = array();
 
@@ -66,7 +71,4 @@ class LanguageManager {
 		return $this->_languageModel->deleteLanguageById($language_id);
 	}
 
-	public function getLanguageByIdOrganizationDb($organization_id) {
-		return $this->_languageModel->findLanguageByIdOrganization($organization_id);
-	}
 }

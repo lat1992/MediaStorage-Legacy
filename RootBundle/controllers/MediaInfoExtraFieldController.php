@@ -2,20 +2,20 @@
 
 require_once('CoreBundle/managers/MediaInfoExtraFieldManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
-require_once('CoreBundle/managers/LanguageManager.php');
+require_once('CoreBundle/managers/GroupLanguageManager.php');
 
 class MediaInfoExtraFieldController {
 
 	private $_mediaInfoExtraFieldManager;
 	private $_organizationManager;
-	private $_languageManager;
+	private $_groupLanguageManager;
 
 	private $_errorArray;
 
 	public function __construct() {
 		 $this->_mediaInfoExtraFieldManager = new MediaInfoExtraFieldManager();
 		 $this->_organizationManager = new OrganizationManager();
-		 $this->_languageManager = new LanguageManager();
+		 $this->_groupLanguageManager = new GroupLanguageManager();
 
 		 $this->_errorArray = array();
 	}
@@ -115,7 +115,8 @@ class MediaInfoExtraFieldController {
 		$organizations = $this->_organizationManager->getAllOrganizationsDb();
 		$this->mergeErrorArray($organizations);
 
-		
+		$groupLanguages = $this->_groupLanguageManager->getGroupLanguageByOrganizationIdDb($id_organization);
+		$this->mergeErrorArray($groupLanguages);
 
 		$title = MEDIA_INFO_EXTRA_FIELD_CREATION_TITLE;
 

@@ -22,14 +22,22 @@
 			<option value="Array_unique" <?php if (isset($mediaInfoExtraField['Type']) && !strcmp('Array_unique', $mediaInfoExtraField['Type'])) echo ' selected' ?>><?= ARRAY_UNIQUE ?></option>
 			<option value="Boolean" <?php if (isset($mediaInfoExtraField['Type']) && !strcmp('Boolean', $mediaInfoExtraField['Type'])) echo ' selected' ?>><?= T_BOOLEAN ?></option>
 		</select>
+		<div class="clear"></div>
 
 		<!-- AJAX HERE -->
+
+<?php
+		while ($groupLanguage = $groupLanguages['data']->fetch_assoc()) {
+			echo '<label for="media_info_extra_field_data_mediastorage['. $groupLanguage['id'] .']">' . LANGUAGE_TRANSLATE . ' (' . $groupLanguage['name'] . ') : </label>';
+			echo '<input type="text" name="media_info_extra_field_data_mediastorage['. $groupLanguage['id'] .']" id="media_info_extra_field_data_mediastorage" value=""></br>';
+		}
+?>
 
 		<div class="clear"></div>
 
 		<input type="hidden" name="id_media_info_extra_field_create_mediastorage" value="4894565" />
 
-		<a id="cancel_button" class="form_button" href="?page=list_mail_root"><?= CANCEL ?></a>
+		<a id="cancel_button" class="form_button" href="?page=list_media_info_extra_field_root&id_organization=<?= $id_organization ?>" ><?= CANCEL ?></a>
 		<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 
 	</form>

@@ -26,6 +26,22 @@ class Language extends Model {
 		);
 	}
 
+	public function findAllLanguagesByGroup($id_group) {
+		$id_group = $this->_mysqli->real_escape_string($id_group);
+
+		$data = $this->_mysqli->query('SELECT language.id, name, code ' .
+			' FROM ' . $this->_table .
+			' LEFT JOIN group_language ON group_language.id_language = language.id ' .
+			' WHERE id_group = ' . $id_group .
+			';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllLanguagesByGroup: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function createNewLanguage($data) {
 		$name = $this->_mysqli->real_escape_string($data['name_mediastorage']);
 		$code = $this->_mysqli->real_escape_string($data['code_mediastorage']);
@@ -66,5 +82,4 @@ class Language extends Model {
 		);
 	}
 
-	public function 
 }

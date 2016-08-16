@@ -55,6 +55,10 @@ class GroupLanguageManager {
 		return $this->_groupLanguageModel->findGroupLanguageByGroupId($group_id);
 	}
 
+	public function getGroupLanguageByOrganizationIdDb($organization_id) {
+		return $this->_groupLanguageModel->findGroupLanguageByOrganizationId($organization_id);
+	}
+
 	public function removeGroupLanguageByIdDb($group_language_id) {
 		return $this->_groupLanguageModel->deleteGroupLanguageById($group_language_id);
 	}

@@ -222,3 +222,4 @@ define('DATE', 'Date');
 define('ARRAY_MUTIPLE', 'Table choix multiple');
 define('ARRAY_UNIQUE', 'Table choix unique');
 define('T_BOOLEAN', 'Case à coché');
+define('MEDIA_INFO_EXTRA_FIELD_LIST_TITLE', 'Champs');

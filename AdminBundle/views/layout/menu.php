@@ -1,6 +1,7 @@
 <div off-canvas="slidebar-2 right reveal">
 	<ul>
-		<li><a href="?page=create_user"><?= USER_CREATION_TITLE ?></a></li>
+	<li><a href="?page=list_folder_admin"><?= FOLDER ?></a></li>
+<!-- 		<li><a href="?page=create_user"><?= USER_CREATION_TITLE ?></a></li>
 		<li><a href="?page=list_user"><?= USER_LIST_TITLE ?></a></li>
 		<li><a href="?page=list_role"><?= ROLE_LIST_TITLE ?></a></li>
 		<li><a href="?page=create_role"><?= ROLE_CREATION_TITLE ?></a></li>
@@ -28,5 +29,5 @@
 		<li><a href="?page=create_media_info_extra"><?= MEDIA_INFO_EXTRA_CREATION_TITLE ?></a></li>
 		<li><a href="?page=create_media_type"><?= MEDIA_TYPE_CREATION_TITLE ?></a></li>
 		<li><a href="?page=create_media_type_field"><?= MEDIA_TYPE_FIELD_CREATION_TITLE ?></a></li>
-	</ul>
+ -->	</ul>
 </div>
