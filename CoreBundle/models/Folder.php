@@ -9,7 +9,7 @@ class Folder extends Model {
 	}
 
 	public function findAllFolders() {
-		$data = $this->_mysqli->query('SELECT id, id_parent, id_organization ' .
+		$data = $this->_mysqli->query('SELECT id, id_parent, id_organization, IF ((SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1) IS NOT NULL,(SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1), (SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate ' .
 			' FROM ' . $this->_table
 		);
 
@@ -30,6 +30,7 @@ class Folder extends Model {
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'createNewFolder: ' . $this->_mysqli->error : '',
+			'id' => $this->_mysqli->insert_id,
 		);
 	}
 
@@ -51,7 +52,7 @@ class Folder extends Model {
 	public function findFolderById($folder_id) {
 		$folder_id = $this->_mysqli->real_escape_string($folder_id);
 
-		$data = $this->_mysqli->query('SELECT id, id_parent, id_organization' .
+		$data = $this->_mysqli->query('SELECT id, id_parent, id_organization, IF ((SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1) IS NOT NULL,(SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1), (SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate ' .
 									' FROM ' . $this->_table .
 									' WHERE id = ' . $folder_id . ';'
 		);
@@ -70,6 +71,33 @@ class Folder extends Model {
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'deleteFolderById: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findAllFolderWithoutParentsByOrganization($id_organization) {
+		$data = $this->_mysqli->query('SELECT id, id_parent, id_organization, IF ((SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1) IS NOT NULL,(SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1), (SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate ' .
+			' FROM ' . $this->_table .
+			' WHERE id_parent IS NULL AND id_organization = ' . $id_organization
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllFolderWithoutParentsByOrganization: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findAllFolderWithParentIdAndOrganization($parent_id, $organization_id) {
+		$parent_id = $this->_mysqli->real_escape_string($parent_id);
+		$organization_id = $this->_mysqli->real_escape_string($organization_id);
+
+		$data = $this->_mysqli->query('SELECT id, IF ((SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1) IS NOT NULL,(SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1), (SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate ' .
+			' FROM ' . $this->_table .
+			' WHERE id_parent = ' . $parent_id . ' AND id_organization = ' . $organization_id
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllFolderWithParentId: ' . $this->_mysqli->error : '',
 		);
 	}
 }

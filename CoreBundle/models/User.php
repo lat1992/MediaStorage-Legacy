@@ -17,7 +17,9 @@ class User extends Model {
 		$username = $this->_mysqli->real_escape_string($username);
 		$password = $this->_mysqli->real_escape_string($password);
 
-		$result = $this->_mysqli->query('SELECT id, username, password, id_role, id_language FROM ' . $this->_table . ' WHERE username = "'. $username . '";');
+		$result = $this->_mysqli->query('SELECT user.id, username, password, id_role, id_language, id_organization, id_group FROM ' . $this->_table .
+			' LEFT JOIN `organization` ON organization.id = id_organization ' .
+			' WHERE username = "'. $username . '";');
 
 		if ($result) {
 			while ($row = $result->fetch_assoc()) {

@@ -28,6 +28,8 @@ class UserManager {
 			$_SESSION['role_mediastorage'] = $result['data']['id_role'];
 			$_SESSION['language_mediastorage'] = $this->_languageManager->getLanguageCodeByIdDb($result['data']['id_language']);
 			$_SESSION['id_language_mediastorage'] = $result['data']['id_language'];
+			$_SESSION['id_organization'] = $result['data']['id_organization'];
+			$_SESSION['id_group'] = $result['data']['id_group'];
 
 	 		return array(
 	 			'data' => true,

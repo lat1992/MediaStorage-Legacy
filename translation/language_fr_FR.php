@@ -159,6 +159,7 @@ define('PARENT_FOLDER', 'Dossier parent');
 define('FOLDER_CREATION_TITLE', 'Création d\'un dossier');
 define('FOLDER_LANGUAGE_CREATION_TITLE', 'Ajout d\'une langue a dossier');
 define('FOLDER_MEDIA_CREATION_TITLE', 'Ajout d\'un media a dossier');
+define('PARENT_FOLDER_EMPTY', 'Dossier parent non selectionné');
 
 // Media
 

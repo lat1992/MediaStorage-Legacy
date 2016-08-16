@@ -37,6 +37,23 @@ class FolderLanguageManager {
 		return $this->_folderLanguageModel->createNewFolderLanguage($_POST);
 	}
 
+	public function folderLanguageCreateAsAdminDb() {
+
+		foreach ($_POST['data_mediastorage'] as $value) {
+			$data['data_mediastorage'] = $value['data'];
+			$data['id_language_mediastorage'] = $value['id_language'];
+			$data['id_folder_mediastorage'] = $_POST['id_folder_mediastorage'];
+
+			$return_value = $this->_folderLanguageModel->createNewFolderLanguage($data);
+
+			if (!empty($return_value['error']))
+				return $return_value;
+
+		}
+
+		return $return_value;
+	}
+
 	public function folderLanguageEditDb($folder_language_data) {
 		return $this->_folderLanguageModel->updateFolderLanguageWithId($_POST, $folder_language_data['id']);
 	}
