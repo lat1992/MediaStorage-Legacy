@@ -78,4 +78,17 @@ class Media extends Model {
 			'error' => ($this->_mysqli->error) ? 'deleteMediaById:' . $this->_mysqli->error : '',
 		);
 	}
+
+	public function findLastRefenceNumberByOrganization($id_organization) {
+		$id_organization = $this->_mysqli->real_escape_string($id_organization);
+
+		$data = $this->_mysqli->query('SELECT MAX(reference) AS reference FROM ' . $this->_table .
+			' WHERE id_organization = ' . $id_organization
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findLastRefenceNumberByOrganization:' . $this->_mysqli->error : '',
+		);
+	}
 }

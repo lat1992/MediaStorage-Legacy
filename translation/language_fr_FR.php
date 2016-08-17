@@ -160,6 +160,9 @@ define('FOLDER_CREATION_TITLE', 'Création d\'un dossier');
 define('FOLDER_LANGUAGE_CREATION_TITLE', 'Ajout d\'une langue a dossier');
 define('FOLDER_MEDIA_CREATION_TITLE', 'Ajout d\'un media a dossier');
 define('PARENT_FOLDER_EMPTY', 'Dossier parent non selectionné');
+define('INFO_MOVE_DIRECTORY', 'Laisser vide si aucun déplacement');
+define('INVALID_PARENT_ID', 'Dossier parent invalide');
+define('FOLDER_PARENT', 'Dossier parent');
 
 // Media
 
@@ -178,7 +181,6 @@ define('SOUND_VERSION', 'Version du son');
 define('HANDOVER_DATE', 'Date de prise en charge');
 
 define('MEDIA', 'Média');
-define('MEDIA_PARENT', 'Parent');
 define('MEDIA_TYPE', 'Type du média');
 define('MEDIA_TYPE_PROGRAMME', 'Programme');
 define('MEDIA_TYPE_CONTENT', 'Contenu');
@@ -188,17 +190,17 @@ define('MEDIA_RIGHT_VIEW', 'Droit de lecture');
 define('MEDIA_RIGHT_DOWNLOAD', 'Droit de téléchargement');
 define('MEDIA_CREATION_TITLE', 'Ajout d\'un media');
 
-define('MEDIA_INFO_EXTRA_FIELD_CREATION_TITLE', 'create media_info_extra_field');
-define('MEDIA_INFO_EXTRA_FIELD', 'media_info_extra_field');
+define('MEDIA_EXTRA_FIELD_CREATION_TITLE', 'create media_extra_field');
+define('MEDIA_EXTRA_FIELD', 'media_extra_field');
 define('TYPE', 'Type');
 define('ELEMENT', 'Element');
 define('EMPTY_ELEMENT', 'Element vide');
 define('INVALID_ELEMENT_TOO_LONG', 'Element trop long');
-define('MEDIA_INFO_EXTRA_ARRAY_CREATION_TITLE', 'create medi_info_extra_array');
+define('MEDIA_EXTRA_ARRAY_CREATION_TITLE', 'create media_info_array');
 
-define('MEDIA_INFO_EXTRA_CREATION_TITLE', 'create media_info_extra');
+define('MEDIA_EXTRA_CREATION_TITLE', 'create media_extra');
 define('MEDIA_INFO', 'media_info');
-define('MEDIA_INFO_EXTRA_ARRAY', 'media_info_extra_array');
+define('MEDIA_EXTRA_ARRAY', 'media_extra_array');
 
 define('EMPTY_TYPE', 'Type vide');
 define('INVALID_TYPE_TOO_LONG', 'Type trop long');
@@ -216,3 +218,17 @@ define('ORGANIZATION_EDIT_TITLE', 'Modification d\'organizations');
 define('MAIL_LIST_TITLE', 'Liste des mails');
 define('MAIL_CREATION_TITLE', 'Ajouter un email');
 define('MAIL_EDIT_TITLE', 'Modifier un email');
+
+define('REFERENCE_CLIENT', 'Référence Client');
+define('MEDIA_PARENT', 'Média parent');
+define('RIGHT_VIEW', 'Droit de visionnage');
+define('MEDIA_FILE', 'Fichier du média');
+define('RIGHT_DOWNLOAD', 'Droit de téléchargement');
+define('RIGHT_ADDTOCART', 'Droit de commande');
+define('FILENAME', 'Nom du fichier');
+define('FILEPATH', 'Chemin du fichier');
+
+define('EMPTY_FILENAME', 'Nom de fichier vide');
+define('INVALID_FILENAME_TOO_LONG', 'Nom de fichier trop long');
+define('EMPTY_FILEPATH', 'Chemin de fichier vide');
+define('INVALID_FILEPATH_TOO_LONG', 'Chemin de fichier trop long');

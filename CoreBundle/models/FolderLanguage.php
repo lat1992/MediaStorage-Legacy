@@ -53,6 +53,35 @@ class FolderLanguage extends Model {
 		);
 	}
 
+	public function findFolderLanguageByFolderId($folder_id) {
+		$folder_id = $this->_mysqli->real_escape_string($folder_id);
+
+		$data = $this->_mysqli->query('SELECT id, data, id_folder, id_language' .
+									' FROM ' . $this->_table .
+									' WHERE id_folder = ' . $folder_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findFolderLanguageByFolderId: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findFolderLanguageByFolderIdAndLanguageId($folder_id, $language_id) {
+		$folder_id = $this->_mysqli->real_escape_string($folder_id);
+		$language_id = $this->_mysqli->real_escape_string($language_id);
+
+		$data = $this->_mysqli->query('SELECT id, data, id_folder, id_language' .
+									' FROM ' . $this->_table .
+									' WHERE id_folder = ' . $folder_id . ' AND id_language = ' . $language_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findFolderLanguageByFolderIdAndLanguageId: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function deleteFolderLanguageById($folder_language_id) {
 		$folder_language_id = $this->_mysqli->real_escape_string($folder_language_id);
 

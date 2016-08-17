@@ -10,11 +10,11 @@
 	</select>
 	<br />
 
-	<label for="id_media_info_extra_field_mediastorage"><?= FIELD ?></label>
-	<select name="id_media_info_extra_field_mediastorage" id="id_media_info_extra_field_mediastorage"/>
+	<label for="id_media_extra_field_mediastorage"><?= FIELD ?></label>
+	<select name="id_media_extra_field_mediastorage" id="id_media_extra_field_mediastorage"/>
 <?php
-		while ($media_info_extra_field = $media_info_extra_fields['data']->fetch_assoc()) {
-			echo '<option value="' . $media_info_extra_field['id'] . '" ' . ((intval($media_info_extra_field['id']) == intval($media_type_field['id_field'])) ? ' selected' : '') . '>' . $media_info_extra_field['id'] . '</option>';
+		while ($media_extra_field = $media_extra_fields['data']->fetch_assoc()) {
+			echo '<option value="' . $media_extra_field['id'] . '" ' . ((intval($media_extra_field['id']) == intval($media_type_field['id_field'])) ? ' selected' : '') . '>' . $media_extra_field['id'] . '</option>';
 		}
 ?>
 	</select>

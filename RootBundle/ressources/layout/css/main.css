@@ -144,6 +144,11 @@ form input {
 	color: #666666;
 }
 
+input.input_checkbox {
+	width: auto;
+	margin: 17px 0 0 10px;
+}
+
 @media only screen and (max-width: 900px) {
 	#menu_text {
 		display: none;

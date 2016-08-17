@@ -58,8 +58,43 @@ class FolderLanguageManager {
 		return $this->_folderLanguageModel->updateFolderLanguageWithId($_POST, $folder_language_data['id']);
 	}
 
+	public function folderLanguageEditAsAdminDb() {
+
+		foreach ($_POST['data_mediastorage'] as $data) {
+			$folder_data['id_folder_mediastorage'] = $_POST['id_folder_mediastorage'];
+			$folder_data['id_language_mediastorage'] = $data['id_language'];
+			$folder_data['data_mediastorage'] = $data['data'];
+
+			$result = $this->getFolderLanguageByFolderIdAndLanguageIdDb($folder_data['id_folder_mediastorage'], $folder_data['id_language_mediastorage']);
+
+			if ($result['data'] !== false) {
+				$row = $result['data']->fetch_assoc();
+
+				$return_value = $this->_folderLanguageModel->updateFolderLanguageWithId($folder_data, $row['id']);
+
+				if (!empty($return_value['error']))
+					return $return_value;
+			}
+			else {
+				$this->_folderLanguageModel->createNewFolderLanguage($folder_data);
+
+				if (!empty($return_value['error']))
+					return $return_value;
+			}
+		}
+		return $return_value;
+	}
+
 	public function getFolderLanguageByIdDb($folder_language_id) {
 		return $this->_folderLanguageModel->findFolderLanguageById($folder_language_id);
+	}
+
+	public function getFolderLanguageByFolderIdDb($folder_id) {
+		return $this->_folderLanguageModel->findFolderLanguageByFolderId($folder_id);
+	}
+
+	public function getFolderLanguageByFolderIdAndLanguageIdDb($folder_id, $language_id) {
+		return $this->_folderLanguageModel->findFolderLanguageByFolderIdAndLanguageId($folder_id, $language_id);
 	}
 
 	public function removeFolderLanguageByIdDb($folder_language_id) {
