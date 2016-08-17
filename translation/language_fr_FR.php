@@ -16,6 +16,7 @@ define('ACTION_SUCCESS', 'Action effectué avec succès');
 define('INFO_MULTIPLE_SELECT', 'Maintenir CTRL pour selection multiple');
 define('RETURN_HOMEPAGE', 'Retourner a la page d\'accueil');
 define('ID', 'Id');
+define('NEXT', 'Suivant');
 
 // Errors
 
@@ -181,6 +182,7 @@ define('SOUND_VERSION', 'Version du son');
 define('HANDOVER_DATE', 'Date de prise en charge');
 
 define('MEDIA', 'Média');
+define('MEDIA_PARENT', 'Parent');
 define('MEDIA_TYPE', 'Type du média');
 define('MEDIA_TYPE_PROGRAMME', 'Programme');
 define('MEDIA_TYPE_CONTENT', 'Contenu');
@@ -232,3 +234,10 @@ define('EMPTY_FILENAME', 'Nom de fichier vide');
 define('INVALID_FILENAME_TOO_LONG', 'Nom de fichier trop long');
 define('EMPTY_FILEPATH', 'Chemin de fichier vide');
 define('INVALID_FILEPATH_TOO_LONG', 'Chemin de fichier trop long');
+
+define('TEXT', 'Texte');
+define('DATE', 'Date');
+define('ARRAY_MUTIPLE', 'Table choix multiple');
+define('ARRAY_UNIQUE', 'Table choix unique');
+define('T_BOOLEAN', 'Case à coché');
+define('MEDIA_INFO_EXTRA_FIELD_LIST_TITLE', 'Champs');

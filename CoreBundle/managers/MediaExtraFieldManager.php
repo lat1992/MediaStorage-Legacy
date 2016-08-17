@@ -18,8 +18,35 @@ class MediaExtraFieldManager {
 		return $this->_mediaExtraField->findAllMediaExtraFields();
 	}
 
+	// public function getAllMediaInfoExtraFieldsWithOrganizationDb($id_organization) {
+	// 	return $this->_mediaInfoExtraField->findAllMediaInfoExtraFieldsWithOrganization($id_organization);
+	// }
+
+	// public function formatSelectOrganizationWithPostData() {
+	// 	$media_info_extra_field = array();
+
+	// 	$media_info_extra_field['id_organization'] = $_POST['id_organization_mediastorage'];
+
+	// 	return $media_info_extra_field;
+	// }
+
 	public function formatMediaExtraFieldArrayWithPostData() {
 		$media_extra_field = array();
+
+		// $translate = array();
+		// $cpt = 0;
+		// foreach ($_POST['media_info_extra_field_data_mediastorage'] as $key => $value) {
+		// 	if ($value) {
+		// 		$translate[$cpt]['id_language'] = $key;
+		// 		$translate[$cpt]['data'] = $value;
+		// 		$cpt++;
+		// 	}
+		// }
+		// $_POST['media_info_extra_field_data_mediastorage'] = $translate;
+
+		// $media_info_extra_field['id_organization'] = $_POST['id_organization_mediastorage'];
+		// $media_info_extra_field['id_media_info_extra_field_type'] = $_POST['id_media_info_extra_field_type_mediastorage'];
+		// $media_info_extra_field['translates'] = $_POST['media_info_extra_field_data_mediastorage'];
 
 		$media_extra_field['id_organization'] = $_POST['id_organization_mediastorage'];
 		$media_extra_field['id_language'] = $_POST['id_language_mediastorage'];

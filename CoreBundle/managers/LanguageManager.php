@@ -70,4 +70,5 @@ class LanguageManager {
 	public function removeLanguageByIdDb($language_id) {
 		return $this->_languageModel->deleteLanguageById($language_id);
 	}
+
 }

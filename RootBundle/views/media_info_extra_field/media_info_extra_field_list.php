@@ -4,14 +4,12 @@ require_once('RootBundle/views/layout/header.php');
 
 ?>
 
-<!-- <link rel="stylesheet" href="RootBundle/ressources/folder/css/folder.css">
-
-<script src="RootBundle/ressources/folder/js/folder.js"></script> -->
-
 <div id="container">
 
 	<div class="add">
-		<a href="?page=create_group_root"><?= GROUP_CREATION_TITLE ?></a>
+<?php
+		echo '<a href="?page=create_media_info_extra_field_root&id_organization=' . $id_organization . '">' . MEDIA_INFO_EXTRA_FIELD_CREATION_TITLE . '</a>';
+?>
 	</div>
 
 <?php
