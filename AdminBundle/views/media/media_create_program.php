@@ -16,12 +16,6 @@ require_once('RootBundle/views/layout/header.php');
 
 		<hr />
 
-		<h2><?= MEDIA_FILE ?></h2>
-
-		<?php require_once('AdminBundle/views/media/media_file_create_form.php'); ?>
-
-		<hr />
-
 		<h2><?= MEDIA_INFO ?></h2>
 
 		<?php require_once('AdminBundle/views/media/media_info_create_form.php'); ?>

@@ -19,19 +19,21 @@ class Media extends Model {
 
 	public function createNewMedia($data) {
 		$id_parent = $this->_mysqli->real_escape_string($data['id_parent_mediastorage']);
+		$id_folder = $this->_mysqli->real_escape_string($data['id_folder_mediastorage']);
 		$id_organization = $this->_mysqli->real_escape_string($data['id_organization_mediastorage']);
 		$id_type = $this->_mysqli->real_escape_string($data['id_type_mediastorage']);
 		$reference = $this->_mysqli->real_escape_string($data['reference_mediastorage']);
+		$reference_client = $this->_mysqli->real_escape_string($data['reference_client_mediastorage']);
 		$right_view = $this->_mysqli->real_escape_string($data['right_view_mediastorage']);
-		$right_download = $this->_mysqli->real_escape_string($data['right_download_mediastorage']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_parent, id_organization, id_type, reference, right_view, right_download)' . 
-			' VALUES (' . $id_parent . ', ' . $id_organization . ', ' . $id_type .', "' . $reference . '", ' . $right_view . ', ' . $right_download . ');'
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_parent, id_folder, id_organization, id_type, reference, reference_client, right_view)' .
+			' VALUES (' . $id_parent . ', ' . $id_folder . ', ' . $id_organization . ', ' . $id_type .', "' . $reference . '", "' . $reference_client . '", ' . $right_view . ');'
 		);
 
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'createNewMedia: ' . $this->_mysqli->error : '',
+			'id' => $this->_mysqli->insert_id
 		);
 	}
 
@@ -41,10 +43,9 @@ class Media extends Model {
 		$id_type = $this->_mysqli->real_escape_string($data['id_type_mediastorage']);
 		$reference = $this->_mysqli->real_escape_string($data['reference_mediastorage']);
 		$right_view = $this->_mysqli->real_escape_string($data['right_view_mediastorage']);
-		$right_download = $this->_mysqli->real_escape_string($data['right_download_mediastorage']);
 
-		$data = $this->_mysqli->query('UPDATE ' . $this->_table . 
-			' SET id_parent = ' . $id_parent . ', id_organization = ' . $id_organization . ', id_type = ' . $id_type . ', reference = "' . $reference . '", right_view = ' . $right_view . ', right_download = ' . $right_download . 
+		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
+			' SET id_parent = ' . $id_parent . ', id_organization = ' . $id_organization . ', id_type = ' . $id_type . ', reference = "' . $reference . '", right_view = ' . $right_view . ', right_download = ' . $right_download .
 			' WHERE id = ' . $media_id . ';'
 		);
 
@@ -57,7 +58,7 @@ class Media extends Model {
 	public function findMediaById($media_id) {
 		$media_id = $this->_mysqli->real_escape_string($media_id);
 
-		$data = $this->_mysqli->query('SELECT id, id_parent, id_organization, id_type, reference, right_view, right_download' .
+		$data = $this->_mysqli->query('SELECT id, id_parent, id_organization, id_type, reference, right_view ' .
 			' FROM ' . $this->_table .
 			' WHERE id = ' . $media_id . ';'
 		);
