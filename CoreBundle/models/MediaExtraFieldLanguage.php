@@ -22,9 +22,9 @@ class MediaExtraFieldLanguage extends Model {
 	public function createNewMediaExtraFieldLanguage($data) {
 		$translate = array();
 		$cpt = 0;
-		foreach ($_POST['']) {
-
-		}
+		/*foreach ($_POST['']) {
+			;
+		}*/
 	}
 
 }

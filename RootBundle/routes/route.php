@@ -30,9 +30,9 @@ $this->_route[] = array('list_language_root', 'RootBundle/controllers/LanguageCo
 $this->_route[] = array('edit_language_root', 'RootBundle/controllers/LanguageController.php', 'LanguageController', 'editAction');
 $this->_route[] = array('delete_language_root', 'RootBundle/controllers/LanguageController.php', 'LanguageController', 'deleteAction');
 
-$this->_route[] = array('select_organization_media_info_extra_field_root', 'RootBundle/controllers/MediaInfoExtraFieldController.php', 'MediaInfoExtraFieldController', 'selectOrganizationAction');
-$this->_route[] = array('create_media_info_extra_field_root', 'RootBundle/controllers/MediaInfoExtraFieldController.php', 'MediaInfoExtraFieldController', 'createAction');
-$this->_route[] = array('list_media_info_extra_field_root', 'RootBundle/controllers/MediaInfoExtraFieldController.php', 'MediaInfoExtraFieldController', 'listAction');
-$this->_route[] = array('edi_media_info_extra_field_root', 'RootBundle/controllers/MediaInfoExtraFieldController.php', 'MediaInfoExtraFieldController', 'editAction');
-$this->_route[] = array('delete_media_info_extra_field_root', 'RootBundle/controllers/MediaInfoExtraFieldController.php', 'MediaInfoExtraFieldController', 'deleteAction');
+$this->_route[] = array('select_organization_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'selectOrganizationAction');
+$this->_route[] = array('create_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'createAction');
+$this->_route[] = array('list_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'listAction');
+$this->_route[] = array('edi_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'editAction');
+$this->_route[] = array('delete_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'deleteAction');
 ?>

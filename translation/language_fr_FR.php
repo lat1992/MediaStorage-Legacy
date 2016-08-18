@@ -222,7 +222,6 @@ define('MAIL_CREATION_TITLE', 'Ajouter un email');
 define('MAIL_EDIT_TITLE', 'Modifier un email');
 
 define('REFERENCE_CLIENT', 'Référence Client');
-define('MEDIA_PARENT', 'Média parent');
 define('RIGHT_VIEW', 'Droit de visionnage');
 define('MEDIA_FILE', 'Fichier du média');
 define('RIGHT_DOWNLOAD', 'Droit de téléchargement');
