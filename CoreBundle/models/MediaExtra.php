@@ -21,12 +21,13 @@ class MediaExtra extends Model {
 
 	public function createNewMediaExtra($data) {
 		$data_media = $this->_mysqli->real_escape_string($data['data_mediastorage']);
-		$id_media_info = $this->_mysqli->real_escape_string($data['id_media_info_mediastorage']);
+		$id_media = $this->_mysqli->real_escape_string($data['id_media_mediastorage']);
 		$id_media_extra_array = $this->_mysqli->real_escape_string($data['id_media_extra_array_mediastorage']);
 		$id_media_extra_field = $this->_mysqli->real_escape_string($data['id_media_extra_field_mediastorage']);
+		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(data, id_info, id_array, id_field)' .
-			' VALUES ("'. $data_media . '", ' . $id_media_info . ', ' . $id_media_extra_array . ', ' . $id_media_extra_field . ');'
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(data, id_media, id_array, id_field)' .
+			' VALUES ("'. $data_media . '", ' . $id_media . ', ' . $id_media_extra_array . ', ' . $id_media_extra_field . ');'
 		);
 
 		return array(

@@ -68,23 +68,16 @@ class MediaManager {
 
 	public function preFillProgramPostData() {
 
-		$folder = null;
+		$folder = NULL;
+
 		foreach ($_POST['id_folder_mediastorage'] as $data_folder) {
 			if ($data_folder)
 				$folder = $data_folder;
 		}
+		if ($folder == NULL)
+			$folder = 'NULL';
 
-		$right_view = 0;
-		if (isset($_POST['right_view_mediastorage']))
-			$right_view = 1;
-
-		$right_download = 0;
-		if (isset($_POST['right_download_mediastorage']))
-			$right_download = 1;
-
-		$right_addtocart = 0;
-		if (isset($_POST['right_addtocart_mediastorage']))
-			$right_addtocart = 1;
+		$right_view = intval($_POST['right_view_mediastorage']);
 
 		$reference = $this->getLastReferenceNumberByOrganizationDb();
 		if (!empty($reference['error']))
@@ -95,6 +88,7 @@ class MediaManager {
 		$_POST['reference_mediastorage'] = intval($reference['reference']) + 1;
 		$_POST['right_view_mediastorage'] = $right_view;
 		$_POST['id_folder_mediastorage'] = $folder;
+		$_POST['id_parent_mediastorage'] = 'NULL';
 		$_POST['id_type_mediastorage'] = 1;
 		$_POST['id_organization_mediastorage'] = $_SESSION['id_organization'];
 	}
@@ -108,23 +102,63 @@ class MediaManager {
 		if (strlen($_POST['reference_client_mediastorage']) > 10) {
 			$error_media[] = INVALID_MEDIA_REFERENCE_TOO_LONG;
 		}
-		if (!$_POST['id_parent_mediastorage']) {
-			$error_folder[] = PARENT_FOLDER_EMPTY;
+
+		foreach ($_POST['title_mediastorage'] as $key => $value) {
+
+			if ( strlen($_POST['title_mediastorage'][$key]) == 0 &&
+				strlen($_POST['subtitle_mediastorage'][$key]) == 0 &&
+				strlen($_POST['description_mediastorage'][$key]) == 0 &&
+				strlen($_POST['episode_number_mediastorage'][$key]) == 0 &&
+				strlen($_POST['image_version_mediastorage'][$key]) == 0 &&
+				strlen($_POST['sound_version_mediastorage'][$key]) == 0 &&
+				strlen($_POST['handover_date_mediastorage'][$key]) == 0
+			) {
+				unset($_POST['title_mediastorage'][$key]);
+				unset($_POST['subtitle_mediastorage'][$key]);
+				unset($_POST['description_mediastorage'][$key]);
+				unset($_POST['episode_number_mediastorage'][$key]);
+				unset($_POST['image_version_mediastorage'][$key]);
+				unset($_POST['sound_version_mediastorage'][$key]);
+				unset($_POST['handover_date_mediastorage'][$key]);
+			}
 		}
 
-		// MEDIAFILE
+		foreach ($_POST['media_extra_mediastorage'] as $media_extra_key => $media_extra) {
 
-		if (strlen($_POST['filename_mediastorage']) == 0) {
-			$error_media[] = EMPTY_FILENAME;
-		}
-		if (strlen($_POST['filename_mediastorage']) > 50) {
-			$error_media[] = INVALID_FILENAME_TOO_LONG;
-		}
-		if (strlen($_POST['filepath_mediastorage']) == 0) {
-			$error_media[] = EMPTY_FILEPATH;
-		}
-		if (strlen($_POST['filepath_mediastorage']) > 256) {
-			$error_media[] = INVALID_FILEPATH_TOO_LONG;
+			if (isset($media_extra['data'])) {
+				$_POST['media_extra_mediastorage'][$media_extra_key]['id_array'] = 'NULL';
+				if (strlen($media_extra['data']) == 0)
+					unset($_POST['media_extra_mediastorage'][$media_extra]);
+			}
+			elseif (isset($media_extra['id_array'])) {
+				$_POST['media_extra_mediastorage'][$media_extra_key]['data'] = 'NULL';
+				if (strlen($media_extra['id_array']) == 0)
+					unset($_POST['media_extra_mediastorage'][$media_extra]);
+			}
+			elseif (isset($media_extra['language'])) {
+
+				foreach ($media_extra['language'] as $key => $value) {
+
+					if (isset($value['data'])) {
+						$_POST['media_extra_mediastorage'][$media_extra_key]['language'][$key]['id_array'] = 'NULL';
+						if (strlen($value['data']) == 0)
+							unset($_POST['media_extra_mediastorage'][$media_extra_key]['language'][$key]);
+					}
+				}
+
+			}
+			elseif (isset($media_extra['multiple'])) {
+
+				foreach ($media_extra['multiple'] as $key => $value) {
+
+					if (isset($value['id_array'])) {
+						$_POST['media_extra_mediastorage'][$media_extra_key]['multiple'][$key]['data'] = 'NULL';
+						if (strlen($value['id_array']) == 0)
+							unset($_POST['media_extra_mediastorage'][$media_extra_key]['multiple'][$key]);
+					}
+				}
+
+			}
 		}
 
 		return $errors;

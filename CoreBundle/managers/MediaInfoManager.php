@@ -47,12 +47,15 @@ class MediaInfoManager {
 	}
 
 	public function mediaInfoCreateDb() {
-		$temp = new DateTime($_POST['handover_date_mediastorage']);
-		$handover_date = $temp->format('Y-m-d H:i:s');
+		if (!empty($_POST['handover_date_mediastorage'])) {
+			$temp = new DateTime($_POST['handover_date_mediastorage']);
+			$handover_date = $temp->format('Y-m-d H:i:s');
+			$_POST['handover_date_mediastorage'] = $handover_date;
+		}
+
 		$created_date = date('Y-m-d H:i:s');
 		$modified_date = date('Y-m-d H:i:s');
 
-		$_POST['handover_date_mediastorage'] = $handover_date;
 		$_POST['created_date_mediastorage'] = $created_date;
 		$_POST['modified_date_mediastorage'] = $modified_date;
 
@@ -82,6 +85,30 @@ class MediaInfoManager {
 
 	public function removeMediaInfoByTagIdDb($media_id) {
 		return $this->_mediaInfoModel->deleteMediaInfoByTagId($media_id);
+	}
+
+	public function CreateMultipleMediaInfoDb() {
+		$post_save = $_POST;
+
+		foreach ($post_save['title_mediastorage'] as $key => $value) {
+
+			$_POST['title_mediastorage'] = $post_save['title_mediastorage'][$key];
+			$_POST['subtitle_mediastorage'] = $post_save['subtitle_mediastorage'][$key];
+			$_POST['description_mediastorage'] = $post_save['description_mediastorage'][$key];
+			$_POST['episode_number_mediastorage'] = $post_save['episode_number_mediastorage'][$key];
+			$_POST['image_version_mediastorage'] = $post_save['image_version_mediastorage'][$key];
+			$_POST['sound_version_mediastorage'] = $post_save['sound_version_mediastorage'][$key];
+			$_POST['handover_date_mediastorage'] = $post_save['handover_date_mediastorage'][$key];
+			$_POST['id_language_mediastorage'] = $key;
+
+			$return_value = $this->mediaInfoCreateDb();
+
+			if (!empty($return_value['error'])) {
+				return $return_value;
+			}
+		}
+
+		return NULL;
 	}
 }
 

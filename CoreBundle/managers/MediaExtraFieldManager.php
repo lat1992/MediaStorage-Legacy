@@ -115,8 +115,8 @@ class MediaExtraFieldManager {
 			$id_language = intval($media_extra_temp['id_language']);
 			$id_info_field = intval($media_extra_temp['id']);
 
-			$media_extra[$id_language][$id_info_field]['data'][] = $media_extra_temp;
-			$media_extra[$id_language][$id_info_field]['type'] = $media_extra_temp['type'];
+			$media_extra[$id_info_field]['data'][] = $media_extra_temp;
+			$media_extra[$id_info_field]['type'] = $media_extra_temp['type'];
 		}
 
 		return $media_extra;

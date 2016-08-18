@@ -146,7 +146,7 @@ form input {
 
 input.input_checkbox {
 	width: auto;
-	margin: 17px 0 0 10px;
+	margin: 17px 0 10px 10px;
 }
 
 @media only screen and (max-width: 900px) {
