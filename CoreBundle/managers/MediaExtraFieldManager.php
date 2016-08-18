@@ -32,10 +32,10 @@ class MediaExtraFieldManager {
 
 	public function formatMediaExtraFieldArrayWithPostData() {
 		$media_extra_field = array();
-
 		$translate = array();
+
 		$cpt = 0;
-		foreach ($_POST['media_extra_field_data_mediastorage'] as $key => $value) {
+		foreach ($_POST['media_extra_field_language_data_mediastorage'] as $key => $value) {
 			if ($value) {
 				$translate[$cpt]['id_language'] = $key;
 				$translate[$cpt]['data'] = $value;
@@ -43,29 +43,26 @@ class MediaExtraFieldManager {
 			}
 		}
 		$_POST['media_extra_field_data_mediastorage'] = $translate;
+		$media_extra_field['translates'] = $_POST['media_extra_field_language_data_mediastorage'];
 
 		$media_extra_field['id_organization'] = $_POST['id_organization_mediastorage'];
-		$media_extra_field['id_media_extra_field_type'] = $_POST['id_media_extra_field_type_mediastorage'];
-		$media_extra_field['translates'] = $_POST['media_extra_field_data_mediastorage'];
-
-		// TO DELETE ??
-
-		$media_extra_field['id_organization'] = $_POST['id_organization_mediastorage'];
-		$media_extra_field['id_language'] = $_POST['id_language_mediastorage'];
 		$media_extra_field['type'] = $_POST['type_mediastorage'];
-		$media_extra_field['name'] = $_POST['name_mediastorage'];
-
+		$media_extra_field['mandatory'] = $_POST['mandatory_mediastorage'];
 		return $media_extra_field;
 	}
 
 	public function mediaExtraFieldCreateFormCheck() {
 		$error_media_extra_field = array();
 
-		if (strlen($_POST['name_mediastorage']) == 0) {
-			$error_media_extra_field[] = EMPTY_NAME;
+		if (strcmp($_POST['type_mediastorage'], 'Text') || strcmp($_POST['type_mediastorage'], 'Date') || strcmp($_POST['type_mediastorage'], 'Array_multiple') || strcmp($_POST['type_mediastorage'], 'Array_unique') || strcmp($_POST['type_mediastorage'], 'Boolean')) {
+			$error_media_extra_field[] = BAD_CHOICE;
 		}
-		if (strlen($_POST['name_mediastorage']) > 20) {
-			$error_media_extra_field[] = INVALID_NAME_TOO_LONG;
+
+		foreach ($_POST['media_extra_field_language_data_mediastorage'] as $key => $value) {
+			if ($value) {
+				if (strlen($value) > 20)
+					$error_media_extra_field[] = INVALID_NAME_TOO_LONG;
+			}
 		}
 
 		return $error_media_extra_field;

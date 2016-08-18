@@ -239,6 +239,6 @@ define('DATE', 'Date');
 define('ARRAY_MUTIPLE', 'Table choix multiple');
 define('ARRAY_UNIQUE', 'Table choix unique');
 define('T_BOOLEAN', 'Case à coché');
-define('MEDIA_INFO_EXTRA_FIELD_LIST_TITLE', 'Champs');
+define('MEDIA_EXTRA_FIELD_LIST_TITLE', 'Champs');
 define('INVALID_TRANSLATE_TOO_LONG', 'La traduction est trop long');
 define('BAD_CHOICE', 'Tentative de modifier les valeurs importants');
