@@ -16,8 +16,8 @@
 <?php
 			while ($language = $languages['data']->fetch_assoc()) {
 ?>
-				<label for="data_mediastorage"><?= LANGUAGE_TRANSLATE . ' ' . $language['name'] . ' / ' . $language['code'] ?> : </label>
-				<input type="text" name="data_mediastorage[<?= $language['id'] ?>]" id="data_mediastorage" value="<?= (isset($folder['data'])) ? $folder['data'] : '' ?>" /><br />
+				<label for="data_mediastorage_<?= $cpt ?>" ><?= LANGUAGE_TRANSLATE . ' ' . $language['name'] . ' / ' . $language['code'] ?> : </label>
+				<input type="text" name="data_mediastorage[<?= $language['id'] ?>]" id="data_mediastorage_<?= $cpt ?>" value="<?= (isset($folder_language[intval($language['id'])])) ? $folder_language[intval($language['id'])]['data'] : '' ?>" /><br />
 				<div class="clear"></div>
 <?php
 			}

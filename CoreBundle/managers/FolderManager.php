@@ -17,7 +17,7 @@ class FolderManager {
 	public function formatFolderArrayWithPostData() {
 		$folder = array();
 
-		$parent;
+		$parent = null;
 		foreach ($_POST['id_parent_mediastorage'] as $data) {
 			if ($data)
 				$parent = $data;
@@ -58,6 +58,20 @@ class FolderManager {
 		return $error_folder;
 	}
 
+	public function folderEditFormCheck() {
+		$error_folder = array();
+
+		if (empty($_POST['data_mediastorage'])) {
+			$error_folder[] = INVALID_DATA_EMPTY;
+		}
+
+		if ($_POST['id_parent_mediastorage'] &&  ($_POST['id_parent_mediastorage'] == $_GET['folder_id'])) {
+			$error_folder[] = INVALID_PARENT_ID;
+		}
+
+		return $error_folder;
+	}
+
 	public function folderCreateDb() {
 		return $this->_folderModel->createNewFolder($_POST);
 	}
@@ -68,6 +82,10 @@ class FolderManager {
 
 	public function folderEditDb($folder_data) {
 		return $this->_folderModel->updateFolderWithId($_POST, $folder_data['id']);
+	}
+
+	public function folderEditAsAdminDb($folder_data) {
+		return $this->_folderModel->updateFolderWithIdAsAdmin($_POST, $folder_data['id']);
 	}
 
 	public function removeFolderByIdDb($folder_id) {

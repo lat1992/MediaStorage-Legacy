@@ -49,6 +49,22 @@ class Folder extends Model {
 		);
 	}
 
+	public function updateFolderWithIdAsAdmin($data, $folder_id) {
+		$id_parent = $this->_mysqli->real_escape_string($data['id_parent_mediastorage']);
+		$id_organization = $this->_mysqli->real_escape_string($data['id_organization_mediastorage']);
+
+		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
+			' SET id_organization = ' . $id_organization . ', id_parent = ' . $id_parent .
+			' WHERE id = ' . $folder_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'updateFolderWithId: ' . $this->_mysqli->error : '',
+		);
+	}
+
+
 	public function findFolderById($folder_id) {
 		$folder_id = $this->_mysqli->real_escape_string($folder_id);
 

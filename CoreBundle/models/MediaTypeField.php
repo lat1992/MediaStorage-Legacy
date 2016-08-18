@@ -21,7 +21,7 @@ class MediaTypeField extends Model {
 
 	public function createNewMediaTypeField($data) {
 		$id_type = $this->_mysqli->real_escape_string($data['id_type_mediastorage']);
-		$id_field = $this->_mysqli->real_escape_string($data['id_media_info_extra_field_mediastorage']);
+		$id_field = $this->_mysqli->real_escape_string($data['id_media_extra_field_mediastorage']);
 
 		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_type, id_field)' .
 			' VALUES ('. $id_type . ', ' . $id_field . ');'
@@ -35,7 +35,7 @@ class MediaTypeField extends Model {
 
 	public function updateMediaTypeFieldWithId($data, $role_id) {
 		$id_type = $this->_mysqli->real_escape_string($data['id_type_mediastorage']);
-		$id_field = $this->_mysqli->real_escape_string($data['id_media_info_extra_field_mediastorage']);
+		$id_field = $this->_mysqli->real_escape_string($data['id_media_extra_field_mediastorage']);
 
 		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
 			' SET id_type = ' . $id_type . ', id_field = ' . $id_field . '' .

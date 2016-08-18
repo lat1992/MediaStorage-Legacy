@@ -18,7 +18,7 @@ class MediaTypeFieldManager {
 		$media_type_field = array();
 
 		$media_type_field['id_type'] = $_POST['id_type_mediastorage'];
-		$media_type_field['id_field'] = $_POST['id_media_info_extra_field_mediastorage'];
+		$media_type_field['id_field'] = $_POST['id_media_extra_field_mediastorage'];
 
 		return $media_type_field;
 	}

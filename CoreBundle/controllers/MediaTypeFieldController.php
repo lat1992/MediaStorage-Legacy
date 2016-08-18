@@ -2,20 +2,20 @@
 
 require_once('CoreBundle/managers/MediaTypeFieldManager.php');
 require_once('CoreBundle/managers/MediaTypeManager.php');
-require_once('CoreBundle/managers/MediaInfoExtraFieldManager.php');
+require_once('CoreBundle/managers/MediaExtraFieldManager.php');
 
 class MediaTypeFieldController {
 
 	private $_mediaTypeFieldManager;
 	private $_mediaTypeManager;
-	private $_mediaInfoExtraFieldManager;
+	private $_mediaExtraFieldManager;
 
 	private $_errorArray;
 
 	public function __construct() {
 		$this->_mediaTypeFieldManager = new MediaTypeFieldManager();
 		$this->_mediaTypeManager = new MediaTypeManager();
-		$this->_mediaInfoExtraFieldManager = new MediaInfoExtraFieldManager();
+		$this->_mediaExtraFieldManager = new MediaExtraFieldManager();
 
 		$this->_errorArray = array();
 	}
@@ -59,10 +59,10 @@ class MediaTypeFieldController {
 		}
 
 		$media_types = $this->_mediaTypeManager->getAllMediaTypesDb();
-		$media_info_extra_fields = $this->_mediaInfoExtraFieldManager->getAllMediaInfoExtraFieldsDb();
+		$media_extra_fields = $this->_mediaExtraFieldManager->getAllMediaExtraFieldsDb();
 
 		$this->mergeErrorArray($media_types);
-		$this->mergeErrorArray($media_info_extra_fields);
+		$this->mergeErrorArray($media_extra_fields);
 
 		include ('CoreBundle/views/media/media_type_field_create.php');
 	}
@@ -70,11 +70,11 @@ class MediaTypeFieldController {
 	public function editAction() {
 		$media_type_field_data = $this->_mediaTypeFieldManager->getMediaTypeFieldByIdDb($_GET['media_type_field_id']);
 		$media_types = $this->_mediaTypeManager->getAllMediaTypesDb();
-		$media_info_extra_fields = $this->_mediaInfoExtraFieldManager->getAllMediaInfoExtraFieldsDb();
+		$media_extra_fields = $this->_mediaExtraFieldManager->getAllMediaExtraFieldsDb();
 
 		$this->mergeErrorArray($media_type_field_data);
 		$this->mergeErrorArray($media_types);
-		$this->mergeErrorArray($media_info_extra_fields);
+		$this->mergeErrorArray($media_extra_fields);
 
 		if (count($this->_errorArray) == 0) {
 

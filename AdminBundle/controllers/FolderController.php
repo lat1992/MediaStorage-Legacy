@@ -35,13 +35,13 @@ class FolderController {
 		}
 	}
 
-	public function listAction() {
-		$folders = $this->_folderManager->getAllFoldersDb();
+	// public function listAction() {
+	// 	$folders = $this->_folderManager->getAllFoldersDb();
 
-		$this->mergeErrorArray($folders);
+	// 	$this->mergeErrorArray($folders);
 
-		include ('AdminBundle/views/folder/folder_list.php');
-	}
+	// 	include ('AdminBundle/views/folder/folder_list.php');
+	// }
 
 	public function createAction() {
 		$folder = array();
@@ -71,11 +71,9 @@ class FolderController {
 			}
 		}
 
-		$organizations = $this->_organizationManager->getAllOrganizationsDb();
 		$folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
 		$languages = $this->_languageManager->getAllLanguagesByGroupDb();
 
-		$this->mergeErrorArray($organizations);
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($languages);
 
@@ -84,12 +82,14 @@ class FolderController {
 
 	public function editAction() {
 		$folder_data = $this->_folderManager->getFolderByIdDb($_GET['folder_id']);
-		$organizations = $this->_organizationManager->getAllOrganizationsDb();
-		$folders = $this->_folderManager->getAllFoldersDb();
+		$folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
+		$languages = $this->_languageManager->getAllLanguagesByGroupDb();
+		$folder_language_data = $this->_folderLanguageManager->getFolderLanguageByFolderIdDb($_GET['folder_id']);
 
 		$this->mergeErrorArray($folder_data);
-		$this->mergeErrorArray($organizations);
 		$this->mergeErrorArray($folders);
+		$this->mergeErrorArray($languages);
+		$this->mergeErrorArray($folder_language_data);
 
 		if (count($this->_errorArray) == 0) {
 
@@ -97,16 +97,34 @@ class FolderController {
 				$folder = $folder_data_temp;
 			}
 
+			while ($folder_language_data_temp = $folder_language_data['data']->fetch_assoc()) {
+				$folder_language[$folder_language_data_temp['id_language']] = $folder_language_data_temp;
+			}
+
 			if (isset($_POST['id_folder_create_mediastorage']) && (strcmp($_POST['id_folder_create_mediastorage'], '984156') == 0)) {
-				$return_value['error'] = $this->_folderManager->folderCreateFormCheck();
+
+				$this->_folderManager->formatFolderArrayWithPostData();
+				$return_value['error'] = $this->_folderManager->folderEditFormCheck();
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-					$return_value = $this->_folderManager->folderEditDb($folder);
+					if (!$_POST['id_parent_mediastorage']) {
+						$_POST['id_parent_mediastorage'] = $folder['id_parent'];
+					}
+					$return_value = $this->_folderManager->folderEditAsAdminDb($folder);
 					$this->mergeErrorArray($return_value);
 
 					if (count($this->_errorArray) == 0) {
-						header('Location:' . '?page=dashboard');
+
+						$_POST['id_folder_mediastorage'] = $_GET['folder_id'];
+						$return_value = $this->_folderLanguageManager->folderLanguageEditAsAdminDb();
+						$this->mergeErrorArray($return_value);
+
+						if (count($this->_errorArray) == 0) {
+							$_SESSION['flash_message'] = ACTION_SUCCESS;
+							header('Location:' . '?page=create_folder_admin');
+							exit;
+						}
 					}
 				}
 
@@ -114,29 +132,28 @@ class FolderController {
 
 		}
 
-		include ('CoreBundle/views/folder/folder_create.php');
+		include ('AdminBundle/views/folder/folder_create.php');
 	}
 
-	public function deleteAction() {
-		if (isset($_GET['folder_id'])) {
+	// public function deleteAction() {
+	// 	if (isset($_GET['folder_id'])) {
 
-			$return_value = $this->_folderManager->removeFolderByIdDb($_GET['folder_id']);
-			$this->mergeErrorArray($return_value);
+	// 		$return_value = $this->_folderManager->removeFolderByIdDb($_GET['folder_id']);
+	// 		$this->mergeErrorArray($return_value);
 
-			if (count($this->_errorArray) == 0) {
-				header('Location:' . '?page=dashboard');
-			}
-		}
+	// 		if (count($this->_errorArray) == 0) {
+	// 			header('Location:' . '?page=dashboard');
+	// 		}
+	// 	}
 
-		include ('CoreBundle/views/common/error.php');
-	}
+	// 	include ('CoreBundle/views/common/error.php');
+	// }
 
 	public function ajaxGetFolderByParentIdAction() {
 		if (!$_GET['folder_id']) {
 			echo '';
 			return;
 		}
-
 
 		$folder_data = $this->_folderManager->ajaxGetFolderByParentIdDb($_GET['folder_id']);
 		$this->mergeErrorArray($folder_data);
@@ -154,6 +171,6 @@ class FolderController {
 		}
 
 		echo '';
-
+		return;
 	}
 }

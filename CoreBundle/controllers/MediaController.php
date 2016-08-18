@@ -2,7 +2,7 @@
 
 require_once('CoreBundle/managers/MediaManager.php');
 //require_once('CoreBundle/managers/MediaInfoManager.php');
-//require_once('CoreBundle/managers/MediaInfoExtraManager.php');
+//require_once('CoreBundle/managers/MediaExtraManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
 
 class MediaController {
@@ -10,7 +10,7 @@ class MediaController {
 	private $_mediaManager;
 	private $_organizationManager;
 	private $_mediaInfoManager;
-	private $_mediaInfoExtraManager;
+	private $_mediaExtraManager;
 
 	private $_errorArray;
 
@@ -18,7 +18,7 @@ class MediaController {
 		$this->_mediaManager = new MediaManager();
 		$this->_organizationManager = new OrganizationManager();
 //		$this->_mediaInfoManager = new MediaInfoManager();
-//		$this->_mediaInfoExtraManager = new MediaInfoExtraManager();
+//		$this->_mediaExtraManager = new MediaExtraManager();
 
 		$this->_errorArray = array();
 	}
