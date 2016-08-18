@@ -1,6 +1,7 @@
 <?php
 
 require_once('CoreBundle/managers/MediaInfoExtraFieldManager.php');
+require_once('CoreBundle/managers/MediaInfoExtraFieldLanguageManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
 require_once('CoreBundle/managers/GroupLanguageManager.php');
 
@@ -9,6 +10,7 @@ class MediaInfoExtraFieldController {
 	private $_mediaInfoExtraFieldManager;
 	private $_organizationManager;
 	private $_groupLanguageManager;
+	private $_mediaInfoExtraFieldLanguageManager;
 
 	private $_errorArray;
 
@@ -16,6 +18,7 @@ class MediaInfoExtraFieldController {
 		 $this->_mediaInfoExtraFieldManager = new MediaInfoExtraFieldManager();
 		 $this->_organizationManager = new OrganizationManager();
 		 $this->_groupLanguageManager = new GroupLanguageManager();
+		 $this->_mediaInfoExtraFieldLanguageManager = new MediaInfoExtraFieldLanguageManager();
 
 		 $this->_errorArray = array();
 	}
@@ -90,17 +93,20 @@ class MediaInfoExtraFieldController {
 
 	public function createAction() {
 		$mediaInfoExtraField = array();
+		$mediaInfoExtraFieldLanguage = array();
 
 		if (isset($_POST['id_media_info_extra_field_create_mediastorage']) && (strcmp($_POST['id_media_info_extra_field_create_mediastorage'], '4894565') == 0)) {
 			$mediaInfoExtraField = $this->_mediaInfoExtraFieldManager->formatMediaInfoExtraFieldArrayWithPostData();
 			$return_value['error'] = $this->_mediaInfoExtraFieldManager->mediaInfoExtraFieldCreateFormCheck();
 			$this->mergeErrorArray($return_value);
 
-			if (count($this->_errorArray) == 0) {
+			$mediaInfoExtraFieldLanguage = $this->_mediaInfoExtraFieldLanguageManager->formatMediaInfoExtraFieldLanguageArrayWithPostData();
+			$return_value['error'] = $this->_mediaInfoExtraFieldLanguageManager->mediaInfoExtraFieldLanguageCreateFormCheck();
+			$this->mergeErrorArray($return_value);
 
+			if (count($this->_errorArray) == 0) {
 				$return_value = $this->_mediaInfoExtraFieldManager->mediaInfoExtraFieldCreateDb();
 				$this->mergeErrorArray($return_value);
-
 				if (count($this->_errorArray) == 0) {
 					$_SESSION['flash_message'] = ACTION_SUCCESS;
 					header('Location:' . '?page=list_mediaInfoExtraField_root&id_organization=' . $mediaIfoExtraField['id_organization']);
