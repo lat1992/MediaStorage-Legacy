@@ -23,11 +23,11 @@ class MediaExtraFieldManager {
 	}
 
 	public function formatSelectOrganizationWithPostData() {
-		$media_info_extra_field = array();
+		$media_extra_field = array();
 
-		$media_info_extra_field['id_organization'] = $_POST['id_organization_mediastorage'];
+		$media_extra_field['id_organization'] = $_POST['id_organization_mediastorage'];
 
-		return $media_info_extra_field;
+		return $media_extra_field;
 	}
 
 	public function formatMediaExtraFieldArrayWithPostData() {
@@ -54,7 +54,7 @@ class MediaExtraFieldManager {
 	public function mediaExtraFieldCreateFormCheck() {
 		$error_media_extra_field = array();
 
-		if (strcmp($_POST['type_mediastorage'], 'Text') || strcmp($_POST['type_mediastorage'], 'Date') || strcmp($_POST['type_mediastorage'], 'Array_multiple') || strcmp($_POST['type_mediastorage'], 'Array_unique') || strcmp($_POST['type_mediastorage'], 'Boolean')) {
+		if (strcmp($_POST['type_mediastorage'], 'Text') && strcmp($_POST['type_mediastorage'], 'Date') && strcmp($_POST['type_mediastorage'], 'Array_multiple') && strcmp($_POST['type_mediastorage'], 'Array_unique') && strcmp($_POST['type_mediastorage'], 'Boolean')) {
 			$error_media_extra_field[] = BAD_CHOICE;
 		}
 

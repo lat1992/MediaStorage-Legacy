@@ -10,7 +10,7 @@ class MediaExtraFieldLanguageManager {
 		$this->_mediaExtraFieldLanguage = new MediaExtraFieldLanguage();
 	}
 
-	public function mediaExtraFieldLanguageCreateDb() {
-		return $this->_mediaExtraFieldLanguage->createNewMediaExtraFieldLanguage($_POST);
+	public function mediaExtraFieldLanguageCreateDb($id_field, $key, $value) {
+		return $this->_mediaExtraFieldLanguage->createNewMediaExtraFieldLanguage($id_field, $key, $value);
 	}
 }

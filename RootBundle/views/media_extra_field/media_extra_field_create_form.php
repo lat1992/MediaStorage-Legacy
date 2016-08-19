@@ -3,7 +3,7 @@
 	<form id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
 
 		<label for="id_organization_mediastorage"><?= ORGANIZATION ?> : </label>
-		<select name="id_organization_mediastorage" id="id_organization_mediastorage"/>
+		<select name="id_organization_mediastorage" id="id_organization_mediastorage" disabled />
 <?php
 			$cpt = 0;
 			while ($organization = $organizations['data']->fetch_assoc()) {
@@ -12,6 +12,7 @@
 			}
 ?>
 		</select>
+		<input type="hidden" name="id_organization_mediastorage" id="id_organization_mediastorage" value="<?= $id_organization ?>"/>
 		<div class="clear"></div>
 
 		<label for="type_mediastorage"><?= TYPE ?> : </label>
@@ -24,8 +25,10 @@
 		</select>
 		<div class="clear"></div>
 
-		<label for="mandatory_mediastorage">
-
+		<label for="mandatory_mediastorage"><?= MANDATORY ?> : </label>
+		<input type="hidden" name="mandatory_mediastorage" id="mandatory_mediastorage" value="0"/>
+		<input type="checkbox" class="input_checkbox" name="mandatory_mediastorage" id="mandatory_mediastorage" value="1" <?= (isset($mediaExtraField['mandatory']) && intval($mediaExtraField['mandatory']) == 1) ? 'checked' : '' ?> /><br />
+		<div class="clear"></div>
 <?php
 		while ($groupLanguage = $groupLanguages['data']->fetch_assoc()) {
 			echo '<label for="media_extra_field_language_data_mediastorage['. $groupLanguage['id'] .']">' . LANGUAGE_TRANSLATE . ' (' . $groupLanguage['name'] . ') : </label>';

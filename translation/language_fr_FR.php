@@ -245,3 +245,4 @@ define('BAD_CHOICE', 'Tentative de modifier les valeurs importants');
 define('CREATE_MEDIA_PROGRAM', 'Créer un programme');
 define('EMPTY_MEDIA_REFERENCE', 'Référence vide');
 define('INVALID_MEDIA_REFERENCE_TOO_LONG', 'Reference trop longue');
+define('MANDATORY', 'Obligatoire');
