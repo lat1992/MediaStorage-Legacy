@@ -33,17 +33,17 @@ class MediaExtraField extends Model {
 
 	public function createNewMediaExtraField($data) {
 		$id_organization = $this->_mysqli->real_escape_string($data['id_organization_mediastorage']);
-		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
 		$type = $this->_mysqli->real_escape_string($data['type_mediastorage']);
-		$name = $this->_mysqli->real_escape_string($data['name_mediastorage']);
+		$mandatory = $this->_mysqli->real_escape_string($data['mandatory_mediastorage']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_organization, id_language, type, name)' .
-			' VALUES ('. $id_organization . ', ' . $id_language . ', "' . $type . '", "' . $name . '");'
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_organization, type, mandatory)' .
+			' VALUES ('. $id_organization . ', "' . $type . '", ' . $mandatory . ');'
 		);
 
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'createNewMediaExtraField: ' . $this->_mysqli->error : '',
+			'id' => $this->_mysqli->insert_id,
 		);
 	}
 
