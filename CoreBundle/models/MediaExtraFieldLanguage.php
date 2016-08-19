@@ -26,7 +26,7 @@ class MediaExtraFieldLanguage extends Model {
 
 	public function findMediaExtraFieldLanguagesByIdField($id_field) {
 		$data = array();
-		
+		$data = $this->_mysqli->query();
 
 		return array(
 			'data' => $data,

@@ -65,14 +65,17 @@ class MediaExtraField extends Model {
 
 	public function findMediaExtraFieldById($media_extra_field_id) {
 		$media_extra_field_id = $this->_mysqli->real_escape_string($media_extra_field_id);
-		$data = $this->_mysqli->query('SELECT id, id_organization, type, name, mandatroy ' .
+		$data = $this->_mysqli->query('SELECT id, id_organization, type, mandatory ' .
 									' FROM ' . $this->_table .
 									' WHERE id = ' . $media_extra_field_id . ';'
 		);
+		$tmp = $data->fetch_assoc();
+
 
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'findMediaExtraFieldById: ' . $this->_mysqli->error : '',
+			'id_organization' => $tmp['id_organization'],
 		);
 	}
 

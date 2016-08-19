@@ -134,11 +134,11 @@ class MediaExtraFieldController {
 	}
 
 	public function editAction() {
-		$mediaExtraField = $this->_mediaExtraFieldManager->getMediaExtraFieldByIdDb($_GET['mediaExtraField_id']);
+		$mediaExtraFields = $this->_mediaExtraFieldManager->getMediaExtraFieldByIdDb($_GET['media_extra_field_id']);
 		$organizations = $this->_organizationManager->getAllOrganizationsDb();
-		$groupLanguages = $this->_groupLanguageManager->getGroupLanguageByOrganizationIdDb($id_organization);
+		$groupLanguages = $this->_groupLanguageManager->getGroupLanguageByOrganizationIdDb($mediaExtraFields['id_organization']);
 
-		$this->mergeErrorArray($mediaExtraField);
+		$this->mergeErrorArray($mediaExtraFields);
 		$this->mergeErrorArray($organizations);
 		$this->mergeErrorArray($groupLanguages);
 
@@ -150,7 +150,7 @@ class MediaExtraFieldController {
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-					$return_value = $this->_mediaExtraFieldManager->mediaExtraFieldEditAsAdminDb($mediaExtraField);
+					$return_value = $this->_mediaExtraFieldManager->mediaExtraFieldEditAsAdminDb($mediaExtraField['id_organization']);
 					$this->mergeErrorArray($return_value);
 
 					if (count($this->_errorArray) == 0) {
@@ -161,7 +161,7 @@ class MediaExtraFieldController {
 				}
 			}
 
-			$mediaExtraField = array_merge($mediaExtraField, $mediaExtraField_info);
+			//$mediaExtraField = array_merge($mediaExtraField, $mediaExtraField_info);
 
 		}
 
