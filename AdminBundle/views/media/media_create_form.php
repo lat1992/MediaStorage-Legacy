@@ -13,7 +13,7 @@
 			<div class="clear"></div>
 
 <?php
-			if (isset($_GET['parent_id']))  {
+			if (isset($_GET['media_id']))  {
 ?>
 				<label></label>
 				<span class="info_multiple_select"><?= INFO_MOVE_DIRECTORY ?></span>
@@ -34,7 +34,7 @@
 		<div class="clear"></div>
 
 <?php
-		if (isset($_GET['parent_id']))  {
+		if (isset($_GET['media_id']))  {
 ?>
 			<label></label>
 			<span class="info_multiple_select"><?= INFO_MOVE_DIRECTORY ?></span>
@@ -42,7 +42,7 @@
 <?php
 		}
 
-		if (isset($_GET['parent_id']))  {
+		if (isset($_GET['media_id']))  {
 ?>
 			<label for="reference_mediastorage"><?= REFERENCE ?> : </label>
 			<input type="text" name="reference_mediastorage" id="reference_mediastorage" value="<?= (isset($media['reference'])) ? $media['reference'] : '' ?>" /><br />
@@ -51,6 +51,10 @@
 ?>
 		<label for="reference_client_mediastorage"><?= REFERENCE_CLIENT ?> : </label>
 		<input type="text" name="reference_client_mediastorage" id="reference_client_mediastorage" value="<?= (isset($media['reference_client'])) ? $media['reference_client'] : '' ?>" /><br />
+		<div class="clear"></div>
+
+		<label for="handover_date_mediastorage"><?= HANDOVER_DATE ?> : </label>
+		<input type="text" name="handover_date_mediastorage" id="handover_date_mediastorage ?>" value="<?= (isset($media['handover_date'])) ? $media['handover_date'] : '' ?>" /><br />
 		<div class="clear"></div>
 
 		<input type="hidden" name="right_view_mediastorage" value="0" />

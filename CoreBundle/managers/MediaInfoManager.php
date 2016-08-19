@@ -63,15 +63,6 @@ class MediaInfoManager {
 	}
 
 	public function mediaInfoEditDb($media_info_data) {
-		$temp = new DateTime($_POST['handover_date_mediastorage']);
-		$handover_date = $temp->format('Y-m-d H:i:s');
-		$created_date = date('Y-m-d H:i:s');
-		$modified_date = date('Y-m-d H:i:s');
-
-		$_POST['handover_date_mediastorage'] = $handover_date;
-		$_POST['created_date_mediastorage'] = $created_date;
-		$_POST['modified_date_mediastorage'] = $modified_date;
-
 		return $this->_mediaInfoModel->updateMediaInfoWithId($_POST, $media_info_data['id']);
 	}
 
@@ -98,17 +89,68 @@ class MediaInfoManager {
 			$_POST['episode_number_mediastorage'] = $post_save['episode_number_mediastorage'][$key];
 			$_POST['image_version_mediastorage'] = $post_save['image_version_mediastorage'][$key];
 			$_POST['sound_version_mediastorage'] = $post_save['sound_version_mediastorage'][$key];
-			$_POST['handover_date_mediastorage'] = $post_save['handover_date_mediastorage'][$key];
 			$_POST['id_language_mediastorage'] = $key;
 
-			$return_value = $this->mediaInfoCreateDb();
+			$return_value = $this->getMediaInfoByMediaIdAndLanguageIdDb($_POST['id_media_mediastorage'], $key);
 
 			if (!empty($return_value['error'])) {
 				return $return_value;
 			}
+
+			if ($return_value['data']->num_rows == 0) {
+
+				$return_value = $this->mediaInfoCreateDb();
+
+				if (!empty($return_value['error'])) {
+					return $return_value;
+				}
+			}
+
+			else {
+				$media_info = $return_value['data']->fetch_assoc();
+
+				$return_value = $this->mediaInfoEditDb($media_info);
+
+				if (!empty($return_value['error'])) {
+					return $return_value;
+				}
+			}
 		}
 
 		return NULL;
+	}
+
+	public function getMediaInfoByMediaIdAndLanguageIdDb($id_media, $id_language) {
+		return $this->_mediaInfoModel->findMediaInfoByMediaIdAndLanguageId($id_media, $id_language);
+	}
+
+	public function getMediaInfoByMediaIdDb($id_media) {
+		return $this->_mediaInfoModel->findMediaInfoByMediaId($id_media);
+	}
+
+	public function getArrayWithIdLanguageKey($array_data) {
+		$return_array = array();
+
+		foreach ($array_data as $row) {
+			$return_array[$row['id_language']] = $row;
+		}
+
+		return $return_array;
+	}
+
+	public function formatMediaInfoDataWithPostData() {
+		$return_array = array();
+
+		foreach ($_POST['title_mediastorage'] as $key => $value) {
+			$return_array[$key]['title'] = $_POST['title_mediastorage'][$key];
+			$return_array[$key]['subtitle'] = $_POST['subtitle_mediastorage'][$key];
+			$return_array[$key]['description'] = $_POST['description_mediastorage'][$key];
+			$return_array[$key]['episode_number'] = $_POST['episode_number_mediastorage'][$key];
+			$return_array[$key]['image_version'] = $_POST['image_version_mediastorage'][$key];
+			$return_array[$key]['sound_version'] = $_POST['sound_version_mediastorage'][$key];
+		}
+
+		return $return_array;
 	}
 }
 

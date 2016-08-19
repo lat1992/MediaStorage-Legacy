@@ -2,9 +2,13 @@
 	if ($languages) {
 
 		foreach ($languages as $language) {
+
+			$user_value = '';
+			if (isset($media_infos[$language['id']]['title']))
+			$user_value = $media_infos[$language['id']]['title'];
 ?>
 			<label for="title_mediastorage_<?= $language['code'] ?>"><?= TITLE . ' - ' . $language['code'] ?> : </label>
-			<input type="text" name="title_mediastorage[<?= $language['id'] ?>]" id="title_mediastorage_<?= $language['code'] ?>" value="<?= (isset($media['title'])) ? $media['title'] : '' ?>" /><br />
+			<input type="text" name="title_mediastorage[<?= $language['id'] ?>]" id="title_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
 			<div class="clear"></div>
 <?php
 		}
@@ -13,9 +17,13 @@
 		<div class="clear"></div>
 <?php
 		foreach ($languages as $language) {
+
+			$user_value = '';
+			if (isset($media_infos[$language['id']]['subtitle']))
+			$user_value = $media_infos[$language['id']]['subtitle'];
 ?>
 			<label for="subtitle_mediastorage_<?= $language['code'] ?>"><?= SUBTITLE . ' - ' . $language['code'] ?> : </label>
-			<input type="text" name="subtitle_mediastorage[<?= $language['id'] ?>]" id="subtitle_mediastorage_<?= $language['code'] ?>" value="<?= (isset($media['subtitle'])) ? $media['subtitle'] : '' ?>" /><br />
+			<input type="text" name="subtitle_mediastorage[<?= $language['id'] ?>]" id="subtitle_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
 			<div class="clear"></div>
 <?php
 		}
@@ -24,9 +32,13 @@
 		<div class="clear"></div>
 <?php
 		foreach ($languages as $language) {
+
+			$user_value = '';
+			if (isset($media_infos[$language['id']]['description']))
+			$user_value = $media_infos[$language['id']]['description'];
 ?>
 			<label for="description_mediastorage_<?= $language['code'] ?>"><?= DESCRIPTION . ' - ' . $language['code'] ?> : </label>
-			<input type="text" name="description_mediastorage[<?= $language['id'] ?>]" id="description_mediastorage_<?= $language['code'] ?>" value="<?= (isset($media['description'])) ? $media['description'] : '' ?>" /><br />
+			<input type="text" name="description_mediastorage[<?= $language['id'] ?>]" id="description_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
 			<div class="clear"></div>
 <?php
 		}
@@ -35,9 +47,13 @@
 		<div class="clear"></div>
 <?php
 		foreach ($languages as $language) {
+
+			$user_value = '';
+			if (isset($media_infos[$language['id']]['episode_number']))
+			$user_value = $media_infos[$language['id']]['episode_number'];
 ?>
 			<label for="episode_number_mediastorage_<?= $language['code'] ?>"><?= EPISODE_NUMBER . ' - ' . $language['code'] ?> : </label>
-			<input type="text" name="episode_number_mediastorage[<?= $language['id'] ?>]" id="episode_number_mediastorage_<?= $language['code'] ?>" value="<?= (isset($media['episode_number'])) ? $media['episode_number'] : '' ?>" /><br />
+			<input type="text" name="episode_number_mediastorage[<?= $language['id'] ?>]" id="episode_number_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
 			<div class="clear"></div>
 <?php
 		}
@@ -46,9 +62,13 @@
 		<div class="clear"></div>
 <?php
 		foreach ($languages as $language) {
+
+			$user_value = '';
+			if (isset($media_infos[$language['id']]['image_version']))
+			$user_value = $media_infos[$language['id']]['image_version'];
 ?>
 			<label for="image_version_mediastorage_<?= $language['code'] ?>"><?= IMAGE_VERSION . ' - ' . $language['code'] ?> : </label>
-			<input type="text" name="image_version_mediastorage[<?= $language['id'] ?>]" id="image_version_mediastorage_<?= $language['code'] ?>" value="<?= (isset($media['image_version'])) ? $media['image_version'] : '' ?>" /><br />
+			<input type="text" name="image_version_mediastorage[<?= $language['id'] ?>]" id="image_version_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
 			<div class="clear"></div>
 <?php
 		}
@@ -57,20 +77,13 @@
 		<div class="clear"></div>
 <?php
 		foreach ($languages as $language) {
+
+			$user_value = '';
+			if (isset($media_infos[$language['id']]['sound_version']))
+			$user_value = $media_infos[$language['id']]['sound_version'];
 ?>
 			<label for="sound_version_mediastorage_<?= $language['code'] ?>"><?= SOUND_VERSION . ' - ' . $language['code'] ?> : </label>
-			<input type="text" name="sound_version_mediastorage[<?= $language['id'] ?>]" id="sound_version_mediastorage_<?= $language['code'] ?>" value="<?= (isset($media['sound_version'])) ? $media['sound_version'] : '' ?>" /><br />
-			<div class="clear"></div>
-<?php
-		}
-?>
-		<label></label>
-		<div class="clear"></div>
-<?php
-		foreach ($languages as $language) {
-?>
-			<label for="handover_date_mediastorage_<?= $language['code'] ?>"><?= HANDOVER_DATE . ' - ' . $language['code'] ?> : </label>
-			<input type="text" name="handover_date_mediastorage[<?= $language['id'] ?>]" id="handover_date_mediastorage_<?= $language['code'] ?>" value="<?= (isset($media['handover_date'])) ? $media['handover_date'] : '' ?>" /><br />
+			<input type="text" name="sound_version_mediastorage[<?= $language['id'] ?>]" id="sound_version_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
 			<div class="clear"></div>
 <?php
 		}

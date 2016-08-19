@@ -17,14 +17,11 @@ class MediaManager {
 	public function formatMediaArrayWithPostData() {
 		$media = array();
 
-		$media['id_parent'] = $_POST['id_parent_mediastorage'];
-		if (!isset($media['id_parent']))
-			$media['id_parent'] = 'NULL';
-		$media['id_organization'] = $_POST['id_organization_mediastorage'];
 		$media['id_type'] = $_POST['id_type_mediastorage'];
 		$media['reference'] = $_POST['reference_mediastorage'];
+		$media['reference_client'] = $_POST['reference_client_mediastorage'];
 		$media['right_view'] = $_POST['right_view_mediastorage'];
-		$media['right_download'] = $_POST['right_download_mediastorage'];
+		$media['handover_date'] = $_POST['handover_date_mediastorage'];
 
 		return $media;
 	}
@@ -43,6 +40,19 @@ class MediaManager {
 	}
 
 	public function mediaCreateDb() {
+
+		if (!empty($_POST['handover_date_mediastorage'])) {
+			$temp = new DateTime($_POST['handover_date_mediastorage']);
+			$handover_date = $temp->format('Y-m-d H:i:s');
+			$_POST['handover_date_mediastorage'] = $handover_date;
+		}
+
+		$created_date = date('Y-m-d H:i:s');
+		$modified_date = date('Y-m-d H:i:s');
+
+		$_POST['created_date_mediastorage'] = $created_date;
+		$_POST['modified_date_mediastorage'] = $modified_date;
+
 		return $this->_mediaModel->createNewMedia($_POST);
 	}
 
@@ -50,7 +60,18 @@ class MediaManager {
 		return $this->_mediaModel->findMediaByid($media_id);
 	}
 
+	public function getMediaByIdAndOrganizationIdDb($id_media) {
+		return $this->_mediaModel->findMediaByidAndOrganizationId($id_media, $_SESSION['id_organization']);
+	}
+
 	public function mediaEditDb($media_data) {
+		return $this->_mediaModel->updateMediaWithId($_POST, $media_data['id']);
+	}
+
+	public function checkAndMediaEditDb($media_data) {
+		if (strcmp($_POST['id_folder_mediastorage'], 'NULL') == 0)
+			$_POST['id_folder_mediastorage'] = $media_data['id_folder'];
+
 		return $this->_mediaModel->updateMediaWithId($_POST, $media_data['id']);
 	}
 
@@ -110,8 +131,7 @@ class MediaManager {
 				strlen($_POST['description_mediastorage'][$key]) == 0 &&
 				strlen($_POST['episode_number_mediastorage'][$key]) == 0 &&
 				strlen($_POST['image_version_mediastorage'][$key]) == 0 &&
-				strlen($_POST['sound_version_mediastorage'][$key]) == 0 &&
-				strlen($_POST['handover_date_mediastorage'][$key]) == 0
+				strlen($_POST['sound_version_mediastorage'][$key]) == 0
 			) {
 				unset($_POST['title_mediastorage'][$key]);
 				unset($_POST['subtitle_mediastorage'][$key]);
@@ -119,7 +139,6 @@ class MediaManager {
 				unset($_POST['episode_number_mediastorage'][$key]);
 				unset($_POST['image_version_mediastorage'][$key]);
 				unset($_POST['sound_version_mediastorage'][$key]);
-				unset($_POST['handover_date_mediastorage'][$key]);
 			}
 		}
 
