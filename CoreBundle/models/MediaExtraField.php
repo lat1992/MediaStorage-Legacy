@@ -71,7 +71,6 @@ class MediaExtraField extends Model {
 		);
 		$tmp = $data->fetch_assoc();
 
-
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'findMediaExtraFieldById: ' . $this->_mysqli->error : '',

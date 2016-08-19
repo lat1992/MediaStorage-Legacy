@@ -136,7 +136,8 @@ class MediaExtraFieldController {
 	public function editAction() {
 		$mediaExtraFields = $this->_mediaExtraFieldManager->getMediaExtraFieldByIdDb($_GET['media_extra_field_id']);
 		$organizations = $this->_organizationManager->getAllOrganizationsDb();
-		$groupLanguages = $this->_groupLanguageManager->getGroupLanguageByOrganizationIdDb($mediaExtraFields['id_organization']);
+		$id_organization = $mediaExtraFields['id_organization'];
+		$groupLanguages = $this->_groupLanguageManager->getGroupLanguageByOrganizationIdDb($id_organization);
 
 		$this->mergeErrorArray($mediaExtraFields);
 		$this->mergeErrorArray($organizations);
