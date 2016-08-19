@@ -39,6 +39,10 @@ class MediaExtraManager {
 		return $this->_mediaExtraModel->findMediaExtraById($media_extra_id);
 	}
 
+	public function getMediaExtraByMediaIdAndFieldIdAndIdLanguageDb($id_media, $id_field, $id_language) {
+		return $this->_mediaExtraModel->findMediaExtraByMediaIdAndFieldIdAndIdLanguage($id_media, $id_field, $id_language);
+	}
+
 	public function mediaExtraEditDb($media_extra_data) {
 		return $this->_mediaExtraModel->updateMediaExtraWithId($_POST, $media_extra_data['id']);
 	}
@@ -63,11 +67,36 @@ class MediaExtraManager {
 					$_POST['data_mediastorage'] = $value2['data'];
 					$_POST['id_media_extra_array_mediastorage'] = $value2['id_array'];
 
-					$return_value = $this->mediaExtraCreateDb();
+					$return_value = $this->getMediaExtraByMediaIdAndFieldIdAndIdLanguageDb($_POST['id_media_mediastorage'], $id_field, $language);
 
 					if (!empty($return_value['error'])) {
 						return $return_value;
 					}
+
+					if ($return_value['data']->num_rows == 0) {
+
+						$return_value = $this->mediaExtraCreateDb();
+
+						if (!empty($return_value['error'])) {
+							return $return_value;
+						}
+					}
+
+					else {
+						$media_extra = $return_value['data']->fetch_assoc();
+
+						$return_value = $this->mediaInfoEditDb($media_extra);
+
+						if (!empty($return_value['error'])) {
+							return $return_value;
+						}
+					}
+
+					// $return_value = $this->mediaExtraCreateDb();
+
+					// if (!empty($return_value['error'])) {
+					// 	return $return_value;
+					// }
 				}
 			}
 			elseif (isset($value['multiple'])) {
@@ -96,5 +125,44 @@ class MediaExtraManager {
 			}
 		}
 		return NULL;
+	}
+
+	public function getMediaExtraByMediaIdDb($id_media) {
+		return $this->_mediaExtraModel->findMediaExtraByMediaId($id_media);
+	}
+
+	public function formatMediaExtraDataForView($media_extras_data) {
+		$return_data = array();
+
+		foreach ($media_extras_data as $row) {
+
+			// $return_data[$row['id_field']] = $row;
+
+			if (strcmp($row['type'], 'Text') == 0) {
+				$return_data[$row['id_field']]['language'][$row['id_language']]['data'] = $row['data'];
+			}
+
+			if (strcmp($row['type'], 'Date') == 0) {
+				$return_data[$row['id_field']]['data'] = $row['data'];
+			}
+
+			if (strcmp($row['type'], 'Array_multiple') == 0) {
+				$return_data[$row['id_field']]['multiple'][]['id_array'] = $row['id_array'];
+			}
+
+			if (strcmp($row['type'], 'Array_unique') == 0) {
+				$return_data[$row['id_field']]['id_array'] = $row['id_array'];
+			}
+
+			if (strcmp($row['type'], 'Boolean') == 0) {
+				$return_data[$row['id_field']]['data'] = $row['data'];
+			}
+		}
+
+		return $return_data;
+	}
+
+	public function formatMediaExtraDataWithPostData() {
+		return $_POST['media_extra_mediastorage'];
 	}
 }

@@ -27,14 +27,11 @@ class MediaInfo extends Model {
 		$episode_number = $this->_mysqli->real_escape_string($data['episode_number_mediastorage']);
 		$image_version = $this->_mysqli->real_escape_string($data['image_version_mediastorage']);
 		$sound_version = $this->_mysqli->real_escape_string($data['sound_version_mediastorage']);
-		$handover_date = $this->_mysqli->real_escape_string($data['handover_date_mediastorage']);
-		$created_date = $this->_mysqli->real_escape_string($data['created_date_mediastorage']);
-		$modified_date = $this->_mysqli->real_escape_string($data['modified_date_mediastorage']);
 		$id_media = $this->_mysqli->real_escape_string($data['id_media_mediastorage']);
 		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(title, subtitle, description, episode_number, image_version, sound_version, handover_date, created_date, modified_date, id_media, id_language)' .
-			' VALUES ("'. $title . '","'. $subtitle . '","'. $description . '","'. $episode_number . '","'. $image_version . '","'. $sound_version . '","'. $handover_date . '","'. $created_date . '","'. $modified_date . '", ' . $id_media . ', ' . $id_language . ');'
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(title, subtitle, description, episode_number, image_version, sound_version, id_media, id_language)' .
+			' VALUES ("'. $title . '","'. $subtitle . '","'. $description . '","'. $episode_number . '","'. $image_version . '","'. $sound_version . '", ' . $id_media . ', ' . $id_language . ');'
 		);
 
 		return array(
@@ -104,4 +101,34 @@ class MediaInfo extends Model {
 			'error' => ($this->_mysqli->error) ? 'deleteMediaInfoByMediaId: ' . $this->_mysqli->error : '',
 		);
 	}
+
+	public function findMediaInfoByMediaId($id_media) {
+		$id_media = $this->_mysqli->real_escape_string($id_media);
+
+		$data = $this->_mysqli->query('SELECT id, title, subtitle, description, episode_number, image_version, sound_version, id_media, id_language' .
+									' FROM ' . $this->_table .
+									' WHERE id_media = ' . $id_media . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findMediaInfoByMediaId: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findMediaInfoByMediaIdAndLanguageId($id_media, $id_language) {
+		$id_media = $this->_mysqli->real_escape_string($id_media);
+		$id_language = $this->_mysqli->real_escape_string($id_language);
+
+		$data = $this->_mysqli->query('SELECT id, title, subtitle, description, episode_number, image_version, sound_version, id_media, id_language' .
+									' FROM ' . $this->_table .
+									' WHERE id_media = ' . $id_media . ' AND id_language = ' . $id_language . ' ;'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findMediaInfoByMediaId: ' . $this->_mysqli->error : '',
+		);
+	}
+
 }

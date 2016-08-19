@@ -83,10 +83,10 @@ class MediaController {
 
 			$return_value = $this->_mediaManager->mediaProgramCreateFormCheck();
 			$this->mergeErrorArray($return_value);
-		ini_set('xdebug.var_display_max_depth', -1);
-ini_set('xdebug.var_display_max_children', -1);
-ini_set('xdebug.var_display_max_data', -1);
-			var_dump($_POST);exit;
+
+			$media = $this->_mediaManager->formatMediaArrayWithPostData();
+			$media_infos = $this->_mediaInfoManager->formatMediaInfoDataWithPostData();
+			$media_user_extras = $this->_mediaExtraManager->formatMediaExtraDataWithPostData();
 
 			if (count($this->_errorArray) == 0) {
 
@@ -114,19 +114,6 @@ ini_set('xdebug.var_display_max_data', -1);
 					}
 				}
 			}
-
-			// $media = $this->_mediaManager->formatMediaArrayWithPostData();
-			// $return_value['error'] = $this->_mediaManager->mediaCreateFormCheck();
-			// $this->mergeErrorArray($return_value);
-
-			// if (count($this->_errorArray) == 0) {
-			// 	$return_value = $this->_mediaManager->mediaCreateDb();
-			// 	$this->mergeErrorArray($return_value);
-
-			// 	if (count($this->_errorArray) == 0) {
-			// 		header('Location:' . '?page=dashboard');
-			// 	}
-			// }
 		}
 
 		$folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
@@ -136,7 +123,7 @@ ini_set('xdebug.var_display_max_data', -1);
 
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($enums);
-		$this->mergeErrorArray($languages);
+		$this->mergeErrorArray($languages_data);
 		$this->mergeErrorArray($media_extra_data);
 
 		$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
@@ -144,12 +131,96 @@ ini_set('xdebug.var_display_max_data', -1);
 		$enums = $enums['data'];
 
 		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
-// 		ini_set('xdebug.var_display_max_depth', -1);
-// ini_set('xdebug.var_display_max_children', -1);
-// ini_set('xdebug.var_display_max_data', -1);
-// 		var_dump($media_extra);
-// exit;
+
 		$title = CREATE_MEDIA_PROGRAM;
+
+		include ('AdminBundle/views/media/media_create_program.php');
+	}
+
+	public function editProgramAction() {
+		$media = array();
+		$languages = null;
+
+		$media_data = $this->_mediaManager->getMediaByIdAndOrganizationIdDb($_GET['media_id']); // TO DO BY ORGANIZATION
+
+		$this->mergeErrorArray($media_data);
+
+		if (count($this->_errorArray) == 0) {
+
+			$media = $this->_toolboxManager->mysqliResultToData($media_data);
+
+			if (isset($_POST['id_media_create_mediastorage']) && (strcmp($_POST['id_media_create_mediastorage'], '895143') == 0)) {
+
+				$return_value = $this->_mediaManager->preFillProgramPostData();
+				$this->mergeErrorArray($return_value);
+
+				$return_value = $this->_mediaManager->mediaProgramCreateFormCheck();
+				$this->mergeErrorArray($return_value);
+
+				var_dump($_POST);exit;
+
+				if (count($this->_errorArray) == 0) {
+
+					$return_value = $this->_mediaManager->checkAndMediaEditDb($media);
+					$this->mergeErrorArray($return_value);
+
+					if (count($this->_errorArray) == 0) {
+
+						$_POST['id_media_mediastorage'] = $_GET['media_id'];
+
+						$return_value = $this->_mediaInfoManager->CreateMultipleMediaInfoDb();
+						$this->mergeErrorArray($return_value);
+
+						var_dump($_POST);exit;
+
+						if (count($this->_errorArray) == 0) {
+
+							$return_value = $this->_mediaExtraManager->CreateMultipleMediaExtraDb();
+							$this->mergeErrorArray($return_value);
+
+							if (count($this->_errorArray) == 0) {
+								$_SESSION['flash_message'] = ACTION_SUCCESS;
+								header('Location:' . '?page=create_program_admin');
+								exit;
+							}
+
+						}
+					}
+				}
+			}
+		}
+
+		$media_infos_data = $this->_mediaInfoManager->getMediaInfoByMediaIdDb($_GET['media_id']);
+		$media_extras_user_data = $this->_mediaExtraManager->getMediaExtraByMediaIdDb($_GET['media_id']);
+
+		$this->mergeErrorArray($media_infos_data);
+		$this->mergeErrorArray($media_extras_user_data);
+
+		$media_infos = $this->_toolboxManager->mysqliResultToArray($media_infos_data);
+
+		$media_infos = $this->_mediaInfoManager->getArrayWithIdLanguageKey($media_infos);
+
+		$media_user_extras = $this->_toolboxManager->mysqliResultToArray($media_extras_user_data);
+
+		$media_user_extras = $this->_mediaExtraManager->formatMediaExtraDataForView($media_user_extras);
+
+		$folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
+		$enums = $this->_mediaFileManager->getEnumOfTypeDb();
+		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
+		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(1);
+
+		$this->mergeErrorArray($folders);
+		$this->mergeErrorArray($enums);
+		$this->mergeErrorArray($languages_data);
+		$this->mergeErrorArray($media_extra_data);
+
+		$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
+
+		$enums = $enums['data'];
+
+		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
+
+		$title = EDIT_MEDIA_PROGRAM;
 
 		include ('AdminBundle/views/media/media_create_program.php');
 	}

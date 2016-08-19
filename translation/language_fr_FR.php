@@ -243,6 +243,7 @@ define('MEDIA_EXTRA_FIELD_LIST_TITLE', 'Champs');
 define('INVALID_TRANSLATE_TOO_LONG', 'La traduction est trop long');
 define('BAD_CHOICE', 'Tentative de modifier les valeurs importants');
 define('CREATE_MEDIA_PROGRAM', 'Créer un programme');
+define('EDIT_MEDIA_PROGRAM', 'Editer un programme');
 define('EMPTY_MEDIA_REFERENCE', 'Référence vide');
 define('INVALID_MEDIA_REFERENCE_TOO_LONG', 'Reference trop longue');
 define('MANDATORY', 'Obligatoire');

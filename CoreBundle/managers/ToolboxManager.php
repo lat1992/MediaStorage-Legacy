@@ -21,4 +21,19 @@ class ToolBoxManager {
 
 		return $array_data;
 	}
+
+	public function mysqliResultToData($mysqli_data) {
+
+		$data = array();
+
+		if ($mysqli_data && $mysqli_data['data']) {
+
+			while ($mysqli_result = $mysqli_data['data']->fetch_assoc()) {
+				$data = $mysqli_result;
+			}
+
+		}
+
+		return $data;
+	}
 }
