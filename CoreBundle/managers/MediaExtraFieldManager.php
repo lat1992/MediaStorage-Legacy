@@ -68,6 +68,23 @@ class MediaExtraFieldManager {
 		return $error_media_extra_field;
 	}
 
+	public function MediaExtraFieldEditFormCheck() {
+		$error_media_extra_field = array();
+
+		if (strcmp($_POST['type_mediastorage'], 'Text') && strcmp($_POST['type_mediastorage'], 'Date') && strcmp($_POST['type_mediastorage'], 'Array_multiple') && strcmp($_POST['type_mediastorage'], 'Array_unique') && strcmp($_POST['type_mediastorage'], 'Boolean')) {
+			$error_media_extra_field[] = BAD_CHOICE;
+		}
+
+		foreach ($_POST['media_extra_field_language_data_mediastorage'] as $key => $value) {
+			if ($value) {
+				if (strlen($value) > 20)
+					$error_media_extra_field[] = INVALID_NAME_TOO_LONG;
+			}
+		}
+
+		return $error_media_extra_field;
+	}
+
 	public function mediaExtraFieldCreateDb() {
 		return $this->_mediaExtraField->createNewMediaExtraField($_POST);
 	}
@@ -76,8 +93,8 @@ class MediaExtraFieldManager {
 		return $this->_mediaExtraField->findMediaExtraFieldById($media_extra_field_id);
 	}
 
-	public function MediaExtraFieldEditDb($media_extra_field_data) {
-		return $this->_mediaExtraField->updateMediaExtraFieldWithId($_POST, $media_extra_field_data['id']);
+	public function mediaExtraFieldEditDb($media_extra_field_id, $media_extra_field_data) {
+		return $this->_mediaExtraField->updateMediaExtraFieldWithId($media_extra_field_id, $media_extra_field_data);
 	}
 
 	public function removeMediaExtraFieldByIdDb($media_extra_field_id) {
