@@ -39,7 +39,7 @@ class MediaExtraFieldLanguage extends Model {
 		$text = $this->_mysqli->real_escape_string($text);
 
 		$data = $this->_mysqli->query('SELECT * FROM '. $this->_table .' WHERE id_field = '. $id_field .' AND id_language = '. $id_language .';');
-		if ($data->num_rows()) {
+		if ($data->num_rows) {
 			$data = $this->_mysqli->query('UPDATE '. $this->_table .' SET data = "'. $text .'" WHERE id_field = '. $id_field .' AND id_language = '. $id_language .';');
 		}
 		else {

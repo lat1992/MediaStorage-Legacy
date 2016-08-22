@@ -35,7 +35,7 @@
 			echo '<label for="media_extra_field_language_data_mediastorage['. $groupLanguage['id'] .']">' . LANGUAGE_TRANSLATE . ' (' . $groupLanguage['name'] . ') : </label>';
 			if (isset($mediaExtraFieldLanguage[intval($groupLanguage['id'])]))
 				$mediaExtraFieldLanguageText = $mediaExtraFieldLanguage[intval($groupLanguage['id'])]['data'];
-			echo '<input type="text" name="media_extra_field_language_data_mediastorage['. $groupLanguage['id'] .']" id="media_extra_field_language_data_mediastorage" value="'. $mediaExtraFieldLanguageText .'"></br>';
+			echo '<input type="text" name="media_extra_field_language_data_mediastorage['. $groupLanguage['id'] .']" id="media_extra_field_language_data_mediastorage['. $groupLanguage['id'] .']" value="'. $mediaExtraFieldLanguageText .'"></br>';
 		}
 ?>
 

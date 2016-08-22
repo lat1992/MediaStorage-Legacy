@@ -48,13 +48,12 @@ class MediaExtraField extends Model {
 
 	public function updateMediaExtraFieldWithId($media_extra_field_id, $data) {
 		$id_organization = $this->_mysqli->real_escape_string($data['id_organization_mediastorage']);
-		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
 		$type = $this->_mysqli->real_escape_string($data['type_mediastorage']);
 		$mandatory = $this->_mysqli->real_escape_string($data['mandatory_mediastorage']);
 
 		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
-			' SET id_organization = ' . $id_organization . ', id_language = ' . $id_language . ', type = "' . $type . ', mandatory =' . $mandatory .
-			'" WHERE id = ' . $media_extra_field_id . ';'
+			' SET id_organization = ' . $id_organization . ', type = "' . $type . '", mandatory =' . $mandatory .
+			' WHERE id = ' . $media_extra_field_id . ';'
 		);
 
 		return array(

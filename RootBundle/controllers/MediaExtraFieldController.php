@@ -105,8 +105,8 @@ class MediaExtraFieldController {
 				$_POST['id_field_mediastorage'] = $return_value['id'];
 
 				if (count($this->_errorArray) == 0) {
-					foreach ($_POST['media_extra_field_data_mediastorage'] as $value) {
-						$return_value = $this->_mediaExtraFieldLanguageManager->mediaExtraFieldLanguageCreateDb($_POST['id_field_mediastorage'], $value['id_language'], $value['data']);
+					foreach ($_POST['media_extra_field_language_data_mediastorage'] as $key => $value) {
+						$return_value = $this->_mediaExtraFieldLanguageManager->mediaExtraFieldLanguageCreateDb($_POST['id_field_mediastorage'], $key, $value);
 						$this->mergeErrorArray($return_value);
 					}
 
@@ -163,8 +163,8 @@ class MediaExtraFieldController {
 					$this->mergeErrorArray($return_value);
 
 					if (count($this->_errorArray) == 0) {
-						foreach ($_POST['media_extra_field_data_mediastorage'] as $value) {
-							$return_value = $this->_mediaExtraFieldLanguageManager->mediaExtraFieldLanguageEditDb($mediaExtraField['id'], $value['id_language'], $value['data']);
+						foreach ($_POST['media_extra_field_language_data_mediastorage'] as $key => $value) {
+							$return_value = $this->_mediaExtraFieldLanguageManager->mediaExtraFieldLanguageEditDb($mediaExtraField['id'], $key, $value);
 							$this->mergeErrorArray($return_value);
 						}
 
