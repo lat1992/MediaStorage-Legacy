@@ -36,8 +36,7 @@ class MediaExtraField extends Model {
 		$type = $this->_mysqli->real_escape_string($data['type_mediastorage']);
 		$mandatory = $this->_mysqli->real_escape_string($data['mandatory_mediastorage']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_organization, type, mandatory)' .
-			' VALUES ('. $id_organization . ', "' . $type . '", ' . $mandatory . ');'
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_organization, type, mandatory) VALUES (' . $id_organization . ', "' . $type . '", ' . $mandatory . ');'
 		);
 
 		return array(
@@ -66,15 +65,16 @@ class MediaExtraField extends Model {
 
 	public function findMediaExtraFieldById($media_extra_field_id) {
 		$media_extra_field_id = $this->_mysqli->real_escape_string($media_extra_field_id);
-
-		$data = $this->_mysqli->query('SELECT id, id_organization, id_language, type, name ' .
+		$data = $this->_mysqli->query('SELECT id, id_organization, type, mandatory ' .
 									' FROM ' . $this->_table .
 									' WHERE id = ' . $media_extra_field_id . ';'
 		);
+		$tmp = $data->fetch_assoc();
 
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'findMediaExtraFieldById: ' . $this->_mysqli->error : '',
+			'id_organization' => $tmp['id_organization'],
 		);
 	}
 
@@ -86,36 +86,6 @@ class MediaExtraField extends Model {
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'deleteMediaExtraFieldById: ' . $this->_mysqli->error : '',
-		);
-	}
-
-	public function findEnumOfType() {
-		 $data = $this->_mysqli->query('SHOW COLUMNS' .
-		 	' FROM ' . $this->_table .
-			' LIKE "type"'
-		);
-
-		return array(
-			'data' => $data,
-			'error' => ($this->_mysqli->error) ? 'findEnumOfType: ' . $this->_mysqli->error : ''
-		);
-	}
-
-	public function findAllMediaExtraFieldByOrganizationAndType($type, $id_organization) {
-		$type = $this->_mysqli->real_escape_string($type);
-		$id_organization = $this->_mysqli->real_escape_string($id_organization);
-
-		$data = $this->_mysqli->query('SELECT type, media_extra_field_language.data, media_extra_field_language.id_language, element, media_extra_field.id, media_extra_array.id as id_element' .
-									' FROM ' . $this->_table .
-									' LEFT JOIN media_type_field ON media_type_field.id_field = media_extra_field.id ' .
-									' LEFT JOIN media_extra_field_language ON media_extra_field_language.id_field = media_extra_field.id ' .
-									' LEFT JOIN media_extra_array ON media_extra_array.id_field = media_extra_field.id ' .
-									' WHERE media_type_field.id_type = ' . $type . ' AND id_organization = ' . $id_organization . ';'
-		);
-
-		return array(
-			'data' => $data,
-			'error' => ($this->_mysqli->error) ? 'findMediaExtraFieldById: ' . $this->_mysqli->error : '',
 		);
 	}
 }

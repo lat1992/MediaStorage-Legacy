@@ -252,3 +252,4 @@ define('CONTENT_LIST_TITLE', 'Liste des Contenus');
 
 define('EMPTY_MEDIA_REFERENCE', 'Référence vide');
 define('INVALID_MEDIA_REFERENCE_TOO_LONG', 'Reference trop longue');
+define('MANDATORY', 'Obligatoire');

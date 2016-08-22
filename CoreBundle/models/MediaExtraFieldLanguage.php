@@ -8,23 +8,14 @@ class MediaExtraFieldLanguage extends Model {
 		parent::__construct('media_extra_field_language');
 	}
 
-	public function findAllMediaExtraFieldLanguages() {
-		$data = $this->_mysqli->query('SELECT id, id_organization, type, name ' .
-			' FROM ' . $this->_table
-		);
-
-		return array(
-			'data' => $data,
-			'error' => ($this->_mysqli->error) ? 'findAllMediaExtraFieldLanguages: ' . $this->_mysqli->error : '',
-		);
-	}
-
 	public function createNewMediaExtraFieldLanguage($id_field, $key, $value) {
 		$data = array();
 
+		$id_field = $this->_mysqli->real_escape_string($id_field);
+		$key = $this->_mysqli->real_escape_string($key);
 		$text = $this->_mysqli->real_escape_string($value);
 
-		$data = $this->_mysqli->query('INSERT INTO '. $this->_table .' (id_field, id_language, data) VALUES ('. $id_field .', '. $key .', '. $text .');'
+		$data = $this->_mysqli->query('INSERT INTO '. $this->_table .' (id_field, id_language, data) VALUES ('. $id_field .', '. $key .', "'. $text .'");'
 		);
 
 		return array(
@@ -33,4 +24,13 @@ class MediaExtraFieldLanguage extends Model {
 		);
 	}
 
+	public function findMediaExtraFieldLanguagesByIdField($id_field) {
+		$data = array();
+		$data = $this->_mysqli->query();
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findMediaExtraFieldLanguagesByIdField: ' . $this->_mysqli->error : '',
+		);
+	}
 }

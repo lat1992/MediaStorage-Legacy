@@ -1,12 +1,14 @@
 <?php
 
 require_once('CoreBundle/managers/MediaExtraFieldManager.php');
+require_once('CoreBundle/managers/MediaExtraFieldLanguageManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
 require_once('CoreBundle/managers/GroupLanguageManager.php');
 
 class MediaExtraFieldController {
 
 	private $_mediaExtraFieldManager;
+	private $_mediaExtraFieldLanguageManager;
 	private $_organizationManager;
 	private $_groupLanguageManager;
 
@@ -16,6 +18,7 @@ class MediaExtraFieldController {
 		 $this->_mediaExtraFieldManager = new MediaExtraFieldManager();
 		 $this->_organizationManager = new OrganizationManager();
 		 $this->_groupLanguageManager = new GroupLanguageManager();
+		 $this->_mediaExtraFieldLanguageManager = new MediaExtraFieldLanguageManager();
 
 		 $this->_errorArray = array();
 	}
@@ -102,18 +105,14 @@ class MediaExtraFieldController {
 				$_POST['id_field_mediastorage'] = $return_value['id'];
 
 				if (count($this->_errorArray) == 0) {
-					$cpt = 0;
-					foreach ($_POST['meida_extra_field_language_data_mediastorage'] as $key => $value) {
-						if ($value) {
-							$return_value = $this->_mediaExtraFieldLanguageManager->mediaExtraFieldLanguageCreateDb($_POST['id_field_mediastorage'], $key, $value);
-							$this->mergeErrorArray($return_value);
-							$cpt++;
-						}
+					foreach ($_POST['media_extra_field_data_mediastorage'] as $value) {
+						$return_value = $this->_mediaExtraFieldLanguageManager->mediaExtraFieldLanguageCreateDb($_POST['id_field_mediastorage'], $value['id_language'], $value['data']);
+						$this->mergeErrorArray($return_value);
 					}
 
 					if (count($this->_errorArray) == 0) {
 						$_SESSION['flash_message'] = ACTION_SUCCESS;
-						header('Location:' . '?page=list_media_extra_field_root&id_organization=' . $mediaIfoExtraField['id_organization']);
+						header('Location:' . '?page=list_media_extra_field_root&id_organization=' . $_GET['id_organization']);
 						exit;
 					}
 				}
@@ -135,26 +134,24 @@ class MediaExtraFieldController {
 	}
 
 	public function editAction() {
-
-		$mediaExtraField_data = $this->_mediaExtraFieldManager->getMediaExtraFieldByIdDb($_GET['mediaExtraField_id']);
+		$mediaExtraFields = $this->_mediaExtraFieldManager->getMediaExtraFieldByIdDb($_GET['media_extra_field_id']);
 		$organizations = $this->_organizationManager->getAllOrganizationsDb();
-		$roles = $this->_roleManager->getAllRolesDb();
-		$languages = $this->_languageManager->getAllLanguagesDb();
+		$id_organization = $mediaExtraFields['id_organization'];
+		$groupLanguages = $this->_groupLanguageManager->getGroupLanguageByOrganizationIdDb($id_organization);
 
-		$this->mergeErrorArray($mediaExtraField_data);
+		$this->mergeErrorArray($mediaExtraFields);
 		$this->mergeErrorArray($organizations);
-		$this->mergeErrorArray($roles);
-		$this->mergeErrorArray($languages);
+		$this->mergeErrorArray($groupLanguages);
 
 		if (count($this->_errorArray) == 0) {
 
-			while ($mediaExtraField_data_temp = $mediaExtraField_data['data']->fetch_assoc()) {
-				$mediaExtraField = $mediaExtraField_data_temp;
+			var_dump($mediaExtraFields);
+			exit;
+			while ($mediaExtraField_temp = $mediaExtraFields['data']->fetch_assoc()) {
+				$mediaExtraField = $mediaExtraField_temp;
 			}
-
-			while ($mediaExtraField_data_temp = $mediaExtraField_data['data']->fetch_assoc()) {
-				$mediaExtraField_info = $mediaExtraField_data_temp;
-			}
+			var_dump($mediaExtraField);
+			exit;
 
 			if (isset($_POST['id_media_extra_field_create_mediastorage']) && (strcmp($_POST['id_media_extra_field_create_mediastorage'], '4894565') == 0)) {
 
@@ -162,8 +159,7 @@ class MediaExtraFieldController {
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-
-					$return_value = $this->_mediaExtraFieldManager->mediaExtraFieldEditAsAdminDb($mediaExtraField);
+					$return_value = $this->_mediaExtraFieldManager->mediaExtraFieldEditAsAdminDb($mediaExtraField['id_organization']);
 					$this->mergeErrorArray($return_value);
 
 					if (count($this->_errorArray) == 0) {
@@ -173,8 +169,6 @@ class MediaExtraFieldController {
 					}
 				}
 			}
-
-			$mediaExtraField = array_merge($mediaExtraField, $mediaExtraField_info);
 
 		}
 

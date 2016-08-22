@@ -33,6 +33,6 @@ $this->_route[] = array('delete_language_root', 'RootBundle/controllers/Language
 $this->_route[] = array('select_organization_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'selectOrganizationAction');
 $this->_route[] = array('create_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'createAction');
 $this->_route[] = array('list_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'listAction');
-$this->_route[] = array('edi_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'editAction');
+$this->_route[] = array('edit_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'editAction');
 $this->_route[] = array('delete_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'deleteAction');
 ?>
