@@ -185,7 +185,7 @@ class MediaExtraFieldController {
 	}
 
 	public function deleteAction() {
-
+/*
 		if (isset($_GET['mediaExtraField_id'])) {
 
 			$return_value = $this->_mediaExtraFieldManager->removeMediaExtraFieldByIdDb($_GET['media_extra_field_id']);
@@ -196,7 +196,7 @@ class MediaExtraFieldController {
 			}
 		}
 
-		include ('CoreBundle/views/common/error.php');
+		include ('CoreBundle/views/common/error.php');*/
 	}
 
 }

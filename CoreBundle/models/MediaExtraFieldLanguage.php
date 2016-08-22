@@ -15,9 +15,9 @@ class MediaExtraFieldLanguage extends Model {
 		$id_language = $this->_mysqli->real_escape_string($id_language);
 		$text = $this->_mysqli->real_escape_string($text);
 
-		$data = $this->_mysqli->query('INSERT INTO '. $this->_table .' (id_field, id_language, data) VALUES ('. $id_field .', '. $id_language .', "'. $text .'");'
-		);
-
+		if ($text != "") {
+			$data = $this->_mysqli->query('INSERT INTO '. $this->_table .' (id_field, id_language, data) VALUES ('. $id_field .', '. $id_language .', "'. $text .'");');
+		}
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'createNewMediaExtraFieldLanguage: ' . $this->_mysqli->error : '',
@@ -42,7 +42,7 @@ class MediaExtraFieldLanguage extends Model {
 		if ($data->num_rows) {
 			$data = $this->_mysqli->query('UPDATE '. $this->_table .' SET data = "'. $text .'" WHERE id_field = '. $id_field .' AND id_language = '. $id_language .';');
 		}
-		else {
+		else if ($text != "") {
 			$data = $this->_mysqli->query('INSERT INTO '. $this->_table .' (id_field, id_language, data) VALUES ('. $id_field .', '. $id_language .', "'. $text .'");');
 		}
 
