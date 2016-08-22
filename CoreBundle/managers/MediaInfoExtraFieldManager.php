@@ -54,6 +54,7 @@ class MediaInfoExtraFieldManager {
 	}
 
 	public function getMediaInfoExtraFieldByIdDb($media_info_extra_field_id) {
+		$media_info_extra_field_id = $this->_mysqli->real_escape_string($media_info_extra_field_id);
 		return $this->_mediaInfoExtraField->findMediaInfoExtraFieldById($media_info_extra_field_id);
 	}
 

@@ -162,8 +162,6 @@ class MediaExtraFieldController {
 				}
 			}
 
-			//$mediaExtraField = array_merge($mediaExtraField, $mediaExtraField_info);
-
 		}
 
 		$title = USER_EDIT_TITLE;

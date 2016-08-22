@@ -51,6 +51,7 @@ class RoleManager {
 	}
 
 	public function getRoleByIdDb($role_id) {
+		$role_id = $this->_mysqli->real_escape_string($role_id);
 		return $this->_roleModel->findRoleById($role_id);
 	}
 

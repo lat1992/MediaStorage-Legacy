@@ -15,6 +15,8 @@
 		<input type="hidden" name="id_organization_mediastorage" id="id_organization_mediastorage" value="<?= $id_organization ?>"/>
 		<div class="clear"></div>
 
+		<?php $mediaExtraField['type']; exit; ?>
+
 		<label for="type_mediastorage"><?= TYPE ?> : </label>
 		<select name="type_mediastorage" id="type_mediastorage"/>
 			<option value="Text" <?php if (isset($mediaExtraField['type']) && !strcmp('Text', $mediaExtraField['type'])) echo ' selected' ?>><?= TEXT ?></option>
