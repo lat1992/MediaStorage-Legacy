@@ -11,20 +11,6 @@ require_once('ClientBundle/views/layout/header.php');
 <div class="container">
 
 <?php
-    while ($folder = $folders['data']->fetch_assoc()) {
-?>
-    <a class="link_div_folder" href="?page=folder&parent_id=<?= $folder['id']; ?>">
-    <div class="col hvr-grow">
-        <div class="title_div"><span><h2><?= $folder['translate'] ?></h2></span></div>
-        <img src="ClientBundle/ressources/folder/images/folder-256.png" />
-
-
-        <div class="clear_div"></div>
-    </div>
-    </a>
-<?php
-    }
-
     if (isset($programs)) {
         while ($program = $programs['data']->fetch_assoc()) {
         ?>
@@ -32,6 +18,23 @@ require_once('ClientBundle/views/layout/header.php');
             <div class="col hvr-grow">
                 <div class="title_div"><span><h2><?= $program['reference'] ?></h2></span></div>
                 <img src="ClientBundle/ressources/media/images/icon-program.png" />
+                <div>
+                </div>
+
+                <div class="clear_div"></div>
+            </div>
+            </a>
+        <?php
+        }
+    }
+
+    if (isset($contents)) {
+        while ($content = $contents['data']->fetch_assoc()) {
+        ?>
+            <a class="link_div_content" href="?page=content&media_id=<?= $content['id']; ?>">
+            <div class="col hvr-grow">
+                <div class="title_div"><span><h2><?= $content['reference'] ?></h2></span></div>
+                <img src="ClientBundle/ressources/media/images/icon-content.png" />
                 <div>
                 </div>
 

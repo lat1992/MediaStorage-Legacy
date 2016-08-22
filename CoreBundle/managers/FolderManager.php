@@ -17,11 +17,16 @@ class FolderManager {
 	public function formatFolderArrayWithPostData() {
 		$folder = array();
 
-		$parent = null;
-		foreach ($_POST['id_parent_mediastorage'] as $data) {
-			if ($data)
-				$parent = $data;
+		$parent = NULL;
+
+		if (isset($_POST['id_parent_mediastorage'])) {
+			foreach ($_POST['id_parent_mediastorage'] as $data_parent) {
+				if ($data_parent)
+					$parent = $data_parent;
+			}
 		}
+		if ($parent == NULL)
+			$parent = 'NULL';
 
 		$translate = array();
 		$cpt = 0;
@@ -48,9 +53,9 @@ class FolderManager {
 	public function folderCreateFormCheck() {
 		$error_folder = array();
 
-		if (!$_POST['id_parent_mediastorage']) {
-			$error_folder[] = PARENT_FOLDER_EMPTY;
-		}
+		// if (!$_POST['id_parent_mediastorage']) {
+		// 	$error_folder[] = PARENT_FOLDER_EMPTY;
+		// }
 		if (empty($_POST['data_mediastorage'])) {
 			$error_folder[] = INVALID_DATA_EMPTY;
 		}
@@ -94,6 +99,10 @@ class FolderManager {
 
 	public function getAllFoldersWithoutParentsByOrganizationDb() {
 		return $this->_folderModel->findAllFolderWithoutParentsByOrganization($_SESSION['id_organization']);
+	}
+
+	public function getFolderByParentIdAndOrganizationIdDb($parent_id) {
+		return $this->_folderModel->findAllFolderWithParentIdAndOrganization($parent_id, $_SESSION['id_organization']);
 	}
 
 	public function ajaxGetFolderByParentIdDb($parent_id) {

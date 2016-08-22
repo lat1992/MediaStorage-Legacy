@@ -43,6 +43,14 @@ class MediaExtraManager {
 		return $this->_mediaExtraModel->findMediaExtraByMediaIdAndFieldIdAndIdLanguage($id_media, $id_field, $id_language);
 	}
 
+	public function getMediaExtraByMediaIdAndFieldIdAndArrayIdDb($id_media, $id_field, $id_array) {
+		return $this->_mediaExtraModel->findMediaExtraByMediaIdAndFieldIdAndArrayId($id_media, $id_field, $id_array);
+	}
+
+	public function getMediaExtraByMediaIdAndFieldIdDb($id_media, $id_field) {
+		return $this->_mediaExtraModel->findMediaExtraByMediaIdAndFieldId($id_media, $id_field);
+	}
+
 	public function mediaExtraEditDb($media_extra_data) {
 		return $this->_mediaExtraModel->updateMediaExtraWithId($_POST, $media_extra_data['id']);
 	}
@@ -85,7 +93,7 @@ class MediaExtraManager {
 					else {
 						$media_extra = $return_value['data']->fetch_assoc();
 
-						$return_value = $this->mediaInfoEditDb($media_extra);
+						$return_value = $this->mediaExtraEditDb($media_extra);
 
 						if (!empty($return_value['error'])) {
 							return $return_value;
@@ -106,22 +114,64 @@ class MediaExtraManager {
 					$_POST['data_mediastorage'] = $value2['data'];
 					$_POST['id_media_extra_array_mediastorage'] = $value2['id_array'];
 
-					$return_value = $this->mediaExtraCreateDb();
+					$return_value = $this->getMediaExtraByMediaIdAndFieldIdAndArrayIdDb($_POST['id_media_mediastorage'], $id_field, $value2['id_array']);
 
-					if (!empty($return_value['error'])) {
-						return $return_value;
+					if ($return_value['data']->num_rows == 0) {
+
+						$return_value = $this->mediaExtraCreateDb();
+
+						if (!empty($return_value['error'])) {
+							return $return_value;
+						}
 					}
+
+					else {
+						$media_extra = $return_value['data']->fetch_assoc();
+
+						$return_value = $this->mediaExtraEditDb($media_extra);
+
+						if (!empty($return_value['error'])) {
+							return $return_value;
+						}
+					}
+
+					// $return_value = $this->mediaExtraCreateDb();
+
+					// if (!empty($return_value['error'])) {
+					// 	return $return_value;
+					// }
 				}
 			}
 			else {
 				$_POST['data_mediastorage'] = $value['data'];
 				$_POST['id_media_extra_array_mediastorage'] = $value['id_array'];
 
-				$return_value = $this->mediaExtraCreateDb();
+				$return_value = $this->getMediaExtraByMediaIdAndFieldIdDb($_POST['id_media_mediastorage'], $id_field);
 
-				if (!empty($return_value['error'])) {
-					return $return_value;
+				if ($return_value['data']->num_rows == 0) {
+
+					$return_value = $this->mediaExtraCreateDb();
+
+					if (!empty($return_value['error'])) {
+						return $return_value;
+					}
 				}
+
+				else {
+					$media_extra = $return_value['data']->fetch_assoc();
+
+					$return_value = $this->mediaExtraEditDb($media_extra);
+
+					if (!empty($return_value['error'])) {
+						return $return_value;
+					}
+				}
+
+				// $return_value = $this->mediaExtraCreateDb();
+
+				// if (!empty($return_value['error'])) {
+				// 	return $return_value;
+				// }
 			}
 		}
 		return NULL;
@@ -163,6 +213,8 @@ class MediaExtraManager {
 	}
 
 	public function formatMediaExtraDataWithPostData() {
-		return $_POST['media_extra_mediastorage'];
+		if (isset($_POST['media_extra_mediastorage']))
+			return $_POST['media_extra_mediastorage'];
+		return array();
 	}
 }

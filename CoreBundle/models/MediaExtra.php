@@ -84,6 +84,37 @@ class MediaExtra extends Model {
 		);
 	}
 
+	public function findMediaExtraByMediaIdAndFieldIdAndArrayId($id_media, $id_field, $id_array) {
+		$id_media = $this->_mysqli->real_escape_string($id_media);
+		$id_field = $this->_mysqli->real_escape_string($id_field);
+		$id_array = $this->_mysqli->real_escape_string($id_array);
+
+		$data = $this->_mysqli->query('SELECT id, data, id_media, id_field, id_array, id_language' .
+									' FROM ' . $this->_table .
+									' WHERE id_media = ' . $id_media . ' AND id_field = ' . $id_field . ' AND id_array = ' . $id_array . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findMediaExtraById: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findMediaExtraByMediaIdAndFieldId($id_media, $id_field) {
+		$id_media = $this->_mysqli->real_escape_string($id_media);
+		$id_field = $this->_mysqli->real_escape_string($id_field);
+
+		$data = $this->_mysqli->query('SELECT id, data, id_media, id_field, id_array, id_language' .
+									' FROM ' . $this->_table .
+									' WHERE id_media = ' . $id_media . ' AND id_field = ' . $id_field . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findMediaExtraById: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function deleteMediaExtraById($media_extra_id) {
 		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
 			' WHERE id = ' . $media_extra_id . ';'

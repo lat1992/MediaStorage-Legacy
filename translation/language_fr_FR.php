@@ -244,5 +244,11 @@ define('INVALID_TRANSLATE_TOO_LONG', 'La traduction est trop long');
 define('BAD_CHOICE', 'Tentative de modifier les valeurs importants');
 define('CREATE_MEDIA_PROGRAM', 'Créer un programme');
 define('EDIT_MEDIA_PROGRAM', 'Editer un programme');
+define('PROGRAM_LIST_TITLE', 'Liste des programmes');
+define('PROGRAM', 'Programme');
+define('CREATE_MEDIA_CONTENT', 'Créer un Contenu');
+define('EDIT_MEDIA_CONTENT', 'Editer un Contenu');
+define('CONTENT_LIST_TITLE', 'Liste des Contenus');
+
 define('EMPTY_MEDIA_REFERENCE', 'Référence vide');
 define('INVALID_MEDIA_REFERENCE_TOO_LONG', 'Reference trop longue');

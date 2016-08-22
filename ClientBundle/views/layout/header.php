@@ -4,7 +4,9 @@
 		<title>MediaStorage</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="ClientBundle/ressources/libs/Slidebars/dist/slidebars.min.css">
-		<link rel="stylesheet" href="ClientBundle/ressources/layout/css/menu.css">
+		<link rel="stylesheet" href="CoreBundle/ressources/layout/css/main.css">
+		<link rel="stylesheet" href="CoreBundle/ressources/layout/css/menu.css">
+		<link rel="stylesheet" href="CoreBundle/ressources/layout/css/customizable.css">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
@@ -25,11 +27,11 @@
 				<div id="header_div">
 
 					<div class="js-open-left-slidebar" >
-						<span>&#9776; <?= MENU ?></span>
+						<span>&#9776; <span class="to_hide_mobile"><?= MENU ?></span></span>
 					</div>
 
 					<div class="js-open-right-slidebar" >
-						<span><?= ADMINISTRATOR ?> &#9776;</span>
+						<span><span class="to_hide_mobile"><?= ADMINISTRATOR ?></span> &#9776;</span>
 					</div>
 
 					<div id="header_title_div">
@@ -40,7 +42,7 @@
 
 			</nav>
 
-			<div canvas="container" style="margin-top: 63px; padding-bottom: 63px; background-color: #f5f4f2">
+			<div canvas="container">
 
 <?php
 				if (!empty($this->_errorArray)) {

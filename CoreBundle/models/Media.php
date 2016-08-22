@@ -17,6 +17,64 @@ class Media extends Model {
 		);
 	}
 
+	public function findAllmediasByIdOrganizationAndIdType($id_organization, $id_type) {
+		$id_type = $this->_mysqli->real_escape_string($id_type);
+		$id_organization = $this->_mysqli->real_escape_string($id_organization);
+
+		$data = $this->_mysqli->query('SELECT id, id_parent, reference, id_type, id_organization, reference_client, right_view FROM ' . $this->_table .
+			' WHERE id_organization = ' . $id_organization . ' AND id_type = ' . $id_type .
+			';');
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllMediasByIdOrganization: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findAllMediasByIdOrganizationAndIdTypeAndFolderId($id_organization, $id_type, $id_folder) {
+		$id_type = $this->_mysqli->real_escape_string($id_type);
+		$id_organization = $this->_mysqli->real_escape_string($id_organization);
+		$id_folder = $this->_mysqli->real_escape_string($id_folder);
+
+		$data = $this->_mysqli->query('SELECT id, id_parent, reference, id_type, id_organization, reference_client, right_view FROM ' . $this->_table .
+			' WHERE id_organization = ' . $id_organization . ' AND id_type = ' . $id_type . ' AND id_folder = ' . $id_folder .
+			';');
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllMediasByIdOrganization: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findAllMediasByIdOrganizationAndFolderId($id_organization, $id_folder) {
+		$id_organization = $this->_mysqli->real_escape_string($id_organization);
+		$id_folder = $this->_mysqli->real_escape_string($id_folder);
+
+		$data = $this->_mysqli->query('SELECT id, id_parent, reference, id_type, id_organization, reference_client, right_view FROM ' . $this->_table .
+			' WHERE id_organization = ' . $id_organization . ' AND id_folder = ' . $id_folder .
+			';');
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllMediasByIdOrganization: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findAllMediasByIdOrganizationAndIdTypeAndParentId($id_organization, $id_type, $id_parent) {
+		$id_type = $this->_mysqli->real_escape_string($id_type);
+		$id_organization = $this->_mysqli->real_escape_string($id_organization);
+		$id_parent = $this->_mysqli->real_escape_string($id_parent);
+
+		$data = $this->_mysqli->query('SELECT id, id_parent, reference, id_type, id_organization, reference_client, right_view FROM ' . $this->_table .
+			' WHERE id_organization = ' . $id_organization . ' AND id_type = ' . $id_type . ' AND id_parent = ' . $id_parent .
+			';');
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllMediasByIdOrganization: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function createNewMedia($data) {
 		$id_parent = $this->_mysqli->real_escape_string($data['id_parent_mediastorage']);
 		$id_folder = $this->_mysqli->real_escape_string($data['id_folder_mediastorage']);
@@ -28,6 +86,7 @@ class Media extends Model {
 		$handover_date = $this->_mysqli->real_escape_string($data['handover_date_mediastorage']);
 		$created_date = $this->_mysqli->real_escape_string($data['created_date_mediastorage']);
 		$modified_date = $this->_mysqli->real_escape_string($data['modified_date_mediastorage']);
+
 		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_parent, id_folder, id_organization, id_type, reference, reference_client, right_view, handover_date, created_date, modified_date)' .
 			' VALUES (' . $id_parent . ', ' . $id_folder . ', ' . $id_organization . ', ' . $id_type .', "' . $reference . '", "' . $reference_client . '", ' . $right_view . ', "' . $handover_date . '","'. $created_date . '","'. $modified_date . '");'
 		);
@@ -45,9 +104,10 @@ class Media extends Model {
 		$id_type = $this->_mysqli->real_escape_string($data['id_type_mediastorage']);
 		$reference = $this->_mysqli->real_escape_string($data['reference_mediastorage']);
 		$right_view = $this->_mysqli->real_escape_string($data['right_view_mediastorage']);
+		$modified_date = $this->_mysqli->real_escape_string($data['modified_date_mediastorage']);
 
 		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
-			' SET id_parent = ' . $id_parent . ', id_organization = ' . $id_organization . ', id_type = ' . $id_type . ', reference = "' . $reference . '", right_view = ' . $right_view . ', right_download = "' . $right_download . '" ' .
+		' SET id_parent = ' . $id_parent . ', id_organization = ' . $id_organization . ', id_type = ' . $id_type . ', reference = "' . $reference . '", right_view = ' . $right_view . ', modified_date = "' . $modified_date . '" ' .
 			' WHERE id = ' . $media_id . ';'
 		);
 

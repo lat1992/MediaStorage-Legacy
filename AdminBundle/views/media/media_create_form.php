@@ -6,7 +6,7 @@
 				<option value=""></option>
 <?php
 				while ($parent = $parents['data']->fetch_assoc()) {
-					echo '<option value="' . $parent['id'] . '" >' . $parent['translate'] . '</option>';
+					echo '<option value="' . $parent['id'] . '" >' . $parent['reference_client'] . '</option>';
 				}
 ?>
 			</select>

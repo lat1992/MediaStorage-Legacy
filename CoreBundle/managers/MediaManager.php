@@ -14,6 +14,22 @@ class MediaManager {
 		return $this->_mediaModel->findAllMedias();
 	}
 
+	public function getAllProgramsByIdOrganizationDb() {
+		return $this->_mediaModel->findAllmediasByIdOrganizationAndIdType($_SESSION['id_organization'], 1);
+	}
+
+	public function getAllContentsByIdOrganizationDb() {
+		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdType($_SESSION['id_organization'], 2);
+	}
+
+	public function getAllProgramsByIdOrganizationAndFolderIdDb($id_folder) {
+		return $this->_mediaModel->findAllMediasByIdOrganizationAndFolderId($_SESSION['id_organization'], $id_folder);
+	}
+
+	public function getAllContentsByIdOrganizationAndParentIdDb($id_parent) {
+		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndParentId($_SESSION['id_organization'], 2, $id_parent);
+	}
+
 	public function formatMediaArrayWithPostData() {
 		$media = array();
 
@@ -26,18 +42,18 @@ class MediaManager {
 		return $media;
 	}
 
-	public function mediaCreateFormCheck() {
-		$error_media = array();
+	// public function mediaCreateFormCheck() {
+	// 	$error_media = array();
 
-		if (strlen($_POST['reference_mediastorage']) == 0) {
-			$error_media[] = EMPTY_MEDIA_REFERENCE;
-		}
-		if (strlen($_POST['reference_mediastorage']) > 50) {
-			$error_media[] = INVALID_MEDIA_REFERENCE_TOO_LONG;
-		}
+	// 	if (strlen($_POST['reference_mediastorage']) == 0) {
+	// 		$error_media[] = EMPTY_MEDIA_REFERENCE;
+	// 	}
+	// 	if (strlen($_POST['reference_mediastorage']) > 50) {
+	// 		$error_media[] = INVALID_MEDIA_REFERENCE_TOO_LONG;
+	// 	}
 
-		return $error_media;
-	}
+	// 	return $error_media;
+	// }
 
 	public function mediaCreateDb() {
 
@@ -72,6 +88,19 @@ class MediaManager {
 		if (strcmp($_POST['id_folder_mediastorage'], 'NULL') == 0)
 			$_POST['id_folder_mediastorage'] = $media_data['id_folder'];
 
+		if (strcmp($_POST['id_parent_mediastorage'], 'NULL') == 0)
+			$_POST['id_parent_mediastorage'] = $media_data['id_parent'];
+
+		if (!empty($_POST['handover_date_mediastorage'])) {
+			$temp = new DateTime($_POST['handover_date_mediastorage']);
+			$handover_date = $temp->format('Y-m-d H:i:s');
+			$_POST['handover_date_mediastorage'] = $handover_date;
+		}
+
+		$modified_date = date('Y-m-d H:i:s');
+
+		$_POST['modified_date_mediastorage'] = $modified_date;
+
 		return $this->_mediaModel->updateMediaWithId($_POST, $media_data['id']);
 	}
 
@@ -87,7 +116,7 @@ class MediaManager {
 		return $this->_mediaModel->findAllMediaWithParentIdAndOrganization($parent_id, $_SESSION['id_organization']);
 	}
 
-	public function preFillProgramPostData() {
+	public function preFillMediaPostData($id_type) {
 
 		$folder = NULL;
 
@@ -97,6 +126,17 @@ class MediaManager {
 		}
 		if ($folder == NULL)
 			$folder = 'NULL';
+
+		$parent = NULL;
+
+		if (isset($_POST['id_parent_mediastorage'])) {
+			foreach ($_POST['id_parent_mediastorage'] as $data_parent) {
+				if ($data_parent)
+					$parent = $data_parent;
+			}
+		}
+		if ($parent == NULL)
+			$parent = 'NULL';
 
 		$right_view = intval($_POST['right_view_mediastorage']);
 
@@ -109,12 +149,12 @@ class MediaManager {
 		$_POST['reference_mediastorage'] = intval($reference['reference']) + 1;
 		$_POST['right_view_mediastorage'] = $right_view;
 		$_POST['id_folder_mediastorage'] = $folder;
-		$_POST['id_parent_mediastorage'] = 'NULL';
-		$_POST['id_type_mediastorage'] = 1;
+		$_POST['id_parent_mediastorage'] = $parent;
+		$_POST['id_type_mediastorage'] = $id_type;
 		$_POST['id_organization_mediastorage'] = $_SESSION['id_organization'];
 	}
 
-	public function mediaProgramCreateFormCheck() {
+	public function mediaCreateFormCheck() {
 		$errors = array();
 
 		if (strlen($_POST['reference_client_mediastorage']) == 0) {
@@ -142,41 +182,43 @@ class MediaManager {
 			}
 		}
 
-		foreach ($_POST['media_extra_mediastorage'] as $media_extra_key => $media_extra) {
+		if (isset($_POST['media_extra_mediastorage'])) {
+			foreach ($_POST['media_extra_mediastorage'] as $media_extra_key => $media_extra) {
 
-			if (isset($media_extra['data'])) {
-				$_POST['media_extra_mediastorage'][$media_extra_key]['id_array'] = 'NULL';
-				if (strlen($media_extra['data']) == 0)
-					unset($_POST['media_extra_mediastorage'][$media_extra]);
-			}
-			elseif (isset($media_extra['id_array'])) {
-				$_POST['media_extra_mediastorage'][$media_extra_key]['data'] = 'NULL';
-				if (strlen($media_extra['id_array']) == 0)
-					unset($_POST['media_extra_mediastorage'][$media_extra]);
-			}
-			elseif (isset($media_extra['language'])) {
-
-				foreach ($media_extra['language'] as $key => $value) {
-
-					if (isset($value['data'])) {
-						$_POST['media_extra_mediastorage'][$media_extra_key]['language'][$key]['id_array'] = 'NULL';
-						if (strlen($value['data']) == 0)
-							unset($_POST['media_extra_mediastorage'][$media_extra_key]['language'][$key]);
-					}
+				if (isset($media_extra['data'])) {
+					$_POST['media_extra_mediastorage'][$media_extra_key]['id_array'] = 'NULL';
+					if (strlen($media_extra['data']) == 0)
+						unset($_POST['media_extra_mediastorage'][$media_extra]);
 				}
-
-			}
-			elseif (isset($media_extra['multiple'])) {
-
-				foreach ($media_extra['multiple'] as $key => $value) {
-
-					if (isset($value['id_array'])) {
-						$_POST['media_extra_mediastorage'][$media_extra_key]['multiple'][$key]['data'] = 'NULL';
-						if (strlen($value['id_array']) == 0)
-							unset($_POST['media_extra_mediastorage'][$media_extra_key]['multiple'][$key]);
-					}
+				elseif (isset($media_extra['id_array'])) {
+					$_POST['media_extra_mediastorage'][$media_extra_key]['data'] = 'NULL';
+					if (strlen($media_extra['id_array']) == 0)
+						unset($_POST['media_extra_mediastorage'][$media_extra]);
 				}
+				elseif (isset($media_extra['language'])) {
 
+					foreach ($media_extra['language'] as $key => $value) {
+
+						if (isset($value['data'])) {
+							$_POST['media_extra_mediastorage'][$media_extra_key]['language'][$key]['id_array'] = 'NULL';
+							if (strlen($value['data']) == 0)
+								unset($_POST['media_extra_mediastorage'][$media_extra_key]['language'][$key]);
+						}
+					}
+
+				}
+				elseif (isset($media_extra['multiple'])) {
+
+					foreach ($media_extra['multiple'] as $key => $value) {
+
+						if (isset($value['id_array'])) {
+							$_POST['media_extra_mediastorage'][$media_extra_key]['multiple'][$key]['data'] = 'NULL';
+							if (strlen($value['id_array']) == 0)
+								unset($_POST['media_extra_mediastorage'][$media_extra_key]['multiple'][$key]);
+						}
+					}
+
+				}
 			}
 		}
 

@@ -14,12 +14,14 @@
 		<div class="clear"></div>
 
 <?php
+			$cpt = 0;
 			while ($language = $languages['data']->fetch_assoc()) {
 ?>
 				<label for="data_mediastorage_<?= $cpt ?>" ><?= LANGUAGE_TRANSLATE . ' ' . $language['name'] . ' / ' . $language['code'] ?> : </label>
 				<input type="text" name="data_mediastorage[<?= $language['id'] ?>]" id="data_mediastorage_<?= $cpt ?>" value="<?= (isset($folder_language[intval($language['id'])])) ? $folder_language[intval($language['id'])]['data'] : '' ?>" /><br />
 				<div class="clear"></div>
 <?php
+				$cpt++;
 			}
 ?>
 		<input type="hidden" name="id_folder_create_mediastorage" value="984156" />

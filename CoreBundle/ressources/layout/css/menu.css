@@ -1,0 +1,114 @@
+[class*=js-] {
+    cursor: pointer;
+}
+
+/* TOP MENU */
+
+nav[canvas] {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0 5px 0;
+    font-weight: 900;
+
+}
+
+nav[canvas] h1 {
+	margin: 0 0 0 0;
+}
+
+.js-open-left-slidebar , .js-open-right-slidebar {
+    font-weight: bold;
+    height: 100%;
+   	padding: 2px 0 0 0;
+}
+
+.js-open-left-slidebar {
+	float: left;
+	margin: 0 0 0 20px;
+}
+
+.js-open-right-slidebar {
+	float: right;
+	margin: 0 20px 0 0;
+}
+
+#header_title_div {
+    font-size: 0.8em;
+    padding: 3px 0 0 0;
+}
+
+/* SIDE MENUS */
+
+[off-canvas] {
+  	padding: 0px;
+}
+
+[off-canvas] ul {
+    display: inline-block;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    list-style-type: none;
+    font-weight: bold;
+    width: 100%;
+}
+
+[off-canvas] li {
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+}
+
+[off-canvas] a {
+	display: inline-block;
+    text-decoration: none;
+    padding-left: 5%;
+    display: inline-block;
+
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+}
+
+[off-canvas] .profile_button, [off-canvas] .logout_button {
+    width:49%;
+    text-align: center;
+    padding: 0;
+    display: inline-block;
+}
+
+
+[off-canvas] .profile_button {
+    float: left;
+}
+
+
+[off-canvas] .logout_button {
+    float: right;
+}
+
+/* LOGO LEFT MENU */
+
+#menu_logo_img {
+    max-width: 245px;
+    max-height: 150px;
+    display:table-cell;
+    margin: 20px auto 20px auto;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    display: block;
+}
+
+.logo {
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  border: 5px solid #cccccc;
+  width: 150px;
+  height: 150px;
+  margin: 30px auto 30px auto;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}

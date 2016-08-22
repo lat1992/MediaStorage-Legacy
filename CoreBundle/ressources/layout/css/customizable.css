@@ -1,0 +1,68 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+/* MAIN WINDOW */
+
+body {
+	background-color: black;
+	color: black;
+	font-family: "roboto", 'QuickSand';
+}
+
+div[canvas] {
+	background-color: white;
+	color: black;
+}
+
+.error_div {
+    background-color: #800000;
+    color: white;
+}
+
+.success_div {
+    background-color: #003300;
+    color: white;
+}
+
+/* TOP MENU */
+
+nav[canvas] {
+	color: white;
+	background-color: #262626;
+}
+
+/* SIDE MENUS */
+
+[off-canvas] {
+	background-color: #262626;
+	color: red;
+}
+
+[off-canvas] a {
+	color: white;
+}
+
+[off-canvas] a:hover {
+    background-color: #cccccc;
+    color: black;
+}
+
+.profile_button {
+    background-color: #404040;
+    /*color: white;*/
+}
+
+.profile_button:hover {
+    background-color:  #0099ff;
+    color: white;
+}
+
+.logout_button {
+    background-color: #404040;
+    /*color: white;*/
+}
+
+.logout_button:hover {
+    background-color: #b30000;
+    color: white;
+}
+

@@ -1,43 +1,43 @@
 $( document ).ready(function() {
 
-    $('form').on('change', '.parent_mediastorage', function (){
-        var elem = this
+    // $('form').on('change', '.parent_mediastorage', function (){
+    //     var elem = this
 
-        $(elem).nextAll('.parent_mediastorage').remove();
-        $(elem).nextAll('.parent_mediastorage_label').remove();
-        $(elem).nextAll('.parent_mediastorage_clear').remove();
+    //     $(elem).nextAll('.parent_mediastorage').remove();
+    //     $(elem).nextAll('.parent_mediastorage_label').remove();
+    //     $(elem).nextAll('.parent_mediastorage_clear').remove();
 
-        $.ajax({
-            url: "?page=ajax_get_folder_by_parent_id_admin",
-            type: 'GET',
-            data: 'folder_id=' + this.value,
-            success: function(result, status) {
+    //     $.ajax({
+    //         url: "?page=ajax_get_folder_by_parent_id_admin",
+    //         type: 'GET',
+    //         data: 'folder_id=' + this.value,
+    //         success: function(result, status) {
 
-                if (!result)
-                    return;
+    //             if (!result)
+    //                 return;
 
-                var data = JSON.parse(result);
+    //             var data = JSON.parse(result);
 
-                $html =
-                    '<div class="clear" class="parent_mediastorage_clear"></div>' +
-                    '<label for="id_parent_mediastorage" class="parent_mediastorage_label"></label>' +
-                    '<select name="id_parent_mediastorage[]" id="id_parent_mediastorage" class="parent_mediastorage">' +
-                        '<option value=""></option>'
+    //             $html =
+    //                 '<div class="clear" class="parent_mediastorage_clear"></div>' +
+    //                 '<label for="id_parent_mediastorage" class="parent_mediastorage_label"></label>' +
+    //                 '<select name="id_parent_mediastorage[]" id="id_parent_mediastorage" class="parent_mediastorage">' +
+    //                     '<option value=""></option>'
 
-                for (i = 0; i < data.length; i++) {
-                     $html += '<option value="' + data[i].id + '">' + data[i].translate + '</option>';
-                }
+    //             for (i = 0; i < data.length; i++) {
+    //                  $html += '<option value="' + data[i].id + '">' + data[i].translate + '</option>';
+    //             }
 
-                $html += '</select>';
+    //             $html += '</select>';
 
-                $(elem).after($html);
-            },
-            error: function(result, status, error) {
-                console.log('ERROR : ');
-                console.log(error);
-            }
-        })
-    });
+    //             $(elem).after($html);
+    //         },
+    //         error: function(result, status, error) {
+    //             console.log('ERROR : ');
+    //             console.log(error);
+    //         }
+    //     })
+    // });
 
     $('form').on('change', '.folder_mediastorage', function (){
         var elem = this

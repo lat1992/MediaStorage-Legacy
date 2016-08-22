@@ -1,0 +1,31 @@
+/* MAIN WINDOW */
+
+body {
+	padding-bottom: 20px;
+}
+
+div[canvas] {
+	margin: 36px 0 0 0;
+	padding: 0 0 36px 0;
+}
+
+#header_div {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.error_div , .success_div {
+    width: 100%;
+    text-align: center;
+}
+
+.error_div span, .success_div span {
+    margin: 10px;
+    display: inline-block;
+}
+
+@media only screen and (max-width: 900px) {
+	.to_hide_mobile {
+		display: none;
+	}
+}
