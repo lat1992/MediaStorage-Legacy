@@ -145,6 +145,14 @@ class MediaExtraFieldController {
 
 		if (count($this->_errorArray) == 0) {
 
+			var_dump($mediaExtraFields);
+			exit;
+			while ($mediaExtraField_temp = $mediaExtraFields['data']->fetch_assoc()) {
+				$mediaExtraField = $mediaExtraField_temp;
+			}
+			var_dump($mediaExtraField);
+			exit;
+
 			if (isset($_POST['id_media_extra_field_create_mediastorage']) && (strcmp($_POST['id_media_extra_field_create_mediastorage'], '4894565') == 0)) {
 
 				$return_value['error'] = $this->_mediaExtraFieldManager->mediaExtraFieldEditFormCheck();
