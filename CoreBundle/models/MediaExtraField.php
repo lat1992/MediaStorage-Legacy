@@ -22,7 +22,7 @@ class MediaExtraField extends Model {
 		$data = $this->_mysqli->query('SELECT media_extra_field.id, media_extra_field.type, media_extra_field.id_organization, media_extra_field_language.data AS name' .
 			' FROM ' . $this->_table .
 			' JOIN `media_extra_field_language` ON media_extra_field.id = media_extra_field_language.id_field' .
-			' WHERE id_language = ' . $_SESSION['id_language_mediastorage'] . ' AND id_organization = ' . $id_organization
+			' WHERE id_language = ' . $_SESSION['id_language_mediastorage'] . ' AND id_organization = ' . $id_organization. ';'
 		);
 
 		return array(
@@ -64,15 +64,14 @@ class MediaExtraField extends Model {
 		);
 	}
 
-	public function updateMediaExtraFieldWithId($data, $media_extra_field_id) {
+	public function updateMediaExtraFieldWithId($media_extra_field_id, $data) {
 		$id_organization = $this->_mysqli->real_escape_string($data['id_organization_mediastorage']);
-		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
 		$type = $this->_mysqli->real_escape_string($data['type_mediastorage']);
-		$name = $this->_mysqli->real_escape_string($data['name_mediastorage']);
+		$mandatory = $this->_mysqli->real_escape_string($data['mandatory_mediastorage']);
 
 		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
-			' SET id_organization = ' . $id_organization . ', id_language = ' . $id_language . ', type = "' . $type . '", name = "' . $name .
-			'" WHERE id = ' . $media_extra_field_id . ';'
+			' SET id_organization = ' . $id_organization . ', type = "' . $type . '", mandatory =' . $mandatory .
+			' WHERE id = ' . $media_extra_field_id . ';'
 		);
 
 		return array(
@@ -83,11 +82,13 @@ class MediaExtraField extends Model {
 
 	public function findMediaExtraFieldById($media_extra_field_id) {
 		$media_extra_field_id = $this->_mysqli->real_escape_string($media_extra_field_id);
-		$data = $this->_mysqli->query('SELECT id, id_organization, type, mandatory ' .
-									' FROM ' . $this->_table .
-									' WHERE id = ' . $media_extra_field_id . ';'
+		$data = $this->_mysqli->query('SELECT media_extra_field.id, media_extra_field.type, media_extra_field.id_organization, media_extra_field_language.data AS name' .
+			' FROM ' . $this->_table .
+			' JOIN `media_extra_field_language` ON media_extra_field.id = media_extra_field_language.id_field' .
+			' WHERE id_language = ' . $_SESSION['id_language_mediastorage'] . ' AND media_extra_field.id = ' . $media_extra_field_id . ';'
 		);
 		$tmp = $data->fetch_assoc();
+		$data->data_seek(0);
 
 		return array(
 			'data' => $data,

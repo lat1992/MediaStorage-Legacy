@@ -105,8 +105,8 @@ class MediaExtraFieldController {
 				$_POST['id_field_mediastorage'] = $return_value['id'];
 
 				if (count($this->_errorArray) == 0) {
-					foreach ($_POST['media_extra_field_data_mediastorage'] as $value) {
-						$return_value = $this->_mediaExtraFieldLanguageManager->mediaExtraFieldLanguageCreateDb($_POST['id_field_mediastorage'], $value['id_language'], $value['data']);
+					foreach ($_POST['media_extra_field_language_data_mediastorage'] as $key => $value) {
+						$return_value = $this->_mediaExtraFieldLanguageManager->mediaExtraFieldLanguageCreateDb($_POST['id_field_mediastorage'], $key, $value);
 						$this->mergeErrorArray($return_value);
 					}
 
@@ -138,20 +138,20 @@ class MediaExtraFieldController {
 		$organizations = $this->_organizationManager->getAllOrganizationsDb();
 		$id_organization = $mediaExtraFields['id_organization'];
 		$groupLanguages = $this->_groupLanguageManager->getGroupLanguageByOrganizationIdDb($id_organization);
+		$mediaExtraFieldLanguages = $this->_mediaExtraFieldLanguageManager->getMediaExtraFieldLanguagesDb($_GET['media_extra_field_id']);
 
 		$this->mergeErrorArray($mediaExtraFields);
 		$this->mergeErrorArray($organizations);
 		$this->mergeErrorArray($groupLanguages);
+		$this->mergeErrorArray($mediaExtraFieldLanguages);
 
 		if (count($this->_errorArray) == 0) {
-
-			var_dump($mediaExtraFields);
-			exit;
 			while ($mediaExtraField_temp = $mediaExtraFields['data']->fetch_assoc()) {
 				$mediaExtraField = $mediaExtraField_temp;
 			}
-			var_dump($mediaExtraField);
-			exit;
+			while ($mediaExtraFieldLanguage_temp = $mediaExtraFieldLanguages['data']->fetch_assoc()) {
+				$mediaExtraFieldLanguage[$mediaExtraFieldLanguage_temp['id_language']] = $mediaExtraFieldLanguage_temp;
+			}
 
 			if (isset($_POST['id_media_extra_field_create_mediastorage']) && (strcmp($_POST['id_media_extra_field_create_mediastorage'], '4894565') == 0)) {
 
@@ -159,13 +159,20 @@ class MediaExtraFieldController {
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-					$return_value = $this->_mediaExtraFieldManager->mediaExtraFieldEditAsAdminDb($mediaExtraField['id_organization']);
+					$return_value = $this->_mediaExtraFieldManager->mediaExtraFieldEditDb($mediaExtraField['id'], $_POST);
 					$this->mergeErrorArray($return_value);
 
 					if (count($this->_errorArray) == 0) {
-						$_SESSION['flash_message'] = ACTION_SUCCESS;
-						header('Location:' . '?page=list_mediaExtraField_root');
-						exit;
+						foreach ($_POST['media_extra_field_language_data_mediastorage'] as $key => $value) {
+							$return_value = $this->_mediaExtraFieldLanguageManager->mediaExtraFieldLanguageEditDb($mediaExtraField['id'], $key, $value);
+							$this->mergeErrorArray($return_value);
+						}
+
+						if (count($this->_errorArray) == 0) {
+							$_SESSION['flash_message'] = ACTION_SUCCESS;
+							header('Location:' . '?page=list_media_extra_field_root&id_organization='. $id_organization);
+							exit;
+						}
 					}
 				}
 			}
@@ -178,7 +185,7 @@ class MediaExtraFieldController {
 	}
 
 	public function deleteAction() {
-
+/*
 		if (isset($_GET['mediaExtraField_id'])) {
 
 			$return_value = $this->_mediaExtraFieldManager->removeMediaExtraFieldByIdDb($_GET['media_extra_field_id']);
@@ -189,7 +196,7 @@ class MediaExtraFieldController {
 			}
 		}
 
-		include ('CoreBundle/views/common/error.php');
+		include ('CoreBundle/views/common/error.php');*/
 	}
 
 }

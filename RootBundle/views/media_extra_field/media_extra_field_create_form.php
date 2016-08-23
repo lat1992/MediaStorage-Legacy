@@ -15,8 +15,6 @@
 		<input type="hidden" name="id_organization_mediastorage" id="id_organization_mediastorage" value="<?= $id_organization ?>"/>
 		<div class="clear"></div>
 
-		<?php $mediaExtraField['type']; exit; ?>
-
 		<label for="type_mediastorage"><?= TYPE ?> : </label>
 		<select name="type_mediastorage" id="type_mediastorage"/>
 			<option value="Text" <?php if (isset($mediaExtraField['type']) && !strcmp('Text', $mediaExtraField['type'])) echo ' selected' ?>><?= TEXT ?></option>
@@ -33,8 +31,11 @@
 		<div class="clear"></div>
 <?php
 		while ($groupLanguage = $groupLanguages['data']->fetch_assoc()) {
+			$mediaExtraFieldLanguageText = '';
 			echo '<label for="media_extra_field_language_data_mediastorage['. $groupLanguage['id'] .']">' . LANGUAGE_TRANSLATE . ' (' . $groupLanguage['name'] . ') : </label>';
-			echo '<input type="text" name="media_extra_field_language_data_mediastorage['. $groupLanguage['id'] .']" id="media_extra_field_language_data_mediastorage" value=""></br>';
+			if (isset($mediaExtraFieldLanguage[intval($groupLanguage['id'])]))
+				$mediaExtraFieldLanguageText = $mediaExtraFieldLanguage[intval($groupLanguage['id'])]['data'];
+			echo '<input type="text" name="media_extra_field_language_data_mediastorage['. $groupLanguage['id'] .']" id="media_extra_field_language_data_mediastorage['. $groupLanguage['id'] .']" value="'. $mediaExtraFieldLanguageText .'"></br>';
 		}
 ?>
 
