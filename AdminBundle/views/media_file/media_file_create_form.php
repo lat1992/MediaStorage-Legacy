@@ -1,0 +1,1 @@
+<?php require_once('AdminBundle/views/media_file/media_file_upload_form.php'); ?>

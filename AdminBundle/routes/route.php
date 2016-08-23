@@ -15,4 +15,7 @@ $this->_route[] = array('create_content_admin', 'AdminBundle/controllers/MediaCo
 $this->_route[] = array('edit_content_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'editContentAction');
 $this->_route[] = array('list_content_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'listContentAction');
 
+$this->_route[] = array('create_media_file_admin', 'AdminBundle/controllers/MediaFileController.php', 'MediaFileController', 'createAction');
+$this->_route[] = array('upload_media_file_admin', 'AdminBundle/controllers/MediaFileController.php', 'MediaFileController', 'uploadAction');
+
 ?>

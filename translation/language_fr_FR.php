@@ -168,7 +168,6 @@ define('FOLDER_LIST_TITLE', 'Liste des dossiers');
 
 // Media
 
-
 define('INVALID_EPISODE_NUMBER_TOO_LONG', 'Numéro episode trop long');
 define('INVALID_IMAGE_VERSION_DATA_TOO_LONG', 'Version d\'image trop long');
 define('INVALID_SOUND_VERSION_DATA_TOO_LONG', 'Version de son trop long');
@@ -254,3 +253,7 @@ define('CONTENT_LIST_TITLE', 'Liste des Contenus');
 define('EMPTY_MEDIA_REFERENCE', 'Référence vide');
 define('INVALID_MEDIA_REFERENCE_TOO_LONG', 'Reference trop longue');
 define('MANDATORY', 'Obligatoire');
+
+// Media FIle
+
+define('MEDIA_FILE_UPLOAD_TITLE', 'Upload de média');
