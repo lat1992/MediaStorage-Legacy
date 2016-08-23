@@ -94,7 +94,7 @@ class MediaController {
 				'<th></th>',
 			);
 
-		$table_data[] = array();
+		$table_data = array();
 
 		if (count($this->_errorArray) == 0) {
 
