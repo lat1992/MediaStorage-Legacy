@@ -75,6 +75,20 @@ class Media extends Model {
 		);
 	}
 
+	public function findAllMediasWithoutParentsByIdOrganizationAndIdType($id_organization, $id_type) {
+		$id_type = $this->_mysqli->real_escape_string($id_type);
+		$id_organization = $this->_mysqli->real_escape_string($id_organization);
+
+		$data = $this->_mysqli->query('SELECT id, id_parent, reference, id_type, id_organization, reference_client, right_view FROM ' . $this->_table .
+			' WHERE id_organization = ' . $id_organization . ' AND id_type = ' . $id_type . ' AND id_parent IS NULL' .
+			';');
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllMediasByIdOrganization: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function createNewMedia($data) {
 		$id_parent = $this->_mysqli->real_escape_string($data['id_parent_mediastorage']);
 		$id_folder = $this->_mysqli->real_escape_string($data['id_folder_mediastorage']);

@@ -34,7 +34,7 @@ class ProgramPageController {
 			$this->mergeErrorArray($contents);
 		}
 		else {
-			$programs = $this->_folderManager->getAllProgramsWithoutParentsByOrganizationDb();
+			$programs = $this->_mediaManager->getAllProgramsWithoutParentsByOrganizationDb();
 
 			$this->mergeErrorArray($programs);
 		}

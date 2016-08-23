@@ -1,10 +1,12 @@
 <?php
 
-require_once('RootBundle/views/layout/header.php');
+require_once('ClientBundle/views/layout/header.php');
 
 ?>
 
 	<script src="AdminBundle/ressources/media/js/media.js"></script>
+
+	<link rel="stylesheet" href="CoreBundle/ressources/layout/css/form.css">
 
 	<div id="container">
 
@@ -33,6 +35,6 @@ require_once('RootBundle/views/layout/header.php');
 
 <?php
 
-require_once('RootBundle/views/layout/footer.php');
+require_once('ClientBundle/views/layout/footer.php');
 
 ?>

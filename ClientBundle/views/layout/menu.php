@@ -4,6 +4,7 @@
 		<li><a class="logout_button" href="?page=logout"><?= LOGOUT ?></a><a class="profile_button" href="?page=profile"><?= PROFILE ?></a></li>
 		<li><a href="?page=search"><?= SEARCH ?></a></li>
 		<li><a href="?page=folder"><?= FOLDER ?></a></li>
+		<li><a href="?page=program"><?= PROGRAM ?></a></li>
 		<li><a href="?page=content"><?= CONTENT ?></a></li>
 		<!--<li><a href="?page=create_user"><?= USER_CREATION_TITLE ?></a></li>
 		<li><a href="?page=list_user"><?= USER_LIST_TITLE ?></a></li>

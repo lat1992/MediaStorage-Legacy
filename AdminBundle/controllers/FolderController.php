@@ -35,13 +35,35 @@ class FolderController {
 		}
 	}
 
-	// public function listAction() {
-	// 	$folders = $this->_folderManager->getAllFoldersDb();
+	public function listAction() {
+		$folders = $this->_folderManager->getAllFoldersDb();
 
-	// 	$this->mergeErrorArray($folders);
+		$this->mergeErrorArray($folders);
 
-	// 	include ('AdminBundle/views/folder/folder_list.php');
-	// }
+		$table_header = array(
+				'<th>' . NAME . '</th>',
+				'<th></th>',
+				'<th></th>',
+			);
+
+		$table_data[] = array();
+
+		if (count($this->_errorArray) == 0) {
+
+			while ($folder = $folders['data']->fetch_assoc()) {
+				$table_data[] = array(
+					'<td>' . $folder['translate'] . '</td>',
+					'<td class="button_td edit" ><a href="?page=edit_folder_admin&folder_id=' . $folder['id'] . '" class="button_a edit">' . EDIT . '</a></td>',
+					'<td class="button_td delete" ><a href="?page=delete_folder_admin&folder_id=' . $folder['id'] . '" class="button_a delete">' . DELETE . '</a></td>',
+				);
+			}
+
+		}
+
+		$title = FOLDER_LIST_TITLE;
+
+		include ('AdminBundle/views/folder/folder_list.php');
+	}
 
 	public function createAction() {
 		$folder = array();

@@ -1,6 +1,8 @@
 <div off-canvas="slidebar-2 right reveal">
 	<ul>
-	<li><a href="?page=list_folder_admin"><?= FOLDER ?></a></li>
+		<li><a href="?page=list_folder_admin"><?= FOLDER ?></a></li>
+		<li><a href="?page=list_program_admin"><?= PROGRAM ?></a></li>
+		<li><a href="?page=list_content_admin"><?= CONTENT ?></a></li>
 <!-- 		<li><a href="?page=create_user"><?= USER_CREATION_TITLE ?></a></li>
 		<li><a href="?page=list_user"><?= USER_LIST_TITLE ?></a></li>
 		<li><a href="?page=list_role"><?= ROLE_LIST_TITLE ?></a></li>

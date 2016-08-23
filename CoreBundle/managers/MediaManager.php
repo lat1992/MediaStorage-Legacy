@@ -30,6 +30,10 @@ class MediaManager {
 		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndParentId($_SESSION['id_organization'], 2, $id_parent);
 	}
 
+	public function getAllProgramsWithoutParentsByOrganizationDb() {
+		return $this->_mediaModel->findAllMediasWithoutParentsByIdOrganizationAndIdType($_SESSION['id_organization'], 1);
+	}
+
 	public function formatMediaArrayWithPostData() {
 		$media = array();
 

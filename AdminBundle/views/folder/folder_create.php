@@ -1,8 +1,10 @@
 <?php
 
-require_once('RootBundle/views/layout/header.php');
+require_once('ClientBundle/views/layout/header.php');
 
 ?>
+
+	<link rel="stylesheet" href="CoreBundle/ressources/layout/css/form.css">
 
 	<script src="AdminBundle/ressources/folder/js/folder.js"></script>
 
@@ -11,6 +13,6 @@ require_once('RootBundle/views/layout/header.php');
 
 <?php
 
-require_once('RootBundle/views/layout/footer.php');
+require_once('ClientBundle/views/layout/footer.php');
 
 ?>
