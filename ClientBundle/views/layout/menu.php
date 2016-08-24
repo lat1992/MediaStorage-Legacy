@@ -1,7 +1,10 @@
 <div off-canvas="slidebar-1 left reveal">
 	<ul>
-		<li><div class= "logo" style="background-image: url(https://pbs.twimg.com/profile_images/1179925665/media365_400.jpg)"></div></li>
-		<li><a class="logout_button" href="?page=logout"><?= LOGOUT ?></a><a class="profile_button" href="?page=profile"><?= PROFILE ?></a></li>
+	<?php
+		echo '<li><div class= "logo" style="background-image: url(ClientBundle/ressources/organization/'. $_SESSION['id_organization'] .'/img/logo.png); background-size: contain;"><a class="logo_button" href="#"></a></div></li>';
+	?>
+		<li><a class="logout_button" href="?page=logout"><?= LOGOUT ?></a>
+		<a class="profile_button" href="?page=profile"><?= PROFILE ?></a></li>
 		<li><a href="?page=search"><?= SEARCH ?></a></li>
 		<li><a href="?page=folder"><?= FOLDER ?></a></li>
 		<li><a href="?page=program"><?= PROGRAM ?></a></li>

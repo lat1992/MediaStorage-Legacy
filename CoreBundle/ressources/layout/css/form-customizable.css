@@ -14,9 +14,6 @@ table tr:nth-child(odd) {
 	background-color: #e9e7e2;
 }
 
-th, td {
-}
-
 td.button_td a {
 	color: black;
 }
@@ -26,7 +23,7 @@ td.edit:hover {
 }
 
 td.delete:hover {
-	background-color: #b30000;
+	background-color: #ff1a1a;
 }
 
 td.edit a:hover, td.delete a:hover {

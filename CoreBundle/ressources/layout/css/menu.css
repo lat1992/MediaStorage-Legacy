@@ -100,6 +100,8 @@ nav[canvas] h1 {
 }
 
 .logo {
+  background-position: 0 50%;
+  background-color: white;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
@@ -111,4 +113,9 @@ nav[canvas] h1 {
   height: 150px;
   margin: 30px auto 30px auto;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+ul li div.logo a.logo_button:hover {
+  background-color: transparent;
+  height: 100%;
 }
