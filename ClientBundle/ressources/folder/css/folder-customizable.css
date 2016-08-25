@@ -1,0 +1,27 @@
+div .folder {
+  background-color: #FFFFCC;
+}
+
+div .program {
+  background-color: #C8C8FF;
+}
+
+div .content {
+  background-color: #C1FFF2;
+}
+
+div .folder h2 {
+  color: grey;
+}
+
+div .program h2 {
+  color: grey;
+}
+
+div .content h2 {
+  color: grey;
+}
+
+div .col .content_header {
+  color: white;
+}

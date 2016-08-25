@@ -15,10 +15,11 @@ require_once('ClientBundle/views/layout/header.php');
         while ($program = $programs['data']->fetch_assoc()) {
         ?>
             <a class="link_div_program" href="?page=program&media_id=<?= $program['id']; ?>">
-            <div class="col hvr-grow">
+            <div class="col hvr-grow program">
                 <div class="title_div"><span><h2><?= $program['reference'] ?></h2></span></div>
                 <img src="ClientBundle/ressources/media/images/icon-program.png" />
                 <div>
+                <!-- TODO: DESCIPTION OF PROGRAMME HERE -->
                 </div>
 
                 <div class="clear_div"></div>
@@ -32,7 +33,7 @@ require_once('ClientBundle/views/layout/header.php');
         while ($content = $contents['data']->fetch_assoc()) {
         ?>
             <a class="link_div_content" href="?page=content&media_id=<?= $content['id']; ?>">
-            <div class="col hvr-grow">
+            <div class="col hvr-grow content">
                 <div class="title_div"><span><h2><?= $content['reference'] ?></h2></span></div>
                 <img src="ClientBundle/ressources/media/images/icon-content.png" />
                 <div>

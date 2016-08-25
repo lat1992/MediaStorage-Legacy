@@ -72,7 +72,7 @@ nav[canvas] h1 {
 }
 
 [off-canvas] .profile_button, [off-canvas] .logout_button {
-    width:49%;
+    width:50%;
     text-align: center;
     padding: 0;
     display: inline-block;
