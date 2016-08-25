@@ -16,7 +16,7 @@ require_once('ClientBundle/views/layout/header.php');
     <a class="link_div_folder" href="?page=folder&parent_id=<?= $folder['id']; ?>">
     <div class="col hvr-grow folder">
         <div class="title_div"><span><h2><?= $folder['translate'] ?></h2></span></div>
-        <img src="ClientBundle/ressources/folder/images/<?= $_SESSION['id_organization'] ?>/folder.png" />
+        <img src="ClientBundle/ressources/folder/images/<?= $_SESSION['id_organization'] ?>/default.png" />
 
 
         <div class="clear_div"></div>
@@ -31,7 +31,7 @@ require_once('ClientBundle/views/layout/header.php');
             <a class="link_div_program" href="?page=program&media_id=<?= $program['id']; ?>">
             <div class="col hvr-grow program">
                 <div class="title_div"><span><h2><?= $program['reference'] ?></h2></span></div>
-                <img src="ClientBundle/ressources/media/images/icon-program.png" />
+                <img src="ClientBundle/ressources/media/images/program/<?= $_SESSION['id_organization'] ?>/default.png" />
                 <div>
                 </div>
 
