@@ -17,5 +17,5 @@ $this->_route[] = array('list_content_admin', 'AdminBundle/controllers/MediaCont
 
 $this->_route[] = array('create_media_file_admin', 'AdminBundle/controllers/MediaFileController.php', 'MediaFileController', 'createAction');
 $this->_route[] = array('upload_media_file_admin', 'AdminBundle/controllers/MediaFileController.php', 'MediaFileController', 'uploadAction');
-
+$this->_route[] = array('ajax_refresh_upload_list', 'AdminBundle/controllers/MediaFileController.php', 'MediaFileController', 'ajaxRefreshUploadListAction');
 ?>

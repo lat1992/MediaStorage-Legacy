@@ -10,8 +10,31 @@ class MediaFileManager {
 		$this->_mediaFileModel = new MediaFile();
 	}
 
+	public function getAllMediaFilesDb() {
+		return $this->_mediaFileModel->findAllMediaFiles();
+	}
+
+	public function getAllMediaFilesWithoutMediaIdDb() {
+		return $this->_mediaFileModel->findAllMediaFilesWithoutMediaId();
+	}
+
 	public function createMediaFileDb() {
-		$this->_mediaFileModel->createMediaFile($_POST);
+		return $this->_mediaFileModel->createMediaFile($_POST);
+	}
+
+	public function updateMultipleMediaFilesDb() {
+		if (isset($_POST['media_file_mediastorage'])) {
+
+			foreach ($_POST['media_file_mediastorage'] as $key => $value) {
+
+				$return_value = $this->_mediaFileModel->updateMediaFileMediaId($key, $_POST['id_media_mediastorage']);
+
+				if (!empty($return_value['error']))
+					return $return_value;
+			}
+		}
+
+		return $return_value;
 	}
 
 	public function formatPostDataFromFileUpload($result) {
@@ -19,7 +42,7 @@ class MediaFileManager {
 		$_POST['type_mediastorage'] = 'NULL';
 		$_POST['filename_mediastorage'] = $result['uploadName'];
 		$_POST['filepath_mediastorage'] = $_SESSION['id_organization'] . '/' . $_SESSION['user_id_mediastorage'] . '/' . $result['uuid'] . '/' . $result['uploadName'];
-		$_POST['meta_data_mediastorage'] = 'NULL';
+		$_POST['metadata_mediastorage'] = 'NULL';
 		$_POST['right_download_mediastorage'] = 1;
 		$_POST['right_addtocart_mediastorage'] = 1;
 	}

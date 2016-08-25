@@ -120,7 +120,7 @@ class MediaController {
 		$languages = null;
 
 		if (isset($_POST['id_media_create_mediastorage']) && (strcmp($_POST['id_media_create_mediastorage'], '895143') == 0)) {
-
+// var_dump($_POST);exit;
 			$return_value = $this->_mediaManager->preFillMediaPostData(1);
 			$this->mergeErrorArray($return_value);
 
@@ -149,11 +149,16 @@ class MediaController {
 						$this->mergeErrorArray($return_value);
 
 						if (count($this->_errorArray) == 0) {
-							$_SESSION['flash_message'] = ACTION_SUCCESS;
-							header('Location:' . '?page=list_program_admin');
-							exit;
-						}
 
+							$return_value = $this->_mediaFileManager->updateMultipleMediaFilesDb();
+							$this->mergeErrorArray($return_value);
+
+							if (count($this->_errorArray) == 0) {
+								$_SESSION['flash_message'] = ACTION_SUCCESS;
+								header('Location:' . '?page=list_program_admin');
+								exit;
+							}
+						}
 					}
 				}
 			}
@@ -163,11 +168,13 @@ class MediaController {
 		$enums = $this->_mediaFileManager->getEnumOfTypeDb();
 		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(1);
+		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
 
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($enums);
 		$this->mergeErrorArray($languages_data);
 		$this->mergeErrorArray($media_extra_data);
+		$this->mergeErrorArray($media_files);
 
 		$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
 
@@ -214,10 +221,17 @@ class MediaController {
 						$this->mergeErrorArray($return_value);
 
 						if (count($this->_errorArray) == 0) {
-							$_SESSION['flash_message'] = ACTION_SUCCESS;
-							header('Location:' . '?page=list_content_admin');
-							exit;
+
+							$return_value = $this->_mediaFileManager->updateMultipleMediaFilesDb();
+							$this->mergeErrorArray($return_value);
+
+							if (count($this->_errorArray) == 0) {
+								$_SESSION['flash_message'] = ACTION_SUCCESS;
+								header('Location:' . '?page=list_content_admin');
+								exit;
+							}
 						}
+
 
 					}
 				}
@@ -229,11 +243,13 @@ class MediaController {
 		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(2);
 		$parents = $this->_mediaManager->getAllProgramsByIdOrganizationDb();
+		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
 
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($enums);
 		$this->mergeErrorArray($languages_data);
 		$this->mergeErrorArray($media_extra_data);
+		$this->mergeErrorArray($media_files);
 
 		$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
 
@@ -261,9 +277,8 @@ class MediaController {
 
 			if (isset($_POST['id_media_create_mediastorage']) && (strcmp($_POST['id_media_create_mediastorage'], '895143') == 0)) {
 
-				$return_value = $this->_mediaManager->preFillPostData(1);
+				$return_value = $this->_mediaManager->preFillMediaPostData(1);
 				$this->mergeErrorArray($return_value);
-
 				$return_value = $this->_mediaManager->mediaCreateFormCheck();
 				$this->mergeErrorArray($return_value);
 
@@ -285,11 +300,16 @@ class MediaController {
 							$this->mergeErrorArray($return_value);
 
 							if (count($this->_errorArray) == 0) {
-								$_SESSION['flash_message'] = ACTION_SUCCESS;
-								header('Location:' . '?page=create_program_admin');
-								exit;
-							}
 
+								$return_value = $this->_mediaFileManager->updateMultipleMediaFilesDb();
+								$this->mergeErrorArray($return_value);
+
+								if (count($this->_errorArray) == 0) {
+									$_SESSION['flash_message'] = ACTION_SUCCESS;
+									header('Location:' . '?page=list_program_admin');
+									exit;
+								}
+							}
 						}
 					}
 				}
@@ -314,11 +334,13 @@ class MediaController {
 		$enums = $this->_mediaFileManager->getEnumOfTypeDb();
 		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(1);
+		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
 
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($enums);
 		$this->mergeErrorArray($languages_data);
 		$this->mergeErrorArray($media_extra_data);
+		$this->mergeErrorArray($media_files);
 
 		$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
 
@@ -345,7 +367,7 @@ class MediaController {
 
 			if (isset($_POST['id_media_create_mediastorage']) && (strcmp($_POST['id_media_create_mediastorage'], '895143') == 0)) {
 
-				$return_value = $this->_mediaManager->preFillPostData(2);
+				$return_value = $this->_mediaManager->preFillMediaPostData(2);
 				$this->mergeErrorArray($return_value);
 
 				$return_value = $this->_mediaManager->mediaCreateFormCheck();
@@ -369,11 +391,16 @@ class MediaController {
 							$this->mergeErrorArray($return_value);
 
 							if (count($this->_errorArray) == 0) {
-								$_SESSION['flash_message'] = ACTION_SUCCESS;
-								header('Location:' . '?page=create_program_admin');
-								exit;
-							}
 
+								$return_value = $this->_mediaFileManager->updateMultipleMediaFilesDb();
+								$this->mergeErrorArray($return_value);
+
+								if (count($this->_errorArray) == 0) {
+									$_SESSION['flash_message'] = ACTION_SUCCESS;
+									header('Location:' . '?page=list_content_admin');
+									exit;
+								}
+							}
 						}
 					}
 				}
@@ -399,11 +426,13 @@ class MediaController {
 		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(2);
 		$parents = $this->_mediaManager->getAllProgramsByIdOrganizationDb();
+		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
 
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($enums);
 		$this->mergeErrorArray($languages_data);
 		$this->mergeErrorArray($media_extra_data);
+		$this->mergeErrorArray($media_files);
 
 		$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
 

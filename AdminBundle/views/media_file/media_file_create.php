@@ -5,6 +5,8 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
 
 	<link rel="stylesheet" href="AdminBundle/ressources/fine-uploader/fine-uploader-new.css">
+	<link rel="stylesheet" href="CoreBundle/ressources/layout/css/form.css">
+
 
 	<script src="AdminBundle/ressources/fine-uploader/fine-uploader.js"></script>
 

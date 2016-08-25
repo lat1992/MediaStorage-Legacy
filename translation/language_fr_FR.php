@@ -249,6 +249,8 @@ define('PROGRAM', 'Programme');
 define('CREATE_MEDIA_CONTENT', 'Créer un Contenu');
 define('EDIT_MEDIA_CONTENT', 'Editer un Contenu');
 define('CONTENT_LIST_TITLE', 'Liste des Contenus');
+define('LINK_MEDIA_PROGRAM', 'Lier a un programme');
+define('LINK_MEDIA_CONTENT', 'Lier a un contenu');
 
 define('EMPTY_MEDIA_REFERENCE', 'Référence vide');
 define('INVALID_MEDIA_REFERENCE_TOO_LONG', 'Reference trop longue');

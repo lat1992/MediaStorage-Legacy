@@ -89,11 +89,22 @@ class MediaManager {
 	}
 
 	public function checkAndMediaEditDb($media_data) {
-		if (strcmp($_POST['id_folder_mediastorage'], 'NULL') == 0)
-			$_POST['id_folder_mediastorage'] = $media_data['id_folder'];
-
-		if (strcmp($_POST['id_parent_mediastorage'], 'NULL') == 0)
-			$_POST['id_parent_mediastorage'] = $media_data['id_parent'];
+		if (strcmp($_POST['id_folder_mediastorage'], 'NULL') == 0) {
+			if (is_null($media_data['id_folder'])) {
+				$_POST['id_folder_mediastorage'] = 'NULL';
+			}
+			else {
+				$_POST['id_folder_mediastorage'] = $media_data['id_folder'];
+			}
+		}
+		if (strcmp($_POST['id_parent_mediastorage'], 'NULL') == 0) {
+			if (is_null($media_data['id_parent'])) {
+				$_POST['id_parent_mediastorage'] = 'NULL';
+			}
+			else {
+				$_POST['id_parent_mediastorage'] = $media_data['id_parent'];
+			}
+		}
 
 		if (!empty($_POST['handover_date_mediastorage'])) {
 			$temp = new DateTime($_POST['handover_date_mediastorage']);
@@ -104,6 +115,9 @@ class MediaManager {
 		$modified_date = date('Y-m-d H:i:s');
 
 		$_POST['modified_date_mediastorage'] = $modified_date;
+
+		if (isset($media_data['reference']) && $media_data['reference'])
+			$_POST['reference_mediastorage'] = $media_data['reference'];
 
 		return $this->_mediaModel->updateMediaWithId($_POST, $media_data['id']);
 	}

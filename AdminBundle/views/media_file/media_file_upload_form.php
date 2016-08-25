@@ -59,7 +59,73 @@
     </div>
 </script>
 
+<script src="AdminBundle/ressources/media_file/js/media_file.js"></script>
+
 <script>
+
+    function ajaxRefreshUploadList() {
+        $.ajax({
+            url: "?page=ajax_refresh_upload_list",
+            type: 'GET',
+            success: function(result, status) {
+
+                if (!result)
+                    return;
+
+                var data = JSON.parse(result);
+                console.log(data);
+
+                var $html =
+                    '<tbody>' +
+                        '<tr>' +
+                            '<th></th>' +
+                            '<th><?= FILENAME ?></th>' +
+                            '<th><?= RIGHT_DOWNLOAD ?></th>' +
+                            '<th><?= RIGHT_ADDTOCART ?></th>' +
+                        '</tr>'
+                ;
+
+                for(var i = 0; i < data.length; i++) {
+                    $html +=
+                        '<tr>' +
+                            '<td><input type="checkbox" name="media_file_mediastorage[' + data[i].id + '] value="1" /></td>' +
+                            '<td>' + data[i].filename + '</td>' +
+                            '<td>' + data[i].right_download + '</td>' +
+                            '<td>' + data[i].right_addtocart + '</td>' +
+                        '</tr>'
+                    ;
+                }
+
+                $html +=
+                    '</tbody>'
+                ;
+
+
+
+
+                $('#upload_list').html($html);
+
+                // $html =
+                //     '<div class="clear" class="folder_mediastorage_clear"></div>' +
+                //     '<label for="id_folder_mediastorage" class="folder_mediastorage_label"></label>' +
+                //     '<select name="id_folder_mediastorage[]" id="id_folder_mediastorage" class="folder_mediastorage">' +
+                //         '<option value=""></option>'
+
+                // for (i = 0; i < data.length; i++) {
+                //      $html += '<option value="' + data[i].id + '">' + data[i].translate + '</option>';
+                // }
+
+                // $html += '</select>';
+
+                // $(elem).after($html);
+            },
+            error: function(result, status, error) {
+                console.log('ERROR : ');
+                console.log(error);
+            }
+        });
+    }
+
     var manualUploader = new qq.FineUploader({
     element: document.getElementById('fine-uploader'),
     request: {
@@ -95,10 +161,11 @@
 
         onComplete: function(id, name, responseJSON, xhr) {
             console.log('success : ' + JSON.stringify(responseJSON));
+        },
+
+        onAllComplete: function(){
+            ajaxRefreshUploadList();
         }
-        // onAllComplete: function(){
-        //     location.reload();
-        // }
     }
 });
 

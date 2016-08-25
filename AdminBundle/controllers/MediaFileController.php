@@ -33,6 +33,9 @@ class MediaFileController {
 
 		$title = MEDIA_FILE_UPLOAD_TITLE;
 
+		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
+		$this->mergeErrorArray($media_files);
+
 		include ('AdminBundle/views/media_file/media_file_create.php');
 	}
 
@@ -60,18 +63,6 @@ class MediaFileController {
 
             if (isset($_GET["done"])) {
                 $result = $this->_uploadHandler->combineChunks($mainPath);
-
-                $this->_mediaFileManager->formatPostDataFromFileUpload($result);
-
-                $return_value = $this->_mediaFileManager->createMediaFile();
-
-                $this->mergeErrorArray($return_value);
-
-                if (count($this->_errorArray) != 0) {
-                	$result['error'] = $this->_errorArray[0];
-                }
-
-               	$result['test'] = "zefzef";
             }
 
             else {
@@ -79,6 +70,16 @@ class MediaFileController {
 
                 // To return a name used for uploaded file you can use the following line.
                 $result["uploadName"] = $this->_uploadHandler->getUploadName();
+
+                $this->_mediaFileManager->formatPostDataFromFileUpload($result);
+
+                $return_value = $this->_mediaFileManager->createMediaFileDb();
+
+                $this->mergeErrorArray($return_value);
+
+                if (count($this->_errorArray) != 0) {
+                	$result['error'] = $this->_errorArray[0];
+                }
             }
 
             echo json_encode($result);
@@ -95,4 +96,25 @@ class MediaFileController {
         }
     }
 
+    public function ajaxRefreshUploadListAction() {
+
+		$media_files_data = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
+		$this->mergeErrorArray($media_files_data);
+
+		if (count($this->_errorArray) == 0) {
+
+			$media_file = array();
+
+			while ($media_file_data_temp = $media_files_data['data']->fetch_assoc()) {
+				$media_file[] = $media_file_data_temp;
+			}
+
+			if ($media_file)
+				echo json_encode($media_file);
+		}
+
+		echo '';
+		return;
+
+    }
 }
