@@ -11,17 +11,18 @@
 		if (count($this->_errorArray) == 0) {
 
 			foreach ($table_data as $row) {
+				//if ($row) {
 ?>
 			<tr>
 <?php
-				foreach($row as $td) {
-					echo $td;
-				}
+					foreach($row as $td) {
+						echo $td;
+					}
 ?>
 			</tr>
 <?php
+				//}
 			}
-
 		}
 
 ?>

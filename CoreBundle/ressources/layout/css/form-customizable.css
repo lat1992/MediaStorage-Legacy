@@ -1,0 +1,61 @@
+table {
+	background-color: #f5f4f2;
+}
+
+table tr th {
+	background-color: #a6a6a6;
+}
+
+body table tr:hover {
+	background-color: #cccccc;
+}
+
+table tr:nth-child(odd) {
+	background-color: #e9e7e2;
+}
+
+td.button_td a {
+	color: black;
+}
+
+td.edit:hover {
+	background-color:  #0099ff;
+}
+
+td.delete:hover {
+	background-color: #ff1a1a;
+}
+
+td.edit a:hover, td.delete a:hover {
+	color: white;
+}
+
+div.add {
+	background-color: #b3b3b3;
+}
+
+div.add a {
+	color: black;
+}
+
+.form_button {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    font-family: 'roboto', 'Quicksand';
+    background-color: #404040;
+}
+
+#cancel_button:hover {
+    background-color: #b30000;
+    color: white;
+}
+
+#validate_button:hover {
+    background-color: #0099ff;
+    color: white;
+}
+
+.info_multiple_select {
+	color: #666666;
+}

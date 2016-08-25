@@ -27,42 +27,41 @@ div[canvas] {
 
 nav[canvas] {
 	color: white;
-	background-color: #262626;
+	background-color: #404040;
 }
 
 /* SIDE MENUS */
 
 [off-canvas] {
-	background-color: #262626;
+	background-color: #404040;
 	color: red;
 }
 
 [off-canvas] a {
-	color: white;
+    color: white;
 }
 
 [off-canvas] a:hover {
-    background-color: #cccccc;
+    background-color: #00ff99;
     color: black;
 }
 
 .profile_button {
-    background-color: #404040;
-    /*color: white;*/
+    background-color: #4d4d4d;
+    color: white;
 }
 
-.profile_button:hover {
+ul li a.profile_button:hover {
     background-color:  #0099ff;
     color: white;
 }
 
 .logout_button {
-    background-color: #404040;
-    /*color: white;*/
-}
-
-.logout_button:hover {
-    background-color: #b30000;
+    background-color: #4d4d4d;
     color: white;
 }
 
+ul li a.logout_button:hover {
+    background-color: #ff1a1a;
+    color: white;
+}

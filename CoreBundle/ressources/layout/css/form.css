@@ -1,24 +1,12 @@
+@import url("form-customizable.css");
+
 table {
-	background-color: #a6a6a6;
 	text-align: left;
 	width: 100%;
 }
 
-table tr th {
-	background-color: #8c8c8c
-}
-
-body table tr:hover {
-	background-color: #cccccc;
-}
-
-table tr:nth-child(odd) {
-	background-color: #b3b3b3;
-}
-
 th, td {
 	padding: 10px;
-	border-right: 1px solid black;
 }
 
 td.button_td a {
@@ -28,7 +16,6 @@ td.button_td a {
 	height: 100%;
 	display: inline-block;
 	padding-top: 10px;
-	color: black;
 }
 
 .button_td {
@@ -36,23 +23,10 @@ td.button_td a {
 	vertical-align: middle;
 }
 
-td.edit:hover {
-	background-color:  #0099ff;
-}
-
-td.delete:hover {
-	background-color: #b30000;
-}
-
-td.edit a:hover, td.delete a:hover {
-	color: white;
-}
-
 div.add {
 	width: 100%;
 	text-align: center;
 	margin-bottom: 10px;
-	background-color: #b3b3b3;
 }
 
 div.add a {
@@ -60,7 +34,6 @@ div.add a {
 	width: 100%;
 	padding: 10px;
 	text-decoration: none;
-	color: black;
 }
 
 #container {
@@ -115,22 +88,7 @@ form input {
 .form_button {
     text-decoration: none;
     display: inline-block;
-    background-color: red;
-    color: white;
-    font-weight: bold;
-    font-family: 'roboto', 'Quicksand';
-    background-color: #404040;
     text-align: center;
-}
-
-#cancel_button:hover {
-    background-color: #b30000;
-    color: white;
-}
-
-#validate_button:hover {
-    background-color: #0099ff;
-    color: white;
 }
 
 .clear {
@@ -141,7 +99,6 @@ form input {
 	display: inline-block;
 	float: left;
 	font-size: 0.7em;
-	color: #666666;
 }
 
 input.input_checkbox {
