@@ -26,6 +26,7 @@
 
     $( 'body' ).on( 'click', '.js-close-slidebar', function ( event ) {
         event.stopPropagation();
+        event.preventDefault();
         controller.close();
     } );
 
