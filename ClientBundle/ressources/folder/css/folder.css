@@ -1,14 +1,16 @@
+@import url("folder-customizable.css");
+
 div .col {
   float: left;
-  width: 200px;
+  max-width: 300px;
+  min-width: 150px;
   max-height: 300px;
-  min-height: 188px;
+  min-height: 150px;
   text-align: center;
   margin: 20px 0 0 20px;
   padding: 5px;
   vertical-align: middle;
 
-  background-color: grey;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -17,13 +19,11 @@ div .col {
 div .col h2 {
   font-size: 0.9em;
   margin: 0;
-
-  color: white;
 }
 
 div .col img {
-    max-width: 150px;
-    margin: 5px 0 5px 0;
+  max-width: 150px;
+  margin: 5px 0 5px 0;
 
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -40,21 +40,17 @@ div .col .content_information {
   padding: 0 10px 0 10px;
 }
 
-div .col .content_header {
-  color: white;
-}
-
 a.link_div_folder, a.link_div_program, a.link_div_content {
   display: inline-block;
 }
 
-a.link_div_program img{
+/*a.link_div_program img{
   padding-top: 20px
 }
 
 a.link_div_content img{
   padding-top: 20px
-}
+}*/
 
 .hvr-grow {
   display: inline-block;
