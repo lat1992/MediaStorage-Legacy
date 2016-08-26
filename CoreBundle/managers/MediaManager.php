@@ -28,7 +28,11 @@ class MediaManager {
 	}
 
 	public function getAllProgramsByIdOrganizationAndFolderIdDb($id_folder) {
-		return $this->_mediaModel->findAllMediasByIdOrganizationAndFolderId($_SESSION['id_organization'], $id_folder);
+		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndFolderId($_SESSION['id_organization'], 1, $id_folder, $_SESSION['id_language_mediastorage']);
+	}
+
+	public function getAllContentsByIdOrganizationAndFolderIdDb($id_folder) {
+		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndFolderId($_SESSION['id_organization'], 2, $id_folder, $_SESSION['id_language_mediastorage']);
 	}
 
 	public function getAllContentsByIdOrganizationAndParentIdDb($id_parent) {
@@ -322,37 +326,39 @@ class MediaManager {
 			}
 			$cpt++;
 		}
-
 		$check = '';
 
-		$result = $this->_folderManager->getFolderByIdDb($data['id_folder']);
+		if (!is_null($data['id_folder'])) {
 
-		if (!empty($result['error']))
-			return $result;
+			$result = $this->_folderManager->getFolderByIdDb($data['id_folder']);
 
-		while ($check != NULL) {
+			if (!empty($result['error']))
+				return $result;
 
-			if ($result['data']->num_rows == 0) {
-				$check = NULL;
-			}
-			else {
-				$data = $result['data']->fetch_assoc();
+			while ($check != NULL) {
 
-				$path[$cpt]['data'] = $data['translate'];
-				$path[$cpt]['id'] = $data['id'];
-				$path[$cpt]['type'] = 0;
-
-				if (is_null($data['id_parent'])) {
+				if ($result['data']->num_rows == 0) {
 					$check = NULL;
 				}
 				else {
-					$result = $this->_folderManager->getFolderByIdDb($data['id_parent']);
+					$data = $result['data']->fetch_assoc();
 
-					if (!empty($result['error']))
-						return $result;
+					$path[$cpt]['data'] = $data['translate'];
+					$path[$cpt]['id'] = $data['id'];
+					$path[$cpt]['type'] = 0;
+
+					if (is_null($data['id_parent'])) {
+						$check = NULL;
+					}
+					else {
+						$result = $this->_folderManager->getFolderByIdDb($data['id_parent']);
+
+						if (!empty($result['error']))
+							return $result;
+					}
 				}
+				$cpt++;
 			}
-			$cpt++;
 		}
 
 		return $path;

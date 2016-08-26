@@ -90,6 +90,15 @@ class FolderManager {
 	}
 
 	public function folderEditAsAdminDb($folder_data) {
+		if (strcmp($_POST['id_parent_mediastorage'], 'NULL') == 0) {
+			if (is_null($folder_data['id_parent'])) {
+				$_POST['id_parent_mediastorage'] = 'NULL';
+			}
+			else {
+				$_POST['id_parent_mediastorage'] = $folder_data['id_parent'];
+			}
+		}
+
 		return $this->_folderModel->updateFolderWithIdAsAdmin($_POST, $folder_data['id']);
 	}
 
@@ -98,11 +107,11 @@ class FolderManager {
 	}
 
 	public function getAllFoldersWithoutParentsByOrganizationDb() {
-		return $this->_folderModel->findAllFolderWithoutParentsByOrganization($_SESSION['id_organization']);
+		return $this->_folderModel->findAllFolderWithoutParentsByOrganization($_SESSION['id_organization'], $_SESSION['id_language_mediastorage']);
 	}
 
 	public function getFolderByParentIdAndOrganizationIdDb($parent_id) {
-		return $this->_folderModel->findAllFolderWithParentIdAndOrganization($parent_id, $_SESSION['id_organization']);
+		return $this->_folderModel->findAllFolderWithParentIdAndOrganization($parent_id, $_SESSION['id_organization'], $_SESSION['id_language_mediastorage']);
 	}
 
 	public function ajaxGetFolderByParentIdDb($parent_id) {

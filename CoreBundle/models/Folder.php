@@ -90,8 +90,8 @@ class Folder extends Model {
 		);
 	}
 
-	public function findAllFolderWithoutParentsByOrganization($id_organization) {
-		$data = $this->_mysqli->query('SELECT id, id_parent, id_organization, IF ((SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1) IS NOT NULL,(SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1), (SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate ' .
+	public function findAllFolderWithoutParentsByOrganization($id_organization, $user_language_id) {
+		$data = $this->_mysqli->query('SELECT id, id_parent, id_organization, IF ((SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = ' . $user_language_id . ' LIMIT 1) IS NOT NULL,(SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = ' . $user_language_id . ' LIMIT 1), (SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate ' .
 			' FROM ' . $this->_table .
 			' WHERE id_parent IS NULL AND id_organization = ' . $id_organization
 		);
@@ -102,11 +102,11 @@ class Folder extends Model {
 		);
 	}
 
-	public function findAllFolderWithParentIdAndOrganization($parent_id, $organization_id) {
+	public function findAllFolderWithParentIdAndOrganization($parent_id, $organization_id, $user_language_id) {
 		$parent_id = $this->_mysqli->real_escape_string($parent_id);
 		$organization_id = $this->_mysqli->real_escape_string($organization_id);
 
-		$data = $this->_mysqli->query('SELECT id, IF ((SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1) IS NOT NULL,(SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1), (SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate ' .
+		$data = $this->_mysqli->query('SELECT id, IF ((SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = ' . $user_language_id . ' LIMIT 1) IS NOT NULL,(SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = ' . $user_language_id . ' LIMIT 1), (SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate ' .
 			' FROM ' . $this->_table .
 			' WHERE id_parent = ' . $parent_id . ' AND id_organization = ' . $organization_id
 		);

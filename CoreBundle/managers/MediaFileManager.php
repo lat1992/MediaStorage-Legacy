@@ -23,6 +23,8 @@ class MediaFileManager {
 	}
 
 	public function updateMultipleMediaFilesDb() {
+		$return_value = null;
+
 		if (isset($_POST['media_file_mediastorage'])) {
 
 			foreach ($_POST['media_file_mediastorage'] as $key => $value) {

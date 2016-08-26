@@ -62,118 +62,123 @@ class MediaExtraManager {
 	public function CreateMultipleMediaExtraDb() {
 		$post_save = $_POST;
 
-		foreach ($post_save['media_extra_mediastorage'] as $id_field => $value) {
+		if (isset($post_save['media_extra_mediastorage'])) {
 
-			$_POST['id_language_mediastorage'] = 'NULL';
-			$_POST['id_media_extra_field_mediastorage'] = $id_field;
+			foreach ($post_save['media_extra_mediastorage'] as $id_field => $value) {
 
-			if (isset($value['language'])) {
+				$_POST['id_language_mediastorage'] = 'NULL';
+				$_POST['id_media_extra_field_mediastorage'] = $id_field;
 
-				foreach ($value['language'] as $language => $value2) {
+				if (isset($value['language'])) {
 
-					$_POST['id_language_mediastorage'] = $language;
-					$_POST['data_mediastorage'] = $value2['data'];
-					$_POST['id_media_extra_array_mediastorage'] = $value2['id_array'];
+					foreach ($value['language'] as $language => $value2) {
 
-					$return_value = $this->getMediaExtraByMediaIdAndFieldIdAndIdLanguageDb($_POST['id_media_mediastorage'], $id_field, $language);
+						$_POST['id_language_mediastorage'] = $language;
+						$_POST['data_mediastorage'] = $value2['data'];
+						$_POST['id_media_extra_array_mediastorage'] = $value2['id_array'];
 
-					if (!empty($return_value['error'])) {
-						return $return_value;
-					}
-
-					if ($return_value['data']->num_rows == 0) {
-
-						$return_value = $this->mediaExtraCreateDb();
+						$return_value = $this->getMediaExtraByMediaIdAndFieldIdAndIdLanguageDb($_POST['id_media_mediastorage'], $id_field, $language);
 
 						if (!empty($return_value['error'])) {
 							return $return_value;
 						}
-					}
 
-					else {
-						$media_extra = $return_value['data']->fetch_assoc();
+						if ($return_value['data']->num_rows == 0) {
 
-						$return_value = $this->mediaExtraEditDb($media_extra);
+							$return_value = $this->mediaExtraCreateDb();
 
-						if (!empty($return_value['error'])) {
-							return $return_value;
+							if (!empty($return_value['error'])) {
+								return $return_value;
+							}
 						}
-					}
 
-					// $return_value = $this->mediaExtraCreateDb();
+						else {
+							$media_extra = $return_value['data']->fetch_assoc();
 
-					// if (!empty($return_value['error'])) {
-					// 	return $return_value;
-					// }
-				}
-			}
-			elseif (isset($value['multiple'])) {
+							$return_value = $this->mediaExtraEditDb($media_extra);
 
-				foreach ($value['multiple'] as $value2) {
-
-					$_POST['data_mediastorage'] = $value2['data'];
-					$_POST['id_media_extra_array_mediastorage'] = $value2['id_array'];
-
-					$return_value = $this->getMediaExtraByMediaIdAndFieldIdAndArrayIdDb($_POST['id_media_mediastorage'], $id_field, $value2['id_array']);
-
-					if ($return_value['data']->num_rows == 0) {
-
-						$return_value = $this->mediaExtraCreateDb();
-
-						if (!empty($return_value['error'])) {
-							return $return_value;
+							if (!empty($return_value['error'])) {
+								return $return_value;
+							}
 						}
-					}
 
-					else {
-						$media_extra = $return_value['data']->fetch_assoc();
+						// $return_value = $this->mediaExtraCreateDb();
 
-						$return_value = $this->mediaExtraEditDb($media_extra);
-
-						if (!empty($return_value['error'])) {
-							return $return_value;
-						}
-					}
-
-					// $return_value = $this->mediaExtraCreateDb();
-
-					// if (!empty($return_value['error'])) {
-					// 	return $return_value;
-					// }
-				}
-			}
-			else {
-				$_POST['data_mediastorage'] = $value['data'];
-				$_POST['id_media_extra_array_mediastorage'] = $value['id_array'];
-
-				$return_value = $this->getMediaExtraByMediaIdAndFieldIdDb($_POST['id_media_mediastorage'], $id_field);
-
-				if ($return_value['data']->num_rows == 0) {
-
-					$return_value = $this->mediaExtraCreateDb();
-
-					if (!empty($return_value['error'])) {
-						return $return_value;
+						// if (!empty($return_value['error'])) {
+						// 	return $return_value;
+						// }
 					}
 				}
+				elseif (isset($value['multiple'])) {
 
+					foreach ($value['multiple'] as $value2) {
+
+						$_POST['data_mediastorage'] = $value2['data'];
+						$_POST['id_media_extra_array_mediastorage'] = $value2['id_array'];
+
+						$return_value = $this->getMediaExtraByMediaIdAndFieldIdAndArrayIdDb($_POST['id_media_mediastorage'], $id_field, $value2['id_array']);
+
+						if ($return_value['data']->num_rows == 0) {
+
+							$return_value = $this->mediaExtraCreateDb();
+
+							if (!empty($return_value['error'])) {
+								return $return_value;
+							}
+						}
+
+						else {
+							$media_extra = $return_value['data']->fetch_assoc();
+
+							$return_value = $this->mediaExtraEditDb($media_extra);
+
+							if (!empty($return_value['error'])) {
+								return $return_value;
+							}
+						}
+
+						// $return_value = $this->mediaExtraCreateDb();
+
+						// if (!empty($return_value['error'])) {
+						// 	return $return_value;
+						// }
+					}
+				}
 				else {
-					$media_extra = $return_value['data']->fetch_assoc();
+					$_POST['data_mediastorage'] = $value['data'];
+					$_POST['id_media_extra_array_mediastorage'] = $value['id_array'];
 
-					$return_value = $this->mediaExtraEditDb($media_extra);
+					$return_value = $this->getMediaExtraByMediaIdAndFieldIdDb($_POST['id_media_mediastorage'], $id_field);
 
-					if (!empty($return_value['error'])) {
-						return $return_value;
+					if ($return_value['data']->num_rows == 0) {
+
+						$return_value = $this->mediaExtraCreateDb();
+
+						if (!empty($return_value['error'])) {
+							return $return_value;
+						}
 					}
+
+					else {
+						$media_extra = $return_value['data']->fetch_assoc();
+
+						$return_value = $this->mediaExtraEditDb($media_extra);
+
+						if (!empty($return_value['error'])) {
+							return $return_value;
+						}
+					}
+
+					// $return_value = $this->mediaExtraCreateDb();
+
+					// if (!empty($return_value['error'])) {
+					// 	return $return_value;
+					// }
 				}
-
-				// $return_value = $this->mediaExtraCreateDb();
-
-				// if (!empty($return_value['error'])) {
-				// 	return $return_value;
-				// }
 			}
+
 		}
+
 		return NULL;
 	}
 
