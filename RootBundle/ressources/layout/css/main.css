@@ -1,11 +1,11 @@
 table {
-	background-color: #a6a6a6;
+	background-color: #f5f4f2;
 	text-align: left;
 	width: 100%;
 }
 
 table tr th {
-	background-color: #8c8c8c
+	background-color: #a6a6a6;
 }
 
 body table tr:hover {
@@ -13,7 +13,7 @@ body table tr:hover {
 }
 
 table tr:nth-child(odd) {
-	background-color: #b3b3b3;
+	background-color: #e9e7e2;
 }
 
 th, td {
@@ -37,11 +37,11 @@ td.button_td a {
 }
 
 td.edit:hover {
-	background-color:  #0099ff;
+	background-color: #0099ff;
 }
 
 td.delete:hover {
-	background-color: #b30000;
+	background-color: #ff1a1a;
 }
 
 td.edit a:hover, td.delete a:hover {
