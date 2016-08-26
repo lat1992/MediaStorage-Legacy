@@ -32,14 +32,17 @@ class ProgramPageController {
 			$contents = $this->_mediaManager->getAllContentsByIdOrganizationAndParentIdDb($_GET['media_id']);
 
 			$this->mergeErrorArray($contents);
+
+			$title = $this->_mediaManager->getMediaByMediaId($_GET['media_id']);
+			$title = $this->_mediaManager->formatPathData($title);
 		}
 		else {
 			$programs = $this->_mediaManager->getAllProgramsWithoutParentsByOrganizationDb();
 
 			$this->mergeErrorArray($programs);
-		}
 
-		$title = PROGRAM;
+			$title = PROGRAM;
+		}
 
 		include ('ClientBundle/views/program/program.php');
 	}

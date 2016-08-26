@@ -1,10 +1,16 @@
 <?php
 
+require_once('CoreBundle/managers/MediaManager.php');
+
 class ContentPageController {
+
+	private $_mediaManager;
 
 	private $_errorArray;
 
 	public function __construct() {
+		$this->_mediaManager = new MediaManager();
+
 		$this->_errorArray = array();
 	}
 
@@ -21,7 +27,14 @@ class ContentPageController {
 	}
 
 	public function contentPageAction() {
-		$title = CONTENT;
+
+		if (isset($_GET['media_id'])) {
+			$title = $this->_mediaManager->getMediaByMediaId($_GET['media_id']);
+			$title = $this->_mediaManager->formatPathData($title);
+		}
+		else {
+			$title = CONTENT;
+		}
 
 		include ('ClientBundle/views/content/content.php');
 	}
