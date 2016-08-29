@@ -5,9 +5,9 @@
 	?>
 		<li><a class="logout_button" href="?page=logout"><?= LOGOUT ?></a>
 		<a class="profile_button" href="?page=profile"><?= PROFILE ?></a></li>
-		<li><a href="?page=search"><?= SEARCH ?></a></li>
-		<li><a href="?page=folder"><?= FOLDER ?></a></li>
-		<li><a href="?page=program"><?= PROGRAM ?></a></li>
-		<li><a href="?page=content"><?= CONTENT ?></a></li>
+		<li><a href="?page=search"><?= SEARCH_MENU ?></a></li>
+		<li><a href="?page=folder"><?= FOLDER_MENU ?></a></li>
+		<li><a href="?page=program"><?= PROGRAM_MENU ?></a></li>
+		<li><a href="?page=content"><?= CONTENT_MENU ?></a></li>
 	</ul>
 </div>

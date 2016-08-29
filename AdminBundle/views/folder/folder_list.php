@@ -9,7 +9,7 @@ require_once('ClientBundle/views/layout/header.php');
 	<div id="container">
 
 		<div class="add">
-			<a href="?page=create_organization_root"><?= FOLDER_CREATION_TITLE ?></a>
+			<a href="?page=create_folder_admin"><?= FOLDER_CREATION_TITLE ?></a>
 		</div>
 
 <?php
