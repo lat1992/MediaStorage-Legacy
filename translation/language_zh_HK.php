@@ -10,6 +10,7 @@ define('EDIT', '編輯');
 define('DELETE', '刪除');
 define('LANGUAGE_TRANSLATE', '翻譯');
 define('ID', 'ID');
+define('NO_TITLE', '沒有標題');
 
 // Information
 define('ACTION_SUCCESS', '操作成功');
@@ -56,6 +57,7 @@ define('ADMIN_INFORMATION', '注意：在做出任何修改前，請先確認清
 
 // Root
 define('ROOT', '超級管理員門戶');
+define('HOME', '首頁');
 
 // Login
 define('USERNAME', '用戶名');

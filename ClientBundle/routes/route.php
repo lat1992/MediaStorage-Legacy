@@ -1,6 +1,6 @@
 <?php
 
-$this->_route[] = array('home', 'ClientBundle/controllers/HomePageController.php', 'HomePageController', 'homeAction');
+$this->_route[] = array('home', 'ClientBundle/controllers/HomePageController.php', 'HomePageController', 'showAction');
 
 $this->_route[] = array('folder', 'ClientBundle/controllers/FolderPageController.php', 'FolderPageController', 'folderPageAction');
 
