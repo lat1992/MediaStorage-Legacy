@@ -265,3 +265,9 @@ define('ROOT', 'Portal Root');
 
 define('MEDIA_FILE_UPLOAD_TITLE', 'Upload de média');
 define('NO_TITLE', 'Sans titre');
+
+
+define('SEARCH_MENU', 'Recherche');
+define('FOLDER_MENU', 'Tous les dossiers');
+define('PROGRAM_MENU', 'Tous les programmes');
+define('CONTENT_MENU', 'Tous les contenus');
