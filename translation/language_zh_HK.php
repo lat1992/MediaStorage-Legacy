@@ -11,6 +11,37 @@ define('DELETE', '刪除');
 define('LANGUAGE_TRANSLATE', '翻譯');
 define('ID', 'ID');
 
+// Information
+define('ACTION_SUCCESS', '操作成功');
+define('INVALID_DATA_EMPTY', '數據為空');
+define('INVALID_USERNAME_TOO_LONG', '用戶名過長');
+define('INVALID_FIRST_NAME_TOO_LONG', '名字過長');
+define('INVALID_LAST_NAME_TOO_LONG', '姓氏過長');
+define('INVALID_ADDRESS_TOO_LONG', '地址過長');
+define('INVALID_ZIPCODE_TOO_LONG', '郵政編號過長');
+define('INVALID_CITY_TOO_LONG', '城市名過長');
+define('INVALID_COUNTRY_TOO_LONG', '國家名過長');
+define('INVALID_PHONE_TOO_LONG', '座機號過長');
+define('INVALID_MOBILE_TOO_LONG', '手機號過長');
+define('INVALID_COMPANY_TOO_LONG', '公司名過長');
+define('INVALID_JOB_TOO_LONG', '職稱過長');
+define('INVALID_DATA_TOO_LONG', '數據過長');
+define('INVALID_REFERENCE_TOO_LONG', '參考碼過長');
+define('INVALID_NAME_TOO_LONG', '名稱過長');
+define('INVALID_FILESERVER_TOO_LONG', '文件服務器地址過長');
+define('INVALID_CODE_TOO_LONG', '代碼過長');
+define('INVALID_EMAIL_TOO_LONG', 'EMAIL過長');
+define('INVALID_PARENT_ID', '母文件夾錯誤');
+define('INVALID_EPISODE_NUMBER_TOO_LONG', '集數字符過長');
+define('INVALID_IMAGE_VERSION_DATA_TOO_LONG', '視訊版本字符過長');
+define('INVALID_SOUND_VERSION_DATA_TOO_LONG', '音訊版本字符過長');
+define('INVALID_ELEMENT_TOO_LONG', '元素字符過長');
+define('INVALID_TYPE_TOO_LONG', '類型字符過長');
+define('INVALID_FILENAME_TOO_LONG', '文件名過長');
+define('INVALID_FILEPATH_TOO_LONG', '文件路徑過長');
+define('INVALID_TRANSLATE_TOO_LONG', '翻譯過長');
+define('INVALID_MEDIA_REFERENCE_TOO_LONG', '媒體參考碼過長');
+
 // Role
 define('ADMINISTRATOR', '管理員');
 
