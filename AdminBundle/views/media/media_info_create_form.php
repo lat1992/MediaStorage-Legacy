@@ -5,7 +5,7 @@
 
 			$user_value = '';
 			if (isset($media_infos[$language['id']]['title']))
-			$user_value = $media_infos[$language['id']]['title'];
+				$user_value = $media_infos[$language['id']]['title'];
 ?>
 			<label for="title_mediastorage_<?= $language['code'] ?>"><?= TITLE . ' - ' . $language['code'] ?> : </label>
 			<input type="text" name="title_mediastorage[<?= $language['id'] ?>]" id="title_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
@@ -20,7 +20,7 @@
 
 			$user_value = '';
 			if (isset($media_infos[$language['id']]['subtitle']))
-			$user_value = $media_infos[$language['id']]['subtitle'];
+				$user_value = $media_infos[$language['id']]['subtitle'];
 ?>
 			<label for="subtitle_mediastorage_<?= $language['code'] ?>"><?= SUBTITLE . ' - ' . $language['code'] ?> : </label>
 			<input type="text" name="subtitle_mediastorage[<?= $language['id'] ?>]" id="subtitle_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
@@ -35,7 +35,7 @@
 
 			$user_value = '';
 			if (isset($media_infos[$language['id']]['description']))
-			$user_value = $media_infos[$language['id']]['description'];
+				$user_value = $media_infos[$language['id']]['description'];
 ?>
 			<label for="description_mediastorage_<?= $language['code'] ?>"><?= DESCRIPTION . ' - ' . $language['code'] ?> : </label>
 			<input type="text" name="description_mediastorage[<?= $language['id'] ?>]" id="description_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
@@ -50,7 +50,7 @@
 
 			$user_value = '';
 			if (isset($media_infos[$language['id']]['episode_number']))
-			$user_value = $media_infos[$language['id']]['episode_number'];
+				$user_value = $media_infos[$language['id']]['episode_number'];
 ?>
 			<label for="episode_number_mediastorage_<?= $language['code'] ?>"><?= EPISODE_NUMBER . ' - ' . $language['code'] ?> : </label>
 			<input type="text" name="episode_number_mediastorage[<?= $language['id'] ?>]" id="episode_number_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
@@ -65,7 +65,7 @@
 
 			$user_value = '';
 			if (isset($media_infos[$language['id']]['image_version']))
-			$user_value = $media_infos[$language['id']]['image_version'];
+				$user_value = $media_infos[$language['id']]['image_version'];
 ?>
 			<label for="image_version_mediastorage_<?= $language['code'] ?>"><?= IMAGE_VERSION . ' - ' . $language['code'] ?> : </label>
 			<input type="text" name="image_version_mediastorage[<?= $language['id'] ?>]" id="image_version_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
@@ -80,7 +80,7 @@
 
 			$user_value = '';
 			if (isset($media_infos[$language['id']]['sound_version']))
-			$user_value = $media_infos[$language['id']]['sound_version'];
+				$user_value = $media_infos[$language['id']]['sound_version'];
 ?>
 			<label for="sound_version_mediastorage_<?= $language['code'] ?>"><?= SOUND_VERSION . ' - ' . $language['code'] ?> : </label>
 			<input type="text" name="sound_version_mediastorage[<?= $language['id'] ?>]" id="sound_version_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />

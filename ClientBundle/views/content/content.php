@@ -42,28 +42,7 @@ require_once('ClientBundle/views/layout/header.php');
 		</div>
 	</div>
 
-	<div id="description_div">
-        <table id="description_table">
-            <tbody>
-                <tr>
-                    <th>Titre :</th>
-                    <td>La rose des ventsLa rose des ventsLa rose des vents</td>
-                </tr>
-                <tr>
-                    <th>Sous-titre :</th>
-                    <td>Fast and furious</td>
-                </tr>
-                <tr>
-                    <th>Descriptif :</th>
-                    <td>film de voiture</td>
-                </tr>
-                <tr>
-                    <th>Auteur :</th>
-                    <td>jenesaispas</td>
-                </tr>
-            </tbody>
-        </table>
-	</div>
+	<?php require_once('ClientBundle/views/content/media_info_description_list.php'); ?>
 
 	<div id="download_link_div">
         <table id="download_link_table">
