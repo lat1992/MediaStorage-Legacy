@@ -19,10 +19,11 @@ class Cart extends Model {
 		);
 	}
 
-	public function findAllCartsByUserId($id_user) {
+	public function findAllCartsByUserId($id_user, $id_language) {
 		$id_user = $this->_mysqli->real_escape_string($id_user);
+		$id_language = $this->_mysqli->real_escape_string($id_language);
 
-		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, media_file.filename, media.id as id_media, IF ((SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = 3 LIMIT 1) IS NOT NULL,(SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = 3 LIMIT 1), (SELECT title FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS translate' .
+		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, media_file.filename, media.id as id_media, IF ((SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $id_language . ' LIMIT 1) IS NOT NULL,(SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $id_language . ' LIMIT 1), (SELECT title FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS translate' .
 			' FROM ' . $this->_table .
 			' LEFT JOIN media_file ON media_file.id = cart.id_media_file' .
 			' LEFT JOIN media ON media.id = media_file.id_media' .

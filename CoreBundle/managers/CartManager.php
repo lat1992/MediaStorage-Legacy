@@ -15,7 +15,7 @@ class CartManager {
 	}
 
 	public function getAllCartsByUserIdDb() {
-		return $this->_cartModel->findAllCartsByUserId($_SESSION['user_id_mediastorage']);
+		return $this->_cartModel->findAllCartsByUserId($_SESSION['user_id_mediastorage'], $_SESSION['id_language_mediastorage']);
 	}
 
 	public function formatCartArrayWithPostData() {

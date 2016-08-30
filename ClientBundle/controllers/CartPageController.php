@@ -36,4 +36,19 @@ class CartPageController {
 
 		include ('ClientBundle/views/cart/cart.php');
 	}
+
+	public function deleteCartAction() {
+
+		$cart_data = $this->_cartManager->removeCartByIdDb($_GET['cart_id']);
+
+		$this->mergeErrorArray($cart_data);
+
+		if (count($this->_errorArray) == 0) {
+			$_SESSION['flash_message'] = ACTION_SUCCESS;
+			header('Location:' . '?page=cart');
+			exit;
+		}
+
+		include ('ClientBundle/views/cart/cart.php');
+	}
 }

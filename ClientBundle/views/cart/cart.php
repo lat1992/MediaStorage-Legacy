@@ -22,8 +22,8 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
                 <tr>
                     <td><?= $cart_item['filename'] ?></td>
-                    <td><a href="?content&media_id=<?= $cart_item['id_media'] ?>"><?= $cart_item['translate'] ?></a></td>
-                    <td class="button_td delete" ><a href="#" class="button_a delete"><?= DELETE ?></a></td>
+                    <td><a href="?page=content&media_id=<?= $cart_item['id_media'] ?>"><?= $cart_item['translate'] ?></a></td>
+                    <td class="button_td delete" ><a href="?page=delete_cart&cart_id=<?= $cart_item['id'] ?>" class="button_a delete"><?= DELETE ?></a></td>
                 </tr>
 <?php
             }
