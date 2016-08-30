@@ -257,14 +257,9 @@ define('EMPTY_MEDIA_REFERENCE', 'Référence vide');
 define('INVALID_MEDIA_REFERENCE_TOO_LONG', 'Reference trop longue');
 define('MANDATORY', 'Obligatoire');
 
-<<<<<<< HEAD
-define('HOME', 'Page d\'accueil');
-define('ALL_FOLDER', 'Tous les dossiers');
-=======
 define('DASHBOARD', 'Dashboard');
 define('ADMIN_INFORMATION', 'Attention: Toute modification doit être verifier');
 define('ROOT', 'Portal Root');
->>>>>>> 965e29d06e3123ec2a4b99dd78bc677fae8f86be
 
 // Media FIle
 

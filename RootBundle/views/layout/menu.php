@@ -5,11 +5,7 @@
 		<li><a class="logout_button" href="?page=logout"><?= LOGOUT ?></a>
 		<a class="profile_button" href="?page=profile"><?= PROFILE ?></a></li>
 
-<<<<<<< HEAD
-		<li><a href="?page=dashboard_root"><?= HOME ?></a></li>
-=======
 		<li><a href="?page=dashboard_root"><?= DASHBOARD ?></a></li>
->>>>>>> 965e29d06e3123ec2a4b99dd78bc677fae8f86be
 		<li><a href="?page=list_group_root"><?= GROUP ?></a></li>
 		<li><a href="?page=list_organization_root"><?= ORGANIZATION ?></a></li>
 		<li><a href="?page=list_user_root"><?= USER ?></a></li>

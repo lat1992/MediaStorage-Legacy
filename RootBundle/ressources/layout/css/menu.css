@@ -105,12 +105,7 @@ ul {
     float: left;
     text-align: center;
     padding: 0;
-<<<<<<< HEAD
-    background-color:  #346382;
-   /* border-right: 1px solid #262626;*/
-=======
     background-color:  #005c99;
->>>>>>> 965e29d06e3123ec2a4b99dd78bc677fae8f86be
     color: white;
 }
 
@@ -123,13 +118,8 @@ ul {
     width:50%;
     float: right;
     text-align: center;
-<<<<<<< HEAD
-    padding: 0;
-    background-color: #703333;
-=======
     padding:0;
     background-color: #990000;
->>>>>>> 965e29d06e3123ec2a4b99dd78bc677fae8f86be
     color: white;
 }
 
