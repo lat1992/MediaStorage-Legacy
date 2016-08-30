@@ -14,6 +14,10 @@ class CartManager {
 		return $this->_cartModel->findAllCarts();
 	}
 
+	public function getAllCartsByUserIdDb() {
+		return $this->_cartModel->findAllCartsByUserId($_SESSION['user_id_mediastorage']);
+	}
+
 	public function formatCartArrayWithPostData() {
 		$cart = array();
 

@@ -262,7 +262,6 @@ class MediaManager {
 
 
 	public function formatPathData($path) {
-
 		if (isset($path[0])) {
 
 			if (intval($path[0]['type']) == 1)
@@ -299,7 +298,7 @@ class MediaManager {
 	}
 
 	public function getMediaByMediaId($media_id) {
-		$check = '';
+		$check = 0;
 		$path = array();
 		$result = $this->getMediaByIdDb($media_id);
 		$cpt = 0;
@@ -307,10 +306,10 @@ class MediaManager {
 		if (!empty($result['error']))
 			return $result;
 
-		while ($check != NULL) {
+		while ($check != 1) {
 
 			if ($result['data']->num_rows == 0) {
-				$check = NULL;
+				$check = 1;
 			}
 			else {
 				$data = $result['data']->fetch_assoc();
@@ -320,7 +319,7 @@ class MediaManager {
 				$path[$cpt]['type'] = $data['id_type'];
 
 				if (is_null($data['id_parent'])) {
-					$check = NULL;
+					$check = 1;
 				}
 				else {
 					$result = $this->getMediaByIdDb($data['id_parent']);
@@ -331,7 +330,8 @@ class MediaManager {
 			}
 			$cpt++;
 		}
-		$check = '';
+
+		$check = 0;
 
 		if (isset($data) && !is_null($data['id_folder'])) {
 
@@ -340,10 +340,10 @@ class MediaManager {
 			if (!empty($result['error']))
 				return $result;
 
-			while ($check != NULL) {
+			while ($check != 1) {
 
 				if ($result['data']->num_rows == 0) {
-					$check = NULL;
+					$check = 1;
 				}
 				else {
 					$data = $result['data']->fetch_assoc();
@@ -353,7 +353,7 @@ class MediaManager {
 					$path[$cpt]['type'] = 0;
 
 					if (is_null($data['id_parent'])) {
-						$check = NULL;
+						$check = 1;
 					}
 					else {
 						$result = $this->_folderManager->getFolderByIdDb($data['id_parent']);

@@ -273,5 +273,8 @@ define('PROGRAM_MENU', 'Tous les programmes');
 define('CONTENT_MENU', 'Tous les contenus');
 
 
+// NEW TRADUCTION <--- TO DELETE AFTER BEING DONE
+
 define('DOWNLOAD', 'Téléchager');
 define('ADDTOCART', 'Ajouter au panier');
+define('CART', 'Panier');

@@ -9,5 +9,6 @@
 		<li><a href="?page=folder"><?= FOLDER_MENU ?></a></li>
 		<li><a href="?page=program"><?= PROGRAM_MENU ?></a></li>
 		<li><a href="?page=list_content"><?= CONTENT_MENU ?></a></li>
+		<li><a href="?page=cart"><?= CART ?></a></li>
 	</ul>
 </div>

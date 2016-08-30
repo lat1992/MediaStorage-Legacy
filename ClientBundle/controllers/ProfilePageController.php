@@ -73,6 +73,8 @@ class ProfilePageController {
 						$_SESSION['language_mediastorage'] = $this->_languageManager->getLanguageCodeByIdDb($_POST['id_language_mediastorage']);
 						$_SESSION['id_language_mediastorage'] = $_POST['id_language_mediastorage'];
 
+						$_SESSION['flash_message'] = ACTION_SUCCESS;
+						header('Location:' . '?page=profile');
 						exit;
 					}
 				}

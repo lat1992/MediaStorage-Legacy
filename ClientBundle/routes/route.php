@@ -13,4 +13,6 @@ $this->_route[] = array('profile', 'ClientBundle/controllers/ProfilePageControll
 
 $this->_route[] = array('search', 'ClientBundle/controllers/SearchPageController.php', 'SearchPageController', 'searchPageAction');
 
+$this->_route[] = array('cart', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'cartPageAction');
+
 ?>
