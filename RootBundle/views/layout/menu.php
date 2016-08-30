@@ -1,10 +1,11 @@
 <div off-canvas="slidebar-1 left reveal">
 	<ul>
-		<li><div class= "logo" style="background-image: url(http://www.capitalvision.fr/main/squelettes/commun/logo_fr.gif); background-size: contain; background-position-y: center; background-color: white"></div></li>
+		<li><div class= "logo" style="background-image: url(http://www.capitalvision.fr/main/squelettes/commun/logo_fr.gif); background-size: contain; background-position: 0 50%; background-color: white"></div></li>
 
 		<li><a class="logout_button" href="?page=logout"><?= LOGOUT ?></a>
 		<a class="profile_button" href="?page=profile"><?= PROFILE ?></a></li>
 
+		<li><a href="?page=dashboard_root"><?= HOME ?></a></li>
 		<li><a href="?page=list_group_root"><?= GROUP ?></a></li>
 		<li><a href="?page=list_organization_root"><?= ORGANIZATION ?></a></li>
 		<li><a href="?page=list_user_root"><?= USER ?></a></li>

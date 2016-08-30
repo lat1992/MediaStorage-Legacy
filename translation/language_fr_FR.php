@@ -256,6 +256,9 @@ define('EMPTY_MEDIA_REFERENCE', 'Référence vide');
 define('INVALID_MEDIA_REFERENCE_TOO_LONG', 'Reference trop longue');
 define('MANDATORY', 'Obligatoire');
 
+define('HOME', 'Page d\'accueil');
+define('ALL_FOLDER', 'Tous les dossiers');
+
 // Media FIle
 
 define('MEDIA_FILE_UPLOAD_TITLE', 'Upload de média');

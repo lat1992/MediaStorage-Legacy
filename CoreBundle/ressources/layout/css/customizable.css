@@ -47,7 +47,7 @@ nav[canvas] {
 }
 
 .profile_button {
-    background-color: #4d4d4d;
+    background-color: #346382;
     color: white;
 }
 
@@ -57,7 +57,8 @@ ul li a.profile_button:hover {
 }
 
 .logout_button {
-    background-color: #4d4d4d;
+    background-color: #703333;
+    /*background-color: #4d4d4d;*/
     color: white;
 }
 

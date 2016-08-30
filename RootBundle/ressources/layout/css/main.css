@@ -41,7 +41,7 @@ td.edit:hover {
 }
 
 td.delete:hover {
-	background-color: #b30000;
+	background-color: #ff1a1a;
 }
 
 td.edit a:hover, td.delete a:hover {
@@ -124,7 +124,7 @@ form input {
 }
 
 #cancel_button:hover {
-    background-color: #b30000;
+    background-color: #ff1a1a;
     color: white;
 }
 

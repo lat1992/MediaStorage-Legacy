@@ -101,8 +101,12 @@ ul {
 }
 
 .profile_button {
-    width:49%; float: left; text-align: center; padding: 0;background-color:  #404040;
-    border-right: 1px solid #262626;
+    width:50%;
+    float: left;
+    text-align: center;
+    padding: 0;
+    background-color:  #346382;
+   /* border-right: 1px solid #262626;*/
     color: white;
 }
 
@@ -112,12 +116,16 @@ ul {
 }
 
 .logout_button {
-    width:49%; float: right;text-align: center; padding:0;background-color: #404040;
+    width:50%;
+    float: right;
+    text-align: center;
+    padding: 0;
+    background-color: #703333;
     color: white;
 }
 
 .logout_button:hover {
-    background-color: #b30000;
+    background-color: #ff1a1a;
     color: white;
 }
 
