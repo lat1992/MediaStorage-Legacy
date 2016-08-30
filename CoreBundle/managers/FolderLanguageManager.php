@@ -67,9 +67,11 @@ class FolderLanguageManager {
 
 			$result = $this->getFolderLanguageByFolderIdAndLanguageIdDb($folder_data['id_folder_mediastorage'], $folder_data['id_language_mediastorage']);
 
-			if ($result['data'] !== false) {
-				$row = $result['data']->fetch_assoc();
+			if (!empty($result['error']))
+				return $result;
 
+			if ($result['data']->num_rows != 0) {
+				$row = $result['data']->fetch_assoc();
 				$return_value = $this->_folderLanguageModel->updateFolderLanguageWithId($folder_data, $row['id']);
 
 				if (!empty($return_value['error']))

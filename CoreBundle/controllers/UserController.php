@@ -42,7 +42,7 @@ class UserController {
 			$this->mergeErrorArray($return_value);
 
 			if ($return_value['data']) {
-				header('Location:' . '?page=dashboard');
+				header('Location:' . '?page=home');
 			}
 		}
 

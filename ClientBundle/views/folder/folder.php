@@ -27,10 +27,10 @@ require_once('ClientBundle/views/layout/header.php');
 
     if (isset($programs)) {
         while ($program = $programs['data']->fetch_assoc()) {
-        ?>
+?>
             <a class="link_div_program" href="?page=program&media_id=<?= $program['id']; ?>">
             <div class="col hvr-grow program">
-                <div class="title_div"><span><h2><?= $program['reference'] ?></h2></span></div>
+                <div class="title_div"><span><h2><?= $program['translate'] ?></h2></span></div>
                 <img src="ClientBundle/ressources/media/img/default-program.png" />
                 <div>
                 </div>
@@ -38,7 +38,24 @@ require_once('ClientBundle/views/layout/header.php');
                 <div class="clear_div"></div>
             </div>
             </a>
-        <?php
+<?php
+        }
+    }
+
+    if (isset($contents)) {
+        while ($content = $contents['data']->fetch_assoc()) {
+?>
+            <a class="link_div_content" href="?page=content&media_id=<?= $content['id']; ?>">
+            <div class="col hvr-grow content">
+                <div class="title_div"><span><h2><?= $content['translate'] ?></h2></span></div>
+                <img src="ClientBundle/ressources/media/img/default-content.png" />
+                <div>
+                </div>
+
+                <div class="clear_div"></div>
+            </div>
+            </a>
+ <?php
         }
     }
 ?>

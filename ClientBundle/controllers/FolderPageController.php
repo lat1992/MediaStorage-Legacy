@@ -34,16 +34,24 @@ class FolderPageController {
 		if (isset($_GET['parent_id'])) {
 			$folders = $this->_folderManager->getFolderByParentIdAndOrganizationIdDb($_GET['parent_id']);
 			$programs = $this->_mediaManager->getAllProgramsByIdOrganizationAndFolderIdDb($_GET['parent_id']);
+			$contents = $this->_mediaManager->getAllContentsByIdOrganizationAndFolderIdDb($_GET['parent_id']);
 
+			$this->mergeErrorArray($folders);
 			$this->mergeErrorArray($programs);
+			$this->mergeErrorArray($contents);
+
+			$title = $this->_folderManager->getFolderPathByFolderId($_GET['parent_id']);
+			$title = $this->_folderManager->formatPathData($title);
+
 		}
 		else {
 			$folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
+
+			$title = FOLDER;
 		}
 
 		$this->mergeErrorArray($folders);
 
-		$title = FOLDER;
 
 		include ('ClientBundle/views/folder/folder.php');
 	}

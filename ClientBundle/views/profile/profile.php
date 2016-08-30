@@ -67,7 +67,7 @@ require_once('ClientBundle/views/layout/header.php');
 
         <div class="clear"></div>
 
-        <a id="cancel_button" class="form_button" href="?page=folder">Annuler</a>
+        <a id="cancel_button" class="form_button" href="?page=folder"><?= CANCEL ?></a>
 
         <input id="validate_button" type="submit" class="submit form_button" value="<?= VALIDATE ?>" />
     </form>

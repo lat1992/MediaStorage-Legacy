@@ -1,6 +1,6 @@
 <?php
 
-class HomePageController {
+class DashboardController {
 
 	private $_errorArray;
 
@@ -21,6 +21,7 @@ class HomePageController {
 	}
 
 	public function showAction() {
-		include ('ClientBundle/views/home/home.php');
+		include ('AdminBundle/views/dashboard/dashboard.php');
 	}
+
 }

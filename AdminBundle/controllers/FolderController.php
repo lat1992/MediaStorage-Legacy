@@ -144,7 +144,7 @@ class FolderController {
 
 						if (count($this->_errorArray) == 0) {
 							$_SESSION['flash_message'] = ACTION_SUCCESS;
-							header('Location:' . '?page=create_folder_admin');
+							header('Location:' . '?page=list_folder_admin');
 							exit;
 						}
 					}

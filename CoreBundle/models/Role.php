@@ -66,6 +66,8 @@ class Role extends Model {
 	}
 
 	public function findRoleById($role_id) {
+		$role_id = $this->_mysqli->real_escape_string($role_id);
+
 		$data = $this->_mysqli->query('SELECT role.id, role, id_organization, data, id_language' .
 									' FROM ' . $this->_table .
 									' LEFT JOIN role_language ON role.id = role_language.id_role' .

@@ -26,7 +26,7 @@ require_once('ClientBundle/views/layout/header.php');
 
 		<input type="hidden" name="id_media_create_mediastorage" value="895143" />
 
-		<a id="cancel_button" class="form_button" href="?page=list_organization_root"><?= CANCEL ?></a>
+		<a id="cancel_button" class="form_button" href="?page=list_content_admin"><?= CANCEL ?></a>
 		<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 
 		</form>

@@ -47,7 +47,11 @@ nav[canvas] {
 }
 
 .profile_button {
+<<<<<<< HEAD
     background-color: #346382;
+=======
+    background-color: #005c99;
+>>>>>>> 965e29d06e3123ec2a4b99dd78bc677fae8f86be
     color: white;
 }
 
@@ -57,12 +61,26 @@ ul li a.profile_button:hover {
 }
 
 .logout_button {
+<<<<<<< HEAD
     background-color: #703333;
     /*background-color: #4d4d4d;*/
+=======
+    background-color: #990000;
+>>>>>>> 965e29d06e3123ec2a4b99dd78bc677fae8f86be
     color: white;
 }
 
 ul li a.logout_button:hover {
+    background-color: #ff1a1a;
+    color: white;
+}
+
+ul li a.root_button {
+    background-color: #990000;
+    color: white;
+}
+
+ul li a.root_button:hover {
     background-color: #ff1a1a;
     color: white;
 }

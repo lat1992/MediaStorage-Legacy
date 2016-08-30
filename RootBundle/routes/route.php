@@ -1,5 +1,7 @@
 <?php
 
+$this->_route[] = array('dashboard_root', 'RootBundle/controllers/DashboardController.php', 'DashboardController', 'showAction');
+
 $this->_route[] = array('create_group_root', 'RootBundle/controllers/GroupController.php', 'GroupController', 'createAction');
 $this->_route[] = array('list_group_root', 'RootBundle/controllers/GroupController.php', 'GroupController', 'listAction');
 $this->_route[] = array('edit_group_root', 'RootBundle/controllers/GroupController.php', 'GroupController', 'editAction');

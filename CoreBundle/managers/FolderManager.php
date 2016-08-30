@@ -90,6 +90,15 @@ class FolderManager {
 	}
 
 	public function folderEditAsAdminDb($folder_data) {
+		if (strcmp($_POST['id_parent_mediastorage'], 'NULL') == 0) {
+			if (is_null($folder_data['id_parent'])) {
+				$_POST['id_parent_mediastorage'] = 'NULL';
+			}
+			else {
+				$_POST['id_parent_mediastorage'] = $folder_data['id_parent'];
+			}
+		}
+
 		return $this->_folderModel->updateFolderWithIdAsAdmin($_POST, $folder_data['id']);
 	}
 
@@ -98,14 +107,72 @@ class FolderManager {
 	}
 
 	public function getAllFoldersWithoutParentsByOrganizationDb() {
-		return $this->_folderModel->findAllFolderWithoutParentsByOrganization($_SESSION['id_organization']);
+		return $this->_folderModel->findAllFolderWithoutParentsByOrganization($_SESSION['id_organization'], $_SESSION['id_language_mediastorage']);
 	}
 
 	public function getFolderByParentIdAndOrganizationIdDb($parent_id) {
-		return $this->_folderModel->findAllFolderWithParentIdAndOrganization($parent_id, $_SESSION['id_organization']);
+		return $this->_folderModel->findAllFolderWithParentIdAndOrganization($parent_id, $_SESSION['id_organization'], $_SESSION['id_language_mediastorage']);
 	}
 
 	public function ajaxGetFolderByParentIdDb($parent_id) {
 		return $this->_folderModel->findAllFolderWithParentIdAndOrganization($parent_id, $_SESSION['id_organization']);
+	}
+
+	public function formatPathData($path) {
+
+		$path = array_reverse($path);
+		$final_path = FOLDER . '<span class="to_hide_mobile"> : ';
+		$cpt = 0;
+
+		foreach ($path as $path_data) {
+
+			if ($cpt != 0) {
+				$final_path .= '/';
+			}
+
+			$final_path .= '<a href="?page=folder&parent_id=' . $path_data['id'] . '">' . $path_data['data'] . '</a>';
+
+			$cpt++;
+		}
+
+		$final_path .= '</span>';
+
+		return $final_path;
+	}
+
+	public function getFolderPathByFolderId($folder_id) {
+
+		$check = '';
+		$path = array();
+		$result = $this->getFolderByIdDb($folder_id);
+		$cpt = 0;
+
+		if (!empty($result['error']))
+			return $result;
+		while ($check != NULL) {
+
+			if ($result['data']->num_rows == 0) {
+				$check = NULL;
+			}
+			else {
+				$data = $result['data']->fetch_assoc();
+
+				$path[$cpt]['data'] = $data['translate'];
+				$path[$cpt]['id'] = $data['id'];
+
+				if (is_null($data['id_parent'])) {
+					$check = NULL;
+				}
+				else {
+					$result = $this->getFolderByIdDb($data['id_parent']);
+
+					if (!empty($result['error']))
+						return $result;
+				}
+			}
+			$cpt++;
+		}
+
+		return $path;
 	}
 }

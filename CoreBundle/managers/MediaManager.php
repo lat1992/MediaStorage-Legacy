@@ -1,13 +1,18 @@
 <?php
 
 require_once('CoreBundle/models/Media.php');
+require_once('CoreBundle/managers/FolderManager.php');
 
 class MediaManager {
 
 	private $_mediaModel;
 
+	private $_folderManager;
+
 	public function __construct() {
 		$this->_mediaModel = new Media();
+
+		$this->_folderManager = new FolderManager();
 	}
 
 	public function getAllMediasDb() {
@@ -23,7 +28,11 @@ class MediaManager {
 	}
 
 	public function getAllProgramsByIdOrganizationAndFolderIdDb($id_folder) {
-		return $this->_mediaModel->findAllMediasByIdOrganizationAndFolderId($_SESSION['id_organization'], $id_folder);
+		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndFolderId($_SESSION['id_organization'], 1, $id_folder, $_SESSION['id_language_mediastorage']);
+	}
+
+	public function getAllContentsByIdOrganizationAndFolderIdDb($id_folder) {
+		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndFolderId($_SESSION['id_organization'], 2, $id_folder, $_SESSION['id_language_mediastorage']);
 	}
 
 	public function getAllContentsByIdOrganizationAndParentIdDb($id_parent) {
@@ -32,6 +41,10 @@ class MediaManager {
 
 	public function getAllProgramsWithoutParentsByOrganizationDb() {
 		return $this->_mediaModel->findAllMediasWithoutParentsByIdOrganizationAndIdType($_SESSION['id_organization'], 1);
+	}
+
+	public function getAllContentsWithoutParentsByOrganizationDb() {
+		return $this->_mediaModel->findAllMediasWithoutParentsByIdOrganizationAndIdType($_SESSION['id_organization'], 2);
 	}
 
 	public function formatMediaArrayWithPostData() {
@@ -245,5 +258,114 @@ class MediaManager {
 
 	public function getLastReferenceNumberByOrganizationDb() {
 		return $this->_mediaModel->findLastRefenceNumberByOrganization($_SESSION['id_organization']);
+	}
+
+
+	public function formatPathData($path) {
+
+		if (isset($path[0])) {
+
+			if (intval($path[0]['type']) == 1)
+				$final_path = PROGRAM . '<span class="to_hide_mobile"> : ';
+			elseif (intval($path[0]['type']) == 2)
+				$final_path = CONTENT . '<span class="to_hide_mobile"> : ';
+			else
+				$final_path = FOLDER . '<span class="to_hide_mobile"> : ';
+
+		}
+
+		$path = array_reverse($path);
+		$cpt = 0;
+
+		foreach ($path as $path_data) {
+
+			if ($cpt != 0) {
+				$final_path .= '/';
+			}
+
+			if (intval($path_data['type']) == 1)
+				$final_path .= '<a href="?page=program&media_id=' . $path_data['id'] . '">' . $path_data['data'] . '</a>';
+			elseif (intval($path_data['type']) == 2)
+				$final_path .= '<a href="?page=content&media_id=' . $path_data['id'] . '">' . $path_data['data'] . '</a>';
+			else
+				$final_path .= '<a href="?page=folder&parent_id=' . $path_data['id'] . '">' . $path_data['data'] . '</a>';
+
+			$cpt++;
+		}
+
+		$final_path .= '</span>';
+
+		return $final_path;
+	}
+
+	public function getMediaByMediaId($media_id) {
+		$check = '';
+		$path = array();
+		$result = $this->getMediaByIdDb($media_id);
+		$cpt = 0;
+
+		if (!empty($result['error']))
+			return $result;
+
+		while ($check != NULL) {
+
+			if ($result['data']->num_rows == 0) {
+				$check = NULL;
+			}
+			else {
+				$data = $result['data']->fetch_assoc();
+
+				$path[$cpt]['data'] = $data['reference_client'];
+				$path[$cpt]['id'] = $data['id'];
+				$path[$cpt]['type'] = $data['id_type'];
+
+				if (is_null($data['id_parent'])) {
+					$check = NULL;
+				}
+				else {
+					$result = $this->getMediaByIdDb($data['id_parent']);
+
+					if (!empty($result['error']))
+						return $result;
+				}
+			}
+			$cpt++;
+		}
+		$check = '';
+
+		if (isset($data) && !is_null($data['id_folder'])) {
+
+			$result = $this->_folderManager->getFolderByIdDb($data['id_folder']);
+
+			if (!empty($result['error']))
+				return $result;
+
+			while ($check != NULL) {
+
+				if ($result['data']->num_rows == 0) {
+					$check = NULL;
+				}
+				else {
+					$data = $result['data']->fetch_assoc();
+
+					$path[$cpt]['data'] = $data['translate'];
+					$path[$cpt]['id'] = $data['id'];
+					$path[$cpt]['type'] = 0;
+
+					if (is_null($data['id_parent'])) {
+						$check = NULL;
+					}
+					else {
+						$result = $this->_folderManager->getFolderByIdDb($data['id_parent']);
+
+						if (!empty($result['error']))
+							return $result;
+					}
+				}
+				$cpt++;
+			}
+		}
+
+		return $path;
 	}
 }

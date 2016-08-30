@@ -7,7 +7,7 @@ $this->_route[] = array('login', 'CoreBundle/controllers/UserController.php', 'U
 // LOGOUT
 
 $this->_route[] = array('logout', 'CoreBundle/controllers/UserController.php', 'UserController', 'logoutAction');
-
+/*
 // MANAGE USER
 
 $this->_route[] = array('create_user', 'CoreBundle/controllers/UserController.php', 'UserController', 'createAction');
@@ -17,9 +17,6 @@ $this->_route[] = array('delete_user', 'CoreBundle/controllers/UserController.ph
 
 // TEST
 
-$this->_route[] = array('dashboard', 'ClientBundle/controllers/FolderPageController.php', 'FolderPageController', 'FolderPageAction');
-
-$this->_route[] = array('search', 'ClientBundle/controllers/SearchPageController.php', 'SearchPageController', 'SearchPageAction');
 
 // MANAGE ROLE
 
@@ -144,4 +141,4 @@ $this->_route[] = array('delete_folder_language', 'CoreBundle/controllers/Folder
 
 $this->_route[] = array('create_folder_media', 'CoreBundle/controllers/FolderMediaController.php', 'FolderMediaController', 'createAction');
 $this->_route[] = array('edit_folder_media', 'CoreBundle/controllers/FolderMediaController.php', 'FolderMediaController', 'editAction');
-$this->_route[] = array('delete_folder_media', 'CoreBundle/controllers/FolderMediaController.php', 'FolderMediaController', 'deleteAction');
+$this->_route[] = array('delete_folder_media', 'CoreBundle/controllers/FolderMediaController.php', 'FolderMediaController', 'deleteAction');*/
