@@ -29,8 +29,30 @@ class MailController {
 		}
 	}
 
+	public function selectOrganizationAction() {
+		$mail = array();
+
+		if (isset($_POST['id_select_mediastorage']) && (strcmp($_POST['id_select_mediastorage'], '4894565') == 0)) {
+			$mail = $this->_mailManager->formatSelectOrganizationWithPostData();
+
+			header('Location:' . '?page=list_mail_root&id_organization=' . $mail['id_organization']);
+			exit;
+		}
+
+		$organizations = $this->_organizationManager->getAllOrganizationsDb();
+
+		$this->mergeErrorArray($organizations);
+
+		$title = FIELD;
+
+		include ('RootBundle/views/common/select_organization.php');
+	}
+
 	public function listAction() {
-		$mails = $this->_mailManager->getAllMailsDb();
+
+		$id_organization = $_GET['id_organization'];
+
+		$mails = $this->_mailManager->getAllMailsWithOrganizationDb($id_organization);
 
 		$this->mergeErrorArray($mails);
 
@@ -84,6 +106,8 @@ class MailController {
 			}
 		}
 
+		$id_organization = $_GET['id_organization'];
+
 		$organizations = $this->_organizationManager->getAllOrganizationsDb();
 
 		$this->mergeErrorArray($organizations);
@@ -95,6 +119,7 @@ class MailController {
 
 	public function editAction() {
 		$mail_data = $this->_mailManager->getMailByIdDb($_GET['mail_id']);
+		$id_organization = $mail_data['id_organization'];
 
 		$this->mergeErrorArray($mail_data);
 

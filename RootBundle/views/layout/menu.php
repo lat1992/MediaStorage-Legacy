@@ -10,7 +10,7 @@
 		<li><a href="?page=list_organization_root"><?= ORGANIZATION ?></a></li>
 		<li><a href="?page=list_user_root"><?= USER ?></a></li>
 		<li><a href="?page=list_role_root"><?= ROLE ?></a></li>
-		<li><a href="?page=list_mail_root"><?= EMAIL ?></a></li>
+		<li><a href="?page=select_organization_mail_root"><?= EMAIL ?></a></li>
 		<li><a href="?page=list_language_root"><?= LANGUAGE ?></a></li>
 		<li><a href="?page=select_organization_media_extra_field_root"><?= FIELD ?></a></li>
 		<li><br/></li>

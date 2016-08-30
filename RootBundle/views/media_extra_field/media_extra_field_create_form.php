@@ -3,7 +3,7 @@
 	<form id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
 
 		<label for="id_organization_mediastorage"><?= ORGANIZATION ?> : </label>
-		<select name="id_organization_mediastorage" id="id_organization_mediastorage" disabled />
+		<select name="id_organization_mediastorage" id="id_organization_mediastorage" />
 <?php
 			$cpt = 0;
 			while ($organization = $organizations['data']->fetch_assoc()) {
@@ -12,7 +12,6 @@
 			}
 ?>
 		</select>
-		<input type="hidden" name="id_organization_mediastorage" id="id_organization_mediastorage" value="<?= $id_organization ?>"/>
 		<div class="clear"></div>
 
 		<label for="type_mediastorage"><?= TYPE ?> : </label>

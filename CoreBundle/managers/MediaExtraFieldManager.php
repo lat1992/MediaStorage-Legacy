@@ -4,22 +4,22 @@ require_once('CoreBundle/models/MediaExtraField.php');
 
 class MediaExtraFieldManager {
 
-	private $_mediaExtraField;
+	private $_mediaExtraFieldModel;
 
 	public function __construct() {
-		$this->_mediaExtraField = new MediaExtraField();
+		$this->_mediaExtraFieldModel = new MediaExtraField();
 	}
 
 	public function getAllMediaExtraFieldsWithMediaExtraFieldLanguageAndLanguageDb() {
-		return $this->_mediaExtraField->findAllMediaExtraFieldsWithMediaExtraFieldLanguageAndLanguage();
+		return $this->_mediaExtraFieldModel->findAllMediaExtraFieldsWithMediaExtraFieldLanguageAndLanguage();
 	}
 
 	public function getAllMediaExtraFieldsDb() {
-		return $this->_mediaExtraField->findAllMediaExtraFields();
+		return $this->_mediaExtraFieldModel->findAllMediaExtraFields();
 	}
 
 	public function getAllMediaExtraFieldsWithOrganizationDb($id_organization) {
-		return $this->_mediaExtraField->findAllMediaExtraFieldsWithOrganization($id_organization);
+		return $this->_mediaExtraFieldModel->findAllMediaExtraFieldsWithOrganization($id_organization);
 	}
 
 	public function formatSelectOrganizationWithPostData() {
@@ -86,23 +86,23 @@ class MediaExtraFieldManager {
 	}
 
 	public function mediaExtraFieldCreateDb() {
-		return $this->_mediaExtraField->createNewMediaExtraField($_POST);
+		return $this->_mediaExtraFieldModel->createNewMediaExtraField($_POST);
 	}
 
 	public function getMediaExtraFieldByIdDb($media_extra_field_id) {
-		return $this->_mediaExtraField->findMediaExtraFieldById($media_extra_field_id);
+		return $this->_mediaExtraFieldModel->findMediaExtraFieldById($media_extra_field_id);
 	}
 
 	public function mediaExtraFieldEditDb($media_extra_field_id, $media_extra_field_data) {
-		return $this->_mediaExtraField->updateMediaExtraFieldWithId($media_extra_field_id, $media_extra_field_data);
+		return $this->_mediaExtraFieldModel->updateMediaExtraFieldWithId($media_extra_field_id, $media_extra_field_data);
 	}
 
 	public function removeMediaExtraFieldByIdDb($media_extra_field_id) {
-		return $this->_mediaExtraField->deleteMediaExtraFieldById($media_extra_field_id);
+		return $this->_mediaExtraFieldModel->deleteMediaExtraFieldById($media_extra_field_id);
 	}
 
 	public function getEnumOfTypeDb() {
-		$data = $this->_mediaExtraField->findEnumOfType();
+		$data = $this->_mediaExtraFieldModel->findEnumOfType();
 		if (!empty($data['error']))
 			return $data;
 
@@ -118,7 +118,7 @@ class MediaExtraFieldManager {
 	}
 
 	public function getAllMediaExtraFieldByOrganizationAndType($type) {
-		return $this->_mediaExtraField->findAllMediaExtraFieldByOrganizationAndType($type, $_SESSION['id_organization']);
+		return $this->_mediaExtraFieldModel->findAllMediaExtraFieldByOrganizationAndType($type, $_SESSION['id_organization']);
 	}
 
 	public function prepareDataForView($media_extra_data) {

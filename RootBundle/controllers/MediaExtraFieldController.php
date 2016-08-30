@@ -38,7 +38,7 @@ class MediaExtraFieldController {
 	public function selectOrganizationAction() {
 		$mediaExtraField = array();
 
-		if (isset($_POST['id_media_extra_field_select_mediastorage']) && (strcmp($_POST['id_media_extra_field_select_mediastorage'], '4894565') == 0)) {
+		if (isset($_POST['id_select_mediastorage']) && (strcmp($_POST['id_select_mediastorage'], '4894565') == 0)) {
 			$mediaExtraField = $this->_mediaExtraFieldManager->formatSelectOrganizationWithPostData();
 
 			header('Location:' . '?page=list_media_extra_field_root&id_organization=' . $mediaExtraField['id_organization']);
@@ -51,7 +51,7 @@ class MediaExtraFieldController {
 
 		$title = FIELD;
 
-		include ('RootBundle/views/media_extra_field/media_extra_field_select_organization.php');
+		include ('RootBundle/views/common/select_organization.php');
 	}
 
 	public function listAction() {

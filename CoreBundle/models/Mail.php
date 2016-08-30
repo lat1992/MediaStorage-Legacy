@@ -20,6 +20,19 @@ class Mail extends Model {
 		);
 	}
 
+	public function findAllMailsWithOrganization($id_organization) {
+		$data = $this->_mysqli->query('SELECT mail.id, mail.email, mail.id_organization, organization.name AS organization_name' .
+			' FROM ' . $this->_table .
+			' JOIN `organization` ON mail.id_organization = organization.id' .
+			' WHERE mail.id_organization = '. $id_organization .
+			';');
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllMails: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function createNewMail($data) {
 		$email = $this->_mysqli->real_escape_string($data['mail_mediastorage']);
 		$id_organization = $this->_mysqli->real_escape_string($data['id_organization_mediastorage']);
@@ -56,10 +69,13 @@ class Mail extends Model {
 									' FROM ' . $this->_table .
 									' WHERE id = ' . $mail_id . ';'
 		);
+		$tmp = $data->fetch_assoc();
+		$data->data_seek(0);
 
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'findMailById: ' . $this->_mysqli->error : '',
+			'id_organization' => $tmp['id_organization'],
 		);
 	}
 

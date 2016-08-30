@@ -22,6 +22,7 @@ $this->_route[] = array('list_role_root', 'RootBundle/controllers/RoleController
 $this->_route[] = array('edit_role_root', 'RootBundle/controllers/RoleController.php', 'RoleController', 'editAction');
 $this->_route[] = array('delete_role_root', 'RootBundle/controllers/RoleController.php', 'RoleController', 'deleteAction');
 
+$this->_route[] = array('select_organization_mail_root', 'RootBundle/controllers/MailController.php', 'MailController', 'selectOrganizationAction');
 $this->_route[] = array('create_mail_root', 'RootBundle/controllers/MailController.php', 'MailController', 'createAction');
 $this->_route[] = array('list_mail_root', 'RootBundle/controllers/MailController.php', 'MailController', 'listAction');
 $this->_route[] = array('edit_mail_root', 'RootBundle/controllers/MailController.php', 'MailController', 'editAction');

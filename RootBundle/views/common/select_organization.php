@@ -20,7 +20,7 @@ require_once('RootBundle/views/layout/header.php');
 		</select>
 		<div class="clear"></div>
 
-		<input type="hidden" name="id_media_extra_field_select_mediastorage" value="4894565">
+		<input type="hidden" name="id_select_mediastorage" value="4894565">
 
 		<a id="cancel_button" class="form_button" href="?page=dashboard_root"><?= CANCEL ?></a>
 		<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= NEXT ?></a>

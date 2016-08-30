@@ -7,7 +7,7 @@
 <?php
 			$cpt = 0;
 			while ($organization = $organizations['data']->fetch_assoc()) {
-				echo '<option value="' . $organization['id'] . '" ' . ((intval($mail['id_organization']) == intval($organization['id'])) ? 'selected' : '') . '>' . $organization['reference'] . ' / ' . $organization['organization_name'] . '</option>';
+				echo '<option value="' . $organization['id'] . '" ' . (($id_organization == intval($organization['id'])) ? 'selected' : '') . '>' . $organization['reference'] . ' / ' . $organization['organization_name'] . '</option>';
 				$cpt++;
 			}
 ?>
@@ -21,7 +21,7 @@
 
 		<input type="hidden" name="id_mail_create_mediastorage" value="754351" />
 
-		<a id="cancel_button" class="form_button" href="?page=list_mail_root"><?= CANCEL ?></a>
+		<a id="cancel_button" class="form_button" href="?page=list_mail_root&id_organization=<?= $id_organization ?>"><?= CANCEL ?></a>
 		<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 
 	</form>

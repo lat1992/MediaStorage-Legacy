@@ -18,6 +18,18 @@ class MailManager {
 		return $this->_mailModel->findAllMails();
 	}
 
+	public function formatSelectOrganizationWithPostData() {
+		$mail = array();
+
+		$mail['id_organization'] = $_POST['id_organization_mediastorage'];
+
+		return $mail;
+	}
+
+	public function getAllMailsWithOrganizationDb($id_organization) {
+		return $this->_mailModel->findAllMailsWithOrganization($id_organization);
+	}
+
 	public function formatMailArrayWithPostData() {
 		$mail = array();
 
