@@ -5,6 +5,7 @@
 	?>
 		<li><a class="logout_button" href="?page=logout"><?= LOGOUT ?></a>
 		<a class="profile_button" href="?page=profile"><?= PROFILE ?></a></li>
+
 		<li><a href="?page=search"><?= SEARCH_MENU ?></a></li>
 		<li><a href="?page=folder"><?= FOLDER_MENU ?></a></li>
 		<li><a href="?page=program"><?= PROGRAM_MENU ?></a></li>
