@@ -35,7 +35,7 @@ class ProgramPageController {
 
 			$title = $this->_mediaManager->getMediaByMediaId($_GET['media_id']);
 
-			$this->mergeErrorArray($contents);
+			$this->mergeErrorArray($title);
 
 			$title = $this->_mediaManager->formatPathData($title);
 		}

@@ -17,6 +17,7 @@ define('INFO_MULTIPLE_SELECT', 'Maintenir CTRL pour selection multiple');
 define('RETURN_HOMEPAGE', 'Retourner a la page d\'accueil');
 define('ID', 'Id');
 define('NEXT', 'Suivant');
+define('HOME', 'Page d\'accueil');
 
 // Errors
 
@@ -263,3 +264,14 @@ define('ROOT', 'Portal Root');
 // Media FIle
 
 define('MEDIA_FILE_UPLOAD_TITLE', 'Upload de média');
+define('NO_TITLE', 'Sans titre');
+
+
+define('SEARCH_MENU', 'Recherche');
+define('FOLDER_MENU', 'Tous les dossiers');
+define('PROGRAM_MENU', 'Tous les programmes');
+define('CONTENT_MENU', 'Tous les contenus');
+
+
+define('DOWNLOAD', 'Téléchager');
+define('ADDTOCART', 'Ajouter au panier');

@@ -35,7 +35,7 @@
 					</div>
 
 					<div id="header_title_div">
-						<h1><?= (isset($title)) ? $title : 'Aucun titre' ?></h1>
+						<h1><?= (isset($title)) ? $title : NO_TITLE ?></h1>
 					</div>
 
 				</div>

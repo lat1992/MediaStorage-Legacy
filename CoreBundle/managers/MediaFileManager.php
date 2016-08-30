@@ -18,6 +18,10 @@ class MediaFileManager {
 		return $this->_mediaFileModel->findAllMediaFilesWithoutMediaId();
 	}
 
+	public function getAllMediaFilesByMediaIdDb($id_media) {
+		return $this->_mediaFileModel->findAllMediaFilesByMediaId($id_media);
+	}
+
 	public function createMediaFileDb() {
 		return $this->_mediaFileModel->createMediaFile($_POST);
 	}

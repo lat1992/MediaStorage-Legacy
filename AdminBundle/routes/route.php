@@ -1,5 +1,7 @@
 <?php
 
+$this->_route[] = array('dashboard_admin', 'AdminBundle/controllers/DashboardController.php', 'DashboardController', 'showAction');
+
 $this->_route[] = array('create_folder_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'createAction');
 $this->_route[] = array('list_folder_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'listAction');
 $this->_route[] = array('edit_folder_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'editAction');

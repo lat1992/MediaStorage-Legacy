@@ -13,5 +13,7 @@
 		<li><a href="?page=list_mail_root"><?= EMAIL ?></a></li>
 		<li><a href="?page=list_language_root"><?= LANGUAGE ?></a></li>
 		<li><a href="?page=select_organization_media_extra_field_root"><?= FIELD ?></a></li>
+		<li><br/></li>
+		<li><a href="?page=home"><?= HOME ?></a></li>
 	</ul>
 </div>

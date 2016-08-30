@@ -43,6 +43,10 @@ class MediaManager {
 		return $this->_mediaModel->findAllMediasWithoutParentsByIdOrganizationAndIdType($_SESSION['id_organization'], 1);
 	}
 
+	public function getAllContentsWithoutParentsByOrganizationDb() {
+		return $this->_mediaModel->findAllMediasWithoutParentsByIdOrganizationAndIdType($_SESSION['id_organization'], 2);
+	}
+
 	public function formatMediaArrayWithPostData() {
 		$media = array();
 
@@ -302,6 +306,7 @@ class MediaManager {
 
 		if (!empty($result['error']))
 			return $result;
+
 		while ($check != NULL) {
 
 			if ($result['data']->num_rows == 0) {
@@ -328,7 +333,7 @@ class MediaManager {
 		}
 		$check = '';
 
-		if (!is_null($data['id_folder'])) {
+		if (isset($data) && !is_null($data['id_folder'])) {
 
 			$result = $this->_folderManager->getFolderByIdDb($data['id_folder']);
 

@@ -82,7 +82,7 @@
 
 		<input type="hidden" name="id_user_create_mediastorage" value="98475" />
 
-		<a id="cancel_button" class="form_button" href="?page=list_group_root"><?= CANCEL ?></a>
+		<a id="cancel_button" class="form_button" href="?page=list_user_root"><?= CANCEL ?></a>
 		<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 	</form>
 

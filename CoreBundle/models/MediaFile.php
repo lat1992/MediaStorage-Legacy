@@ -73,4 +73,20 @@ class MediaFile extends Model {
 			'error' => ($this->_mysqli->error) ? 'findEnumOfType: ' . $this->_mysqli->error : ''
 		);
 	}
+
+	public function findAllMediaFilesByMediaId($media_id) {
+		$media_id = $this->_mysqli->real_escape_string($media_id);
+
+		$data = $this->_mysqli->query('SELECT id, id_media, type, filename, filepath, right_download, right_addtocart' .
+			' FROM ' . $this->_table .
+			' WHERE id_media = ' . $media_id
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllMediaFilesByMediaId: ' . $this->_mysqli->error : '',
+		);
+	}
+
+
 }

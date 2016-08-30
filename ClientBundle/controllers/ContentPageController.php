@@ -2,6 +2,8 @@
 
 require_once('CoreBundle/managers/MediaManager.php');
 require_once('CoreBundle/managers/MediaInfoManager.php');
+require_once('CoreBundle/managers/MediaFileManager.php');
+require_once('CoreBundle/managers/MediaExtraManager.php');
 require_once('CoreBundle/managers/MediaExtraFieldManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
 
@@ -9,6 +11,8 @@ class ContentPageController {
 
 	private $_mediaManager;
 	private $_mediaInfoManager;
+	private $_mediaFileManager;
+	private $_mediaExtraManager;
 	private $_mediaExtraFieldManager;
 	private $_toolboxManager;
 
@@ -17,6 +21,8 @@ class ContentPageController {
 	public function __construct() {
 		$this->_mediaManager = new MediaManager();
 		$this->_mediaInfoManager = new MediaInfoManager();
+		$this->_mediaFileManager = new MediaFileManager();
+		$this->_mediaExtraManager = new MediaExtraManager();
 		$this->_mediaExtraFieldManager = new MediaExtraFieldManager();
 		$this->_toolboxManager = new ToolboxManager();
 
@@ -35,27 +41,41 @@ class ContentPageController {
 		}
 	}
 
+	public function listContentAction() {
+
+		$contents = $this->_mediaManager->getAllContentsByIdOrganizationDb();
+
+		$this->mergeErrorArray($contents);
+
+		$title = CONTENT;
+
+		include ('ClientBundle/views/program/program.php');
+
+	}
+
 	public function contentPageAction() {
 
 		if (isset($_GET['media_id'])) {
 			$title = $this->_mediaManager->getMediaByMediaId($_GET['media_id']);
 			$title = $this->_mediaManager->formatPathData($title);
 
-			$media_infos_data = $this->_mediaInfoManager->getMediaInfoByMediaIdDb($_GET['media_id']);
-			$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(1);
+			$media_infos_data = $this->_mediaInfoManager->getMediaInfoByMediaIdAndLanguageIdDb($_GET['media_id'], $_SESSION['id_language_mediastorage']);
+			$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(2);
 			$media_extras_user_data = $this->_mediaExtraManager->getMediaExtraByMediaIdDb($_GET['media_id']);
+			$media_files_data = $this->_mediaFileManager->getAllMediaFilesByMediaIdDb($_GET['media_id']);
 
 			$this->mergeErrorArray($media_infos_data);
 			$this->mergeErrorArray($media_extra_data);
 			$this->mergeErrorArray($media_extras_user_data);
+			$this->mergeErrorArray($media_files_data);
 
 			$media_infos = $this->_toolboxManager->mysqliResultToArray($media_infos_data);
 			$media_user_extras = $this->_toolboxManager->mysqliResultToArray($media_extras_user_data);
+			$media_files = $this->_toolboxManager->mysqliResultToArray($media_files_data);
 
 			$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
 
 			$media_infos = $this->_mediaInfoManager->getArrayWithIdLanguageKey($media_infos);
-			var_dump($media_extra);exit;
 		}
 		else {
 			$title = CONTENT;
