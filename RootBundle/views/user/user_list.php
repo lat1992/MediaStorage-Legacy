@@ -7,7 +7,7 @@ require_once('RootBundle/views/layout/header.php');
 <div id="container">
 
 	<div class="add">
-		<a href="?page=create_user_root"><?= USER_CREATION_TITLE ?></a>
+		<a href="?page=create_user_root&id_organization=<?= $id_organization ?>"><?= USER_CREATION_TITLE ?></a>
 	</div>
 
 <?php

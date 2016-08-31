@@ -29,7 +29,7 @@ class Mail extends Model {
 
 		return array(
 			'data' => $data,
-			'error' => ($this->_mysqli->error) ? 'findAllMails: ' . $this->_mysqli->error : '',
+			'error' => ($this->_mysqli->error) ? 'findAllMailsWithOrganization: ' . $this->_mysqli->error : '',
 		);
 	}
 

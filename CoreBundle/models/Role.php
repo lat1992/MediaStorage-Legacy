@@ -35,6 +35,21 @@ class Role extends Model {
 		);
 	}
 
+	public function findAllRolesWithOrganization($id_organization) {
+		$data = $this->_mysqli->query('SELECT role.id, role, id_organization, organization.name, COUNT(role_permit.id) AS permit_count ' .
+			' FROM ' . $this->_table .
+			' LEFT JOIN role_permit ON role.id = role_permit.id_role' .
+			' LEFT JOIN organization on role.id_organization = organization.id ' .
+			' WHERE id_organization ='. $id_organization .
+			' GROUP BY role.id;'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllRolesWithOrganization: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function createNewRole($data) {
 		$role = $this->_mysqli->real_escape_string($data['role_mediastorage']);
 		$id_organization = $this->_mysqli->real_escape_string($data['id_organization_mediastorage']);
@@ -76,10 +91,13 @@ class Role extends Model {
 									' LIMIT 1 ' .
 									';'
 		);
+		$tmp = $data->fetch_assoc();
+		$data->data_seek(0);
 
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'findRoleById: ' . $this->_mysqli->error : '',
+			'id_organization' => $tmp['id_organization'],
 		);
 	}
 

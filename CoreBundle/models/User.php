@@ -82,10 +82,13 @@ class User extends Model {
 		$id = $this->_mysqli->real_escape_string($id);
 
 		$data = $this->_mysqli->query('SELECT id, username, password, id_role, id_language, id_organization, email FROM ' . $this->_table . ' WHERE id = ' . $id . ';');
+		$tmp = $data->fetch_assoc();
+		$data->data_seek(0);
 
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'findUserById: ' . $this->_mysqli->error : '',
+			'id_organization' => $tmp['id_organization'],
 		);
 	}
 
@@ -166,6 +169,18 @@ class User extends Model {
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'deleteUserById: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findAllUsersWithOrganization($id_organization) {
+		$data = $this->_mysqli->query('SELECT '.$this->_table.'.id, username, '.$this->_table.'.id_organization, id_role, email, organization.name AS organization_name, role.role AS role_role FROM ' . $this->_table .
+			' LEFT JOIN organization ON '.$this->_table.'.id_organization = organization.id' .
+			' LEFT JOIN role ON id_role = role.id'.
+			' WHERE '.$this->_table.'.id_organization = '. $id_organization .';');
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllUsersWithOrganization: ' . $this->_mysqli->error : '',
 		);
 	}
 }

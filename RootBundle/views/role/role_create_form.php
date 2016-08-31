@@ -8,7 +8,7 @@
 		<select name="id_organization_mediastorage" id="id_organization_mediastorage"/>
 <?php
 		while ($organization = $organizations['data']->fetch_assoc()) {
-			echo '<option value="' . $organization['id'] . '" ' . ((intval($organization['id']) == intval($role['id_organization'])) ? ' selected' : '') . '>' . $organization['reference'] . ' / ' . $organization['organization_name'] . '</option>';
+			echo '<option value="' . $organization['id'] . '" ' . ((intval($organization['id']) == $id_organization) ? ' selected' : '') . '>' . $organization['reference'] . ' / ' . $organization['organization_name'] . '</option>';
 		}
 ?>
 		</select>
@@ -17,12 +17,8 @@
 		<label for="id_permit_mediastorage"><?= PERMIT ?> : </label>
 		<select multiple name="id_permit_mediastorage[]" id="id_permit_mediastorage"/>
 <?php
-			$cpt = 0;
 			while ($permit = $permits['data']->fetch_assoc()) {
-				if ($cpt != 0) {
 					echo '<option value="' . $permit['id'] . '" ' . ((in_array($permit['id'], $selected_group_permit)) ? 'selected' : '') . '>' . $permit['permit'] . '</option>';
-				}
-				$cpt++;
 			}
 ?>
 		</select>
@@ -52,7 +48,7 @@
 
 		<input type="hidden" name="id_role_create_mediastorage" value="984156" />
 
-		<a id="cancel_button" class="form_button" href="?page=list_role_root"><?= CANCEL ?></a>
+		<a id="cancel_button" class="form_button" href="?page=list_role_root&id_organization=<?= $id_organization ?>"><?= CANCEL ?></a>
 		<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 
 	</form>

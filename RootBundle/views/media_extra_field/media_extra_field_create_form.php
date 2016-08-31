@@ -5,10 +5,8 @@
 		<label for="id_organization_mediastorage"><?= ORGANIZATION ?> : </label>
 		<select name="id_organization_mediastorage" id="id_organization_mediastorage" />
 <?php
-			$cpt = 0;
 			while ($organization = $organizations['data']->fetch_assoc()) {
 				echo '<option value="' . $organization['id'] . '" ' . (($id_organization == intval($organization['id'])) ? 'selected' : '') . '>' . $organization['reference'] . ' / ' . $organization['organization_name'] . '</option>';
-				$cpt++;
 			}
 ?>
 		</select>

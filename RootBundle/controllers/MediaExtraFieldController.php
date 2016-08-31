@@ -49,7 +49,7 @@ class MediaExtraFieldController {
 
 		$this->mergeErrorArray($organizations);
 
-		$title = FIELD;
+		$title = MEDIA_EXTRA_FIELD_LIST_TITLE;
 
 		include ('RootBundle/views/common/select_organization.php');
 	}

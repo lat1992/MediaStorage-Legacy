@@ -29,6 +29,25 @@ class RoleController {
 		$this->_errorArray = array();
 	}
 
+	public function selectOrganizationAction() {
+		$role = array();
+
+		if (isset($_POST['id_select_mediastorage']) && (strcmp($_POST['id_select_mediastorage'], '4894565') == 0)) {
+			$role = $this->_roleManager->formatSelectOrganizationWithPostData();
+
+			header('Location:' . '?page=list_role_root&id_organization=' . $role['id_organization']);
+			exit;
+		}
+
+		$organizations = $this->_organizationManager->getAllOrganizationsDb();
+
+		$this->mergeErrorArray($organizations);
+
+		$title = ROLE_LIST_TITLE;
+
+		include ('RootBundle/views/common/select_organization.php');
+	}
+
 	private function mergeErrorArray($errorArray) {
 		if (!empty($errorArray['error'])) {
 			if (!is_array($errorArray['error'])) {
@@ -42,7 +61,10 @@ class RoleController {
 	}
 
 	public function listAction() {
-		$roles = $this->_roleManager->getAllRolesDb();
+
+		$id_organization = $_GET['id_organization'];
+
+		$roles = $this->_roleManager->getAllRolesWithOrganizationDb($id_organization);
 
 		$this->mergeErrorArray($roles);
 
@@ -104,7 +126,7 @@ class RoleController {
 
 						if (count($this->_errorArray) == 0) {
 							$_SESSION['flash_message'] = ACTION_SUCCESS;
-							header('Location:' . '?page=list_role_root');
+							header('Location:' . '?page=list_role_root&id_organization=' . $id_organization);
 							exit;
 						}
 					}
@@ -113,6 +135,7 @@ class RoleController {
 			}
 		}
 
+		$id_organization = $_GET['id_organization'];
 		$organizations = $this->_organizationManager->getAllOrganizationsDb();
 		$permits = $this->_permitManager->getAllPermitsDb();
 		$languages = $this->_languageManager->getAllLanguagesDb();
@@ -127,6 +150,7 @@ class RoleController {
 	public function editAction() {
 		$role_data = $this->_roleManager->getRoleByIdDb($_GET['role_id']);
 		$organizations = $this->_organizationManager->getAllOrganizationsDb();
+		$id_organization = $role_data['id_organization'];
 		$permits = $this->_permitManager->getAllPermitsDb();
 		$languages = $this->_languageManager->getAllLanguagesDb();
 
@@ -162,7 +186,7 @@ class RoleController {
 
 							if (count($this->_errorArray) == 0) {
 								$_SESSION['flash_message'] = ACTION_SUCCESS;
-								header('Location:' . '?page=list_role_root');
+								header('Location:' . '?page=list_role_root&id_organization=' . $id_organization);
 								exit;
 							}
 						}

@@ -35,6 +35,25 @@ class UserController {
 		}
 	}
 
+	public function selectOrganizationAction() {
+		$user = array();
+
+		if (isset($_POST['id_select_mediastorage']) && (strcmp($_POST['id_select_mediastorage'], '4894565') == 0)) {
+			$user = $this->_userManager->formatSelectOrganizationWithPostData();
+
+			header('Location:' . '?page=list_user_root&id_organization=' . $user['id_organization']);
+			exit;
+		}
+
+		$organizations = $this->_organizationManager->getAllOrganizationsDb();
+
+		$this->mergeErrorArray($organizations);
+
+		$title = USER;
+
+		include ('RootBundle/views/common/select_organization.php');
+	}
+
 	public function loginAction() {
 		if (isset($_POST['id_login_mediastorage']) && (strcmp($_POST['id_login_mediastorage'], '98374') == 0)) {
 
@@ -71,7 +90,7 @@ class UserController {
 
 				if (count($this->_errorArray) == 0) {
 					$_SESSION['flash_message'] = ACTION_SUCCESS;
-					header('Location:' . '?page=list_user_root');
+					header('Location:' . '?page=list_user_root&id_organization=' . $id_organization);
 					exit;
 				}
 			}
@@ -85,6 +104,7 @@ class UserController {
 		$this->mergeErrorArray($roles);
 		$this->mergeErrorArray($languages);
 
+		$id_organization = $_GET['id_organization'];
 		$user['id_language'] = $_SESSION['id_language_mediastorage'];
 
 		$title = USER_CREATION_TITLE;
@@ -93,7 +113,10 @@ class UserController {
 	}
 
 	public function listAction() {
-		$users = $this->_userManager->getAllUsersDb();
+
+		$id_organization = $_GET['id_organization'];
+
+		$users = $this->_userManager->getAllUsersWithOrganizationDb($id_organization);
 
 		$this->mergeErrorArray($users);
 
@@ -135,6 +158,7 @@ class UserController {
 		$user_data = $this->_userManager->getUserByIdDb($_GET['user_id']);
 		$user_info_data = $this->_userManager->getUserInfoByIdDb($_GET['user_id']);
 		$organizations = $this->_organizationManager->getAllOrganizationsDb();
+		$id_organization = $user_data['id_organization'];
 		$roles = $this->_roleManager->getAllRolesDb();
 		$languages = $this->_languageManager->getAllLanguagesDb();
 
@@ -166,7 +190,7 @@ class UserController {
 
 					if (count($this->_errorArray) == 0) {
 						$_SESSION['flash_message'] = ACTION_SUCCESS;
-						header('Location:' . '?page=list_user_root');
+						header('Location:' . '?page=list_user_root&id_organization=' . $id_organization);
 						exit;
 					}
 				}

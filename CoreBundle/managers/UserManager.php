@@ -264,4 +264,18 @@ class UserManager {
 	public function removeUserByIdDb($user_id) {
 		return $this->_userModel->deleteUserById($user_id);
 	}
+
+	public function formatSelectOrganizationWithPostData() {
+		$user = array();
+
+		$user['id_organization'] = $_POST['id_organization_mediastorage'];
+
+		return $user;
+	}
+
+	public function getAllUsersWithOrganizationDb($id_organization) {
+		return $this->_userModel->findAllUsersWithOrganization($id_organization);
+	}
+
+
 }

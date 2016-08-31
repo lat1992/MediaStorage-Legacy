@@ -20,6 +20,18 @@ class RoleManager {
 		return $this->_roleModel->findAllRolesWithRoleLanguageAndLanguage();
 	}
 
+	public function formatSelectOrganizationWithPostData() {
+		$role = array();
+
+		$role['id_organization'] = $_POST['id_organization_mediastorage'];
+
+		return $role;
+	}
+
+	public function getAllRolesWithOrganizationDb($id_organization) {
+		return $this->_roleModel->findAllRolesWithOrganization($id_organization);
+	}
+
 	public function getAllRolesDb() {
 		return $this->_roleModel->findAllRoles();
 	}

@@ -43,7 +43,7 @@ class MailController {
 
 		$this->mergeErrorArray($organizations);
 
-		$title = FIELD;
+		$title = MAIL_LIST_TITLE;
 
 		include ('RootBundle/views/common/select_organization.php');
 	}
@@ -100,7 +100,7 @@ class MailController {
 
 				if (count($this->_errorArray) == 0) {
 					$_SESSION['flash_message'] = ACTION_SUCCESS;
-					header('Location:' . '?page=list_mail_root');
+					header('Location:' . '?page=list_mail_root&id_organization=' . $id_organization);
 					exit;
 				}
 			}
@@ -140,7 +140,7 @@ class MailController {
 
 					if (count($this->_errorArray) == 0) {
 						$_SESSION['flash_message'] = ACTION_SUCCESS;
-						header('Location:' . '?page=list_mail_root');
+						header('Location:' . '?page=list_mail_root&id_organization=' . $id_organization);
 						exit;
 					}
 				}

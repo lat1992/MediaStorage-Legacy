@@ -12,11 +12,13 @@ $this->_route[] = array('list_organization_root', 'RootBundle/controllers/Organi
 $this->_route[] = array('edit_organization_root', 'RootBundle/controllers/OrganizationController.php', 'OrganizationController', 'editAction');
 $this->_route[] = array('delete_organization_root', 'RootBundle/controllers/OrganizationController.php', 'OrganizationController', 'deleteAction');
 
+$this->_route[] = array('select_organization_user_root', 'RootBundle/controllers/UserController.php', 'UserController', 'selectOrganizationAction');
 $this->_route[] = array('create_user_root', 'RootBundle/controllers/UserController.php', 'UserController', 'createAction');
 $this->_route[] = array('list_user_root', 'RootBundle/controllers/UserController.php', 'UserController', 'listAction');
 $this->_route[] = array('edit_user_root', 'RootBundle/controllers/UserController.php', 'UserController', 'editAction');
 $this->_route[] = array('delete_user_root', 'RootBundle/controllers/UserController.php', 'UserController', 'deleteAction');
 
+$this->_route[] = array('select_organization_role_root', 'RootBundle/controllers/RoleController.php', 'RoleController', 'selectOrganizationAction');
 $this->_route[] = array('create_role_root', 'RootBundle/controllers/RoleController.php', 'RoleController', 'createAction');
 $this->_route[] = array('list_role_root', 'RootBundle/controllers/RoleController.php', 'RoleController', 'listAction');
 $this->_route[] = array('edit_role_root', 'RootBundle/controllers/RoleController.php', 'RoleController', 'editAction');
