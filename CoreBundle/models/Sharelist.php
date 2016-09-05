@@ -19,6 +19,20 @@ class Sharelist extends Model {
 		);
 	}
 
+	public function findAllSharelistsByUserId($id_user) {
+		$id_user = $this->_mysqli->real_escape_string($id_user);
+
+		$data = $this->_mysqli->query('SELECT id, id_user, reference ' .
+			' FROM ' . $this->_table .
+			' WHERE id_user = ' . $id_user
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllSharelists: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function createNewSharelist($data) {
 		$reference = $this->_mysqli->real_escape_string($data['reference_mediastorage']);
 		$id_user = $this->_mysqli->real_escape_string($data['id_user_mediastorage']);
@@ -30,6 +44,7 @@ class Sharelist extends Model {
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'createNewSharelist: ' . $this->_mysqli->error : '',
+			'id' => $this->_mysqli->insert_id,
 		);
 	}
 

@@ -27,8 +27,7 @@ class Cart extends Model {
 			' FROM ' . $this->_table .
 			' LEFT JOIN media_file ON media_file.id = cart.id_media_file' .
 			' LEFT JOIN media ON media.id = media_file.id_media' .
-			' LEFT JOIN media_info ON media_info.id_media = media.id' .
-			' WHERE id_user = ' . $id_user
+ 			' WHERE id_user = ' . $id_user
 		);
 
 		return array(
@@ -41,7 +40,7 @@ class Cart extends Model {
 		$id_user = $this->_mysqli->real_escape_string($data['id_user_mediastorage']);
 		$id_media = $this->_mysqli->real_escape_string($data['id_media_mediastorage']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media)' .
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file)' .
 			' VALUES ('. $id_user . ', ' . $id_media . ');'
 		);
 

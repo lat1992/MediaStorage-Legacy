@@ -37,6 +37,23 @@ class CartPageController {
 		include ('ClientBundle/views/cart/cart.php');
 	}
 
+	public function createCartAction() {
+		$_POST['id_user_mediastorage'] = $_SESSION['user_id_mediastorage'];
+		$_POST['id_media_mediastorage'] = $_GET['media_id'];
+
+		$cart_data = $this->_cartManager->cartCreateDb();
+
+		$this->mergeErrorArray($cart_data);
+
+		if (count($this->_errorArray) == 0) {
+			$_SESSION['flash_message'] = ACTION_SUCCESS;
+			header('Location:' . '?page=content&media_id=' . $_GET['original_id']);
+			exit;
+		}
+
+		include ('CoreBundle/views/common/error.php');
+	}
+
 	public function deleteCartAction() {
 
 		$cart_data = $this->_cartManager->removeCartByIdDb($_GET['cart_id']);

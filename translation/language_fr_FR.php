@@ -278,3 +278,4 @@ define('CONTENT_MENU', 'Tous les contenus');
 define('DOWNLOAD', 'Téléchager');
 define('ADDTOCART', 'Ajouter au panier');
 define('CART', 'Panier');
+define('ADDTOSHARELIST', 'Ajouter a la liste de partage');

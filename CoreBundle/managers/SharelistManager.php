@@ -1,17 +1,24 @@
 <?php
 
 require_once('CoreBundle/models/Sharelist.php');
+require_once('CoreBundle/managers/SharelistMediaManager.php');
 
 class SharelistManager {
 
 	private $_sharelistModel;
+	private $_sharelistMediaModel;
 
 	public function __construct() {
 		$this->_sharelistModel = new Sharelist();
+		$this->_sharelistMediaManager = new SharelistMediaManager();
 	}
 
 	public function getAllSharelistsDb() {
 		return $this->_sharelistModel->findAllSharelists();
+	}
+
+	public function getAllSharelistsByUserIdDb() {
+		return $this->_sharelistModel->findAllSharelistsByUserId($_SESSION['user_id_mediastorage']);
 	}
 
 	public function formatSharelistArrayWithPostData() {
@@ -27,10 +34,10 @@ class SharelistManager {
 		$error_sharelist = array();
 
 		if (strlen($_POST['reference_mediastorage']) == 0) {
-			$error_sharelist[] = EMPTY_ROLE;
+			$error_sharelist[] = EMPTY_REFERENCE;
 		}
 		if (strlen($_POST['reference_mediastorage']) > 30) {
-			$error_sharelist[] = INVALID_ROLE_TOO_LONG;
+			$error_sharelist[] = INVALID_REFERENCE_TOO_LONG;
 		}
 
 		return $error_sharelist;
@@ -49,9 +56,9 @@ class SharelistManager {
 	}
 
 	public function removeSharelistByIdDb($sharelist_id) {
-		// $data = $this->_sharelistLanguageManager->deleteSharelistLanguageBySharelistId($sharelist_id);
-		// if (!empty($data['error']))
-		// 	return $data;
+		$data = $this->_sharelistMediaManager->deleteSharelistMediaBySharelistId($sharelist_id);
+		if (!empty($data['error']))
+			return $data;
 
 		return $this->_sharelistModel->deleteSharelistById($sharelist_id);
 	}
