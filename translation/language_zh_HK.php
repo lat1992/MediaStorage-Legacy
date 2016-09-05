@@ -11,6 +11,7 @@ define('DELETE', '刪除');
 define('LANGUAGE_TRANSLATE', '翻譯');
 define('ID', 'ID');
 define('NO_TITLE', '沒有標題');
+define('INFO_MULTIPLE_SELECT', '多選請按住CTRL鍵');
 
 // Information
 define('ACTION_SUCCESS', '操作成功');
@@ -52,6 +53,7 @@ define('SEARCH_MENU', '站内搜索');
 define('FOLDER_MENU', '所有文件夾');
 define('PROGRAM_MENU', '所有節目');
 define('CONTENT_MENU', '所有内容');
+define('CART', '購物車');
 define('DASHBOARD', '儀表板');
 define('ADMIN_INFORMATION', '注意：在做出任何修改前，請先確認清楚。');
 
@@ -76,6 +78,10 @@ define('CITY', '城市');
 define('COUNTRY', '國家');
 define('PHONE', '座機電話');
 define('MOBILE', '手機電話');
+
+// Sharelist
+define('SHARELIST', '分享列表');
+define('SHARELIST_CREATION_TITLE', '新增分享列表');
 
 // Language
 define('LANGUAGE', '語言');
@@ -145,7 +151,6 @@ define('GROUP_CREATION_TITLE', '新增集團');
 define('GROUP_EDIT_TITLE', '編輯集團');
 define('FILESERVER', '文件服務器');
 define('NB_ORGANIZATION', '組織數量');
-define('INFO_MULTIPLE_SELECT', '多選請按住CTRL鍵');
 
 // Organization
 define('ORGANIZATION', '組織');
