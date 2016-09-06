@@ -117,13 +117,13 @@ class Media extends Model {
 		$id_parent = $this->_mysqli->real_escape_string($data['id_parent_mediastorage']);
 		$id_organization = $this->_mysqli->real_escape_string($data['id_organization_mediastorage']);
 		$id_type = $this->_mysqli->real_escape_string($data['id_type_mediastorage']);
-		$reference = $this->_mysqli->real_escape_string($data['reference_mediastorage']);
+		//$reference = $this->_mysqli->real_escape_string($data['reference_mediastorage']);
 		$right_view = $this->_mysqli->real_escape_string($data['right_view_mediastorage']);
 		$modified_date = $this->_mysqli->real_escape_string($data['modified_date_mediastorage']);
 		$reference_client = $this->_mysqli->real_escape_string($data['reference_client_mediastorage']);
 
 		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
-		' SET id_parent = ' . $id_parent . ', id_organization = ' . $id_organization . ', id_type = ' . $id_type . ', reference = "' . $reference . '", reference_client = "' . $reference_client . '", right_view = ' . $right_view . ', modified_date = "' . $modified_date . '" ' .
+		' SET id_parent = ' . $id_parent . ', id_organization = ' . $id_organization . ', id_type = ' . $id_type . ', reference_client = "' . $reference_client . '", right_view = ' . $right_view . ', modified_date = "' . $modified_date . '" ' .
 			' WHERE id = ' . $media_id . ';'
 		);
 

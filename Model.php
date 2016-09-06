@@ -14,7 +14,7 @@ abstract class Model {
 
 		$this->_mysqli = new mysqli($settings['database']['host'], $settings['database']['username'], $settings['database']['password'], $settings['database']['databasename']);
 
-		$this->_mysqli->set_charset("utf8");
+		$this->_mysqli->set_charset('utf8');
 	}
 
 }
