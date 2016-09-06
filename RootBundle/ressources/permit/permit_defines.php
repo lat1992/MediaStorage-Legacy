@@ -1,0 +1,12 @@
+<?php
+
+define('PERMIT_VIEW_CONTENT', 1);
+define('PERMIT_DOWNLOAD_CONTENT', 2);
+define('PERMIT_CREATE_CONTENT', 3);
+define('PERMIT_EDIT_CONTENT', 4);
+define('PERMIT_DELETE_CONTENT', 5);
+define('PERMIT_UPLOAD_FILE', 6);
+define('PERMIT_TRANSLATE', 7);
+define('PERMIT_MANAGE', 8);
+define('PERMIT_GROUP_MANAGE', 9);
+define('PERMIT_ROOT', 10);

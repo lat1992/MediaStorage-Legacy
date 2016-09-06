@@ -41,6 +41,7 @@ class FolderPageController {
 			$this->mergeErrorArray($contents);
 
 			$title = $this->_folderManager->getFolderPathByFolderId($_GET['parent_id']);
+
 			$title = $this->_folderManager->formatPathData($title);
 
 		}

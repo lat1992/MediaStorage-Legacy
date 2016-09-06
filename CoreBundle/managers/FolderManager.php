@@ -82,7 +82,7 @@ class FolderManager {
 	}
 
 	public function getFolderByIdDb($folder_id) {
-		return $this->_folderModel->findFolderById($folder_id);
+		return $this->_folderModel->findFolderById($folder_id, $_SESSION['id_language_mediastorage']);
 	}
 
 	public function folderEditDb($folder_data) {
@@ -142,17 +142,18 @@ class FolderManager {
 
 	public function getFolderPathByFolderId($folder_id) {
 
-		$check = '';
+		$check = 0;
 		$path = array();
-		$result = $this->getFolderByIdDb($folder_id);
+		$result = $this->getFolderByIdDb($folder_id, $_SESSION['id_language_mediastorage']);
 		$cpt = 0;
 
 		if (!empty($result['error']))
 			return $result;
-		while ($check != NULL) {
+
+		while ($check != 1) {
 
 			if ($result['data']->num_rows == 0) {
-				$check = NULL;
+				$check = 1;
 			}
 			else {
 				$data = $result['data']->fetch_assoc();
@@ -161,10 +162,10 @@ class FolderManager {
 				$path[$cpt]['id'] = $data['id'];
 
 				if (is_null($data['id_parent'])) {
-					$check = NULL;
+					$check = 1;
 				}
 				else {
-					$result = $this->getFolderByIdDb($data['id_parent']);
+					$result = $this->getFolderByIdDb($data['id_parent'], $_SESSION['id_language_mediastorage']);
 
 					if (!empty($result['error']))
 						return $result;

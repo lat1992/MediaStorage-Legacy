@@ -10,6 +10,8 @@ if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
 
+require_once('RootBundle/ressources/permit/permit_defines.php');
+
 require_once('translation/index.php');
 
 if (isset($_SESSION['username_mediastorage']) && isset($_SESSION['role_mediastorage']) && isset($_GET['page'])) {

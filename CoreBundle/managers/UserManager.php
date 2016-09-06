@@ -4,6 +4,7 @@ require_once('CoreBundle/models/User.php');
 require_once('CoreBundle/models/UserInfo.php');
 
 require_once('CoreBundle/managers/LanguageManager.php');
+require_once('CoreBundle/managers/RolePermitManager.php');
 
 class UserManager {
 
@@ -11,12 +12,14 @@ class UserManager {
 	private $_userInfoModel;
 
 	private $_languageManager;
+	private $_rolePermitManager;
 
 	public function __construct() {
 		$this->_userModel = new User();
 		$this->_userInfoModel = new UserInfo();
 
 		$this->_languageManager = new LanguageManager();
+		$this->_rolePermitManager = new RolePermitManager();
 	}
 
 	public function loginDb() {
@@ -30,6 +33,13 @@ class UserManager {
 			$_SESSION['id_language_mediastorage'] = $result['data']['id_language'];
 			$_SESSION['id_organization'] = $result['data']['id_organization'];
 			$_SESSION['id_group'] = $result['data']['id_group'];
+
+			$return_value = $this->_rolePermitManager->getRolePermitByRoleIdDb($_SESSION['role_mediastorage']);
+			if (empty($return_value['error'])) {
+				while ($data = $return_value['data']->fetch_assoc()) {
+					$_SESSION['permits'][$data['id_permit']] = $data['id_permit'];
+				}
+			}
 
 	 		return array(
 	 			'data' => true,

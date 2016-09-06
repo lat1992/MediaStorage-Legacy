@@ -65,10 +65,11 @@ class Folder extends Model {
 	}
 
 
-	public function findFolderById($folder_id) {
+	public function findFolderById($folder_id, $id_language) {
 		$folder_id = $this->_mysqli->real_escape_string($folder_id);
+		$id_language = $this->_mysqli->real_escape_string($id_language);
 
-		$data = $this->_mysqli->query('SELECT id, id_parent, id_organization, IF ((SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1) IS NOT NULL,(SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1), (SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate ' .
+		$data = $this->_mysqli->query('SELECT id, id_parent, id_organization, IF ((SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = ' . $id_language . ' LIMIT 1) IS NOT NULL,(SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = ' . $id_language . ' LIMIT 1), (SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate ' .
 									' FROM ' . $this->_table .
 									' WHERE id = ' . $folder_id . ';'
 		);

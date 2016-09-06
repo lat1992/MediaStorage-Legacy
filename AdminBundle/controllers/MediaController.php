@@ -91,7 +91,7 @@ class MediaController {
 				'<th>' . REFERENCE_CLIENT . '</th>',
 				'<th>' . RIGHT_VIEW . '</th>',
 				'<th></th>',
-				'<th></th>',
+				(isset($_SESSION['permits'][PERMIT_DELETE_CONTENT])) ? '<th></th>' : '',
 			);
 
 		$table_data = array();
@@ -104,7 +104,7 @@ class MediaController {
 					'<td>' . $media['reference_client'] . '</td>',
 					'<td>' . $media['right_view'] . '</td>',
 					'<td class="button_td edit" ><a href="?page=edit_content_admin&media_id=' . $media['id'] . '" class="button_a edit">' . EDIT . '</a></td>',
-					'<td class="button_td delete" ><a href="?page=delete_contentmau_admin&media_id=' . $media['id'] . '" class="button_a delete">' . DELETE . '</a></td>',
+					(isset($_SESSION['permits'][PERMIT_DELETE_CONTENT])) ? '<td class="button_td delete" ><a href="?page=delete_contentmau_admin&media_id=' . $media['id'] . '" class="button_a delete">' . DELETE . '</a></td>' : '',
 				);
 			}
 
