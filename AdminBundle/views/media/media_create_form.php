@@ -45,7 +45,8 @@
 		if (isset($_GET['media_id']))  {
 ?>
 			<label for="reference_mediastorage"><?= REFERENCE ?> : </label>
-			<input type="text" name="reference_mediastorage" id="reference_mediastorage" value="<?= (isset($media['reference'])) ? $media['reference'] : '' ?>" /><br />
+			<input type="hidden" name="reference_mediastorage" id="reference_mediastorage" value="<?= (isset($media['reference'])) ? $media['reference'] : '' ?>" />
+			<input disabled type="text" name="reference_mediastorage" id="reference_mediastorage" value="<?= (isset($media['reference'])) ? $media['reference'] : '' ?>" /><br />
 <?php
 		}
 ?>

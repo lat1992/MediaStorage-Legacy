@@ -143,7 +143,7 @@ define('CART_CREATION_TITLE', 'Création d\'un panier');
 // Chapter
 
 define('CHAPTER_CREATION_TITLE', 'Création d\'un chapitre');
-define('CHAPTER_LANGUAGE_CREATION_TITLE', 'Ajout d\'un language au chapitre');
+define('CHAPTER_LANGUAGE_CREATION_TITLE', 'Ajout d\'un langage au chapitre');
 define('CHAPTER', 'Chapitre');
 define('TC_IN', 'Tc in');
 define('TC_OUT', 'Tc out');
