@@ -3,7 +3,7 @@
 
 	<label for="id_parent_mediastorage"><?= MEDIA_PARENT ?></label>
 	<select name="id_parent_mediastorage" id="id_parent_mediastorage"/>
-	<option value="NULL"><?= NULL ?></option>
+	<option value="NULL"><?= null ?></option>
 <?php
 	var_dump($parents['data']);
 		while ($parent = $parents['data']->fetch_assoc()) {

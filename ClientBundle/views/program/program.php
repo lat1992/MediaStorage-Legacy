@@ -42,6 +42,7 @@ require_once('ClientBundle/views/layout/header.php');
                 <div class="title_div"><span><h2><?= $content['reference'] ?></h2></span></div>
                 <img src="ClientBundle/ressources/media/img/default-content.png" />
                 <div>
+                <!-- TODO: DESCIPTION OF CONTENT HERE -->
                 </div>
 
                 <div class="clear_div"></div>

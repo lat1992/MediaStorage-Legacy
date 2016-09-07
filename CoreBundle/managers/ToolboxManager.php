@@ -2,11 +2,6 @@
 
 class ToolBoxManager {
 
-	// private $_folderMediaModel;
-
-	// public function __construct() {
-	// 	$this->_folderMediaModel = new FolderMedia();
-	// }
 	public function mysqliResultToArray($mysqli_data) {
 
 		$array_data = array();

@@ -14,8 +14,27 @@ require_once('RootBundle/ressources/permit/permit_defines.php');
 
 require_once('translation/index.php');
 
-if (isset($_SESSION['username_mediastorage']) && isset($_SESSION['role_mediastorage']) && isset($_GET['page'])) {
+$page = '';
+
+if (isset($_GET['platform'])) {
+
+	require_once('CoreBundle/managers/OrganizationManager.php');
+
+	$organizationManager = new OrganizationManager();
+
+	$_SESSION['id_platform_organization'] = $organizationManager->getOrganizationIdByReferenceDb($_GET['platform']);
+
+	if (is_null($_SESSION['id_platform_organization']))
+		$page = 'error';
+}
+
+if (isset($_SESSION['username_mediastorage']) && isset($_SESSION['role_mediastorage']) && isset($_GET['page']) && empty($page)) {
 	$page = $_GET['page'];
+
+	if (isset($_SESSION['id_platform_organization']) && intval($_SESSION['id_platform_organization']) != intval($_SESSION['id_organization'])) {
+		session_unset();
+		$page = 'login';
+	}
 }
 else {
 	$page = 'login';

@@ -30,10 +30,15 @@
 						<span>&#9776; <span class="to_hide_mobile"><?= MENU ?></span></span>
 					</div>
 
-					<div class="js-open-right-slidebar" >
-						<span><span class="to_hide_mobile"><?= ADMINISTRATOR ?></span> &#9776;</span>
-					</div>
-
+<?php
+					if (isset($_SESSION['permits'][PERMIT_CREATE_CONTENT]) || isset($_SESSION['permits'][PERMIT_EDIT_CONTENT]) || isset($_SESSION['permits'][PERMIT_DELETE_CONTENT]) || isset($_SESSION['permits'][PERMIT_EDIT_CONTENT]) || isset($_SESSION['permits'][PERMIT_ROOT])) {
+?>
+						<div class="js-open-right-slidebar" >
+							<span><span class="to_hide_mobile"><?= ADMINISTRATOR ?></span> &#9776;</span>
+						</div>
+<?php
+					}
+?>
 					<div id="header_title_div">
 						<h1><?= (isset($title)) ? $title : NO_TITLE ?></h1>
 					</div>
