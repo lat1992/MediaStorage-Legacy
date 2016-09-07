@@ -148,6 +148,10 @@ input.input_checkbox {
 	margin: 17px 0 10px 10px;
 }
 
+.design-form input{
+    padding: 0px;
+}
+
 @media only screen and (max-width: 900px) {
 	#menu_text {
 		display: none;

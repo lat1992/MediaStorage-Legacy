@@ -1,24 +1,30 @@
 <?php
 
 require_once('CoreBundle/managers/UserManager.php');
+require_once('CoreBundle/managers/designManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
 require_once('CoreBundle/managers/RoleManager.php');
 require_once('CoreBundle/managers/LanguageManager.php');
+require_once('CoreBundle/managers/ToolboxManager.php');
 
 class UserController {
 
 	private $_userManager;
+	private $_designManager;
 	private $_organizationManager;
 	private $_roleManager;
 	private $_languageManager;
+	private $_toolboxManager;
 
 	private $_errorArray;
 
 	public function __construct() {
 		 $this->_userManager = new UserManager();
+		 $this->_designManager = new DesignManager();
 		 $this->_organizationManager = new OrganizationManager();
 		 $this->_roleManager = new RoleManager();
 		 $this->_languageManager = new LanguageManager();
+		 $this->_toolboxManager = new ToolBoxManager();
 
 		 $this->_errorArray = array();
 	}
@@ -45,6 +51,17 @@ class UserController {
 				header('Location:' . '?page=home');
 			}
 		}
+
+		if (isset($_SESSION['id_platform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
+
 
 		include ('ClientBundle/views/login/login.php');
 	}

@@ -272,10 +272,19 @@ define('FOLDER_MENU', 'Tous les dossiers');
 define('PROGRAM_MENU', 'Tous les programmes');
 define('CONTENT_MENU', 'Tous les contenus');
 
-
 // NEW TRADUCTION <--- TO DELETE AFTER BEING DONE
 
 define('DOWNLOAD', 'Téléchager');
 define('ADDTOCART', 'Ajouter au panier');
 define('CART', 'Panier');
 define('ADDTOSHARELIST', 'Ajouter a la liste de partage');
+define('DESIGN', 'Design');
+
+define('LOGIN_PAGE', 'Page de connexion');
+define('GENERAL', 'Général');
+define('LOGIN_BLOCK', 'Bloc de connexion');
+define('BUTTON', 'Bouton');
+define('CSS_BACKGROUND_COLOR', 'Couleur de fond');
+define('CSS_COLOR', 'Couleur du texte');
+define('CSS_BACKGROUND_COLOR_HOVER', 'Couleur de fond dynamique');
+define('CSS_COLOR_HOVER', 'Couleur du texte dynamique');

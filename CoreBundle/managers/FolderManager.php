@@ -17,7 +17,7 @@ class FolderManager {
 	public function formatFolderArrayWithPostData() {
 		$folder = array();
 
-		$parent = NULL;
+		$parent = null;
 
 		if (isset($_POST['id_parent_mediastorage'])) {
 			foreach ($_POST['id_parent_mediastorage'] as $data_parent) {
@@ -25,7 +25,7 @@ class FolderManager {
 					$parent = $data_parent;
 			}
 		}
-		if ($parent == NULL)
+		if ($parent == null)
 			$parent = 'NULL';
 
 		$translate = array();

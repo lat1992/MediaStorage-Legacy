@@ -149,16 +149,16 @@ class MediaManager {
 
 	public function preFillMediaPostData($id_type) {
 
-		$folder = NULL;
+		$folder = null;
 
 		foreach ($_POST['id_folder_mediastorage'] as $data_folder) {
 			if ($data_folder)
 				$folder = $data_folder;
 		}
-		if ($folder == NULL)
+		if ($folder == null)
 			$folder = 'NULL';
 
-		$parent = NULL;
+		$parent = null;
 
 		if (isset($_POST['id_parent_mediastorage'])) {
 			foreach ($_POST['id_parent_mediastorage'] as $data_parent) {
@@ -166,7 +166,7 @@ class MediaManager {
 					$parent = $data_parent;
 			}
 		}
-		if ($parent == NULL)
+		if ($parent == null)
 			$parent = 'NULL';
 
 		$right_view = intval($_POST['right_view_mediastorage']);

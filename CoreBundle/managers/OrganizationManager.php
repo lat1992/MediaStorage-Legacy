@@ -65,6 +65,23 @@ class OrganizationManager {
 		return $this->_organizationModel->findOrganizationById($organization_id);
 	}
 
+	public function getOrganizationByReferenceDb($organization_reference) {
+		return $this->_organizationModel->findOrganizationByReference($organization_reference);
+	}
+
+	public function getOrganizationIdByReferenceDb($reference) {
+		$return_value = $this->_organizationModel->findOrganizationByReference($reference);
+
+		if (!empty($return_value['error']))
+			return null;
+
+		while ($value = $return_value['data']->fetch_assoc()) {
+			return $value['id'];
+		}
+
+		return null;
+	}
+
 	public function organizationEditDb($organization_data) {
 
 		if (strcmp($group_data['reference'], $_POST['reference_mediastorage']) != 0) {

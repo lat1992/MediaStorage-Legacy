@@ -1,7 +1,7 @@
 <?php
 
 abstract class Model {
-	
+
 	protected $_mysqli;
 
 	protected $_table;
