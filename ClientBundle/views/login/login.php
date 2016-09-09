@@ -7,39 +7,7 @@
 
     <style>
 
-/*        body {
-            background-color: #a6a6a6;
-        }
-
-        body {
-            color: #000000;
-        }
-
-        .form button {
-            background-color: #404040;
-        }
-
-        .form button {
-            color: #d9d9d9;
-        }
-
-        .form button:hover,.form button:active,.form button:focus {
-            background-color: #FED500;
-        }
-
-        .form button:hover,.form button:active,.form button:focus {
-            color: #262626;
-        }
-
-        .form {
-            background-color: #f2f2f2;
-        }
-
-        .form {
-            color:;
-        }*/
-
-        <?php
+<?php
             if (isset($designs)) {
 
                 foreach ($designs as $design) {
@@ -50,14 +18,14 @@
 <?php
                 }
             }
-        ?>
+?>
 
     </style>
 
   </head>
-    <body>
-        <div class="login-page">
-            <div class= "logo" style="background-image: url(https://pbs.twimg.com/profile_images/1179925665/media365_400.jpg)"></div>
+    <body class="login-page">
+        <div class="page-login">
+            <div class= "logo" style="background-image: url(ClientBundle/ressources/organization/<?= $_SESSION['id_plateform_organization'] ?>/img/logo.png); background-size: contain;"></div>
             <div class="form">
                 <form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
                     <input type="text" name="username_mediastorage" id="username_mediastorage" placeholder="<?= USERNAME ?>" />
@@ -67,10 +35,14 @@
                 </form>
             </div>
         </div>
-        <script>
-            $('.message a').click(function(){
-                $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-            });
-        </script>
+<?php
+    if (isset($organization['text'])) {
+?>
+        <div class="page-text">
+        <?= $organization['text'] ?>
+        </div>
+<?php
+    }
+?>
     </body>
 </html>

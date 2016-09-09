@@ -286,6 +286,4 @@ class UserManager {
 	public function getAllUsersWithOrganizationDb($id_organization) {
 		return $this->_userModel->findAllUsersWithOrganization($id_organization);
 	}
-
-
 }

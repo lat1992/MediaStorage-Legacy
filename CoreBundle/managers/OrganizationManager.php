@@ -85,7 +85,6 @@ class OrganizationManager {
 	public function organizationEditDb($organization_data) {
 
 		if (strcmp($group_data['reference'], $_POST['reference_mediastorage']) != 0) {
-
 			$return_value = $this->_organizationModel->findOrganizationByReference($_POST['reference_mediastorage']);
 
 			if ($return_value['data']->num_rows != 0) {
@@ -97,7 +96,6 @@ class OrganizationManager {
 			if (!empty($return_value['error'])) {
 				return $return_value;
 			}
-
 		}
 
 		return $this->_organizationModel->updateOrganizationWithId($_POST, $organization_data['id']);
@@ -105,5 +103,13 @@ class OrganizationManager {
 
 	public function removeOrganizationByIdDb($organization_id) {
 		return $this->_organizationModel->deleteOrganizationById($organization_id);
+	}
+
+	public function getOrganizationWithReference($organization_reference) {
+		return $this->_organizationModel->findOrganizationByReference($organization_reference);
+	}
+
+	public function getOrganizationTextWithId($organization_id) {
+		return $this->_organizationModel->findOrganizationTextById($organization_id);
 	}
 }

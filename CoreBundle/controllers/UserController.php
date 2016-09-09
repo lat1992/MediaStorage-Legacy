@@ -52,16 +52,33 @@ class UserController {
 			}
 		}
 
-		if (isset($_SESSION['id_platform_organization'])) {
+		if(isset($_GET['plateform'])) {
+			$organization = $this->_organizationManager->getOrganizationWithReference($_GET['plateform']);
+			$this->mergeErrorArray($organization);
+			if (count($this->_errorArray) == 0) {
+				$result = $organization['data']->fetch_assoc();
+				$_SESSION['id_plateform_organization'] = $result['id'];
+			}
 
-			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
+			$organization = $this->_organizationManager->getOrganizationTextWithId($_SESSION['id_plateform_organization']);
+						$this->mergeErrorArray($organization);
+			if (count($this->_errorArray) == 0) {
+				$organization = $organization['data']->fetch_assoc();
+			}
+		}
+		else {
+			header ('Location: http://www.capitalvision.fr');
+		}
+
+		if (isset($_SESSION['id_plateform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
 			$this->mergeErrorArray($designs_data);
 
 			if (count($this->_errorArray) == 0) {
 				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 			}
 		}
-
 
 		include ('ClientBundle/views/login/login.php');
 	}
