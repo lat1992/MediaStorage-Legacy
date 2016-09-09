@@ -9,7 +9,7 @@ class MediaInfo extends Model {
 	}
 
 	public function findAllMediaInfos() {
-		$data = $this->_mysqli->query('SELECT id, title, subtitle, description, episode_number, image_version, sound_version, handover_date, created_date, modified_date, id_media, id_language ' .
+		$data = $this->_mysqli->query('SELECT id, title, subtitle, description, id_media, id_language ' .
 			' FROM ' . $this->_table
 		);
 
@@ -24,13 +24,10 @@ class MediaInfo extends Model {
 		$title = $this->_mysqli->real_escape_string($data['title_mediastorage']);
 		$subtitle = $this->_mysqli->real_escape_string($data['subtitle_mediastorage']);
 		$description = $this->_mysqli->real_escape_string($data['description_mediastorage']);
-		$episode_number = $this->_mysqli->real_escape_string($data['episode_number_mediastorage']);
-		$image_version = $this->_mysqli->real_escape_string($data['image_version_mediastorage']);
-		$sound_version = $this->_mysqli->real_escape_string($data['sound_version_mediastorage']);
 		$id_media = $this->_mysqli->real_escape_string($data['id_media_mediastorage']);
 		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(title, subtitle, description, episode_number, image_version, sound_version, id_media, id_language)' .
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(title, subtitle, description, id_media, id_language)' .
 			' VALUES ("'. $title . '","'. $subtitle . '","'. $description . '","'. $episode_number . '","'. $image_version . '","'. $sound_version . '", ' . $id_media . ', ' . $id_language . ');'
 		);
 
@@ -44,9 +41,6 @@ class MediaInfo extends Model {
 		$title = $this->_mysqli->real_escape_string($data['title_mediastorage']);
 		$subtitle = $this->_mysqli->real_escape_string($data['subtitle_mediastorage']);
 		$description = $this->_mysqli->real_escape_string($data['description_mediastorage']);
-		$episode_number = $this->_mysqli->real_escape_string($data['episode_number_mediastorage']);
-		$image_version = $this->_mysqli->real_escape_string($data['image_version_mediastorage']);
-		$sound_version = $this->_mysqli->real_escape_string($data['sound_version_mediastorage']);
 		$id_media = $this->_mysqli->real_escape_string($data['id_media_mediastorage']);
 		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
 
@@ -64,7 +58,7 @@ class MediaInfo extends Model {
 	public function findMediaInfoById($media_info_id) {
 		$media_info_id = $this->_mysqli->real_escape_string($media_info_id);
 
-		$data = $this->_mysqli->query('SELECT id, title, subtitle, description, episode_number, image_version, sound_version, handover_date, created_date, modified_date, id_media, id_language' .
+		$data = $this->_mysqli->query('SELECT id, title, subtitle, description, id_media, id_language' .
 									' FROM ' . $this->_table .
 									' WHERE id = ' . $media_info_id . ';'
 		);
@@ -102,7 +96,7 @@ class MediaInfo extends Model {
 	public function findMediaInfoByMediaId($id_media) {
 		$id_media = $this->_mysqli->real_escape_string($id_media);
 
-		$data = $this->_mysqli->query('SELECT id, title, subtitle, description, episode_number, image_version, sound_version, id_media, id_language' .
+		$data = $this->_mysqli->query('SELECT id, title, subtitle, description, id_media, id_language' .
 									' FROM ' . $this->_table .
 									' WHERE id_media = ' . $id_media . ';'
 		);
@@ -117,7 +111,7 @@ class MediaInfo extends Model {
 		$id_media = $this->_mysqli->real_escape_string($id_media);
 		$id_language = $this->_mysqli->real_escape_string($id_language);
 
-		$data = $this->_mysqli->query('SELECT id, title, subtitle, description, episode_number, image_version, sound_version, id_media, id_language' .
+		$data = $this->_mysqli->query('SELECT id, title, subtitle, description, id_media, id_language' .
 									' FROM ' . $this->_table .
 									' WHERE id_media = ' . $id_media . ' AND id_language = ' . $id_language . ' ;'
 		);

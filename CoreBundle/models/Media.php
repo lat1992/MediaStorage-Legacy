@@ -17,11 +17,14 @@ class Media extends Model {
 		);
 	}
 
-	public function findAllmediasByIdOrganizationAndIdType($id_organization, $id_type) {
+	public function findAllmediasByIdOrganizationAndIdType($id_organization, $id_type, $user_id_language) {
 		$id_type = $this->_mysqli->real_escape_string($id_type);
 		$id_organization = $this->_mysqli->real_escape_string($id_organization);
 
-		$data = $this->_mysqli->query('SELECT id, id_parent, reference, id_type, id_organization, reference_client, right_view FROM ' . $this->_table .
+		$data = $this->_mysqli->query('SELECT id, id_parent, reference, id_type, id_organization, reference_client, right_view ,
+			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT title FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS translate,
+			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT subtitle FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT subtitle FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS subtitle_translate
+			 FROM ' . $this->_table .
 			' WHERE id_organization = ' . $id_organization . ' AND id_type = ' . $id_type .
 			';');
 
@@ -51,7 +54,10 @@ class Media extends Model {
 		$id_folder = $this->_mysqli->real_escape_string($id_folder);
 		$id_type = $this->_mysqli->real_escape_string($id_type);
 
-		$data = $this->_mysqli->query('SELECT id, id_parent, reference, id_type, id_organization, reference_client, right_view, IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT title FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS translate FROM ' . $this->_table .
+		$data = $this->_mysqli->query('SELECT id, id_parent, reference, id_type, id_organization, reference_client, right_view,
+			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT title FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS translate,
+			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT subtitle FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT subtitle FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS subtitle_translate
+			 FROM ' . $this->_table .
 			' WHERE id_organization = ' . $id_organization . ' AND id_folder = ' . $id_folder . ' AND id_type = ' . $id_type .
 			';');
 
@@ -61,12 +67,15 @@ class Media extends Model {
 		);
 	}
 
-	public function findAllMediasByIdOrganizationAndIdTypeAndParentId($id_organization, $id_type, $id_parent) {
+	public function findAllMediasByIdOrganizationAndIdTypeAndParentId($id_organization, $id_type, $id_parent, $user_id_language) {
 		$id_type = $this->_mysqli->real_escape_string($id_type);
 		$id_organization = $this->_mysqli->real_escape_string($id_organization);
 		$id_parent = $this->_mysqli->real_escape_string($id_parent);
 
-		$data = $this->_mysqli->query('SELECT id, id_parent, reference, id_type, id_organization, reference_client, right_view FROM ' . $this->_table .
+		$data = $this->_mysqli->query('SELECT id, id_parent, reference, id_type, id_organization, reference_client, right_view,
+			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT title FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS translate,
+			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT subtitle FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT subtitle FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS subtitle_translate
+			 FROM ' . $this->_table .
 			' WHERE id_organization = ' . $id_organization . ' AND id_type = ' . $id_type . ' AND id_parent = ' . $id_parent .
 			';');
 
@@ -76,11 +85,14 @@ class Media extends Model {
 		);
 	}
 
-	public function findAllMediasWithoutParentsByIdOrganizationAndIdType($id_organization, $id_type) {
+	public function findAllMediasWithoutParentsByIdOrganizationAndIdType($id_organization, $id_type, $user_id_language) {
 		$id_type = $this->_mysqli->real_escape_string($id_type);
 		$id_organization = $this->_mysqli->real_escape_string($id_organization);
 
-		$data = $this->_mysqli->query('SELECT id, id_parent, reference, id_type, id_organization, reference_client, right_view FROM ' . $this->_table .
+		$data = $this->_mysqli->query('SELECT id, id_parent, reference, id_type, id_organization, reference_client, right_view,
+			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT title FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS translate,
+			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT subtitle FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT subtitle FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS subtitle_translate
+			 FROM ' . $this->_table .
 			' WHERE id_organization = ' . $id_organization . ' AND id_type = ' . $id_type . ' AND id_parent IS NULL' .
 			';');
 
@@ -133,11 +145,13 @@ class Media extends Model {
 		);
 	}
 
-	public function findMediaById($media_id) {
+	public function findMediaById($media_id, $user_id_language) {
 		$media_id = $this->_mysqli->real_escape_string($media_id);
 
-		$data = $this->_mysqli->query('SELECT id, id_parent, id_folder, id_organization, id_type, reference, reference_client, right_view, handover_date, created_date, modified_date ' .
-			' FROM ' . $this->_table .
+		$data = $this->_mysqli->query('SELECT id, id_parent, id_folder, id_organization, id_type, reference, reference_client, right_view, handover_date, created_date, modified_date,
+			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT title FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS translate,
+			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT subtitle FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT subtitle FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS subtitle_translate
+			 FROM ' . $this->_table .
 			' WHERE id = ' . $media_id . ';'
 		);
 

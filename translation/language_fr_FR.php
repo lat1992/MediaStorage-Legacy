@@ -288,3 +288,5 @@ define('CSS_BACKGROUND_COLOR', 'Couleur de fond');
 define('CSS_COLOR', 'Couleur du texte');
 define('CSS_BACKGROUND_COLOR_HOVER', 'Couleur de fond dynamique');
 define('CSS_COLOR_HOVER', 'Couleur du texte dynamique');
+
+define('NO_DESCRIPTION_AVAILABLE', 'Aucune description disponible.');

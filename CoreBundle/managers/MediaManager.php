@@ -24,7 +24,7 @@ class MediaManager {
 	}
 
 	public function getAllContentsByIdOrganizationDb() {
-		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdType($_SESSION['id_organization'], 2);
+		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdType($_SESSION['id_organization'], 2, $_SESSION['id_language_mediastorage']);
 	}
 
 	public function getAllProgramsByIdOrganizationAndFolderIdDb($id_folder) {
@@ -36,15 +36,15 @@ class MediaManager {
 	}
 
 	public function getAllContentsByIdOrganizationAndParentIdDb($id_parent) {
-		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndParentId($_SESSION['id_organization'], 2, $id_parent);
+		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndParentId($_SESSION['id_organization'], 2, $id_parent, $_SESSION['id_language_mediastorage']);
 	}
 
 	public function getAllProgramsWithoutParentsByOrganizationDb() {
-		return $this->_mediaModel->findAllMediasWithoutParentsByIdOrganizationAndIdType($_SESSION['id_organization'], 1);
+		return $this->_mediaModel->findAllMediasWithoutParentsByIdOrganizationAndIdType($_SESSION['id_organization'], 1, $_SESSION['id_language_mediastorage']);
 	}
 
 	public function getAllContentsWithoutParentsByOrganizationDb() {
-		return $this->_mediaModel->findAllMediasWithoutParentsByIdOrganizationAndIdType($_SESSION['id_organization'], 2);
+		return $this->_mediaModel->findAllMediasWithoutParentsByIdOrganizationAndIdType($_SESSION['id_organization'], 2, $_SESSION['id_language_mediastorage']);
 	}
 
 	public function formatMediaArrayWithPostData() {
@@ -90,7 +90,7 @@ class MediaManager {
 	}
 
 	public function getMediaByIdDb($media_id) {
-		return $this->_mediaModel->findMediaByid($media_id);
+		return $this->_mediaModel->findMediaByid($media_id, $_SESSION['id_language_mediastorage']);
 	}
 
 	public function getMediaByIdAndOrganizationIdDb($id_media) {
@@ -314,7 +314,7 @@ class MediaManager {
 			else {
 				$data = $result['data']->fetch_assoc();
 
-				$path[$cpt]['data'] = $data['reference_client'];
+				$path[$cpt]['data'] = $data['translate'];
 				$path[$cpt]['id'] = $data['id'];
 				$path[$cpt]['type'] = $data['id_type'];
 

@@ -17,18 +17,6 @@
 	                    <td><?= DESCRIPTION ?> :</td>
 	                    <td><?= $media_info['description'] ?></td>
 	                </tr>
-	                <tr>
-	                    <td><?= EPISODE_NUMBER ?> :</td>
-	                    <td><?= $media_info['episode_number'] ?></td>
-	                </tr>
-	                <tr>
-	                    <td><?= IMAGE_VERSION ?> :</td>
-	                    <td><?= $media_info['image_version'] ?></td>
-	                </tr>
-	                <tr>
-	                    <td><?= SOUND_VERSION ?> :</td>
-	                    <td><?= $media_info['sound_version'] ?></td>
-	                </tr>
 
 	                <?php require_once('ClientBundle/views/content/media_extra_list.php'); ?>
 
