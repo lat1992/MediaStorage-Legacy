@@ -21,6 +21,7 @@ class HomePageController {
 	}
 
 	public function showAction() {
-		include ('ClientBundle/views/home/home.php');
+		header('Location: ?page=folder');
+		//include ('ClientBundle/views/home/home.php');
 	}
 }
