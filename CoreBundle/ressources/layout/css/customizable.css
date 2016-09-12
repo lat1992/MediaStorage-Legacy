@@ -22,6 +22,9 @@ div[canvas] {
     background-color: #003300;
     color: white;
 }
+.to_hide_mobile a {
+    color: white;
+}
 
 /* TOP MENU */
 

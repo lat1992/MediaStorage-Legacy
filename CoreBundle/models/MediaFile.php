@@ -88,5 +88,18 @@ class MediaFile extends Model {
 		);
 	}
 
+	public function findMediaFileByMediaFileId($id_media_file) {
+		$media_id_file = $this->_mysqli->real_escape_string($media_id_file);
+
+		$data = $this->_mysqli->query('SELECT id, id_media, mine_type, filename, filepath, right_download, right_addtocart' .
+			' FROM ' . $this->_table .
+			' WHERE id = ' . $id_media_file
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findMediaFileByMediaFileId: ' . $this->_mysqli->error : '',
+		);
+	}
 
 }
