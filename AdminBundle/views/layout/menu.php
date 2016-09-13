@@ -1,4 +1,4 @@
-<div off-canvas="slidebar-2 right reveal">
+<div off-canvas="slidebar-2 right reveal" class="off-canvas">
 	<ul>
 
 		<li class="admin_information"><?= ADMIN_INFORMATION ?></li>

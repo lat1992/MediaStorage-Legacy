@@ -10,6 +10,7 @@ a.link_div_folder, a.link_div_program, a.link_div_content {
     width: 100%;
     display: inline-block;
     padding: 10px 0 10px 20px;
+    margin: 20px 0 0 0 ;
     font-weight: bold;
 }
 

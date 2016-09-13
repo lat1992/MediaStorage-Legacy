@@ -2,17 +2,23 @@
 
 require_once('CoreBundle/managers/FolderManager.php');
 require_once('CoreBundle/managers/MediaManager.php');
+require_once('CoreBundle/managers/DesignManager.php');
+require_once('CoreBundle/managers/ToolboxManager.php');
 
 class FolderPageController {
 
 	private $_folderManager;
 	private $_mediaManager;
+	private $_designManager;
+	private $_toolboxManager;
 
 	private $_errorArray;
 
 	public function __construct() {
 		$this->_folderManager = new FolderManager();
 		$this->_mediaManager = new MediaManager();
+		$this->_designManager = new DesignManager();
+		$this->_toolboxManager = new ToolboxManager();
 
 		$this->_errorArray = array();
 	}
@@ -53,6 +59,15 @@ class FolderPageController {
 
 		$this->mergeErrorArray($folders);
 
+		if (isset($_SESSION['id_plateform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
 
 		include ('ClientBundle/views/folder/folder.php');
 	}

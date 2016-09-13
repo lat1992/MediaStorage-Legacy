@@ -24,7 +24,7 @@ class Organization extends Model {
 		$name = $this->_mysqli->real_escape_string($data['name_mediastorage']);
 		$id_group = $this->_mysqli->real_escape_string($data['id_group_mediastorage']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(reference, name, id_group)' .
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(reference, name, id_group, id_default_language)' .
 			' VALUES ("'. $reference . '", "' . $name . '",' . $id_group . ');'
 		);
 

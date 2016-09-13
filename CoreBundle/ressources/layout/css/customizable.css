@@ -8,7 +8,7 @@ body {
 	font-family: "roboto", 'QuickSand';
 }
 
-div[canvas] {
+div.div_canvas {
 	background-color: #f5f4f2;
 	color: black;
 }
@@ -28,23 +28,23 @@ div[canvas] {
 
 /* TOP MENU */
 
-nav[canvas] {
+nav.nav_canvas {
 	color: white;
 	background-color: #404040;
 }
 
 /* SIDE MENUS */
 
-[off-canvas] {
+.off-canvas {
 	background-color: #404040;
 	color: red;
 }
 
-[off-canvas] a {
+.off-canvas a {
     color: white;
 }
 
-[off-canvas] a:hover {
+.off-canvas a:hover {
     background-color: #00ff99;
     color: black;
 }

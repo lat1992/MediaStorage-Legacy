@@ -12,17 +12,13 @@
 
 	</head>
 
-	<style>
-	
-	</style>
-
 	<body>
 
 		<?php require_once('ClientBundle/views/layout/menu.php'); ?>
 
 		<?php require_once('AdminBundle/views/layout/menu.php'); ?>
 
-			<nav canvas class>
+			<nav canvas class="nav_canvas">
 
 				<div id="header_div">
 
@@ -47,7 +43,7 @@
 
 			</nav>
 
-			<div canvas="container">
+			<div canvas="container" class="div_canvas">
 
 <?php
 				if (!empty($this->_errorArray)) {
