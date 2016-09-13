@@ -58,20 +58,20 @@ class UserController {
 			if (count($this->_errorArray) == 0) {
 				$result = $organization['data']->fetch_assoc();
 				$_SESSION['id_plateform_organization'] = $result['id'];
+				$_SESSION['id_language_mediastorage'] = $result['id_default_language'];
 			}
 
-			$organization = $this->_organizationManager->getOrganizationTextWithId($_SESSION['id_plateform_organization']);
-						$this->mergeErrorArray($organization);
+			$organization = $this->_organizationManager->getOrganizationTextWithId($_SESSION['id_plateform_organization'], $_SESSION['id_language_mediastorage']);
+			$this->mergeErrorArray($organization);
 			if (count($this->_errorArray) == 0) {
-				$organization = $organization['data']->fetch_assoc();
+				$text = $organization['data']->fetch_assoc();
 			}
 		}
 		else {
-			header ('Location: http://www.capitalvision.fr');
+			header ('Location:' . 'http://www.capitalvision.fr');
 		}
 
 		if (isset($_SESSION['id_plateform_organization'])) {
-
 			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
 			$this->mergeErrorArray($designs_data);
 
@@ -85,7 +85,6 @@ class UserController {
 
 	public function logoutAction() {
 		session_unset();
-
 		header('Location:' . '?page=login');
 	}
 

@@ -36,10 +36,10 @@
             </div>
         </div>
 <?php
-    if (isset($organization['text'])) {
+    if (isset($text['text'])) {
 ?>
         <div class="page-text">
-        <?= $organization['text'] ?>
+        <?= $text['text'] ?>
         </div>
 <?php
     }

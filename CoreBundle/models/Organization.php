@@ -67,14 +67,14 @@ class Organization extends Model {
 	public function findOrganizationByReference($reference) {
 		$reference = $this->_mysqli->real_escape_string($reference);
 
-		$data = $this->_mysqli->query('SELECT id, reference, name, id_group' .
+		$data = $this->_mysqli->query('SELECT id, id_default_language, reference, name, id_group' .
 									' FROM ' . $this->_table .
 									' WHERE reference = "' . $reference . '";'
 		);
 
 		return array(
 			'data' => $data,
-			'error' => ($this->_mysqli->error) ? 'findOrganizationById: ' . $this->_mysqli->error : '',
+			'error' => ($this->_mysqli->error) ? 'findOrganizationByReference: ' . $this->_mysqli->error : '',
 		);
 	}
 
@@ -91,9 +91,9 @@ class Organization extends Model {
 		);
 	}
 
-	public function findOrganizationTextById($organization_id) {
+	public function findOrganizationTextById($organization_id, $language_id) {
 		$organization_id = $this->_mysqli->real_escape_string($organization_id);
-		$data = $this->_mysqli->query('SELECT text FROM organization_text WHERE id_organization = ' . $organization_id . ';'
+		$data = $this->_mysqli->query('SELECT text FROM organization_text WHERE id_organization = ' . $organization_id . ' AND id_language = '. $language_id .';'
 		);
 		
 		return array(
