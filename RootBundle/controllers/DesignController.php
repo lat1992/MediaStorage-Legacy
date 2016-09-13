@@ -139,7 +139,7 @@ class DesignController {
 
 			if (count($this->_errorArray) == 0) {
 				$_SESSION['flash_message'] = ACTION_SUCCESS;
-				header('Location:' . '?page=edit_design_root&id_organization=1' . $id_organization);
+				header('Location:' . '?page=edit_design_root&id_organization=' . $_GET['id_organization']);
 				exit;
 			}
 		}
@@ -152,13 +152,7 @@ class DesignController {
 		}
 
 		$title = DESIGN;
-					ini_set('xdebug.var_display_max_depth', -1);
-					ini_set('xdebug.var_display_max_children', -1);
-					ini_set('xdebug.var_display_max_data', -1);
-// var_dump('-------------');
-// var_dump('-------------');
-// var_dump('-------------');
-// var_dump($designs);exit;
+
 		include ('RootBundle/views/design/design_create.php');
 	}
 }

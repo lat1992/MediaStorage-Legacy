@@ -279,7 +279,7 @@ class MediaManager {
 		foreach ($path as $path_data) {
 
 			if ($cpt != 0) {
-				$final_path .= '/';
+				$final_path .= ' / ';
 			}
 
 			if (intval($path_data['type']) == 1)

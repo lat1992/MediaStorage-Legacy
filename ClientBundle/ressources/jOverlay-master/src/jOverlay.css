@@ -1,0 +1,41 @@
+.page-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: rgba(210,210,210,.8);
+}
+.page-overlay .close-overlay {
+  position: absolute;
+  top: 10px;
+  left: auto;
+  right: 20px;
+  font-size: 40px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #333333;
+}
+.page-overlay .close-overlay svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (min-width: 768px) {
+  .page-overlay .close-overlay {
+    right: 45px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-overlay .close-overlay {
+    top: 50px;
+    right: 100px;
+  }
+  .page-overlay .close-overlay svg {
+    width: 40px;
+    height: 40px;
+  }
+}

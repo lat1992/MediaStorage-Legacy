@@ -1,5 +1,5 @@
 video {
-	border: 1px solid black;
+	border: 1px solid #d5d5d5;
 }
 
 table {
@@ -27,12 +27,21 @@ table {
 }
 
 .video_content {
-	width: 10%;
-	height: 40px;
+	width: 100px;
+	height: 70px;
 	display: inline-block;
 	float: left;
-	background-color: #a6a6a6;
+	background-color: #d5d5d5;
 	margin: 5px 5px 0 0;
+}
+
+.content_thumbnail_header {
+	display: inline-block;
+	width: 100%;
+	height: 20px;
+
+	background-color: #e4e4e4;
+	text-align: center;
 }
 
 #video_contents_div {
@@ -43,16 +52,70 @@ table {
 	clear: both;
 }
 
-#download_link_div {
+div#download_link_div {
 	float: left;
 	margin: 10px 0px 10px 5px;
 	width: 42%;
+	padding: 0;
 
 }
 
 #description_div, #download_link_div {
-	background-color: #a6a6a6;
 	padding: 10px 5px 10px 5px;
+}
+
+/* DOWNLOAD LINKS BLOCK */
+
+#download_link_table {
+	border-collapse: collapse;
+}
+
+#download_link_table thead th {
+	text-align: left;
+}
+
+#download_link_table a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	text-align: center;
+	padding: 10px 0 0 0;
+	color: black;
+}
+
+#download_link_table a:hover {
+	background-color: grey;
+	color: white;
+}
+
+#download_link_table th, #download_link_table td {
+	padding: 10px;
+}
+
+#download_link_table td {
+	background-color: #f2f2f2;
+}
+
+#download_link_table, #download_link_table th, #download_link_table td {
+	border: 1px solid black;
+	border-color: #d5d5d5;
+}
+
+#download_link_table th {
+	background-color: #d5d5d5;
+}
+
+/* DESCRIPTION BLOCK */
+
+#description_div {
+	background-color: #f2f2f2;
+    border: 1px solid black;
+    border-color: #d5d5d5;
+}
+
+#description_div .label {
+	font-weight: bold;
 }
 
 th {
@@ -71,7 +134,7 @@ th {
     	border: none;
     }
 
-    #description_div, #download_link_div {
+    #description_div, div#download_link_div {
         width:100%;
         margin-left: 0;
         margin-right: 0;

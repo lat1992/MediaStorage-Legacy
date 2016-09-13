@@ -75,3 +75,7 @@ ul li a.root_button:hover {
     background-color: #ff1a1a;
     color: white;
 }
+
+.to_hide_mobile a {
+    color: white;
+}

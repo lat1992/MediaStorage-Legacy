@@ -1,0 +1,30 @@
+{
+  "name": "jOverlay",
+  "version": "1.1.2",
+  "description": "Create your content and than wrap it into an overlay",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Giulico/Overlay"
+  },
+  "bugs": {
+    "url": "https://github.com/Giulico/Overlay/issues"
+  },
+  "author": {
+    "name": "Giulio Collesei",
+    "email": "giuliocollesei@gmail.com",
+    "url": "http://www.nuvolechiare.it"
+  },
+  "homepage": "https://github.com/Giulico",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-contrib-watch": "^0.6.1"
+  },
+  "scripts": {
+    "test": "grunt travis --verbose"
+  }
+}

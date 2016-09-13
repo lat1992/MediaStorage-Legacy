@@ -1,0 +1,33 @@
+{
+  "name": "joverlay",
+  "version": "1.1.2",
+  "authors": [
+    "Giulio Collesei <giuliocollesei@gmail.com>"
+  ],
+  "description": "Create your content and weap it into an overlay.",
+  "main": [
+    "src/jquery.jOverlay.js",
+    "src/jOverlay.css"
+  ],
+  "moduleType": [
+    "es6"
+  ],
+  "keywords": [
+    "Overlay",
+    "jquery",
+    "js",
+    "css"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.nuvolechiare.it",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.1"
+  }
+}

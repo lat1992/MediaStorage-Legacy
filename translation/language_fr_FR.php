@@ -290,3 +290,9 @@ define('CSS_BACKGROUND_COLOR_HOVER', 'Couleur de fond dynamique');
 define('CSS_COLOR_HOVER', 'Couleur du texte dynamique');
 
 define('NO_DESCRIPTION_AVAILABLE', 'Aucune description disponible.');
+define('ACTION', 'Action');
+define('USAGE', 'Usage');
+define('SOURCE_FILE', 'Fichier source');
+define('WATCHING_FILE', 'Fichier de visionage');
+define('CUT_FILE', 'Réalisation d\'une découpe');
+define('TRANSCODAGE', 'Transcodage');

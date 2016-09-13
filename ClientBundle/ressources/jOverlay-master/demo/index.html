@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jQuery Boilerplate</title>
+		<!-- plugin style -->
+		<link rel="stylesheet" href="../src/jOverlay.css">
+		<!-- demo style -->
+		<link rel="stylesheet" href="demo.css">
+	</head>
+	<body>
+
+		<a href="#element" id="trigger" class="btn">Click me</a><br>
+		<a href="#ytVideo" class="btn">Open a YT Video</a><br>
+
+		<div id="element">
+			This html content will be wrapped into the <em>Overlay</em>
+		</div>
+
+		<div id="ytVideo">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/kt0g4dWxEBo" frameborder="0" allowfullscreen></iframe>
+		</div>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script src="../src/jquery.jOverlay.js"></script>
+		<script>
+			$(function() {
+				$(".btn").jOverlay();
+			});
+		</script>
+	</body>
+</html>
