@@ -91,9 +91,9 @@ class Organization extends Model {
 		);
 	}
 
-	public function findOrganizationTextById($organization_id) {
+	public function findOrganizationTextById($organization_id, $language_id) {
 		$organization_id = $this->_mysqli->real_escape_string($organization_id);
-		$data = $this->_mysqli->query('SELECT text FROM organization_text WHERE id_organization = ' . $organization_id . ';'
+		$data = $this->_mysqli->query('SELECT text FROM organization_text WHERE id_organization = ' . $organization_id . ' AND id_language = '. $language_id .';'
 		);
 		
 		return array(

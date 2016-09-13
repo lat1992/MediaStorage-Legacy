@@ -60,10 +60,10 @@ class UserController {
 				$_SESSION['id_plateform_organization'] = $result['id'];
 			}
 
-			$organization = $this->_organizationManager->getOrganizationTextWithId($_SESSION['id_plateform_organization']);
+			$organization = $this->_organizationManager->getOrganizationTextWithId($_SESSION['id_plateform_organization'], $_SESSION['id_language_mediastorage']);
 						$this->mergeErrorArray($organization);
 			if (count($this->_errorArray) == 0) {
-				$organization = $organization['data']->fetch_assoc();
+				$text = $organization['data']->fetch_assoc();
 			}
 		}
 		else {
@@ -71,7 +71,6 @@ class UserController {
 		}
 
 		if (isset($_SESSION['id_plateform_organization'])) {
-
 			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
 			$this->mergeErrorArray($designs_data);
 
@@ -85,7 +84,6 @@ class UserController {
 
 	public function logoutAction() {
 		session_unset();
-
 		header('Location:' . '?page=login');
 	}
 
