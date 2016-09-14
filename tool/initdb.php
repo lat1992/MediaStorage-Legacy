@@ -13,9 +13,9 @@
 
 	// folder_language
 	$mysqli->query('TRUNCATE TABLE memory_folder_language');
-	$result = $mysqli->query('SELECT id, data FROM folder_language WHERE 1;');
+	$result = $mysqli->query('SELECT id, data, description FROM folder_language WHERE 1;');
 	while ($row = $result->fetch_assoc()) {
-		$mysqli->query('INSERT INTO memory_folder_language (id, data) VALUES ('. $row['id'] .', "'. $row['data'] .'");');
+		$mysqli->query('INSERT INTO memory_folder_language (id, data, description) VALUES ('. $row['id'] .', "'. $row['data'] .'", "'. $row['description'] .'");');
 	}
 
 	// media
@@ -55,9 +55,9 @@
 
 	// media_info
 	$mysqli->query('TRUNCATE TABLE memory_media_info');
-	$result = $mysqli->query('SELECT id, title, subtitle, episode_number, image_version, sound_version FROM media_info WHERE 1;');
+	$result = $mysqli->query('SELECT id, title, subtitle FROM media_info WHERE 1;');
 	while ($row = $result->fetch_assoc()) {
-		$mysqli->query('INSERT INTO memory_media_info (id, title, subtitle, episode_number, image_version, sound_version) VALUES ('. $row['id'] .', "'. $row['title'] .'", "'. $row['subtitle'] .'", "'. $row['episode_number'] .'", "'. $row['image_version'] .'", "'. $row['sound_version'] .'");');
+		$mysqli->query('INSERT INTO memory_media_info (id, title, subtitle, episode_number, image_version, sound_version) VALUES ('. $row['id'] .', "'. $row['title'] .'", "'. $row['subtitle'] .'");');
 	}
 
 	// tag

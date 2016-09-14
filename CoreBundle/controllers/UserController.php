@@ -58,13 +58,15 @@ class UserController {
 			if (count($this->_errorArray) == 0) {
 				$result = $organization['data']->fetch_assoc();
 				$_SESSION['id_plateform_organization'] = $result['id'];
-				$_SESSION['id_language_mediastorage'] = $result['id_default_language'];
+				if (isset($result['id_default_language']))
+					$_SESSION['id_language_mediastorage'] = $result['id_default_language'];
 			}
-
-			$organization = $this->_organizationManager->getOrganizationTextWithId($_SESSION['id_plateform_organization'], $_SESSION['id_language_mediastorage']);
-			$this->mergeErrorArray($organization);
-			if (count($this->_errorArray) == 0) {
-				$text = $organization['data']->fetch_assoc();
+			if (isset($_SESSION['id_language_mediastorage'])) {
+				$organization = $this->_organizationManager->getOrganizationTextWithId($_SESSION['id_plateform_organization'], $_SESSION['id_language_mediastorage']);
+				$this->mergeErrorArray($organization);
+				if (count($this->_errorArray) == 0) {
+					$text = $organization['data']->fetch_assoc();
+				}
 			}
 		}
 		else {
