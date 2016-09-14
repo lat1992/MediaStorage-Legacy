@@ -1,4 +1,8 @@
 <?php
+/*
+** Capital Vision Copyright 2016
+** Contribute by Jean-Stephane and Mauhoi
+*/
 
 /*
 ** ALL CHECKS

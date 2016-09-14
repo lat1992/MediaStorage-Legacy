@@ -10,15 +10,21 @@ class Search extends Model {
 
 	public function searchAll($keyword, $id_organization, $id_language) {
 		$data = $this->_mysqli->query(
-			'SELECT data FROM memory_folder_language WHERE id_language = '.$id_language.' AND memory_folder_language.id_chapter = folder.id AND folder.id_media = memory_media.id AND memory_media.id_organization = '.$id_organization.' AND memory_folder_language.data LIKE "%'. $keyword .'%"'.
-
-			' UNION SELECT data FROM memory_chapter_language WHERE id_language = '.$id_language.' AND data LIKE "%'.$keyword.'%"'.
-			' UNION SELECT data FROM memory_media_extra WHERE id_language = '.$id_language.' AND data LIKE "%'.$keyword.'%"'.
-			' UNION SELECT element AS data FROM memory_media_extra_array WHERE id_language = '.$id_language.' AND element LIKE "%'.$keyword.'%"'.
-			' UNION SELECT data FROM memory_media_extra_field_language WHERE id_language = '.$id_language.' AND data LIKE "%'.$keyword.'%"'.
-			' UNION SELECT title AS data FROM memory_media_info WHERE id_language = '.$id_language.' AND title LIKE "%'.$keyword.'%"'.
-			' UNION SELECT subtitle AS data FROM memory_media_info WHERE id_language = '.$id_language.' AND subtitle LIKE "%'.$keyword.'%"'.
-			' UNION SELECT data FROM memory_tag_language WHERE id_language = '.$id_language.' AND data LIKE "%'.$keyword.'%" ORDER BY ASC'
+			'SELECT memory_chapter_language.data FROM memory_chapter_language, chapter, memory_media WHERE memory_chapter_language.id_chapter = chapter.id AND chapter.id_media = memory_media.id AND memory_media.id_organization = '.$id_organization.' AND memory_chapter_language.id_language = '.$id_language.' AND memory_chapter_language.data LIKE "%'.$keyword.'%"'.
+			' UNION '.
+			'SELECT memory_folder_language.data AS data FROM memory_folder_language, folder WHERE memory_folder_language.id_language = '.$id_language.' AND memory_folder_language.id_folder = folder.id AND folder.id_organization = '.$id_organization.' AND memory_folder_language.data LIKE "%'. $keyword .'%"'.
+			' UNION '.
+			'SELECT memory_media_extra.data FROM memory_media_extra, media WHERE memory_media_extra.id_media = memory_media.id AND memory_media_extra.id_language = '.$id_language.' AND memory_media_extra.data LIKE "%'.$keyword.'%"'.
+			' UNION '.
+			'SELECT memory_media_extra_array.element AS data FROM memory_media_extra_array, media_field, memory_media WHERE memory_media_extra_array.id_field = field.id AND field.media_id = memory_media.id AND memory_media_extra_array.id_language = '.$id_language.' AND memory_media_extra_array.element LIKE "%'.$keyword.'%"'.
+			' UNION '.
+			'SELECT data FROM memory_media_extra_field_language WHERE id_language = '.$id_language.' AND data LIKE "%'.$keyword.'%"'.
+			' UNION '.
+			'SELECT title AS data FROM memory_media_info WHERE id_language = '.$id_language.' AND title LIKE "%'.$keyword.'%"'.
+			' UNION '.
+			'SELECT subtitle AS data FROM memory_media_info WHERE id_language = '.$id_language.' AND subtitle LIKE "%'.$keyword.'%"'.
+			' UNION '.
+			'SELECT data FROM memory_tag_language WHERE id_language = '.$id_language.' AND data LIKE "%'.$keyword.'%" ORDER BY ASC'
 		);
 		return array(
 			'data' => $data,
