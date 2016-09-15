@@ -11,11 +11,12 @@ class SearchManager {
 	}
 
 	public function liveSearch($keyword, $id_organization, $id_language) {
-		return $this->_searchModel->searchAll($keyword, $id_organization, $id_language);
+		return $this->_searchModel->getLiveSearch($keyword, $id_organization, $id_language);
 	}
 
 	public function quickSearch($keyword, $id_organization, $id_language) {
-		return $this->_searchModel->searchAll($keyword, $id_organization, $id_language);
+		return $this->_searchModel->getLiveSearch($keyword, $id_organization, $id_language);
+		//return $this->_searchModel->searchAll($keyword, $id_organization, $id_language);
 	}
 
 	public function searchFolder($keyword) {

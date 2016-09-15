@@ -8,7 +8,7 @@ class Search extends Model {
 		parent::__construct('search');
 	}
 
-	public function searchAll($keyword, $id_organization, $id_language) {
+	public function getLiveSearch($keyword, $id_organization, $id_language) {
 		$data = $this->_mysqli->query(
 			'SELECT memory_chapter_language.data FROM memory_chapter_language, chapter, memory_media WHERE memory_chapter_language.id_chapter = chapter.id AND chapter.id_media = memory_media.id AND memory_media.id_organization = '.$id_organization.' AND memory_chapter_language.id_language = '.$id_language.' AND memory_chapter_language.data LIKE "%'.$keyword.'%"'.
 			' UNION '.
@@ -25,7 +25,7 @@ class Search extends Model {
 			'SELECT memory_media_info.subtitle AS data FROM memory_media_info, memory_media WHERE memory_media_info.id_media = memory_media.id AND memory_media.id_organization = '.$id_organization.' AND memory_media_info.id_language = '.$id_language.' AND memory_media_info.subtitle LIKE "%'.$keyword.'%"'.
 			' UNION '.
 			'SELECT memory_tag_language.data FROM memory_tag_language, tag, memory_media WHERE memory_tag_language.id_tag = tag.id AND tag.id_media = memory_media.id AND memory_media.id_organization = '.$id_organization.' AND memory_tag_language.id_language = '.$id_language.' AND memory_tag_language.data LIKE "%'.$keyword.'%"'.
-			' ORDER BY CASE WHEN data LIKE "'.$keyword.'%" THEN 1 ELSE 2 END;'
+			' ORDER BY (CASE WHEN data LIKE "'.$keyword.'%" THEN 1 WHEN data REGEXP "[0-9]+" THEN 3 ELSE 2 END), data ASC LIMIT 0,10;'
 		);
 		return array(
 			'data' => $data,

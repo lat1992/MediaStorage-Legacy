@@ -25,16 +25,31 @@ class SearchPageController {
 	}
 
 	public function searchPageAction() {
-		if (isset($_GET['search'])) {
-			$result = $this->_searchManager->liveSearch($_GET['search'], $_SESSION['id_plateform_organization'], $_SESSION['id_language_mediastorage']);
+		if (isset($_GET['keyword'])) {
+			$result = $this->_searchManager->quickSearch($_GET['keyword'], $_SESSION['id_plateform_organization'], $_SESSION['id_language_mediastorage']);
 			$this->mergeErrorArray($result);
 			if (count($this->_errorArray) == 0) {
-				while ($row = $result['data']->fetch_assoc()) {
+				while ($row = $result['data']->fetch_assoc())
 					var_dump($row);
-				}
 				exit;
 			}
 		}
 		include ('ClientBundle/views/search/search.php');
+	}
+
+	public function ajaxRefreshLiveSearchAction() {
+		$result = $this->_searchManager->liveSearch($_GET['keyword'], $_SESSION['id_plateform_organization'], $_SESSION['id_language_mediastorage']);
+		$this->mergeErrorArray($result);
+		if (count($this->_errorArray) == 0) {
+			$rows = array();
+			while ($row_tmp = $result['data']->fetch_assoc()) {
+				$rows[] = $row_tmp;
+			}
+			if (isset($rows)) {
+				echo json_encode($rows);
+			}
+		}
+		echo '';
+		return ;
 	}
 }
