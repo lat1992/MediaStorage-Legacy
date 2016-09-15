@@ -14,17 +14,18 @@ class Search extends Model {
 			' UNION '.
 			'SELECT memory_folder_language.data AS data FROM memory_folder_language, folder WHERE memory_folder_language.id_language = '.$id_language.' AND memory_folder_language.id_folder = folder.id AND folder.id_organization = '.$id_organization.' AND memory_folder_language.data LIKE "%'. $keyword .'%"'.
 			' UNION '.
-			'SELECT memory_media_extra.data FROM memory_media_extra, media WHERE memory_media_extra.id_media = memory_media.id AND memory_media_extra.id_language = '.$id_language.' AND memory_media_extra.data LIKE "%'.$keyword.'%"'.
+			'SELECT memory_media_extra.data FROM memory_media_extra, memory_media WHERE memory_media_extra.id_media = memory_media.id AND memory_media_extra.id_language = '.$id_language.' AND memory_media_extra.data LIKE "%'.$keyword.'%"'.
 			' UNION '.
-			'SELECT memory_media_extra_array.element AS data FROM memory_media_extra_array, media_field, memory_media WHERE memory_media_extra_array.id_field = field.id AND field.media_id = memory_media.id AND memory_media_extra_array.id_language = '.$id_language.' AND memory_media_extra_array.element LIKE "%'.$keyword.'%"'.
+			'SELECT memory_media_extra_array.element AS data FROM memory_media_extra_array, media_extra_field, memory_media WHERE memory_media_extra_array.id_field = media_extra_field.id AND media_extra_field.id_organization = '.$id_organization.' AND memory_media_extra_array.id_language = '.$id_language.' AND memory_media_extra_array.element LIKE "%'.$keyword.'%"'.
 			' UNION '.
-			'SELECT data FROM memory_media_extra_field_language WHERE id_language = '.$id_language.' AND data LIKE "%'.$keyword.'%"'.
+			'SELECT memory_media_extra_field_language.data FROM memory_media_extra_field_language, media_extra_field WHERE memory_media_extra_field_language.id_field = media_extra_field.id AND memory_media_extra_field_language.id_language = '.$id_language.' AND media_extra_field.id_organization = '.$id_organization.' AND memory_media_extra_field_language.data LIKE "%'.$keyword.'%"'.
 			' UNION '.
-			'SELECT title AS data FROM memory_media_info WHERE id_language = '.$id_language.' AND title LIKE "%'.$keyword.'%"'.
+			'SELECT memory_media_info.title AS data FROM memory_media_info, memory_media WHERE memory_media_info.id_media = memory_media.id AND memory_media.id_organization = '.$id_organization.' AND memory_media_info.id_language = '.$id_language.' AND memory_media_info.title LIKE "%'.$keyword.'%"'.
 			' UNION '.
-			'SELECT subtitle AS data FROM memory_media_info WHERE id_language = '.$id_language.' AND subtitle LIKE "%'.$keyword.'%"'.
+			'SELECT memory_media_info.subtitle AS data FROM memory_media_info, memory_media WHERE memory_media_info.id_media = memory_media.id AND memory_media.id_organization = '.$id_organization.' AND memory_media_info.id_language = '.$id_language.' AND memory_media_info.subtitle LIKE "%'.$keyword.'%"'.
 			' UNION '.
-			'SELECT data FROM memory_tag_language WHERE id_language = '.$id_language.' AND data LIKE "%'.$keyword.'%" ORDER BY ASC'
+			'SELECT memory_tag_language.data FROM memory_tag_language, tag, memory_media WHERE memory_tag_language.id_tag = tag.id AND tag.id_media = memory_media.id AND memory_media.id_organization = '.$id_organization.' AND memory_tag_language.id_language = '.$id_language.' AND memory_tag_language.data LIKE "%'.$keyword.'%"'.
+			' ORDER BY CASE WHEN data LIKE "'.$keyword.'%" THEN 1 ELSE 2 END;'
 		);
 		return array(
 			'data' => $data,

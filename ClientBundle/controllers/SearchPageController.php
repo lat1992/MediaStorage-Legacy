@@ -26,10 +26,13 @@ class SearchPageController {
 
 	public function searchPageAction() {
 		if (isset($_GET['search'])) {
-			$result = $this->_searchManager->quickSearch($_GET['search'], $_SESSION['id_plateform_organization'], $_SESSION['id_language_mediastorage']);
+			$result = $this->_searchManager->liveSearch($_GET['search'], $_SESSION['id_plateform_organization'], $_SESSION['id_language_mediastorage']);
 			$this->mergeErrorArray($result);
 			if (count($this->_errorArray) == 0) {
-
+				while ($row = $result['data']->fetch_assoc()) {
+					var_dump($row);
+				}
+				exit;
 			}
 		}
 		include ('ClientBundle/views/search/search.php');

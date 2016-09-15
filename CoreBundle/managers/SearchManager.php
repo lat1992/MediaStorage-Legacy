@@ -10,8 +10,12 @@ class SearchManager {
 		$this->_searchModel = new Search();
 	}
 
-	public function quickSearch($keyword) {
-		return $this->_searchModel->searchAll($keyword);
+	public function liveSearch($keyword, $id_organization, $id_language) {
+		return $this->_searchModel->searchAll($keyword, $id_organization, $id_language);
+	}
+
+	public function quickSearch($keyword, $id_organization, $id_language) {
+		return $this->_searchModel->searchAll($keyword, $id_organization, $id_language);
 	}
 
 	public function searchFolder($keyword) {
