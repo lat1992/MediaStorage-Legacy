@@ -43,7 +43,7 @@ class Search extends Model {
 
 	public function searchMedia($keyword, $id_type, $id_organization, $id_language) {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media, memory_media_info, memory_media_extra, memory_media_extra_array, memory_media_file, memory_chapter_language, memory_tag_language'.
-			' WHERE memory_media.id = memory_media_info.media_id AND memory_media_extra.id_language = '.$id_language.' AND '.
+			' WHERE memory_media.id = memory_media_info.media_id AND memory_media_extra.id_language = '.$id_language.' AND memory_media.id_organization = '.$id_organization.' AND '.
 			' '.
 			' AND (memory_media_info.title LIKE "%'.$keyword.'%" OR memory_media_info.subtitle LIKE "%'.$keyword.'%" OR media_info.description LIKE "%'.$keyword.'%")');
 
