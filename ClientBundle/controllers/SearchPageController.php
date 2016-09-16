@@ -31,7 +31,6 @@ class SearchPageController {
 			if (count($this->_errorArray) == 0) {
 				while ($row = $result['data']->fetch_assoc())
 					var_dump($row);
-				exit;
 			}
 		}
 		include ('ClientBundle/views/search/search.php');
