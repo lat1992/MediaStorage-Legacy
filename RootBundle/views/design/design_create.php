@@ -308,6 +308,112 @@ require_once('RootBundle/views/layout/header.php');
 		<input type="hidden" name="design_mediastorage[div.content_description][color][id]" value="<?= (isset($designs['div.content_description']['color']['id'])) ? $designs['div.content_description']['color']['id'] : 0 ?>"/>
 		<div class="clear"></div>
 
+		<h2><?= CONTENT_PAGE ?></h2>
+
+		<h3><?= CONTENT_DESCRIPTION_BLOCK ?></h3>
+
+		<label for="design_mediastorage[#description_div][background-color][value]"><?= CSS_BACKGROUND_COLOR ?> : </label>
+		<input type="color" name="design_mediastorage[#description_div][background-color][value]" id="design_mediastorage[#description_div][background-color][value]" value="<?= (isset($designs['#description_div']['background-color']['value'])) ? $designs['#description_div']['background-color']['value'] : '#f2f2f2' ?>" />
+		<input type="text" name="design_mediastorage[#description_div][background-color][value]"  value="<?= (isset($designs['#description_div']['background-color']['value'])) ? $designs['#description_div']['background-color']['value'] : '#f2f2f2' ?>"><br />
+		<input type="hidden" name="design_mediastorage[#description_div][background-color][id]" value="<?= (isset($designs['#description_div']['background-color']['id'])) ? $designs['#description_div']['background-color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<label for="design_mediastorage[#description_div][color][value]"><?= CSS_COLOR ?> : </label>
+		<input type="color" name="design_mediastorage[#description_div][color][value]" id="design_mediastorage[#description_div][color][value]" value="<?= (isset($designs['#description_div']['color']['value'])) ? $designs['#description_div']['color']['value'] : '#000000' ?>" />
+		<input type="text" name="design_mediastorage[#description_div][color][value]" id="design_mediastorage[#description_div][color][value]" value="<?= (isset($designs['#description_div']['color']['value'])) ? $designs['#description_div']['color']['value'] : '#000000' ?>" /><br />
+		<input type="hidden" name="design_mediastorage[#description_div][color][id]" value="<?= (isset($designs['#description_div']['color']['id'])) ? $designs['#description_div']['color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<label for="design_mediastorage[#description_div][border-color][value]"><?= CSS_BORDER_COLOR ?> : </label>
+		<input type="border-color" name="design_mediastorage[#description_div][border-color][value]" id="design_mediastorage[#description_div][border-color][value]" value="<?= (isset($designs['#description_div']['border-color']['value'])) ? $designs['#description_div']['border-color']['value'] : '#d5d5d5' ?>" />
+		<input type="text" name="design_mediastorage[#description_div][border-color][value]" id="design_mediastorage[#description_div][border-color][value]" value="<?= (isset($designs['#description_div']['border-color']['value'])) ? $designs['#description_div']['border-color']['value'] : '#d5d5d5' ?>" /><br />
+		<input type="hidden" name="design_mediastorage[#description_div][border-color][id]" value="<?= (isset($designs['#description_div']['border-color']['id'])) ? $designs['#description_div']['border-color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<h3><?= CONTENT_ACTION_BLOCK ?></h3>
+
+		<label for="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][background-color][value]"><?= CSS_BACKGROUND_COLOR ?> : </label>
+		<input type="color" name="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][background-color][value]" id="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][background-color][value]" value="<?= (isset($designs['#download_link_table, #download_link_table th, #download_link_table td']['background-color']['value'])) ? $designs['#download_link_table, #download_link_table th, #download_link_table td']['background-color']['value'] : '#f2f2f2' ?>" />
+		<input type="text" name="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][background-color][value]"  value="<?= (isset($designs['#download_link_table, #download_link_table th, #download_link_table td']['background-color']['value'])) ? $designs['#download_link_table, #download_link_table th, #download_link_table td']['background-color']['value'] : '#f2f2f2' ?>"><br />
+		<input type="hidden" name="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][background-color][id]" value="<?= (isset($designs['#download_link_table, #download_link_table th, #download_link_table td']['background-color']['id'])) ? $designs['#download_link_table, #download_link_table th, #download_link_table td']['background-color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<label for="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][color][value]"><?= CSS_COLOR ?> : </label>
+		<input type="color" name="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][color][value]" id="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][color][value]" value="<?= (isset($designs['#download_link_table, #download_link_table th, #download_link_table td']['color']['value'])) ? $designs['#download_link_table, #download_link_table th, #download_link_table td']['color']['value'] : '#000000' ?>" />
+		<input type="text" name="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][color][value]" id="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][color][value]" value="<?= (isset($designs['#download_link_table, #download_link_table th, #download_link_table td']['color']['value'])) ? $designs['#download_link_table, #download_link_table th, #download_link_table td']['color']['value'] : '#000000' ?>" /><br />
+		<input type="hidden" name="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][color][id]" value="<?= (isset($designs['#download_link_table, #download_link_table th, #download_link_table td']['color']['id'])) ? $designs['#download_link_table, #download_link_table th, #download_link_table td']['color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<label for="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][border-color][value]"><?= CSS_BORDER_COLOR ?> : </label>
+		<input type="border-color" name="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][border-color][value]" id="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][border-color][value]" value="<?= (isset($designs['#download_link_table, #download_link_table th, #download_link_table td']['border-color']['value'])) ? $designs['#download_link_table, #download_link_table th, #download_link_table td']['border-color']['value'] : '#d5d5d5' ?>" />
+		<input type="text" name="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][border-color][value]" id="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][border-color][value]" value="<?= (isset($designs['#download_link_table, #download_link_table th, #download_link_table td']['border-color']['value'])) ? $designs['#download_link_table, #download_link_table th, #download_link_table td']['border-color']['value'] : '#d5d5d5' ?>" /><br />
+		<input type="hidden" name="design_mediastorage[#download_link_table, #download_link_table th, #download_link_table td][border-color][id]" value="<?= (isset($designs['#download_link_table, #download_link_table th, #download_link_table td']['border-color']['id'])) ? $designs['#download_link_table, #download_link_table th, #download_link_table td']['border-color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<label for="design_mediastorage[#download_link_table th][background-color][value]"><?= CSS_HEADER_BACKGROUND_COLOR ?> : </label>
+		<input type="color" name="design_mediastorage[#download_link_table th][background-color][value]" id="design_mediastorage[#download_link_table th][background-color][value]" value="<?= (isset($designs['#download_link_table th']['background-color']['value'])) ? $designs['#download_link_table th']['background-color']['value'] : '#d5d5d5' ?>" />
+		<input type="text" name="design_mediastorage[#download_link_table th][background-color][value]"  value="<?= (isset($designs['#download_link_table th']['background-color']['value'])) ? $designs['#download_link_table th']['background-color']['value'] : '#d5d5d5' ?>"><br />
+		<input type="hidden" name="design_mediastorage[#download_link_table th][background-color][id]" value="<?= (isset($designs['#download_link_table th']['background-color']['id'])) ? $designs['#download_link_table th']['background-color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<label for="design_mediastorage[#download_link_table th][color][value]"><?= CSS_HEADER_COLOR ?> : </label>
+		<input type="color" name="design_mediastorage[#download_link_table th][color][value]" id="design_mediastorage[#download_link_table th][color][value]" value="<?= (isset($designs['#download_link_table th']['color']['value'])) ? $designs['#download_link_table th']['color']['value'] : '#000000' ?>" />
+		<input type="text" name="design_mediastorage[#download_link_table th][color][value]" id="design_mediastorage[#download_link_table th][color][value]" value="<?= (isset($designs['#download_link_table th']['color']['value'])) ? $designs['#download_link_table th']['color']['value'] : '#000000' ?>" /><br />
+		<input type="hidden" name="design_mediastorage[#download_link_table th][color][id]" value="<?= (isset($designs['#download_link_table th']['color']['id'])) ? $designs['#download_link_table th']['color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<h3><?= CONTENT_ACTION_BUTTON ?></h3>
+
+		<label for="design_mediastorage[#download_link_table a][background-color][value]"><?= CSS_BACKGROUND_COLOR ?> : </label>
+		<input type="color" name="design_mediastorage[#download_link_table a][background-color][value]" id="design_mediastorage[#download_link_table a][background-color][value]" value="<?= (isset($designs['#download_link_table a']['background-color']['value'])) ? $designs['#download_link_table a']['background-color']['value'] : '#f2f2f2' ?>" />
+		<input type="text" name="design_mediastorage[#download_link_table a][background-color][value]" id="design_mediastorage[#download_link_table a][background-color][value]" value="<?= (isset($designs['#download_link_table a']['background-color']['value'])) ? $designs['#download_link_table a']['background-color']['value'] : '#f2f2f2' ?>" /><br />
+		<input type="hidden" name="design_mediastorage[#download_link_table a][background-color][id]" value="<?= (isset($designs['#download_link_table a']['background-color']['id'])) ? $designs['#download_link_table a']['background-color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<label for="design_mediastorage[#download_link_table a][color][value]"><?= CSS_COLOR ?> : </label>
+		<input type="color" name="design_mediastorage[#download_link_table a][color][value]" id="design_mediastorage[#download_link_table a][color][value]" value="<?= (isset($designs['#download_link_table a']['color']['value'])) ? $designs['#download_link_table a']['color']['value'] : '#000000' ?>" />
+		<input type="text" name="design_mediastorage[#download_link_table a][color][value]" id="design_mediastorage[#download_link_table a][color][value]" value="<?= (isset($designs['#download_link_table a']['color']['value'])) ? $designs['#download_link_table a']['color']['value'] : '#000000' ?>" /><br />
+		<input type="hidden" name="design_mediastorage[#download_link_table a][color][id]" value="<?= (isset($designs['#download_link_table a']['color']['id'])) ? $designs['#download_link_table a']['color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<label for="design_mediastorage[#download_link_table a:hover][background-color][value]"><?= CSS_BACKGROUND_COLOR_HOVER ?> : </label>
+		<input type="color" name="design_mediastorage[#download_link_table a:hover][background-color][value]" id="design_mediastorage[#download_link_table a:hover][background-color][value]" value="<?= (isset($designs['#download_link_table a:hover']['background-color']['value'])) ? $designs['#download_link_table a:hover']['background-color']['value'] : '#a1a1a1' ?>" /><
+		<input type="text" name="design_mediastorage[#download_link_table a:hover][background-color][value]" id="design_mediastorage[#download_link_table a:hover][background-color][value]" value="<?= (isset($designs['#download_link_table a:hover']['background-color']['value'])) ? $designs['#download_link_table a:hover']['background-color']['value'] : '#a1a1a1' ?>" /><br />
+		<input type="hidden" name="design_mediastorage[#download_link_table a:hover][background-color][id]" value="<?= (isset($designs['#download_link_table a:hover']['background-color']['id'])) ? $designs['#download_link_table a:hover']['background-color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<label for="design_mediastorage[#download_link_table a:hover][color][value]"><?= CSS_COLOR_HOVER ?> : </label>
+		<input type="color" name="design_mediastorage[#download_link_table a:hover][color][value]" id="design_mediastorage[#download_link_table a:hover][color][value]" value="<?= (isset($designs['#download_link_table a:hover']['color']['value'])) ? $designs['#download_link_table a:hover']['color']['value'] : '#ffffff' ?>" />
+		<input type="text" name="design_mediastorage[#download_link_table a:hover][color][value]" id="design_mediastorage[#download_link_table a:hover][color][value]" value="<?= (isset($designs['#download_link_table a:hover']['color']['value'])) ? $designs['#download_link_table a:hover']['color']['value'] : '#ffffff' ?>" /><br />
+		<input type="hidden" name="design_mediastorage[#download_link_table a:hover][color][id]" value="<?= (isset($designs['#download_link_table a:hover']['color']['id'])) ? $designs['#download_link_table a:hover']['color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<h3><?= FILE_BLOCK ?></h3>
+
+		<label for="design_mediastorage[.video_content][background-color][value]"><?= CSS_BACKGROUND_COLOR ?> : </label>
+		<input type="color" name="design_mediastorage[.video_content][background-color][value]" id="design_mediastorage[.video_content][background-color][value]" value="<?= (isset($designs['.video_content']['background-color']['value'])) ? $designs['.video_content']['background-color']['value'] : '#d5d5d5' ?>" />
+		<input type="text" name="design_mediastorage[.video_content][background-color][value]"  value="<?= (isset($designs['.video_content']['background-color']['value'])) ? $designs['.video_content']['background-color']['value'] : '#d5d5d5' ?>"><br />
+		<input type="hidden" name="design_mediastorage[.video_content][background-color][id]" value="<?= (isset($designs['.video_content']['background-color']['id'])) ? $designs['.video_content']['background-color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<label for="design_mediastorage[.video_content][color][value]"><?= CSS_COLOR ?> : </label>
+		<input type="color" name="design_mediastorage[.video_content][color][value]" id="design_mediastorage[.video_content][color][value]" value="<?= (isset($designs['.video_content']['color']['value'])) ? $designs['.video_content']['color']['value'] : '#000000' ?>" />
+		<input type="text" name="design_mediastorage[.video_content][color][value]" id="design_mediastorage[.video_content][color][value]" value="<?= (isset($designs['.video_content']['color']['value'])) ? $designs['.video_content']['color']['value'] : '#000000' ?>" /><br />
+		<input type="hidden" name="design_mediastorage[.video_content][color][id]" value="<?= (isset($designs['.video_content']['color']['id'])) ? $designs['.video_content']['color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<label for="design_mediastorage[.content_thumbnail_header][background-color][value]"><?= CSS_HEADER_BACKGROUND_COLOR ?> : </label>
+		<input type="color" name="design_mediastorage[.content_thumbnail_header][background-color][value]" id="design_mediastorage[.content_thumbnail_header][background-color][value]" value="<?= (isset($designs['.content_thumbnail_header']['background-color']['value'])) ? $designs['.content_thumbnail_header']['background-color']['value'] : '#e4e4e4' ?>" />
+		<input type="text" name="design_mediastorage[.content_thumbnail_header][background-color][value]"  value="<?= (isset($designs['.content_thumbnail_header']['background-color']['value'])) ? $designs['.content_thumbnail_header']['background-color']['value'] : '#e4e4e4' ?>"><br />
+		<input type="hidden" name="design_mediastorage[.content_thumbnail_header][background-color][id]" value="<?= (isset($designs['.content_thumbnail_header']['background-color']['id'])) ? $designs['.content_thumbnail_header']['background-color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
+		<label for="design_mediastorage[.content_thumbnail_header][color][value]"><?= CSS_HEADER_COLOR ?> : </label>
+		<input type="color" name="design_mediastorage[.content_thumbnail_header][color][value]" id="design_mediastorage[.content_thumbnail_header][color][value]" value="<?= (isset($designs['.content_thumbnail_header']['color']['value'])) ? $designs['.content_thumbnail_header']['color']['value'] : '#000000' ?>" />
+		<input type="text" name="design_mediastorage[.content_thumbnail_header][color][value]" id="design_mediastorage[.content_thumbnail_header][color][value]" value="<?= (isset($designs['.content_thumbnail_header']['color']['value'])) ? $designs['.content_thumbnail_header']['color']['value'] : '#000000' ?>" /><br />
+		<input type="hidden" name="design_mediastorage[.content_thumbnail_header][color][id]" value="<?= (isset($designs['.content_thumbnail_header']['color']['id'])) ? $designs['.content_thumbnail_header']['color']['id'] : 0 ?>"/>
+		<div class="clear"></div>
+
 		<input type="hidden" name="design_create_mediastorage" value="87463975" />
 		<a id="cancel_button" class="form_button" href="?page=list_group_root"><?= CANCEL ?></a>
 		<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>

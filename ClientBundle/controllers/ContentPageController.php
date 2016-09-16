@@ -6,6 +6,7 @@ require_once('CoreBundle/managers/MediaFileManager.php');
 require_once('CoreBundle/managers/MediaExtraManager.php');
 require_once('CoreBundle/managers/MediaExtraFieldManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
+require_once('CoreBundle/managers/DesignManager.php');
 
 class ContentPageController {
 
@@ -15,6 +16,7 @@ class ContentPageController {
 	private $_mediaExtraManager;
 	private $_mediaExtraFieldManager;
 	private $_toolboxManager;
+	private $_designManager;
 
 	private $_errorArray;
 
@@ -25,6 +27,7 @@ class ContentPageController {
 		$this->_mediaExtraManager = new MediaExtraManager();
 		$this->_mediaExtraFieldManager = new MediaExtraFieldManager();
 		$this->_toolboxManager = new ToolboxManager();
+		$this->_designManager = new DesignManager();
 
 		$this->_errorArray = array();
 	}
@@ -48,6 +51,16 @@ class ContentPageController {
 		$this->mergeErrorArray($contents);
 
 		$title = CONTENT;
+
+		if (isset($_SESSION['id_plateform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
 
 		include ('ClientBundle/views/program/program.php');
 
@@ -79,6 +92,16 @@ class ContentPageController {
 		}
 		else {
 			$title = CONTENT;
+		}
+
+		if (isset($_SESSION['id_plateform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
 		}
 
 		include ('ClientBundle/views/content/content.php');

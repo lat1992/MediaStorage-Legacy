@@ -1,15 +1,21 @@
 <?php
 
 require_once('CoreBundle/managers/MediaManager.php');
+require_once('CoreBundle/managers/ToolboxManager.php');
+require_once('CoreBundle/managers/DesignManager.php');
 
 class ProgramPageController {
 
 	private $_mediaManager;
+	private $_toolboxManager;
+	private $_designManager;
 
 	private $_errorArray;
 
 	public function __construct() {
 		$this->_mediaManager = new MediaManager();
+		$this->_toolboxManager = new ToolboxManager();
+		$this->_designManager = new DesignManager();
 
 		$this->_errorArray = array();
 	}
@@ -45,6 +51,16 @@ class ProgramPageController {
 			$this->mergeErrorArray($programs);
 
 			$title = PROGRAM;
+		}
+
+		if (isset($_SESSION['id_plateform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
 		}
 
 		include ('ClientBundle/views/program/program.php');

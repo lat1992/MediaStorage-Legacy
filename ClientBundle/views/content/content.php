@@ -10,6 +10,22 @@ require_once('ClientBundle/views/layout/header.php');
 <script src="ClientBundle/ressources/jOverlay-master/src/jquery.jOverlay.js"></script>
 <script src="ClientBundle/ressources/content/js/content.js"></script>
 
+<style>
+
+<?php
+    if (isset($designs)) {
+
+        foreach ($designs as $design) {
+?>
+            <?= $design['selector'] ?> {
+                <?= $design['property'] ?> : <?= $design['value'] ?>;
+            }
+<?php
+        }
+    }
+?>
+
+</style>
 
 <div class="container">
 

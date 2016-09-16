@@ -8,6 +8,23 @@ require_once('ClientBundle/views/layout/header.php');
 
 <script src="ClientBundle/ressources/folder/js/folder.js"></script>
 
+<style>
+
+<?php
+    if (isset($designs)) {
+
+        foreach ($designs as $design) {
+?>
+            <?= $design['selector'] ?> {
+                <?= $design['property'] ?> : <?= $design['value'] ?>;
+            }
+<?php
+        }
+    }
+?>
+
+</style>
+
 <div class="container">
 
 <?php
