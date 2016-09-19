@@ -33,7 +33,9 @@ class Search extends Model {
 	}
 
 	public function searchFolder($keyword, $id_organization, $id_language) {
-		$data = $this->_mysqli->query('SELECT folder.id, memory_folder_language.data, memory_folder_language.description FROM  memory_folder_language, folder WHERE memory_folder_language.id_folder = folder.id AND folder.id_organization = '.$id_organization.' AND memory_folder_language.id_language = '.$id_language.' AND (memory_folder_language.data LIKE "%'.$keyword.'%" OR memory_folder_language.description LIKE "%'.$keyword.'%")');
+		$data = $this->_mysqli->query('SELECT folder.id, memory_folder_language.data, memory_folder_language.description FROM  memory_folder_language, folder WHERE memory_folder_language.id_folder = folder.id AND folder.id_organization = '.$id_organization.' AND memory_folder_language.id_language = '.$id_language.' AND (memory_folder_language.data LIKE "%'.$keyword.'%" OR memory_folder_language.description LIKE "%'.$keyword.'%")'.
+			' LIMIT '$paginate * 10 - 10','.$paginate * 10.';'
+			);
 
 		return array(
 			'data' => $data,
@@ -41,7 +43,7 @@ class Search extends Model {
 			);
 	}
 
-	public function searchMedia($keyword, $id_type, $id_organization, $id_language) {
+	public function searchMedia($keyword, $id_type, $id_organization, $id_language, $paginate) {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
@@ -56,7 +58,8 @@ class Search extends Model {
 			' JOIN tag ON tag.id_media = memory_media.id'.
 			' JOIN memory_tag_language ON memory_tag_language.id_tag = tag.id'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' AND memory_media_info.id_language = '.$id_language.' AND memory_chapter_language.id_language = '.$id_language.' AND memory_folder_language.id_language = '.$id_language.' AND memory_media_extra.id_language = '.$id_language.' AND memory_media_extra_array.id_language = '.$id_language.' AND memory_tag_language.id_language = '.$id_language.' AND '
-			'(memory_chapter_language.data LIKE "%'.$keyword.'%" OR memory_folder_language.data LIEK "%'.$keyword.'%" OR memory_media.reference IS '.$keyword.' OR memory_media.reference_client LIKE "'.$keyword.'" OR memory_media_extra.data LIKE "%'.$keyword.'%" OR memory_media_extra_array.element LIKE "%'.$keyword.'%" OR memory_media_file.filename LIKE "%'.$keyword.'%" OR memory_media_info.title LIKE "%'.$keyword.'%" OR memory_media_info.subtitle LIKE "%'.$keyword.'%" OR media_info.description LIKE "%'.$keyword.'%" OR memory_tag_language.data LIKE "%'.$keyword.'%")'
+			'(memory_chapter_language.data LIKE "%'.$keyword.'%" OR memory_folder_language.data LIEK "%'.$keyword.'%" OR memory_media.reference IS '.$keyword.' OR memory_media.reference_client LIKE "'.$keyword.'" OR memory_media_extra.data LIKE "%'.$keyword.'%" OR memory_media_extra_array.element LIKE "%'.$keyword.'%" OR memory_media_file.filename LIKE "%'.$keyword.'%" OR memory_media_info.title LIKE "%'.$keyword.'%" OR memory_media_info.subtitle LIKE "%'.$keyword.'%" OR media_info.description LIKE "%'.$keyword.'%" OR memory_tag_language.data LIKE "%'.$keyword.'%")'.
+			' LIMIT '$paginate * 10 - 10','.$paginate * 10.';'
 			);
 
 		return array(
@@ -65,7 +68,7 @@ class Search extends Model {
 			);
 	}
 
-	public function searchMediaWithTag($keyword, $id_type, $id_organization, $id_language) {
+	public function searchMediaWithTag($keyword, $id_type, $id_organization, $id_language, $paginate) {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
@@ -73,7 +76,8 @@ class Search extends Model {
 			' JOIN tag ON tag.id_media = memory_media.id'.
 			' JOIN memory_tag_language ON memory_tag_language.id_tag = tag.id'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' AND memory_media_info.id_language = '.$id_language.' AND memory_tag_language.id_language = '.$id_language.' AND '
-			'(memory_tag_language.data LIKE "%'.$keyword.'%")'
+			'(memory_tag_language.data LIKE "%'.$keyword.'%")'.
+			' LIMIT '$paginate * 10 - 10','.$paginate * 10.';'
 			);
 
 		return array(
@@ -82,14 +86,15 @@ class Search extends Model {
 			);
 	}
 
-	public function searchMediaWithFolder($keyword, $id_type, $id_organization, $id_language) {
+	public function searchMediaWithFolder($keyword, $id_type, $id_organization, $id_language, $paginate) {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
 			' JOIN folder ON folder.id_media = memory_media.id'.
 			' JOIN memory_folder_language ON memory_folder_language.id_folder = folder.id'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' AND memory_folder_language.id_language = '.$id_language.' AND '
-			'(memory_folder_language.data LIEK "%'.$keyword.'%")'
+			'(memory_folder_language.data LIEK "%'.$keyword.'%")'.
+			' LIMIT '$paginate * 10 - 10','.$paginate * 10.';'
 			);
 
 		return array(
@@ -98,14 +103,15 @@ class Search extends Model {
 			);
 	}
 
-	public function searchMediaWithChapter($keyword, $id_type, $id_organization, $id_language) {
+	public function searchMediaWithChapter($keyword, $id_type, $id_organization, $id_language, $paginate) {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
 			' JOIN chapter ON chapter.id_media = memory_media.id'.
 			' JOIN memory_chapter_language ON chapter.id = memory_chapter_language.id_chapter'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' AND memory_chapter_language.id_language = '.$id_language.' AND '
-			'(memory_chapter_language.data LIKE "%'.$keyword.'%")'
+			'(memory_chapter_language.data LIKE "%'.$keyword.'%")'.
+			' LIMIT '$paginate * 10 - 10','.$paginate * 10.';'
 			);
 
 		return array(
@@ -114,12 +120,13 @@ class Search extends Model {
 			);
 	}
 
-	public function searchMediaWithMediaInfoTitle($keyword, $id_type, $id_organization, $id_language) {
+	public function searchMediaWithMediaInfoTitle($keyword, $id_type, $id_organization, $id_language, $paginate) {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' AND memory_media_info.id_language = '.$id_language.' AND '
-			'(memory_media_info.title LIKE "%'.$keyword.'%")'
+			'(memory_media_info.title LIKE "%'.$keyword.'%")'.
+			' LIMIT '$paginate * 10 - 10','.$paginate * 10.';'
 			);
 
 		return array(
@@ -128,12 +135,13 @@ class Search extends Model {
 			);
 	}
 
-	public function searchMediaWithMediaInfoSubtitle($keyword, $id_type, $id_organization, $id_language) {
+	public function searchMediaWithMediaInfoSubtitle($keyword, $id_type, $id_organization, $id_language, $paginate) {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' AND memory_media_info.id_language = '.$id_language.' AND '
-			'(memory_media_info.subtitle LIKE "%'.$keyword.'%")'
+			'(memory_media_info.subtitle LIKE "%'.$keyword.'%")'.
+			' LIMIT '$paginate * 10 - 10','.$paginate * 10.';'
 			);
 
 		return array(
@@ -142,12 +150,13 @@ class Search extends Model {
 			);
 	}
 
-	public function searchMediaWithMediaInfoDescription($keyword, $id_type, $id_organization, $id_language) {
+	public function searchMediaWithMediaInfoDescription($keyword, $id_type, $id_organization, $id_language, $paginate) {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' AND memory_media_info.id_language = '.$id_language.' AND '
-			'(media_info.description LIKE "%'.$keyword.'%")'
+			'(media_info.description LIKE "%'.$keyword.'%")'.
+			' LIMIT '$paginate * 10 - 10','.$paginate * 10.';'
 			);
 
 		return array(
@@ -156,13 +165,14 @@ class Search extends Model {
 			);
 	}
 
-	public function searchMediaWithMediaExtra($keyword, $id_type, $id_organization, $id_language) {
+	public function searchMediaWithMediaExtra($keyword, $id_type, $id_organization, $id_language, $paginate) {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
 			' JOIN memory_media_extra ON memory_media_extra.id_media = memory_media.id'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' AND memory_media_extra.id_language = '.$id_language.' AND '
-			'(memory_media_extra.data LIKE "%'.$keyword.'%")'
+			'(memory_media_extra.data LIKE "%'.$keyword.'%")'.
+			' LIMIT '$paginate * 10 - 10','.$paginate * 10.';'
 			);
 
 		return array(
@@ -171,7 +181,7 @@ class Search extends Model {
 			);
 	}
 
-	public function searchMediaWithMediaExtraArray($keyword, $id_type, $id_organization, $id_language) {
+	public function searchMediaWithMediaExtraArray($keyword, $id_type, $id_organization, $id_language, $paginate) {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
@@ -179,7 +189,8 @@ class Search extends Model {
 			' JOIN memory_media_extra ON memory_media_extra.id_media = memory_media.id AND memory_media_extra.id_field = media_extra_field.id'.
 			' JOIN memory_media_extra_array ON memory_media_extra_array.id_field = media_extra_field.id'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' AND memory_media_extra_array.id_language = '.$id_language.' AND '
-			'(memory_media_extra_array.element LIKE "%'.$keyword.'%")'
+			'(memory_media_extra_array.element LIKE "%'.$keyword.'%")'.
+			' LIMIT '$paginate * 10 - 10','.$paginate * 10.';'
 			);
 
 		return array(
@@ -188,13 +199,14 @@ class Search extends Model {
 			);
 	}
 
-	public function searchMediaWithMediaFile($keyword, $id_type, $id_organization, $id_language) {
+	public function searchMediaWithMediaFile($keyword, $id_type, $id_organization, $id_language, $paginate) {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
 			' JOIN memory_media_file ON memory_media_file.id_media = memory_media.id'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' '
-			'(memory_media_file.filename LIKE "%'.$keyword.'%")'
+			'(memory_media_file.filename LIKE "%'.$keyword.'%")'.
+			' LIMIT '$paginate * 10 - 10','.$paginate * 10.';'
 			);
 
 		return array(
@@ -203,12 +215,13 @@ class Search extends Model {
 			);
 	}
 
-	public function searchMediaWithMediaReference($keyword, $id_type, $id_organization, $id_language) {
+	public function searchMediaWithMediaReference($keyword, $id_type, $id_organization, $id_language, $paginate) {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' AND '
-			'(memory_media.reference IS '.$keyword.')'
+			'(memory_media.reference IS '.$keyword.')'.
+			' LIMIT '$paginate * 10 - 10','.$paginate * 10.';'
 			);
 
 		return array(
@@ -217,12 +230,13 @@ class Search extends Model {
 			);
 	}
 
-	public function searchMediaWithMediaReferenceClient($keyword, $id_type, $id_organization, $id_language) {
+	public function searchMediaWithMediaReferenceClient($keyword, $id_type, $id_organization, $id_language, $paginate) {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' AND '
-			'(memory_media.reference_client LIKE "'.$keyword.'")'
+			'(memory_media.reference_client LIKE "'.$keyword.'")'.
+			' LIMIT '$paginate * 10 - 10','.$paginate * 10.';'
 			);
 
 		return array(
