@@ -39,13 +39,6 @@
 		$mysqli->query('INSERT INTO memory_media_extra_array (id, id_field, id_language, element) VALUES ('. $row['id'] .', '. $row['id_field'] .', '. $row['id_language'] .', "'. $row['element'] .'");');
 	}
 
-	// media_extra_field_language
-	$mysqli->query('TRUNCATE TABLE memory_media_extra_field_language');
-	$result = $mysqli->query('SELECT id, id_field, id_language, data FROM media_extra_field_language WHERE 1;');
-	while ($row = $result->fetch_assoc()) {
-		$mysqli->query('INSERT INTO memory_media_extra_field_language (id, id_field, id_language, data) VALUES ('. $row['id'] .', '. $row['id_field'] .', '. $row['id_language'] .', "'. $row['data'] .'");');
-	}
-
 	// media_file
 	$mysqli->query('TRUNCATE TABLE memory_media_file');
 	$result = $mysqli->query('SELECT id, id_media, filename, right_download, right_addtocart FROM media_file WHERE 1;');

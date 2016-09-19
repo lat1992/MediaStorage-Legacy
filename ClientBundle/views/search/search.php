@@ -2,13 +2,17 @@
 require_once('ClientBundle/views/layout/header.php');
 ?>
 <link rel="stylesheet" type="text/css" href="ClientBundle/ressources/search/css/styles.css" />
-<div class="searchbox">
+<div class="search-box">
     <form method="get">
-    	<input type="hidden" name="page" value="search">
-        <input type="text" id="keyword" name="keyword" onkeyup="ajaxRefreshLiveSearch(this.value)" autocomplete="off" />
-        <input type="submit" value="&#x1f50d;" id="submitButton" />
-        <div id="livesearch"></div>
+    	<div class="search-form">
+    		<input type="hidden" name="page" value="search">
+        	<input type="text" id="keyword" name="keyword" onkeyup="ajaxRefreshLiveSearch(this.value)" autocomplete="off" />
+        	<input type="submit" value="&#x1f50d;" id="submitButton" />
+        </div>
+        <div style="clear:both"></div>
+    	<div class="live-search" id="livesearch"></div>
     </form>
+    <div class="search-result"></div>
 </div>
 
 <script>
@@ -18,13 +22,14 @@ require_once('ClientBundle/views/layout/header.php');
 				url: "?page=ajax_refresh_live_search&keyword="+value,
 				type: 'GET',
 				success: function(result, status) {
-					if (!result)
+					if (!result) {
 						return ;
+					}
 	                console.log(result);
 					var data = JSON.parse(result);
 					var $html = '';
 					for (var i = 0; i < data.length; i++) {
-						$html += data[i].data + '<br/>';
+						$html += '<div>' + data[i].data + '</div>';
 					}
 					$('#livesearch').html($html);
 				},

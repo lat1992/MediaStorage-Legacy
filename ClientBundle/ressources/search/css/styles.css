@@ -1,3 +1,15 @@
-.searchbox {
+.search-box {
 	padding: 10px;
+}
+
+.live-search {
+ 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+ 	display: inline-block;
+	float: left;
+	background-color: white;
+	position: absolute;
+}
+
+.search-box .search-form {
+	float: left;
 }
