@@ -20,7 +20,7 @@ class MediaManager {
 	}
 
 	public function getAllProgramsByIdOrganizationDb() {
-		return $this->_mediaModel->findAllmediasByIdOrganizationAndIdType($_SESSION['id_organization'], 1);
+		return $this->_mediaModel->findAllmediasByIdOrganizationAndIdType($_SESSION['id_organization'], 1, $_SESSION['id_language_mediastorage']);
 	}
 
 	public function getAllContentsByIdOrganizationDb() {

@@ -32,7 +32,8 @@ require_once('ClientBundle/views/layout/header.php');
 
         if (isset($programs['data']->num_rows) && intval($programs['data']->num_rows) != 0) {
 ?>
-            <span class="category_title" ><?= PROGRAM ?></span>
+            <span class="category_title category_title_program" ><?= PROGRAM ?></span>
+
 <?php
         }
         while ($program = $programs['data']->fetch_assoc()) {
@@ -73,7 +74,7 @@ require_once('ClientBundle/views/layout/header.php');
 
         if (isset($contents['data']->num_rows) && intval($contents['data']->num_rows) != 0) {
 ?>
-            <span class="category_title" ><?= CONTENT ?></span>
+            <span class="category_title category_title_content" ><?= PROGRAM ?></span>
 <?php
         }
         while ($content = $contents['data']->fetch_assoc()) {

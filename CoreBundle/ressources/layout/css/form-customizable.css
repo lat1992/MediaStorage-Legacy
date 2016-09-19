@@ -3,7 +3,8 @@ table {
 }
 
 table tr th {
-	background-color: #a6a6a6;
+	background-color: #d5d5d5;
+	border-color: #d5d5d5;
 }
 
 body table tr:hover {

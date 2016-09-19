@@ -202,7 +202,7 @@ define('INVALID_ELEMENT_TOO_LONG', 'Element trop long');
 define('MEDIA_EXTRA_ARRAY_CREATION_TITLE', 'create media_info_array');
 
 define('MEDIA_EXTRA_CREATION_TITLE', 'create media_extra');
-define('MEDIA_INFO', 'media_info');
+define('MEDIA_INFO', 'Informations');
 define('MEDIA_EXTRA_ARRAY', 'media_extra_array');
 
 define('EMPTY_TYPE', 'Type vide');
@@ -318,3 +318,14 @@ define('CONTENT_PAGE', 'Page de contenu');
 define('CONTENT_ACTION_BLOCK', 'Bloc action');
 define('CONTENT_ACTION_BUTTON', 'Bouton du bloc action');
 define('FILE_BLOCK', 'Bloc de media');
+define('UPLOAD', 'Upload');
+define('LINKED_FILE', 'Fichier lié');
+define('NO_DATA_AVAILABLE', 'Aucunes données disponible');
+
+// UPLOAD BOX
+define('DROP_FILES_HERE', 'Déposez les fichiers ici');
+define('UPLOAD_A_FILE', 'Upload');
+define('PROCESSSING_DROPPED_FILES', 'Traitement des fichiers déposés ...');
+define('RETRY', 'Recommencer');
+define('CLOSE', 'Fermer');
+define('OK', 'Ok');

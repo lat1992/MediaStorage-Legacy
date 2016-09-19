@@ -8,6 +8,7 @@ require_once('CoreBundle/managers/MediaFileManager.php');
 require_once('CoreBundle/managers/LanguageManager.php');
 require_once('CoreBundle/managers/MediaExtraFieldManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
+require_once('CoreBundle/managers/DesignManager.php');
 
 class MediaController {
 
@@ -19,6 +20,7 @@ class MediaController {
 	private $_languageManager;
 	private $_mediaExtraFieldManager;
 	private $_toolboxManager;
+	private $_designManager;
 
 	private $_errorArray;
 
@@ -31,6 +33,7 @@ class MediaController {
 		$this->_languageManager = new LanguageManager();
 		$this->_mediaExtraFieldManager = new MediaExtraFieldManager();
 		$this->_toolboxManager = new ToolboxManager();
+		$this->_designManager = new DesignManager();
 
 		$this->_errorArray = array();
 	}
@@ -111,6 +114,16 @@ class MediaController {
 		}
 
 		$title = CONTENT_LIST_TITLE;
+
+		if (isset($_SESSION['id_plateform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
 
 		include ('AdminBundle/views/media/content_list.php');
 	}
@@ -256,6 +269,16 @@ class MediaController {
 		$enums = $enums['data'];
 
 		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
+
+		if (isset($_SESSION['id_plateform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
 
 		$title = CREATE_MEDIA_CONTENT;
 
@@ -427,12 +450,14 @@ class MediaController {
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(2);
 		$parents = $this->_mediaManager->getAllProgramsByIdOrganizationDb();
 		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
+		$media_files_linked = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
 
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($enums);
 		$this->mergeErrorArray($languages_data);
 		$this->mergeErrorArray($media_extra_data);
 		$this->mergeErrorArray($media_files);
+		$this->mergeErrorArray($media_files_linked);
 
 		$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
 
@@ -440,9 +465,19 @@ class MediaController {
 
 		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
 
-		$title = EDIT_MEDIA_PROGRAM;
+		if (isset($_SESSION['id_plateform_organization'])) {
 
-		include ('AdminBundle/views/media/media_create_program.php');
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
+
+		$title = EDIT_MEDIA_CONTENT;
+
+		include ('AdminBundle/views/media/media_create_content.php');
 	}
 
 	// public function deleteAction() {
@@ -453,7 +488,7 @@ class MediaController {
 
 	// 		if (count($this->_errorArray) == 0) {
 	// 			header('Location:' . '?page=dashboard');
-	// 		}
+		// 		}
 	// 	}
 
 	// 	include ('CoreBundle/views/common/error.php');

@@ -4,9 +4,28 @@ require_once('ClientBundle/views/layout/header.php');
 
 ?>
 
-	<link rel="stylesheet" href="CoreBundle/ressources/layout/css/form.css">
-
 	<script src="AdminBundle/ressources/media/js/media.js"></script>
+	<script src="AdminBundle/ressources/fine-uploader/fine-uploader.js"></script>
+
+	<link rel="stylesheet" href="CoreBundle/ressources/layout/css/form.css">
+	<link rel="stylesheet" href="AdminBundle/ressources/fine-uploader/fine-uploader-new.css">
+
+	<style>
+
+<?php
+	    if (isset($designs)) {
+
+	        foreach ($designs as $design) {
+?>
+	            <?= $design['selector'] ?> {
+	                <?= $design['property'] ?> : <?= $design['value'] ?>;
+	            }
+<?php
+	        }
+	    }
+?>
+
+	</style>
 
 	<div id="container">
 
@@ -16,13 +35,26 @@ require_once('ClientBundle/views/layout/header.php');
 
 		<?php require_once('AdminBundle/views/media/media_create_form.php'); ?>
 
-		<hr />
+		<br />
 
 		<h2><?= MEDIA_INFO ?></h2>
 
 		<?php require_once('AdminBundle/views/media/media_info_create_form.php'); ?>
 
-		<hr />
+		<br />
+
+		<h2><?= LINKED_FILE ?></h2>
+
+		<?php require_once('AdminBundle/views/media_file/media_file_with_id_list_form.php'); ?>
+
+		<br />
+		<br />
+
+		<h2><?= UPLOAD ?></h2>
+
+		<?php require_once('AdminBundle/views/media_file/media_file_upload_form.php'); ?>
+
+		<?php require_once('AdminBundle/views/media_file/media_file_list_form.php'); ?>
 
 		<input type="hidden" name="id_media_create_mediastorage" value="895143" />
 

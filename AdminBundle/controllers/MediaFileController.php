@@ -63,12 +63,7 @@ class MediaFileController {
 
             if (isset($_GET["done"])) {
                 $result = $this->_uploadHandler->combineChunks($mainPath);
-            }
 
-            else {
-                $result = $this->_uploadHandler->handleUpload($mainPath);
-
-                // To return a name used for uploaded file you can use the following line.
                 $result["uploadName"] = $this->_uploadHandler->getUploadName();
 
                 $this->_mediaFileManager->formatPostDataFromFileUpload($result);
@@ -80,6 +75,24 @@ class MediaFileController {
                 if (count($this->_errorArray) != 0) {
                 	$result['error'] = $this->_errorArray[0];
                 }
+
+            }
+
+            else {
+                $result = $this->_uploadHandler->handleUpload($mainPath);
+
+                // // To return a name used for uploaded file you can use the following line.
+                // $result["uploadName"] = $this->_uploadHandler->getUploadName();
+
+                // $this->_mediaFileManager->formatPostDataFromFileUpload($result);
+
+                // $return_value = $this->_mediaFileManager->createMediaFileDb();
+
+                // $this->mergeErrorArray($return_value);
+
+                // if (count($this->_errorArray) != 0) {
+                // 	$result['error'] = $this->_errorArray[0];
+                // }
             }
 
             echo json_encode($result);

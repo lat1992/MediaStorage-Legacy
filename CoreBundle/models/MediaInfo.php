@@ -45,7 +45,7 @@ class MediaInfo extends Model {
 		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
 
 		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
-			' SET title = "' . $title . '", subtitle = "' . $subtitle . '", description = "' . $description . '", episode_number = "' . $episode_number . '", image_version = "' . $image_version . '", sound_version = "' . $sound_version . '", id_media = ' . $id_media . ', id_language = ' . $id_language.
+			' SET title = "' . $title . '", subtitle = "' . $subtitle . '", description = "' . $description . '", id_media = ' . $id_media . ', id_language = ' . $id_language.
 			' WHERE id = ' . $media_info_id . ';'
 		);
 

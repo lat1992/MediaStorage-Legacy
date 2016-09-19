@@ -31,10 +31,6 @@ require_once('ClientBundle/views/layout/header.php');
 		<a id="cancel_button" class="form_button" href="?page=list_program_admin"><?= CANCEL ?></a>
 		<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 
-		<?php require_once('AdminBundle/views/media_file/media_file_upload_form.php'); ?>
-
-		<?php require_once('AdminBundle/views/media_file/media_file_list_form.php'); ?>
-
 		</form>
 
 	</div>
