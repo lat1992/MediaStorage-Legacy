@@ -49,7 +49,7 @@ class Search extends Model {
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
 			' LEFT JOIN chapter ON chapter.id_media = memory_media.id'.
 			' LEFT JOIN memory_chapter_language ON chapter.id = memory_chapter_language.id_chapter'.
-			' JOIN folder ON folder.id_organization = memory_media.id_organization'.
+			' LEFT JOIN folder ON folder.id = memory_media.id_folder'.
 			' JOIN memory_folder_language ON memory_folder_language.id_folder = folder.id'.
 			' JOIN media_extra_field ON media_extra_field.id_organization = memory_media.id_organization'.
 			' LEFT JOIN memory_media_extra ON memory_media_extra.id_media = memory_media.id AND memory_media_extra.id_field = media_extra_field.id'.
