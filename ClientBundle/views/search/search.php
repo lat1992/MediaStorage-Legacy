@@ -2,6 +2,22 @@
 require_once('ClientBundle/views/layout/header.php');
 ?>
 <link rel="stylesheet" type="text/css" href="ClientBundle/ressources/search/css/styles.css" />
+<style>
+
+<?php
+    if (isset($designs)) {
+
+        foreach ($designs as $design) {
+?>
+            <?= $design['selector'] ?> {
+                <?= $design['property'] ?> : <?= $design['value'] ?>;
+            }
+<?php
+        }
+    }
+?>
+
+</style>
 <div class="search-box">
     <form method="get">
     	<div class="search-form">
@@ -13,8 +29,122 @@ require_once('ClientBundle/views/layout/header.php');
         <div style="clear:both"></div>
     	<div class="live-search" id="livesearch"></div>
     </form>
-    <div class="search-result"></div>
 </div>
+    <div class="container">
+<?php
+	if (isset($folder_data)) {
+		if (isset($folder_data->num_rows) && intval($folder_data->num_rows) != 0) {
+?>
+			<span class="category_title category_title_folder"><?= FOLDER ?></span>
+<?php
+		}
+		while ($folder = $folder_data->fetch_assoc()) {
+?>
+			<a class="link_div_folder" href="?page=folder&parent_id=<?= $folder['id']; ?>" >
+                <div class="hvr-grow col folder">
+                    <div class="folder_title_div">
+                        <span class="folder_title_span" ><?= $folder['data'] ?></span>
+                    </div>
+                    <div class="folder_image_div">
+                        <!-- <img src="ClientBundle/ressources/folder/img/default.png" /> -->
+                        <img class="folder_image" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg" />
+                    </div>
+
+                    <div class="folder_description">
+<?php
+                        if (isset($folder['description']) && $folder['description']) {
+?>
+                            <span class="description_label"><?= DESCRIPTION ?> : </span><span><?= $folder['description'] ?></span>
+<?php
+                        }
+                        else {
+                            echo '<span class="program_description_empty">' . NO_DESCRIPTION_AVAILABLE . '</span>';
+                        }
+?>
+                    </div>
+                </div>
+            </a>
+<?php
+		}
+    }
+
+    if (isset($program_data)) {
+
+        if (isset($program_data->num_rows) && intval($program_data->num_rows) != 0) {
+?>
+            <span class="category_title category_title_program" ><?= PROGRAM ?></span>
+<?php
+        }
+        while ($program = $program_data->fetch_assoc()) {
+?>
+            <a class="link_div_program" href="?page=program&media_id=<?= $program['id']; ?>" >
+                <div class="hvr-grow col program">
+
+                    <div class="program_title_div">
+                        <span class="program_title_span" ><?= $program['title'] ?></span>
+                    </div>
+
+                    <div class="program_image_div">
+                        <!-- <img src="ClientBundle/ressources/program/img/default.png" /> -->
+                        <img class="program_image" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg" />
+                    </div>
+
+                    <div class="program_description">
+
+                        <span class="description_label"><?= REFERENCE ?> : </span><span><?= $program['reference_client'] ?></span><br />
+<?php
+                        if (isset($program['subtitle']) && $program['subtitle']) {
+?>
+                            <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $program['subtitle'] ?></span>
+<?php
+                        }
+?>
+                    </div>
+                </div>
+            </a>
+<?php
+        }
+    }
+
+    if (isset($content_data)) {
+
+        if (isset($content_data->num_rows) && intval($content_data->num_rows) != 0) {
+?>
+            <span class="category_title category_title_content" ><?= CONTENT ?></span>
+<?php
+        }
+        while ($content = $content_data->fetch_assoc()) {
+?>
+            <a class="link_div_content" href="?page=content&media_id=<?= $content['id']; ?>" >
+                <div class="hvr-grow col content">
+
+                    <div class="content_title_div">
+                        <span class="content_title_span" ><?= $content['title'] ?></span>
+                    </div>
+
+                    <div class="content_image_div">
+                        <!-- <img src="ClientBundle/ressources/content/img/default.png" /> -->
+                        <img class="content_image" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg" />
+                    </div>
+
+                    <div class="content_description">
+
+                        <span class="description_label"><?= REFERENCE ?> : </span><span><?= $content['reference_client'] ?></span><br />
+<?php
+                        if (isset($content['description']) && $content['description']) {
+?>
+                            <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $content['subtitle'] ?></span>
+<?php
+                        }
+?>
+                    </div>
+                </div>
+            </a>
+ <?php
+        }
+    }
+?>
+    </div>
 
 <script>
 	function ajaxRefreshLiveSearch(value) {
@@ -26,7 +156,6 @@ require_once('ClientBundle/views/layout/header.php');
 					if (!result) {
 						return ;
 					}
-	                //console.log(result);
 					var data = JSON.parse(result);
 					var $html = '';
 					for (var i = 0; i < data.length; i++) {

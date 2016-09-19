@@ -44,7 +44,7 @@ class Search extends Model {
 	}
 
 	public function searchMedia($keyword, $id_type, $id_organization, $id_language, $paginate, $gap) {
-		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
+		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media.reference, memory_media.reference_client, memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
 			' LEFT JOIN chapter ON chapter.id_media = memory_media.id'.
