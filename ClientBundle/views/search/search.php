@@ -7,6 +7,7 @@ require_once('ClientBundle/views/layout/header.php');
     	<div class="search-form">
     		<input type="hidden" name="page" value="search">
         	<input type="text" id="keyword" name="keyword" onkeyup="ajaxRefreshLiveSearch(this.value)" autocomplete="off" />
+    		<input type="hidden" name="paginate" value="1">
         	<input type="submit" value="&#x1f50d;" id="submitButton" />
         </div>
         <div style="clear:both"></div>
@@ -25,7 +26,7 @@ require_once('ClientBundle/views/layout/header.php');
 					if (!result) {
 						return ;
 					}
-	                console.log(result);
+	                //console.log(result);
 					var data = JSON.parse(result);
 					var $html = '';
 					for (var i = 0; i < data.length; i++) {
