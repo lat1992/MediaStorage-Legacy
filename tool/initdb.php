@@ -20,9 +20,9 @@
 
 	// media
 	$mysqli->query('TRUNCATE TABLE memory_media');
-	$result = $mysqli->query('SELECT id, id_type, id_organization, reference, reference_client, right_view FROM media WHERE 1;');
+	$result = $mysqli->query('SELECT id, id_type, id_folder, id_organization, reference, reference_client, right_view FROM media WHERE 1;');
 	while ($row = $result->fetch_assoc()) {
-		$mysqli->query('INSERT INTO memory_media (id, id_type, id_organization, reference, reference_client, right_view) VALUES ('. $row['id'] .', '. $row['id_type'] .', '. $row['id_organization'] .', "'. $row['reference'] .'", "'. $row['reference_client'] .'", '. $row['right_view'] .');');
+		$mysqli->query('INSERT INTO memory_media (id, id_type, id_folder, id_organization, reference, reference_client, right_view) VALUES ('. $row['id'] .', '. $row['id_type'] .', '. $row['id_folder'] .', '. $row['id_organization'] .', "'. $row['reference'] .'", "'. $row['reference_client'] .'", '. $row['right_view'] .');');
 	}
 
 	// media_extra
