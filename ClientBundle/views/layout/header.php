@@ -44,8 +44,13 @@
 			</nav>
 
 			<div canvas="container" class="div_canvas">
-
+<?php
+			if (file_exists('ClientBundle/ressources/organization/'.$_SESSION['id_plateform_organization'].'/img/banniere.png')) {
+?>
 				<div style="max-height: 60px; width: 100%; "><a href="?page=home"><img style="display: block; margin: 0 auto; max-height: 60px" src="ClientBundle/ressources/organization/<?= $_SESSION['id_plateform_organization'] ?>/img/banniere.png" /></a></div>
+<?php
+			}
+?>
 
 <!--  -->
 
