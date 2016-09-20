@@ -79,6 +79,16 @@ class MediaController {
 
 		}
 
+		if (isset($_SESSION['id_plateform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
+
 		$title = PROGRAM_LIST_TITLE;
 
 		include ('AdminBundle/views/media/program_list.php');
@@ -113,8 +123,6 @@ class MediaController {
 
 		}
 
-		$title = CONTENT_LIST_TITLE;
-
 		if (isset($_SESSION['id_plateform_organization'])) {
 
 			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
@@ -124,6 +132,8 @@ class MediaController {
 				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 			}
 		}
+
+		$title = CONTENT_LIST_TITLE;
 
 		include ('AdminBundle/views/media/content_list.php');
 	}
@@ -194,6 +204,16 @@ class MediaController {
 		$enums = $enums['data'];
 
 		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
+
+		if (isset($_SESSION['id_plateform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
 
 		$title = CREATE_MEDIA_PROGRAM;
 

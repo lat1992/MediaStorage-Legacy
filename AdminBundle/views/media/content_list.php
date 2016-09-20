@@ -3,6 +3,7 @@
 require_once('ClientBundle/views/layout/header.php');
 
 ?>
+	<link rel="stylesheet" href="CoreBundle/ressources/layout/css/form.css">
 
 	<style>
 
@@ -23,7 +24,6 @@ require_once('ClientBundle/views/layout/header.php');
 
 	<div id="container">
 
-		<link rel="stylesheet" href="CoreBundle/ressources/layout/css/form.css">
 <?php
 		if(isset($_SESSION['permits'][PERMIT_CREATE_CONTENT])) {
 ?>

@@ -3,8 +3,24 @@
 require_once('ClientBundle/views/layout/header.php');
 
 ?>
-
 	<link rel="stylesheet" href="CoreBundle/ressources/layout/css/form.css">
+
+	<style>
+
+<?php
+	    if (isset($designs)) {
+
+	        foreach ($designs as $design) {
+?>
+	            <?= $design['selector'] ?> {
+	                <?= $design['property'] ?> : <?= $design['value'] ?>;
+	            }
+<?php
+	        }
+	    }
+?>
+
+	</style>
 
 	<div id="container">
 

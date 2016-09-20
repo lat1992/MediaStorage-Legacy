@@ -324,8 +324,10 @@ define('NO_DATA_AVAILABLE', 'Aucunes données disponible');
 
 // UPLOAD BOX
 define('DROP_FILES_HERE', 'Déposez les fichiers ici');
+define('DROP_FILE_HERE', 'Déposez le fichier ici');
 define('UPLOAD_A_FILE', 'Upload');
 define('PROCESSSING_DROPPED_FILES', 'Traitement des fichiers déposés ...');
 define('RETRY', 'Recommencer');
 define('CLOSE', 'Fermer');
 define('OK', 'Ok');
+define('THUMBNAIL', 'Image');

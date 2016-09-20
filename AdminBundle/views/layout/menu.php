@@ -5,7 +5,7 @@
 <?php
 		if (isset($_SESSION['permits'][PERMIT_CREATE_CONTENT]) || isset($_SESSION['permits'][PERMIT_EDIT_CONTENT]) || isset($_SESSION['permits'][PERMIT_DELETE_CONTENT])) {
 ?>
-			<li><a href="?page=dashboard_admin"><?= DASHBOARD ?></a></li>
+			<?php /*<li><a href="?page=dashboard_admin"><?= DASHBOARD ?></a></li> */ ?>
 			<li><a href="?page=list_folder_admin"><?= FOLDER ?></a></li>
 <?php
 		}

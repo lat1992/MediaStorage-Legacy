@@ -2,7 +2,7 @@
 
 	<form id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
 
-		<label for="id_parent_mediastorage">Dossier parent</label>
+		<label for="id_parent_mediastorage"><?= PARENT_FOLDER ?></label>
 		<select name="id_parent_mediastorage[]" id="id_parent_mediastorage" class="parent_mediastorage">
 			<option value=""></option>
 <?php
@@ -12,6 +12,9 @@
 ?>
 		</select>
 		<div class="clear"></div>
+
+		<label for="tumbnail_mediastorage" style="margin: 10px 5px 10px 0" ><?= THUMBNAIL ?> : </label>
+		<?php require_once('AdminBundle/views/folder/thumbnail_upload_form.php'); ?>
 
 <?php
 			$cpt = 0;

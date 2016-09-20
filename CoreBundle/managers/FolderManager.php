@@ -115,7 +115,7 @@ class FolderManager {
 	}
 
 	public function ajaxGetFolderByParentIdDb($parent_id) {
-		return $this->_folderModel->findAllFolderWithParentIdAndOrganization($parent_id, $_SESSION['id_organization']);
+		return $this->_folderModel->findAllFolderWithParentIdAndOrganization($parent_id, $_SESSION['id_organization'], $_SESSION['id_language_mediastorage']);
 	}
 
 	public function formatPathData($path) {

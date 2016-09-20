@@ -4,6 +4,8 @@ require_once('CoreBundle/managers/FolderManager.php');
 require_once('CoreBundle/managers/FolderLanguageManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
 require_once('CoreBundle/managers/LanguageManager.php');
+require_once('CoreBundle/managers/ToolboxManager.php');
+require_once('CoreBundle/managers/DesignManager.php');
 
 class FolderController {
 
@@ -11,6 +13,8 @@ class FolderController {
 	private $_folderLanguageManager;
 	private $_organizationManager;
 	private $_languageManager;
+	private $_toolboxManager;
+	private $_designManager;
 
 	private $_errorArray;
 
@@ -19,6 +23,8 @@ class FolderController {
 		$this->_folderLanguageManager = new FolderLanguageManager();
 		$this->_organizationManager = new OrganizationManager();
 		$this->_languageManager = new LanguageManager();
+		$this->_toolboxManager = new ToolboxManager();
+		$this->_designManager = new DesignManager();
 
 		$this->_errorArray = array();
 	}
@@ -62,6 +68,16 @@ class FolderController {
 
 		$title = FOLDER_LIST_TITLE;
 
+		if (isset($_SESSION['id_plateform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
+
 		include ('AdminBundle/views/folder/folder_list.php');
 	}
 
@@ -98,6 +114,16 @@ class FolderController {
 
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($languages);
+
+		if (isset($_SESSION['id_plateform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
 
 		include ('AdminBundle/views/folder/folder_create.php');
 	}
@@ -154,6 +180,16 @@ class FolderController {
 
 		}
 
+		if (isset($_SESSION['id_plateform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
+
 		include ('AdminBundle/views/folder/folder_create.php');
 	}
 
@@ -172,7 +208,7 @@ class FolderController {
 	// }
 
 	public function ajaxGetFolderByParentIdAction() {
-		if (!$_GET['folder_id']) {
+		if (!isset($_GET['folder_id']) || !$_GET['folder_id']) {
 			echo '';
 			return;
 		}
