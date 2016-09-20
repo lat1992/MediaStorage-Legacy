@@ -1,4 +1,5 @@
 <?php
+
 	if ($languages) {
 
 		foreach ($languages as $language) {

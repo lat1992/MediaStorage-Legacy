@@ -56,8 +56,35 @@ require_once('ClientBundle/views/layout/header.php');
 <?php
                         if (isset($program['subtitle_translate']) && $program['subtitle_translate']) {
 ?>
-                            <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $program['subtitle_translate'] ?></span>
+                            <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $program['subtitle_translate'] ?></span><br />
 <?php
+                        }
+
+                        // @TODO: REFACTO EN MANAGER
+
+                        $media_extras_user_data = $this->_mediaExtraManager->getMediaExtraByMediaIdDb($program['id']);
+                        $media_user_extras = $this->_toolboxManager->mysqliResultToArray($media_extras_user_data);
+                        $media_user_extras = $this->_mediaExtraManager->formatMediaExtraDataForView($media_user_extras);
+                        $this->mergeErrorArray($media_extra_data);
+
+                        foreach ($media_extra as $id_info_field => $value) {
+                            if (strcmp($value['type'], 'Text') == 0) {
+
+                                foreach ($languages as $language) {
+
+                                    $user_value = "";
+                                    if (isset($media_user_extras[$id_info_field]['language'][$language['id']]['data']))
+                                        $user_value = $media_user_extras[$id_info_field]['language'][$language['id']]['data'];
+?>
+                                <span class="description_label"><?= $value['data'][0]['data'] ?> : </span><span><?= $user_value ?></span><br />
+<?php
+                                }
+?>
+                                <label></label>
+                                <div class="clear"></div>
+<?php
+
+                            }
                         }
 ?>
                     </div>
