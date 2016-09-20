@@ -3,12 +3,19 @@
 require_once('CoreBundle/managers/MediaManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
 require_once('CoreBundle/managers/DesignManager.php');
+require_once('CoreBundle/managers/MediaExtraManager.php');
+require_once('CoreBundle/managers/LanguageManager.php');
+require_once('CoreBundle/managers/MediaExtraFieldManager.php');
+
 
 class ProgramPageController {
 
 	private $_mediaManager;
 	private $_toolboxManager;
 	private $_designManager;
+	private $_mediaExtraManager;
+	private $_languageManager;
+	private $_mediaExtraFieldManager;
 
 	private $_errorArray;
 
@@ -16,6 +23,9 @@ class ProgramPageController {
 		$this->_mediaManager = new MediaManager();
 		$this->_toolboxManager = new ToolboxManager();
 		$this->_designManager = new DesignManager();
+		$this->_mediaExtraManager = new MediaExtraManager();
+		$this->_languageManager = new LanguageManager();
+		$this->_mediaExtraFieldManager = new MediaExtraFieldManager();
 
 		$this->_errorArray = array();
 	}
@@ -62,6 +72,14 @@ class ProgramPageController {
 				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 			}
 		}
+
+		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(1);
+		$this->mergeErrorArray($media_extra_data);
+		$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
+
+		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
+		$this->mergeErrorArray($languages_data);
+		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
 
 		include ('ClientBundle/views/program/program.php');
 	}

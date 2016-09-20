@@ -496,7 +496,6 @@ class MediaController {
 		}
 
 		$title = EDIT_MEDIA_CONTENT;
-
 		include ('AdminBundle/views/media/media_create_content.php');
 	}
 
