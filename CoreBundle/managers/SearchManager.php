@@ -19,8 +19,16 @@ class SearchManager {
 		//return $this->_searchModel->searchAll($keyword, $id_organization, $id_language);
 	}
 
-	public function searchFolder($keyword) {
-		return $this->_searchModel->searchFolder($keyword);
+	public function searchFolder($keyword, $id_organization, $id_language, $paginate, $gap) {
+		return $this->_searchModel->searchFolder($keyword, $id_organization, $id_language, $paginate, $gap);
+	}
+
+	public function searchMediaProgram($keyword, $id_organization, $id_language, $paginate, $gap) {
+		return $this->_searchModel->searchMedia($keyword, 1, $id_organization, $id_language, $paginate, $gap);
+	}
+
+	public function searchMediaContent($keyword, $id_organization, $id_language, $paginate, $gap) {
+		return $this->_searchModel->searchMedia($keyword, 2, $id_organization, $id_language, $paginate, $gap);
 	}
 
 }

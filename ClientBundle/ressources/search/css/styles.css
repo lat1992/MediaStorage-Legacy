@@ -1,3 +1,5 @@
+@import url("search-customizable.css");
+
 .search-box {
 	padding: 10px;
 }
@@ -12,4 +14,93 @@
 
 .search-box .search-form {
 	float: left;
+}
+
+a.link_div_folder, a.link_div_program, a.link_div_content {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.category_title {
+    height: 20px;
+    width: 100%;
+    display: inline-block;
+    padding: 10px 0 10px 20px;
+    margin: 20px 0 0 0 ;
+    font-weight: bold;
+}
+
+.link_div_folder, .link_div_program, .link_div_content {
+    margin: 20px 0 20px 40px;
+    color: black;
+}
+
+.col {
+    background-color: white;
+    width: 500px;
+    height: 165px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    font-size: 0.8em;
+}
+
+.folder_title_div, .program_title_div, .content_title_div {
+    width: 100%;
+    max-height: 30px;
+    height: auto
+}
+
+.folder_title_span, .program_title_span, .content_title_span {
+    display: inline-block;
+    width: 100%;
+    line-height: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.folder_image_div, .program_image_div, .content_image_div {
+    width: 20%;
+    display:inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin: 20px 20px 20px 20px;
+}
+
+.folder_image, .program_image, .content_image {
+    width: 100%;
+    height:auto;
+}
+
+.folder_description, .program_description, .content_description {
+    width: 60%;
+    height: auto;
+    display:inline-block;
+    vertical-align: middle;
+    text-align: left;
+    padding: 10px;
+    line-height: 30px;
+}
+
+
+.hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+}
+
+.description_label {
+    font-weight: bold;
+}
+
+.hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }

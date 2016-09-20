@@ -1,0 +1,41 @@
+div .folder {
+  background-color: #FFFFCC;
+}
+
+div .program {
+  background-color: #C8C8FF;
+}
+
+div .content {
+  background-color: #C1FFF2;
+}
+
+div .folder {
+  color: grey;
+}
+
+div .program {
+  color: grey;
+}
+
+div .content {
+  color: grey;
+}
+
+div .folder_title_div, div .program_title_div, div .content_title_div {
+    background-color: #e9e9e9;
+    color: black;
+}
+
+div .folder_description, div .program_description, div .content_description {
+	color:black;
+}
+
+div .category_title {
+	background-color: #bfbfbf;
+	color: black;
+}
+
+.folder_description_empty, .program_description_empty, .content_description_empty {
+    color: grey;
+}
