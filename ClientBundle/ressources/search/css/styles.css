@@ -10,10 +10,16 @@
 	float: left;
 	background-color: white;
 	position: absolute;
+    z-index: 2;
 }
 
 .search-box .search-form {
 	float: left;
+}
+
+.live-search .livesearch-result a {
+    color: black;
+    text-decoration: none;
 }
 
 a.link_div_folder, a.link_div_program, a.link_div_content {

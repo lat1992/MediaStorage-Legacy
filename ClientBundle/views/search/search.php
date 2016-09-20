@@ -159,7 +159,7 @@ require_once('ClientBundle/views/layout/header.php');
 					var data = JSON.parse(result);
 					var $html = '';
 					for (var i = 0; i < data.length; i++) {
-						$html += '<div>' + data[i].data + '</div>';
+						$html += '<div class="livesearch-result"><a href="?page=search&keyword='+ data[i].data +'&paginate=1">' + data[i].data + '</a></div>';
 					}
 					$('#livesearch').html($html);
 				},
