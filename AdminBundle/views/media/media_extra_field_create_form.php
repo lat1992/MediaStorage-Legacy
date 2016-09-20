@@ -1,7 +1,6 @@
 <?php
 
 if (isset($media_extra)) {
-
 	if (isset($languages)) {
 		foreach ($media_extra as $id_info_field => $value) {
 			if (strcmp($value['type'], 'Text') == 0) {

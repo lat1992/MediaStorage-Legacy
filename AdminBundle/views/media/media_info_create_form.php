@@ -45,51 +45,6 @@
 ?>
 		<label></label>
 		<div class="clear"></div>
-<?php
-		foreach ($languages as $language) {
-
-			$user_value = '';
-			if (isset($media_infos[$language['id']]['episode_number']))
-				$user_value = $media_infos[$language['id']]['episode_number'];
-?>
-			<label for="episode_number_mediastorage_<?= $language['code'] ?>"><?= EPISODE_NUMBER . ' - ' . $language['code'] ?> : </label>
-			<input type="text" name="episode_number_mediastorage[<?= $language['id'] ?>]" id="episode_number_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
-			<div class="clear"></div>
-<?php
-		}
-?>
-		<label></label>
-		<div class="clear"></div>
-<?php
-		foreach ($languages as $language) {
-
-			$user_value = '';
-			if (isset($media_infos[$language['id']]['image_version']))
-				$user_value = $media_infos[$language['id']]['image_version'];
-?>
-			<label for="image_version_mediastorage_<?= $language['code'] ?>"><?= IMAGE_VERSION . ' - ' . $language['code'] ?> : </label>
-			<input type="text" name="image_version_mediastorage[<?= $language['id'] ?>]" id="image_version_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
-			<div class="clear"></div>
-<?php
-		}
-?>
-		<label></label>
-		<div class="clear"></div>
-<?php
-		foreach ($languages as $language) {
-
-			$user_value = '';
-			if (isset($media_infos[$language['id']]['sound_version']))
-				$user_value = $media_infos[$language['id']]['sound_version'];
-?>
-			<label for="sound_version_mediastorage_<?= $language['code'] ?>"><?= SOUND_VERSION . ' - ' . $language['code'] ?> : </label>
-			<input type="text" name="sound_version_mediastorage[<?= $language['id'] ?>]" id="sound_version_mediastorage_<?= $language['code'] ?>" value="<?= $user_value ?>" /><br />
-			<div class="clear"></div>
-<?php
-		}
-?>
-		<label></label>
-		<div class="clear"></div>
 
 			<?php /*<label for="data_mediastorage_<?= $language['code'] ?>" ><?= LANGUAGE_TRANSLATE . ' ' . $language['name'] . ' / ' . $language['code'] ?> : </label>
 			<input type="text" name="data_mediastorage[<?= $language['id'] ?>]" id="data_mediastorage_<?= $language['code'] ?>" value="<?= (isset($folder_language[intval($language['id'])])) ? $folder_language[intval($language['id'])]['data'] : '' ?>" /><br />

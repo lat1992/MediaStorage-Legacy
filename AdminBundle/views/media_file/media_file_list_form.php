@@ -15,7 +15,7 @@
 				<td><input type="checkbox" name="media_file_mediastorage[<?= $media_file['id'] ?>] value="1" /></td>
 				<td><?= $media_file['filename'] ?></td>
 				<td><?= $media_file['right_download'] ?></td>
-				<td><?= $media_file['right_addtocart'] ?></td>P
+				<td><?= $media_file['right_addtocart'] ?></td>
 			</tr>
 <?php
 		}

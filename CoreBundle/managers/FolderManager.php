@@ -11,7 +11,7 @@ class FolderManager {
 	}
 
 	public function getAllFoldersDb() {
-		return $this->_folderModel->findAllFolders();
+		return $this->_folderModel->findAllFolders($_SESSION['id_organization']);
 	}
 
 	public function formatFolderArrayWithPostData() {
