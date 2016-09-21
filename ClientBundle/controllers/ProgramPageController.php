@@ -6,6 +6,7 @@ require_once('CoreBundle/managers/DesignManager.php');
 require_once('CoreBundle/managers/MediaExtraManager.php');
 require_once('CoreBundle/managers/LanguageManager.php');
 require_once('CoreBundle/managers/MediaExtraFieldManager.php');
+require_once('CoreBundle/managers/MediaInfoManager.php');
 
 
 class ProgramPageController {
@@ -16,6 +17,7 @@ class ProgramPageController {
 	private $_mediaExtraManager;
 	private $_languageManager;
 	private $_mediaExtraFieldManager;
+	private $_mediaInfoManager;
 
 	private $_errorArray;
 
@@ -26,6 +28,7 @@ class ProgramPageController {
 		$this->_mediaExtraManager = new MediaExtraManager();
 		$this->_languageManager = new LanguageManager();
 		$this->_mediaExtraFieldManager = new MediaExtraFieldManager();
+		$this->_mediaInfoManager = new MediaInfoManager();
 
 		$this->_errorArray = array();
 	}
@@ -46,8 +49,17 @@ class ProgramPageController {
 
 		if (isset($_GET['media_id'])) {
 			$contents = $this->_mediaManager->getAllContentsByIdOrganizationAndParentIdDb($_GET['media_id']);
-
 			$this->mergeErrorArray($contents);
+
+			$program = $this->_mediaManager->getMediaByIdAndOrganizationIdDb($_GET['media_id']);
+
+			$this->mergeErrorArray($program);
+			$program_data = $program['data']->fetch_assoc();
+
+			$program_info = $this->_mediaInfoManager->getMediaInfoByMediaIdAndLanguageIdDb($_GET['media_id'], $_SESSION['id_language_mediastorage']);
+			$this->mergeErrorArray($program_info);
+			$program_info_data = $program_info['data']->fetch_assoc();
+
 
 			$title = $this->_mediaManager->getMediaByMediaId($_GET['media_id']);
 

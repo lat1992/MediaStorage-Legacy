@@ -1,0 +1,23 @@
+.program_info {
+    text-align: center;
+    margin: 15px 0 0 0;
+}
+
+.program_info_image_div {
+  	display: inline-block;
+    vertical-align: middle;
+}
+
+.program_info_image {
+
+}
+
+.program_info_text_div {
+  	display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.field {
+
+}

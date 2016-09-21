@@ -27,6 +27,14 @@
 					</div>
 
 <?php
+			if (file_exists('ClientBundle/ressources/organization/'.$_SESSION['id_plateform_organization'].'/img/logo.png')) {
+?>
+				<div class="to_hide_mobile" style="max-height: 40px; width: 100%; "><a href="?page=home"><img style="display: inline-block; float:left; margin: 0 auto auto 15px; max-height: 40px" src="ClientBundle/ressources/organization/<?= $_SESSION['id_plateform_organization'] ?>/img/logo.png" /></a></div>
+<?php
+			}
+?>
+
+<?php
 					if (isset($_SESSION['permits'][PERMIT_CREATE_CONTENT]) || isset($_SESSION['permits'][PERMIT_EDIT_CONTENT]) || isset($_SESSION['permits'][PERMIT_DELETE_CONTENT]) || isset($_SESSION['permits'][PERMIT_EDIT_CONTENT]) || isset($_SESSION['permits'][PERMIT_ROOT])) {
 ?>
 						<div class="js-open-right-slidebar" >
@@ -35,6 +43,8 @@
 <?php
 					}
 ?>
+
+
 					<div id="header_title_div">
 						<h1><?= (isset($title)) ? $title : NO_TITLE ?></h1>
 					</div>
@@ -44,13 +54,16 @@
 			</nav>
 
 			<div canvas="container" class="div_canvas">
+
+			<!--
 <?php
-			if (file_exists('ClientBundle/ressources/organization/'.$_SESSION['id_plateform_organization'].'/img/banniere.png')) {
+			if (file_exists('ClientBundle/ressources/organization/'.$_SESSION['id_plateform_organization'].'/img/logo.png')) {
 ?>
-				<div style="max-height: 60px; width: 100%; "><a href="?page=home"><img style="display: block; margin: 0 auto; max-height: 60px" src="ClientBundle/ressources/organization/<?= $_SESSION['id_plateform_organization'] ?>/img/banner.png" /></a></div>
+				<div style="max-height: 60px; width: 100%; "><a href="?page=home"><img style="display: block; margin: 0 auto; max-height: 60px" src="ClientBundle/ressources/organization/<?= $_SESSION['id_plateform_organization'] ?>/img/logo.png" /></a></div>
 <?php
 			}
 ?>
+			-->
 
 <!--  -->
 

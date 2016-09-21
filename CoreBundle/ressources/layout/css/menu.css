@@ -21,7 +21,7 @@ nav[canvas] h1 {
 .js-open-left-slidebar , .js-open-right-slidebar {
     font-weight: bold;
     height: 100%;
-   	padding: 2px 0 0 0;
+   	padding: 5px 0 0 0;
 }
 
 .js-open-left-slidebar {
@@ -36,7 +36,7 @@ nav[canvas] h1 {
 
 #header_title_div {
     font-size: 0.8em;
-    padding: 3px 0 0 0;
+    padding: 5px 0 0 0;
     color: white;
 }
 

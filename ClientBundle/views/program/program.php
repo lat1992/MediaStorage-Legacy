@@ -5,6 +5,7 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
 
 <link rel="stylesheet" href="ClientBundle/ressources/folder/css/folder.css">
+<link rel="stylesheet" href="ClientBundle/ressources/program/css/program.css">
 
 <script src="ClientBundle/ressources/folder/js/folder.js"></script>
 
@@ -24,6 +25,26 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
 
 </style>
+
+<?php
+if (isset($_GET['media_id'])) {
+?>
+<div class="program_info">
+    <div class="program_info_image_div">
+        <!-- <img src="ClientBundle/ressources/program/img/default.png" /> -->
+        <img class="program_info_image" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg" />
+    </div>
+    <div class="program_info_text_div">
+        <div class="field"><?= REFERENCE ?> : <?= $program_data['reference'] ?></div>
+        <div class="field"><?= REFERENCE_CLIENT ?> : <?= $program_data['reference_client'] ?></div>
+        <div class="field"><?= TITLE ?> : <?= $program_info_data['title'] ?></div>
+        <div class="field"><?= SUBTITLE ?> : <?= $program_info_data['subtitle'] ?></div>
+        <div class="field"><?= DESCRIPTION ?> : <?= $program_info_data['description'] ?></div>
+    </div>
+</div>
+<?php
+}
+?>
 
 <div class="container">
 
@@ -101,7 +122,7 @@ require_once('ClientBundle/views/layout/header.php');
 
         if (isset($contents['data']->num_rows) && intval($contents['data']->num_rows) != 0) {
 ?>
-            <span class="category_title category_title_content" ><?= PROGRAM ?></span>
+            <span class="category_title category_title_content" ><?= CONTENT ?></span>
 <?php
         }
         while ($content = $contents['data']->fetch_assoc()) {
