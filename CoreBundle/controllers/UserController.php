@@ -1,7 +1,7 @@
 <?php
 
 require_once('CoreBundle/managers/UserManager.php');
-require_once('CoreBundle/managers/designManager.php');
+require_once('CoreBundle/managers/DesignManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
 require_once('CoreBundle/managers/RoleManager.php');
 require_once('CoreBundle/managers/LanguageManager.php');
