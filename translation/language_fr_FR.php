@@ -43,7 +43,7 @@ define('PHONE', 'Téléphone');
 define('MOBILE', 'Portable');
 define('COMPANY', 'Companie');
 define('JOB', 'Poste');
-define('PROFILE', 'Profile');
+define('PROFILE', 'Profil');
 
 // User management page
 
