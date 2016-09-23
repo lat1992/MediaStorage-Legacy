@@ -35,8 +35,8 @@ if (isset($_GET['media_id'])) {
         <img class="program_info_image" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg" />
     </div>
     <div class="program_info_text_div">
-        <div class="field"><?= REFERENCE ?> : <?= $program_data['reference'] ?></div>
-        <div class="field"><?= REFERENCE_CLIENT ?> : <?= $program_data['reference_client'] ?></div>
+        <!--<div class="field"><?= REFERENCE ?> : <?= $program_data['reference'] ?></div>-->
+        <div class="field"><?= REFERENCE ?> : <?= $program_data['reference_client'] ?></div>
         <div class="field"><?= TITLE ?> : <?= $program_info_data['title'] ?></div>
         <div class="field"><?= SUBTITLE ?> : <?= $program_info_data['subtitle'] ?></div>
         <div class="field"><?= DESCRIPTION ?> : <?= $program_info_data['description'] ?></div>
