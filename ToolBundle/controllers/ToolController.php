@@ -1,15 +1,18 @@
 <?php
 
 require_once('CoreBundle/managers/InitManager.php');
+require_once('ToolBundle/managers/WorkFlowManager.php');
 
 class ToolController {
 
 	private $_initManager;
+	private $_workFlowManager;
 
 	private $_errorArray;
 
 	public function __construct() {
-		$this->_initManager = new InitManager();;
+		$this->_initManager = new InitManager();
+		$this->_workFlowManager = new WorkFlowManager();
 		$this->_errorArray = array();
 	}
 
@@ -29,6 +32,11 @@ class ToolController {
 		$input_file = $_GET['input_file'];
 		$output_dir = $_GET['output_file'];
 		//lancement de tache
+		return ;
+	}
+
+	public function postProductionWorkFlow() {
+		
 		return ;
 	}
 
@@ -52,13 +60,7 @@ class ToolController {
 		if (count($this->_errorArray) == 0) {
 			header('Location:' . '?page=dashboard_root');
 		}
-		else {
-			$i = 0;
-			while (isset($this->_errorArray[$i])) {
-				echo $this->_errorArray[$i];
-				$i++;
-			}
-		}
+		return ;
 	}
 
 }
