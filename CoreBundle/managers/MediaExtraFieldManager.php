@@ -135,4 +135,8 @@ class MediaExtraFieldManager {
 
 		return $media_extra;
 	}
+
+	public function getDataForTableByMediaId($media_id) {
+
+	}
 }

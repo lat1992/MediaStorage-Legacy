@@ -199,17 +199,10 @@ class MediaManager {
 
 			if ( strlen($_POST['title_mediastorage'][$key]) == 0 &&
 				strlen($_POST['subtitle_mediastorage'][$key]) == 0 &&
-				strlen($_POST['description_mediastorage'][$key]) == 0 &&
-				strlen($_POST['episode_number_mediastorage'][$key]) == 0 &&
-				strlen($_POST['image_version_mediastorage'][$key]) == 0 &&
-				strlen($_POST['sound_version_mediastorage'][$key]) == 0
-			) {
+				strlen($_POST['description_mediastorage'][$key])) {
 				unset($_POST['title_mediastorage'][$key]);
 				unset($_POST['subtitle_mediastorage'][$key]);
 				unset($_POST['description_mediastorage'][$key]);
-				unset($_POST['episode_number_mediastorage'][$key]);
-				unset($_POST['image_version_mediastorage'][$key]);
-				unset($_POST['sound_version_mediastorage'][$key]);
 			}
 		}
 

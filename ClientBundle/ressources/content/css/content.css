@@ -27,12 +27,14 @@ table {
 }
 
 .video_content {
-	width: 100px;
-	height: 70px;
+	width: 200px;
+	height: 140px;
 	display: inline-block;
 	float: left;
 	background-color: #d5d5d5;
 	margin: 5px 5px 0 0;
+	word-wrap: break-word;
+	text-align: center;
 }
 
 .content_thumbnail_header {

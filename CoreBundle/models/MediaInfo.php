@@ -28,7 +28,7 @@ class MediaInfo extends Model {
 		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
 
 		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(title, subtitle, description, id_media, id_language)' .
-			' VALUES ("'. $title . '","'. $subtitle . '","'. $description . '","'. $episode_number . '","'. $image_version . '","'. $sound_version . '", ' . $id_media . ', ' . $id_language . ');'
+			' VALUES ("'. $title . '","'. $subtitle . '","'. $description . '", ' . $id_media . ', ' . $id_language . ');'
 		);
 
 		return array(

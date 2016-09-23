@@ -9,7 +9,7 @@ class MediaFile extends Model {
 	}
 
 	public function findAllMediaFiles() {
-		$data = $this->_mysqli->query('SELECT id, id_media, type, filename, filepath, right_download, right_addtocart' .
+		$data = $this->_mysqli->query('SELECT id, id_media, type, filename, filepath, right_download, right_preview' .
 			' FROM ' . $this->_table
 		);
 
@@ -20,7 +20,7 @@ class MediaFile extends Model {
 	}
 
 	public function findAllMediaFilesWithoutMediaId() {
-		$data = $this->_mysqli->query('SELECT id, id_media, type, filename, filepath, right_download, right_addtocart' .
+		$data = $this->_mysqli->query('SELECT id, id_media, type, filename, filepath, right_download, right_preview' .
 			' FROM ' . $this->_table .
 			' WHERE id_media IS NULL'
 		);
@@ -31,17 +31,18 @@ class MediaFile extends Model {
 		);
 	}
 
-	public function createMediaFile($data) {
+	public function createMediaFile($data, $id_organization) {
 		$id_media = $this->_mysqli->real_escape_string($data['id_media_mediastorage']);
 		$type = $this->_mysqli->real_escape_string($data['type_mediastorage']);
 		$filename = $this->_mysqli->real_escape_string($data['filename_mediastorage']);
 		$filepath = $this->_mysqli->real_escape_string($data['filepath_mediastorage']);
 		$metadata = $this->_mysqli->real_escape_string($data['metadata_mediastorage']);
 		$right_download = $this->_mysqli->real_escape_string($data['right_download_mediastorage']);
-		$right_addtocart = $this->_mysqli->real_escape_string($data['right_addtocart_mediastorage']);
+		$right_preview = $this->_mysqli->real_escape_string($data['right_preview_mediastorage']);
+		$id_organization = $this->_mysqli->real_escape_string($id_organization);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_media, type, filename, filepath, metadata, right_download, right_addtocart)' .
-			' VALUES ('. $id_media . ', ' . $type . ', "' . $filename . '", "' . $filepath . '", ' . $metadata . ', ' . $right_download . ', ' . $right_addtocart . ');'
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_media, type, filename, filepath, metadata, right_download, right_preview, id_organization)' .
+			' VALUES ('. $id_media . ', ' . $type . ', "' . $filename . '", "' . $filepath . '", ' . $metadata . ', ' . $right_download . ', ' . $right_preview . ', ' . $id_organization . ');'
 		);
 
 		return array(
@@ -77,7 +78,7 @@ class MediaFile extends Model {
 	public function findAllMediaFilesByMediaId($media_id) {
 		$media_id = $this->_mysqli->real_escape_string($media_id);
 
-		$data = $this->_mysqli->query('SELECT id, id_media, type, filename, filepath, right_download, right_addtocart' .
+		$data = $this->_mysqli->query('SELECT id, id_media, type, filename, filepath, right_download, right_preview, mime_type' .
 			' FROM ' . $this->_table .
 			' WHERE id_media = ' . $media_id
 		);
@@ -91,7 +92,7 @@ class MediaFile extends Model {
 	public function findMediaFileByMediaFileId($id_media_file) {
 		$media_id_file = $this->_mysqli->real_escape_string($media_id_file);
 
-		$data = $this->_mysqli->query('SELECT id, id_media, mine_type, filename, filepath, right_download, right_addtocart' .
+		$data = $this->_mysqli->query('SELECT id, id_media, mine_type, filename, filepath, right_download, right_preview' .
 			' FROM ' . $this->_table .
 			' WHERE id = ' . $id_media_file
 		);

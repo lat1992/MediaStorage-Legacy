@@ -1,4 +1,4 @@
-<table id="upload_list" class="upload_list">
+<table class="upload_list">
 	<tr>
 		<th><?= FILENAME ?></th>
 		<th><?= RIGHT_DOWNLOAD ?></th>

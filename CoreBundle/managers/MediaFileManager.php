@@ -23,7 +23,7 @@ class MediaFileManager {
 	}
 
 	public function createMediaFileDb() {
-		return $this->_mediaFileModel->createMediaFile($_POST);
+		return $this->_mediaFileModel->createMediaFile($_POST, $_SESSION['id_organization']);
 	}
 
 	public function updateMultipleMediaFilesDb() {

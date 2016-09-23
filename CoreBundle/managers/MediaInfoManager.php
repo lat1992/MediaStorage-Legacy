@@ -20,9 +20,6 @@ class MediaInfoManager {
 		$media_info['title'] = $_POST['title_mediastorage'];
 		$media_info['subtitle'] = $_POST['subtitle_mediastorage'];
 		$media_info['description'] = $_POST['description_mediastorage'];
-		$media_info['episode_number'] = $_POST['episode_number_mediastorage'];
-		$media_info['image_version'] = $_POST['image_version_mediastorage'];
-		$media_info['sound_version'] = $_POST['sound_version_mediastorage'];
 		$media_info['handover_date'] = $_POST['handover_date_mediastorage'];
 		$media_info['id_media'] = $_POST['id_media_mediastorage'];
 		$media_info['id_language'] = $_POST['id_language_mediastorage'];
@@ -32,16 +29,6 @@ class MediaInfoManager {
 
 	public function mediaInfoCreateFormCheck() {
 		$error_media_info = array();
-
-		if (strlen($_POST['episode_number_mediastorage']) > 30) {
-			$error_media_info[] = INVALID_EPISODE_NUMBER_TOO_LONG;
-		}
-		if (strlen($_POST['image_version_mediastorage']) > 20) {
-			$error_media_info[] = INVALID_IMAGE_VERSION_DATA_TOO_LONG;
-		}
-		if (strlen($_POST['sound_version_mediastorage']) > 20) {
-			$error_media_info[] = INVALID_SOUND_VERSION_DATA_TOO_LONG;
-		}
 
 		return $error_media_info;
 	}
@@ -86,9 +73,6 @@ class MediaInfoManager {
 			$_POST['title_mediastorage'] = $post_save['title_mediastorage'][$key];
 			$_POST['subtitle_mediastorage'] = $post_save['subtitle_mediastorage'][$key];
 			$_POST['description_mediastorage'] = $post_save['description_mediastorage'][$key];
-			$_POST['episode_number_mediastorage'] = $post_save['episode_number_mediastorage'][$key];
-			$_POST['image_version_mediastorage'] = $post_save['image_version_mediastorage'][$key];
-			$_POST['sound_version_mediastorage'] = $post_save['sound_version_mediastorage'][$key];
 			$_POST['id_language_mediastorage'] = $key;
 
 			$return_value = $this->getMediaInfoByMediaIdAndLanguageIdDb($_POST['id_media_mediastorage'], $key);
@@ -145,9 +129,6 @@ class MediaInfoManager {
 			$return_array[$key]['title'] = $_POST['title_mediastorage'][$key];
 			$return_array[$key]['subtitle'] = $_POST['subtitle_mediastorage'][$key];
 			$return_array[$key]['description'] = $_POST['description_mediastorage'][$key];
-			$return_array[$key]['episode_number'] = $_POST['episode_number_mediastorage'][$key];
-			$return_array[$key]['image_version'] = $_POST['image_version_mediastorage'][$key];
-			$return_array[$key]['sound_version'] = $_POST['sound_version_mediastorage'][$key];
 		}
 
 		return $return_array;

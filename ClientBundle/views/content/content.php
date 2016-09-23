@@ -47,7 +47,7 @@ require_once('ClientBundle/views/layout/header.php');
 					<div class="video_content">
 						<div style="display: none">
 							<video controls preload="none" width="100%">
-					    		<source src="http://download.blender.org/peach/trailer/trailer_1080p.ogg" type="video/ogg">
+					    		<source src="http://essilor.mediastoragekvi.fr/uploads/files/<?= $media_file['filepath'] ?>" type="<?= $media_file['mime_type'] ?>">
 					    		Your browser does not support HTML5 video.
 							</video>
 						</div>
@@ -60,7 +60,7 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
 					<div class="video_content">
 						<div style="display: none">
-							<img src="http://essilor.mediastoragekvi.fr/uploads/files/<?= $media_file['filepath'] ?>" />
+							<img src="http://essilor.mediastoragekvi.fr/uploads/files/<?= $media_file['filepath'] ?>" style="width: 100%" />
 						</div>
 						<span class="content_thumbnail_header"><?= $media_file['type'] ?></span>
 						<span><?= $media_file['filename'] ?></span>
