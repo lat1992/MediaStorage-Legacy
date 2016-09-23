@@ -80,10 +80,10 @@ class InitModel extends Model {
 
 	public function initMediaFile() {
 		$this->_mysqli->query('TRUNCATE TABLE memory_media_file');
-		$result = $this->_mysqli->query('SELECT id, id_media, filename, right_download, right_addtocart FROM media_file WHERE 1;');
+		$result = $this->_mysqli->query('SELECT id, id_media, filename, right_download, right_preview FROM media_file WHERE 1;');
 		$data = array();
 		while ($row = $result->fetch_assoc()) {
-			$data[] = $this->_mysqli->query('INSERT INTO memory_media_file (id, id_media, filename, right_download, right_addtocart) VALUES ('. $row['id'] .', '. $row['id_media'] .', "'. $row['filename'] .'", '. $row['right_download'] .', '. $row['right_addtocart'] .');');
+			$data[] = $this->_mysqli->query('INSERT INTO memory_media_file (id, id_media, filename, right_download, right_preview) VALUES ('. $row['id'] .', '. $row['id_media'] .', "'. $row['filename'] .'", '. $row['right_download'] .', '. $row['right_preview'] .');');
 		}
 
 		return array(

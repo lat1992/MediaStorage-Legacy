@@ -31,6 +31,7 @@ class ToolController {
 	public function useWorkFlow() {
 		$input_file = $_GET['input_file'];
 		$output_dir = $_GET['output_file'];
+		$id_organization = $_SESSION['id_organization'];
 		//lancement de tache
 		return ;
 	}
