@@ -48,7 +48,7 @@ class Search extends Model {
 			' LEFT JOIN media_info ON media_info.id = memory_media_info.id'.
 			' LEFT JOIN memory_media ON memory_media.id = media_info.id_media'.
 			' LEFT JOIN memory_media_file ON memory_media_file.id_media = memory_media.id'.
-			' LEFT JOIN chapter ON chapter.id_media_file = memory_media_file.id AND memory_media_file.id_media = memory_media.id'.
+			' LEFT JOIN chapter ON chapter.id_media_file = memory_media_file.id'.
 			' LEFT JOIN memory_chapter_language ON chapter.id = memory_chapter_language.id_chapter'.
 			' LEFT JOIN folder ON folder.id = memory_media.id_folder'.
 			' LEFT JOIN memory_folder_language ON memory_folder_language.id_folder = folder.id'.
@@ -108,7 +108,8 @@ class Search extends Model {
 		$data = $this->_mysqli->query('SELECT DISTINCT(memory_media.id), memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
-			' JOIN chapter ON chapter.id_media = memory_media.id'.
+			' JOIN memory_media_file ON memory_media_file.id_media = memory_media.id'.
+			' JOIN chapter ON chapter.id_media_file = memory_media_file.id'.
 			' JOIN memory_chapter_language ON chapter.id = memory_chapter_language.id_chapter'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' AND memory_chapter_language.id_language = '.$id_language.' AND '.
 			'(memory_chapter_language.data LIKE "%'.$keyword.'%")'.
