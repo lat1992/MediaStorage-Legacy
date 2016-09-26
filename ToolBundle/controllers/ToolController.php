@@ -28,19 +28,10 @@ class ToolController {
 		}
 	}
 
-	public function useWorkFlow() {
-		//$file_id = $_POST['task_id'];
-		$input_file = $_POST['input_file'];
-		$input_dir = $_POST['input_dir'];
-		$id_organization = $_SESSION['id_organization'];
-
-		return $this->_workFlowManager->transcodingVideo($file_id, $input_file, $input_dir, $id_organization);
-	}
-
 	public function postProductionWorkFlow() {
-		$file_id = $_POST['task_id'];
+		$id_task = $_POST['task_id'];
 		$wf_json = $_POST['json'];
-		return $this->_workFlowManager->postProductionWorkFlow($file_id, $json);
+		return $this->_workFlowManager->postProductionWorkFlow($task_id, $json);
 	}
 
 	public function initDB() {
