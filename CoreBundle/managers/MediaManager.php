@@ -398,8 +398,8 @@ class MediaManager {
 
                 if (strcmp($value['type'], 'Text') == 0) {
                     $user_value = "";
-                    if (isset($media_user_extras[$id_info_field]['language'][$_SESSION['id_language']]['data']))
-                        $user_value = $media_user_extras[$id_info_field]['language'][$_SESSION['id_language']]['data'];
+                    if (isset($media_user_extras[$id_info_field]['language'][$_SESSION['id_language_mediastorage']]['data']))
+                        $user_value = $media_user_extras[$id_info_field]['language'][$_SESSION['id_language_mediastorage']]['data'];
                 }
 				elseif (strcmp($value['type'], 'Date') == 0) {
 					$user_value = "";
