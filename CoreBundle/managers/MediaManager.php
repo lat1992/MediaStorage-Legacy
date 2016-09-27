@@ -63,7 +63,6 @@ class MediaManager {
 		$media['reference'] = $_POST['reference_mediastorage'];
 		$media['reference_client'] = $_POST['reference_client_mediastorage'];
 		$media['right_view'] = $_POST['right_view_mediastorage'];
-		$media['handover_date'] = $_POST['handover_date_mediastorage'];
 
 		return $media;
 	}
@@ -82,13 +81,6 @@ class MediaManager {
 	// }
 
 	public function mediaCreateDb() {
-
-		if (!empty($_POST['handover_date_mediastorage'])) {
-			$temp = new DateTime($_POST['handover_date_mediastorage']);
-			$handover_date = $temp->format('Y-m-d H:i:s');
-			$_POST['handover_date_mediastorage'] = $handover_date;
-		}
-
 		$created_date = date('Y-m-d H:i:s');
 		$modified_date = date('Y-m-d H:i:s');
 
@@ -126,12 +118,6 @@ class MediaManager {
 			else {
 				$_POST['id_parent_mediastorage'] = $media_data['id_parent'];
 			}
-		}
-
-		if (!empty($_POST['handover_date_mediastorage'])) {
-			$temp = new DateTime($_POST['handover_date_mediastorage']);
-			$handover_date = $temp->format('Y-m-d H:i:s');
-			$_POST['handover_date_mediastorage'] = $handover_date;
 		}
 
 		$modified_date = date('Y-m-d H:i:s');

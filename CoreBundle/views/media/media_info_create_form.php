@@ -17,10 +17,6 @@
 	<label for="sound_version_mediastorage"><?= SOUND_VERSION ?></label>
 	<input type="text" name="sound_version_mediastorage" id="sound_version_mediastorage" value="<?= (isset($media_info['sound_version'])) ? $media_info['sound_version'] : '' ?>" /><br />
 
-	<label for="handover_date_mediastorage"><?= HANDOVER_DATE ?></label>
-	<input type="text" name="handover_date_mediastorage" id="handover_date_mediastorage" value="<?= (isset($media_info['handover_date'])) ? $media_info['handover_date'] : '' ?>" /><br />
-
-
 	<label for="id_media_mediastorage"><?= MEDIA ?></label>
 	<select name="id_media_mediastorage" id="id_media_mediastorage"/>
 <?php

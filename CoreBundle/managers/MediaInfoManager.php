@@ -20,7 +20,6 @@ class MediaInfoManager {
 		$media_info['title'] = $_POST['title_mediastorage'];
 		$media_info['subtitle'] = $_POST['subtitle_mediastorage'];
 		$media_info['description'] = $_POST['description_mediastorage'];
-		$media_info['handover_date'] = $_POST['handover_date_mediastorage'];
 		$media_info['id_media'] = $_POST['id_media_mediastorage'];
 		$media_info['id_language'] = $_POST['id_language_mediastorage'];
 
@@ -34,12 +33,6 @@ class MediaInfoManager {
 	}
 
 	public function mediaInfoCreateDb() {
-		if (!empty($_POST['handover_date_mediastorage'])) {
-			$temp = new DateTime($_POST['handover_date_mediastorage']);
-			$handover_date = $temp->format('Y-m-d H:i:s');
-			$_POST['handover_date_mediastorage'] = $handover_date;
-		}
-
 		$created_date = date('Y-m-d H:i:s');
 		$modified_date = date('Y-m-d H:i:s');
 
