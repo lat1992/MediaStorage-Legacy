@@ -46,15 +46,16 @@ class FolderPageController {
 			$this->mergeErrorArray($programs);
 			$this->mergeErrorArray($contents);
 
-			$title = $this->_folderManager->getFolderPathByFolderId($_GET['parent_id']);
+			$contents = $this->_mediaManager->formatProgramPageContentForCard($contents);
 
+			$title = $this->_folderManager->getFolderPathByFolderId($_GET['parent_id']);
 			$title = $this->_folderManager->formatPathData($title);
 
 		}
 		else {
 			$folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
 
-			$title = FOLDER;
+			$title['title'] = FOLDER;
 		}
 
 		$this->mergeErrorArray($folders);

@@ -13,15 +13,64 @@
 		</select>
 		<div class="clear"></div>
 
+
+<?php
+
+		if (isset($_GET['folder_id']))  {
+?>
+			<label></label>
+			<span class="info_multiple_select"><?= INFO_MOVE_DIRECTORY ?></span>
+			<div class="clear"></div>
+<?php
+		}
+?>
 		<label for="tumbnail_mediastorage" style="margin: 10px 5px 10px 0" ><?= THUMBNAIL ?> : </label>
-		<?php require_once('AdminBundle/views/folder/thumbnail_upload_form.php'); ?>
+
+<?php
+		$path = "?page=upload_thumbnail_admin&folder_id=" . $_GET['folder_id'];
+
+		require_once('AdminBundle/views/folder/thumbnail_upload_form.php');
+?>
+
+        <label><?= PREVIEW ?> : </label>
+        <div class="folder_image_div" style="display: inline-block;float: left; margin: 10px">
+            <!-- <img src="ClientBundle/ressources/folder/img/default.png" /> -->
+<?php
+		if (file_exists("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/folders/thumbnail_folder_" . $_GET['folder_id'] . ".png")) {
+?>
+            <img class="folder_image" id="folder_image_preview" src="uploads/thumbnails/files/<?= $_SESSION['id_organization'] ?>/folders/thumbnail_folder_<?= $_GET['folder_id'] ?>.png" height=100 width=100/>
+
+	        <div class="clear"></div>
+            <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=1" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
+<?php
+		}
+		else {
+?>
+			<img class="folder_image" id="folder_image_preview" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg	" height=100 width=100 />
+
+	        <div class="clear"></div>
+            <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=1" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
+<?php
+		}
+?>
+        </div>
+        <div class="clear"></div>
 
 <?php
 			$cpt = 0;
-			while ($language = $languages['data']->fetch_assoc()) {
+			foreach($languages as $language) {
 ?>
 				<label for="data_mediastorage_<?= $cpt ?>" ><?= LANGUAGE_TRANSLATE . ' ' . $language['name'] . ' / ' . $language['code'] ?> : </label>
 				<input type="text" name="data_mediastorage[<?= $language['id'] ?>]" id="data_mediastorage_<?= $cpt ?>" value="<?= (isset($folder_language[intval($language['id'])])) ? $folder_language[intval($language['id'])]['data'] : '' ?>" /><br />
+				<div class="clear"></div>
+<?php
+				$cpt++;
+			}
+			$cpt = 0;
+			foreach($languages as $language) {
+?>
+				<label for="description_mediastorage_<?= $cpt ?>"><?= DESCRIPTION . ' ' . $language['name'] . ' / ' . $language['code'] ?> : </label>
+				<textarea rows="4" cols="50" name="description_mediastorage[<?= $language['id'] ?>]" id="data_mediastorage_<?= $cpt ?>"><?= (isset($folder_language[intval($language['id'])])) ? $folder_language[intval($language['id'])]['description'] : '' ?></textarea>
 				<div class="clear"></div>
 <?php
 				$cpt++;

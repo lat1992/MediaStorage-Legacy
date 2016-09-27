@@ -45,15 +45,25 @@ require_once('ClientBundle/views/layout/header.php');
                     </div>
 
                     <div class="folder_image_div">
-                        <!-- <img src="ClientBundle/ressources/folder/img/default.png" /> -->
-                        <img class="folder_image" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg" />
+<?php
+                    if (file_exists("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/folders/thumbnail_folder_" . $folder['id'] . ".png")) {
+?>
+                        <img class="folder_image" id="folder_image_preview" src="uploads/thumbnails/files/<?= $_SESSION['id_organization'] ?>/folders/thumbnail_folder_<?= $folder['id'] ?>.png" height=100 width=100/>
+<?php
+                    }
+                    else {
+?>
+                        <img class="folder_image" id="folder_image_preview" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg " height=100 width=100/>
+<?php
+                    }
+?>
                     </div>
 
                     <div class="folder_description">
 <?php
-                        if (isset($folder['description']) && $folder['description']) {
+                        if (isset($folder['translate_description']) && $folder['translate_description']) {
 ?>
-                            <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $folder['subtitle_translate'] ?></span>
+                            <span><?= $folder['translate_description'] ?></span>
 <?php
                         }
                         else {
@@ -106,13 +116,12 @@ require_once('ClientBundle/views/layout/header.php');
     }
 
     if (isset($contents)) {
-
-        if (isset($contents['data']->num_rows) && intval($contents['data']->num_rows) != 0) {
+        if (count($contents)) {
 ?>
             <span class="category_title category_title_content" ><?= CONTENT ?></span>
 <?php
         }
-        while ($content = $contents['data']->fetch_assoc()) {
+        foreach ($contents as $content) {
 ?>
             <a class="link_div_content" href="?page=content&media_id=<?= $content['id']; ?>" >
                 <div class="hvr-grow col content">
@@ -130,9 +139,14 @@ require_once('ClientBundle/views/layout/header.php');
 
                         <span class="description_label"><?= REFERENCE ?> : </span><span><?= $content['reference_client'] ?></span><br />
 <?php
-                        if (isset($content['description']) && $content['description']) {
+                        if (isset($content['subtitle_translate']) && $content['subtitle_translate']) {
 ?>
-                            <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $content['subtitle_translate'] ?></span>
+                            <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $content['subtitle_translate'] ?></span><br />
+<?php
+                        }
+                        foreach ($content['extra'] as $extra) {
+?>
+                            <span class="description_label"><?= $extra['key'] ?> : </span><span><?= $extra['value'] ?></span><br />
 <?php
                         }
 ?>

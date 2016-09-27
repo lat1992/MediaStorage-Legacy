@@ -9,6 +9,7 @@ require_once('CoreBundle/managers/LanguageManager.php');
 require_once('CoreBundle/managers/MediaExtraFieldManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
 require_once('CoreBundle/managers/DesignManager.php');
+require_once('AdminBundle/ressources/fine-uploader-server/handler.php');
 
 class MediaController {
 
@@ -21,6 +22,7 @@ class MediaController {
 	private $_mediaExtraFieldManager;
 	private $_toolboxManager;
 	private $_designManager;
+	private $_uploadHandler;
 
 	private $_errorArray;
 
@@ -34,6 +36,7 @@ class MediaController {
 		$this->_mediaExtraFieldManager = new MediaExtraFieldManager();
 		$this->_toolboxManager = new ToolboxManager();
 		$this->_designManager = new DesignManager();
+		$this->_uploadHandler = new UploadHandler();
 
 		$this->_errorArray = array();
 	}
@@ -536,5 +539,75 @@ class MediaController {
 
 		echo '';
 		return;
+	}
+
+	public function uploadProgramThumbnailAction() {
+        $mainPath = 'uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/programs/tmp/';
+        $basePath = 'uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/programs/';
+        $chunkpath = 'uploads/thumbnails/chunks/' . $_SESSION['id_organization'] . '/programs/';
+
+        // CLEAN TMP FOLDER
+		$files = glob($mainPath . '*');
+		foreach($files as $file) {
+			unlink($file);
+		}
+
+		if (!file_exists('uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/programs/tmp/')) {
+		    mkdir('uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/programs/tmp/', 0777, true);
+		}
+		if (!file_exists('uploads/thumbnails/chunks/' . $_SESSION['id_organization'] . '/programs/')) {
+		    mkdir('uploads/thumbnails/chunks/' . $_SESSION['id_organization'] . '/programs/', 0777, true);
+		}
+
+        $this->_uploadHandler->allowedExtensions = array('jpeg', 'png', 'jpg');
+        $this->_uploadHandler->inputName = "qqfile";
+
+        $method = $_SERVER["REQUEST_METHOD"];
+
+        if ($method == "POST") {
+
+            header("Content-Type: text/plain");
+
+            if (isset($_GET["done"])) {
+                $result = $this->_uploadHandler->combineChunks($mainPath);
+
+                $file_name = $this->_uploadHandler->getUploadName();
+            }
+
+            else {
+                $result = $this->_uploadHandler->handleUpload($mainPath);
+
+                $file_name = $this->_uploadHandler->getUploadName();
+            }
+
+            if ($file_name && $result['uuid']) {
+            	$filename_explode_array = explode('.', $file_name);
+            	$filename_explode_array = array_reverse($filename_explode_array);
+
+                $old_path = $mainPath . $result['uuid'] . '/' . $file_name;
+               	$new_path = $mainPath . 'thumbnail_program_' . $_GET['media_id'] . '.' . $filename_explode_array[0];
+               	$result['oldname'] = $old_path;
+
+                rename($old_path, $new_path);
+            	$image = imagecreatefromstring(file_get_contents($new_path));
+            	imagepng($image, $basePath . 'thumbnail_program_' . $_GET['media_id'] . '.png');
+            	imagedestroy($image);
+                rmdir($mainPath . $result['uuid']);
+
+                $result['img_path'] = $basePath . 'thumbnail_program_' . $_GET['media_id'] . '.png';
+            }
+
+            echo json_encode($result);
+        }
+
+        else if ($method == "DELETE") {
+            $result = $this->_uploadHandler->handleDelete("files");
+            echo json_encode($result);
+        }
+
+        else {
+            header("HTTP/1.0 405 Method Not Allowed");
+        }
+
 	}
 }

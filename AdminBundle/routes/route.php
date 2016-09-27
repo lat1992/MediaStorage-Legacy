@@ -7,11 +7,13 @@ $this->_route[] = array('list_folder_admin', 'AdminBundle/controllers/FolderCont
 $this->_route[] = array('edit_folder_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'editAction');
 // $this->_route[] = array('delete_folder_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'deleteAction');
 $this->_route[] = array('ajax_get_folder_by_parent_id_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'ajaxGetFolderByParentIdAction');
+$this->_route[] = array('upload_thumbnail_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'uploadThumbnailAction');
 
 
 $this->_route[] = array('create_program_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'createProgramAction');
 $this->_route[] = array('edit_program_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'editProgramAction');
 $this->_route[] = array('list_program_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'listProgramAction');
+$this->_route[] = array('upload_program_thumbnail_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'uploadProgramThumbnailAction');
 
 $this->_route[] = array('create_content_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'createContentAction');
 $this->_route[] = array('edit_content_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'editContentAction');

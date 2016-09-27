@@ -331,3 +331,4 @@ define('RETRY', 'Recommencer');
 define('CLOSE', 'Fermer');
 define('OK', 'Ok');
 define('THUMBNAIL', 'Image');
+define('PREVIEW', 'Prévisualisation de l\'image');

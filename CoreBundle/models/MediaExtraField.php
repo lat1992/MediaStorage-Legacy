@@ -35,7 +35,7 @@ class MediaExtraField extends Model {
  		$type = $this->_mysqli->real_escape_string($type);
  		$id_organization = $this->_mysqli->real_escape_string($id_organization);
 
- 		$data = $this->_mysqli->query('SELECT type, media_extra_field_language.data, media_extra_field_language.id_language, element, media_extra_field.id, media_extra_array.id as id_element' .
+ 		$data = $this->_mysqli->query('SELECT type, media_extra_field_language.data, media_extra_field_language.id_language, element, media_extra_field.id, media_extra_array.id as id_element, display_in_card' .
  									' FROM ' . $this->_table .
  									' LEFT JOIN media_type_field ON media_type_field.id_field = media_extra_field.id ' .
  									' LEFT JOIN media_extra_field_language ON media_extra_field_language.id_field = media_extra_field.id ' .

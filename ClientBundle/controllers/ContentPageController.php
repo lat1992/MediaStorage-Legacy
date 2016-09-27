@@ -47,10 +47,10 @@ class ContentPageController {
 	public function listContentAction() {
 
 		$contents = $this->_mediaManager->getAllContentsByIdOrganizationDb();
-
 		$this->mergeErrorArray($contents);
+		$contents = $this->_mediaManager->formatProgramPageContentForCard($contents);
 
-		$title = CONTENT;
+		$title['title'] = CONTENT;
 
 		if (isset($_SESSION['id_plateform_organization'])) {
 

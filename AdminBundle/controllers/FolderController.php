@@ -6,6 +6,7 @@ require_once('CoreBundle/managers/OrganizationManager.php');
 require_once('CoreBundle/managers/LanguageManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
 require_once('CoreBundle/managers/DesignManager.php');
+require_once('AdminBundle/ressources/fine-uploader-server/handler.php');
 
 class FolderController {
 
@@ -15,6 +16,7 @@ class FolderController {
 	private $_languageManager;
 	private $_toolboxManager;
 	private $_designManager;
+	private $_uploadHandler;
 
 	private $_errorArray;
 
@@ -25,6 +27,7 @@ class FolderController {
 		$this->_languageManager = new LanguageManager();
 		$this->_toolboxManager = new ToolboxManager();
 		$this->_designManager = new DesignManager();
+		$this->_uploadHandler = new UploadHandler();
 
 		$this->_errorArray = array();
 	}
@@ -115,6 +118,8 @@ class FolderController {
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($languages);
 
+		$languages = $this->_toolboxManager->mysqliResultToArray($languages);
+
 		if (isset($_SESSION['id_plateform_organization'])) {
 
 			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
@@ -138,6 +143,8 @@ class FolderController {
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($languages);
 		$this->mergeErrorArray($folder_language_data);
+
+		$languages = $this->_toolboxManager->mysqliResultToArray($languages);
 
 		if (count($this->_errorArray) == 0) {
 
@@ -176,6 +183,11 @@ class FolderController {
 					}
 				}
 
+			}
+			elseif (isset($_GET['delete_image'])) {
+				unlink("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/folders/thumbnail_folder_" . $_GET['folder_id'] . ".png");
+				header('location: ' . '?page=edit_folder_admin&folder_id=' . $_GET['folder_id']);
+				exit;
 			}
 
 		}
@@ -230,5 +242,75 @@ class FolderController {
 
 		echo '';
 		return;
+	}
+
+	public function uploadThumbnailAction() {
+        $mainPath = 'uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/folders/tmp/';
+        $basePath = 'uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/folders/';
+        $chunkpath = 'uploads/thumbnails/chunks/' . $_SESSION['id_organization'] . '/folders/';
+
+        // CLEAN TMP FOLDER
+		$files = glob($mainPath . '*');
+		foreach($files as $file) {
+			unlink($file);
+		}
+
+		if (!file_exists('uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/folders/tmp/')) {
+		    mkdir('uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/folders/tmp/', 0777, true);
+		}
+		if (!file_exists('uploads/thumbnails/chunks/' . $_SESSION['id_organization'] . '/folders/')) {
+		    mkdir('uploads/thumbnails/chunks/' . $_SESSION['id_organization'] . '/folders/', 0777, true);
+		}
+
+        $this->_uploadHandler->allowedExtensions = array('jpeg', 'png', 'jpg');
+        $this->_uploadHandler->inputName = "qqfile";
+
+        $method = $_SERVER["REQUEST_METHOD"];
+
+        if ($method == "POST") {
+
+            header("Content-Type: text/plain");
+
+            if (isset($_GET["done"])) {
+                $result = $this->_uploadHandler->combineChunks($mainPath);
+
+                $file_name = $this->_uploadHandler->getUploadName();
+            }
+
+            else {
+                $result = $this->_uploadHandler->handleUpload($mainPath);
+
+                $file_name = $this->_uploadHandler->getUploadName();
+            }
+
+            if ($file_name && $result['uuid']) {
+            	$filename_explode_array = explode('.', $file_name);
+            	$filename_explode_array = array_reverse($filename_explode_array);
+
+                $old_path = $mainPath . $result['uuid'] . '/' . $file_name;
+               	$new_path = $mainPath . 'thumbnail_folder_' . $_GET['folder_id'] . '.' . $filename_explode_array[0];
+               	$result['oldname'] = $old_path;
+
+                rename($old_path, $new_path);
+            	$image = imagecreatefromstring(file_get_contents($new_path));
+            	imagepng($image, $basePath . 'thumbnail_folder_' . $_GET['folder_id'] . '.png');
+            	imagedestroy($image);
+                rmdir($mainPath . $result['uuid']);
+
+                $result['img_path'] = $basePath . 'thumbnail_folder_' . $_GET['folder_id'] . '.png';
+            }
+
+            echo json_encode($result);
+        }
+
+        else if ($method == "DELETE") {
+            $result = $this->_uploadHandler->handleDelete("files");
+            echo json_encode($result);
+        }
+
+        else {
+            header("HTTP/1.0 405 Method Not Allowed");
+        }
+
 	}
 }

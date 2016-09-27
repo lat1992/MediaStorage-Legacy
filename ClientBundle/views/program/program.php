@@ -67,8 +67,18 @@ if (isset($_GET['media_id'])) {
                     </div>
 
                     <div class="program_image_div">
-                        <!-- <img src="ClientBundle/ressources/program/img/default.png" /> -->
-                        <img class="program_image" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg" />
+<?php
+                    if (file_exists("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/programs/thumbnail_program_" . $program['id'] . ".png")) {
+?>
+                        <img class="program_image" id="program_image_preview" src="uploads/thumbnails/files/<?= $_SESSION['id_organization'] ?>/programs/thumbnail_program_<?= $program['id'] ?>.png" height=100 width=100/>
+<?php
+                    }
+                    else {
+?>
+                        <img class="program_image" id="program_image_preview" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg " height=100 width=100/>
+<?php
+                    }
+?>
                     </div>
 
                     <div class="program_description">
@@ -125,7 +135,7 @@ if (isset($_GET['media_id'])) {
             <span class="category_title category_title_content" ><?= CONTENT ?></span>
 <?php
         }
-        while ($content = $contents['data']->fetch_assoc()) {
+        foreach($contents as $content) {
 ?>
             <a class="link_div_content" href="?page=content&media_id=<?= $content['id']; ?>" >
                 <div class="hvr-grow col content">
@@ -143,12 +153,19 @@ if (isset($_GET['media_id'])) {
 
                         <span class="description_label"><?= REFERENCE ?> : </span><span><?= $content['reference_client'] ?></span><br />
 <?php
-                        if (isset($content['description']) && $content['description']) {
+                        if (isset($content['subtitle_translate']) && $content['subtitle_translate']) {
 ?>
-                            <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $content['subtitle_translate'] ?></span>
+                            <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $content['subtitle_translate'] ?></span><br />
+<?php
+                        }
+
+                        foreach ($content['extra'] as $extra) {
+?>
+                            <span class="description_label"><?= $extra['key'] ?> : </span><span><?= $extra['value'] ?></span><br />
 <?php
                         }
 ?>
+
                     </div>
 
 
