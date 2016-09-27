@@ -32,7 +32,10 @@ if (isset($_GET['platform'])) {
 		$page = 'error';
 }
 
-if (isset($_SESSION['username_mediastorage']) && isset($_SESSION['role_mediastorage']) && isset($_GET['page']) && empty($page)) {
+if (isset($_GET['page']) && !strcmp($_GET['page'], 'post_production_workflow_api')) {
+	$page = $_GET['page'];
+}
+else if (isset($_SESSION['username_mediastorage']) && isset($_SESSION['role_mediastorage']) && isset($_GET['page']) && empty($page)) {
 	$page = $_GET['page'];
 
 	if (isset($_SESSION['id_platform_organization']) && intval($_SESSION['id_platform_organization']) != intval($_SESSION['id_organization'])) {

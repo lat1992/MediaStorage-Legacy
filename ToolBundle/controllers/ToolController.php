@@ -28,17 +28,10 @@ class ToolController {
 		}
 	}
 
-	public function useWorkFlow() {
-		$input_file = $_GET['input_file'];
-		$output_dir = $_GET['output_file'];
-		$id_organization = $_SESSION['id_organization'];
-		//lancement de tache
-		return ;
-	}
-
 	public function postProductionWorkFlow() {
-		
-		return ;
+		$id_task = $_POST['task_id'];
+		$wf_json = $_POST['json'];
+		return $this->_workFlowManager->postProductionWorkFlow($task_id, $json);
 	}
 
 	public function initDB() {
