@@ -50,8 +50,10 @@ a.link_div_folder, a.link_div_program, a.link_div_content {
 }
 
 .folder_image, .program_image, .content_image {
-    width: 100%;
-    height:auto;
+    width: 100px;
+    height: 100px;
+    /*width: 100%;*/
+    /*height:auto;*/
 }
 
 .folder_description, .program_description, .content_description {

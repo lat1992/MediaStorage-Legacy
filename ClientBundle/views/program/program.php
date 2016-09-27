@@ -125,7 +125,7 @@ if (isset($_GET['media_id'])) {
             <span class="category_title category_title_content" ><?= CONTENT ?></span>
 <?php
         }
-        while ($content = $contents['data']->fetch_assoc()) {
+        foreach($contents as $content) {
 ?>
             <a class="link_div_content" href="?page=content&media_id=<?= $content['id']; ?>" >
                 <div class="hvr-grow col content">
@@ -143,12 +143,19 @@ if (isset($_GET['media_id'])) {
 
                         <span class="description_label"><?= REFERENCE ?> : </span><span><?= $content['reference_client'] ?></span><br />
 <?php
-                        if (isset($content['description']) && $content['description']) {
+                        if (isset($content['subtitle_translate']) && $content['subtitle_translate']) {
 ?>
-                            <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $content['subtitle_translate'] ?></span>
+                            <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $content['subtitle_translate'] ?></span><br />
+<?php
+                        }
+
+                        foreach ($content['extra'] as $extra) {
+?>
+                            <span class="description_label"><?= $extra['key'] ?> : </span><span><?= $extra['value'] ?></span><br />
 <?php
                         }
 ?>
+
                     </div>
 
 

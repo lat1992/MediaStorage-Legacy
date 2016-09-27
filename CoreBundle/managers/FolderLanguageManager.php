@@ -16,6 +16,7 @@ class FolderLanguageManager {
 		$folder['data'] = $_POST['data_mediastorage'];
 		$folder['id_folder'] = $_POST['id_folder_mediastorage'];
 		$folder['id_language'] = $_POST['id_language_mediastorage'];
+		$folder['description'] = $_POST['description_mediastorage'];
 
 		return $folder;
 	}
@@ -64,6 +65,7 @@ class FolderLanguageManager {
 			$folder_data['id_folder_mediastorage'] = $_POST['id_folder_mediastorage'];
 			$folder_data['id_language_mediastorage'] = $data['id_language'];
 			$folder_data['data_mediastorage'] = $data['data'];
+			$folder_data['description_mediastorage'] = $data['description'];
 
 			$result = $this->getFolderLanguageByFolderIdAndLanguageIdDb($folder_data['id_folder_mediastorage'], $folder_data['id_language_mediastorage']);
 

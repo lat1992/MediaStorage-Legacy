@@ -12,9 +12,10 @@ class FolderLanguage extends Model {
 		$data_media = $this->_mysqli->real_escape_string($data['data_mediastorage']);
 		$id_folder = $this->_mysqli->real_escape_string($data['id_folder_mediastorage']);
 		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
+		$description = $this->_mysqli->real_escape_string($data['description_mediastorage']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(data, id_folder, id_language)' .
-			' VALUES ("'. $data_media . '", ' . $id_folder . ', ' . $id_language . ');'
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(data, id_folder, id_language, description)' .
+			' VALUES ("'. $data_media . '", ' . $id_folder . ', ' . $id_language . ', "' . $description . '");'
 		);
 
 		return array(
@@ -27,9 +28,10 @@ class FolderLanguage extends Model {
 		$data_media = $this->_mysqli->real_escape_string($data['data_mediastorage']);
 		$id_folder = $this->_mysqli->real_escape_string($data['id_folder_mediastorage']);
 		$id_language = $this->_mysqli->real_escape_string($data['id_language_mediastorage']);
+		$description = $this->_mysqli->real_escape_string($data['description_mediastorage']);
 
 		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
-			' SET id_folder = ' . $id_folder . ', data = "' . $data_media . '", id_language = ' . $id_language.
+			' SET id_folder = ' . $id_folder . ', data = "' . $data_media . '", id_language = ' . $id_language . ', description = "' . $description . '"' .
 			' WHERE id = ' . $folder_language_id . ';'
 		);
 
@@ -56,7 +58,7 @@ class FolderLanguage extends Model {
 	public function findFolderLanguageByFolderId($folder_id) {
 		$folder_id = $this->_mysqli->real_escape_string($folder_id);
 
-		$data = $this->_mysqli->query('SELECT id, data, id_folder, id_language' .
+		$data = $this->_mysqli->query('SELECT id, data, id_folder, id_language, description' .
 									' FROM ' . $this->_table .
 									' WHERE id_folder = ' . $folder_id . ';'
 		);

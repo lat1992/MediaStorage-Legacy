@@ -2,17 +2,26 @@
 
 require_once('CoreBundle/models/Media.php');
 require_once('CoreBundle/managers/FolderManager.php');
+require_once('CoreBundle/managers/ToolboxManager.php');
+require_once('CoreBundle/managers/MediaExtraFieldManager.php');
+require_once('CoreBundle/managers/MediaExtraManager.php');
 
 class MediaManager {
 
 	private $_mediaModel;
 
 	private $_folderManager;
+	private $_toolboxManager;
+	private $_mediaExtraFieldManager;
+	private $_mediaExtraManager;
 
 	public function __construct() {
 		$this->_mediaModel = new Media();
 
 		$this->_folderManager = new FolderManager();
+		$this->_toolboxManager = new ToolboxManager();
+		$this->_mediaExtraFieldManager = new MediaExtraFieldManager();
+		$this->_mediaExtraManager = new MediaExtraManager();
 	}
 
 	public function getAllMediasDb() {
@@ -258,34 +267,33 @@ class MediaManager {
 		if (isset($path[0])) {
 
 			if (intval($path[0]['type']) == 1)
-				$final_path = PROGRAM . '<span class="to_hide_mobile"> : ';
-			elseif (intval($path[0]['type']) == 2)
-				$final_path = CONTENT . '<span class="to_hide_mobile"> : ';
+				$final_path['title'] = PROGRAM . '<span class="to_hide_mobile"> : ' . $path[0]['data'] . '</span>';
+				elseif (intval($path[0]['type']) == 2)
+				$final_path['title'] = CONTENT . '<span class="to_hide_mobile"> : ' . $path[0]['data'] . '</span>';
 			else
-				$final_path = FOLDER . '<span class="to_hide_mobile"> : ';
+				$final_path['title'] = FOLDER . '<span class="to_hide_mobile"> : ' . $path[0]['data'] . '</span>';
 
 		}
 
 		$path = array_reverse($path);
 		$cpt = 0;
+		$final_path['breadcrumb'] = '';
 
 		foreach ($path as $path_data) {
 
 			if ($cpt != 0) {
-				$final_path .= ' / ';
+				$final_path['breadcrumb'] .= ' / ';
 			}
 
 			if (intval($path_data['type']) == 1)
-				$final_path .= '<a href="?page=program&media_id=' . $path_data['id'] . '">' . $path_data['data'] . '</a>';
+				$final_path['breadcrumb'] .= '<a href="?page=program&media_id=' . $path_data['id'] . '">' . $path_data['data'] . '</a>';
 			elseif (intval($path_data['type']) == 2)
-				$final_path .= '<a href="?page=content&media_id=' . $path_data['id'] . '">' . $path_data['data'] . '</a>';
+				$final_path['breadcrumb'] .= '<a href="?page=content&media_id=' . $path_data['id'] . '">' . $path_data['data'] . '</a>';
 			else
-				$final_path .= '<a href="?page=folder&parent_id=' . $path_data['id'] . '">' . $path_data['data'] . '</a>';
+				$final_path['breadcrumb'] .= '<a href="?page=folder&parent_id=' . $path_data['id'] . '">' . $path_data['data'] . '</a>';
 
 			$cpt++;
 		}
-
-		$final_path .= '</span>';
 
 		return $final_path;
 	}
@@ -360,5 +368,80 @@ class MediaManager {
 		}
 
 		return $path;
+	}
+
+	public function formatProgramPageContentForCard($content_raw) {
+		$content_data = $this->_toolboxManager->mysqliResultToArray($content_raw);
+		$return_array = array();
+		$cpt_array = 0;
+		$cpt_return_array = 0;
+
+		foreach ($content_data as $content) {
+			$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(2);
+			if (!empty($media_extra_data['error']))
+				return $media_extra_data;
+			$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
+
+			$media_extras_user_data = $this->_mediaExtraManager->getMediaExtraByMediaIdDb($content['id']);
+			if (!empty($media_extras_user_data['error']))
+				return $media_extras_user_data;
+			$media_user_extras = $this->_toolboxManager->mysqliResultToArray($media_extras_user_data);
+			$media_user_extras = $this->_mediaExtraManager->formatMediaExtraDataForView($media_user_extras);
+
+			$return_array[$cpt_array] = $content;
+			$return_array[$cpt_array]['extra'] = array();
+
+            foreach ($media_extra as $id_info_field => $value) {
+
+            	if (!intval($value['data'][0]['display_in_card']))
+            		continue;
+
+                if (strcmp($value['type'], 'Text') == 0) {
+                    $user_value = "";
+                    if (isset($media_user_extras[$id_info_field]['language'][$_SESSION['id_language']]['data']))
+                        $user_value = $media_user_extras[$id_info_field]['language'][$_SESSION['id_language']]['data'];
+                }
+				elseif (strcmp($value['type'], 'Date') == 0) {
+					$user_value = "";
+					if (isset($media_user_extras[$id_info_field]['data']))
+						$user_value = $media_user_extras[$id_info_field]['data'];
+				}
+				elseif (strcmp($value['type'], 'Array_multiple') == 0) {
+					foreach ($value['data'] as $row) {
+						$user_value = "";
+						$cpt = 0;
+						if (isset($media_user_extras[$id_info_field]['multiple']) && array_search($row['id_element'], array_column($media_user_extras[$id_info_field]['multiple'], 'id_array')) !== false) {
+							if ($cpt > 0)
+								$user_value .= ', ' . $row['element'];
+							else
+								$user_value .= $row['element'];
+							$cpt++;
+						}
+					}
+				}
+				elseif (strcmp($value['type'], 'Array_unique') == 0) {
+					foreach ($value['data'] as $row) {
+						$user_value = "";
+
+						if (isset($media_user_extras[$id_info_field]['id_array']) && intval($row['id_element']) == intval($media_user_extras[$id_info_field]['id_array'])) {
+							$user_value = $row['element'];
+						}
+					}
+				}
+				elseif (strcmp($value['type'], 'Boolean') == 0) {
+					$user_value = NO;
+					if (isset($media_user_extras[$id_info_field]['data']) && intval($media_user_extras[$id_info_field]['data']))
+						$user_value = YES;
+				}
+
+                $return_array[$cpt_array]['extra'][$cpt_array]['key'] = $value['data'][0]['data'];
+				$return_array[$cpt_array]['extra'][$cpt_array]['value'] = $user_value;
+
+				$cpt_array++;
+			}
+			$cpt_return_array++;
+		}
+
+		return $return_array;
 	}
 }

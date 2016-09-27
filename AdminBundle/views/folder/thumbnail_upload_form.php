@@ -67,93 +67,27 @@
 
         <script>
 
-            function ajaxRefreshUploadList() {
-                $.ajax({
-                    url: "?page=ajax_refresh_upload_list",
-                    type: 'GET',
-                    success: function(result, status) {
-                        console.log(result);
-                        console.log(status);
-                        if (!result)
-                            return;
-
-                        var data = JSON.parse(result);
-                        console.log(data);
-
-                        var $html =
-                            '<tbody>' +
-                                '<tr>' +
-                                    '<th></th>' +
-                                    '<th>' + '<?= FILENAME ?>' + '</th>' +
-                                    '<th>' + '<?= RIGHT_DOWNLOAD ?>' + '</th>' +
-                                    '<th>' + '<?= RIGHT_ADDTOCART ?>' + '</th>' +
-                                '</tr>'
-                        ;
-
-                        for(var i = 0; i < data.length; i++) {
-                            $html +=
-                                '<tr>' +
-                                    '<td><input type="checkbox" name="media_file_mediastorage[' + data[i].id + '] value="1" /></td>' +
-                                    '<td>' + data[i].filename + '</td>' +
-                                    '<td>' + data[i].right_download + '</td>' +
-                                    '<td>' + data[i].right_addtocart + '</td>' +
-                                '</tr>'
-                            ;
-                        }
-
-                        $html +=
-                            '</tbody>'
-                        ;
-
-
-
-
-                        $('#upload_list').html($html);
-
-                        // $html =
-                        //     '<div class="clear" class="folder_mediastorage_clear"></div>' +
-                        //     '<label for="id_folder_mediastorage" class="folder_mediastorage_label"></label>' +
-                        //     '<select name="id_folder_mediastorage[]" id="id_folder_mediastorage" class="folder_mediastorage">' +
-                        //         '<option value=""></option>'
-
-                        // for (i = 0; i < data.length; i++) {
-                        //      $html += '<option value="' + data[i].id + '">' + data[i].translate + '</option>';
-                        // }
-
-                        // $html += '</select>';
-
-                        // $(elem).after($html);
-                    },
-                    error: function(result, status, error) {
-                        console.log('ERROR : ');
-                        console.log(error);
-                    }
-                });
-            }
-
             var manualUploader = new qq.FineUploader({
             element: document.getElementById('fine-uploader'),
             request: {
-                endpoint: "?page=upload_media_file_admin"
+                endpoint: "?page=upload_thumbnail_admin&folder_id=<?= $_GET['folder_id'] ?>",
+                uuidName: 'qquuid',
             },
-            /*deleteFile: {
-                enabled: true,
-                endpoint: "vendor/fineuploader/php-traditional-server/endpoint.php"
-            },*/
-            chunking: {
-                enabled: true,
-                concurrent: {
-                    enabled: true
-                },
-                success: {
-                    endpoint: "?page=upload_media_file_admin&done=1"
-                }
-            },
+            // deleteFile: {
+            //     enabled: true,
+            //     endpoint: "?page=upload_thumbnail_admin"
+            // },
+            // chunking: {
+            //     enabled: true,
+            //     success: {
+            //         endpoint: "?page=upload_thumbnail_admin&done=1"
+            //     }
+            // },
             resume: {
                 enabled: true
             },
             thumbnails: {
-                maxCount: 0
+                maxCount: 1
             },
             retry: {
                 enableAuto: true,
@@ -166,14 +100,15 @@
 
                 onComplete: function(id, name, responseJSON, xhr) {
                     console.log('success : ' + JSON.stringify(responseJSON));
+
+                    document.getElementById('folder_image_preview').src = responseJSON['img_path'] + '?' + new Date().getTime();;
                 },
 
                 onAllComplete: function(){
-                    ajaxRefreshUploadList();
+                    // ajaxRefreshUploadList();
                 }
             }
         });
-
         </script>
 <?php
     }

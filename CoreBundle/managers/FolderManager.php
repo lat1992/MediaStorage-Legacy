@@ -34,6 +34,7 @@ class FolderManager {
 			if ($value) {
 				$translate[$cpt]['id_language'] = $key;
 				$translate[$cpt]['data'] = $value;
+				$translate[$cpt]['description'] = $_POST['description_mediastorage'][$key];
 				$cpt++;
 			}
 		}
@@ -120,22 +121,22 @@ class FolderManager {
 
 	public function formatPathData($path) {
 
-		$path = array_reverse($path);
-		$final_path = FOLDER . '<span class="to_hide_mobile"> : ';
+		$final_path['title'] = FOLDER . '<span class="to_hide_mobile"> : ' . $path[0]['data'] . '</span>';
+		$final_path['breadcrumb'] = '';
 		$cpt = 0;
+
+		$path = array_reverse($path);
 
 		foreach ($path as $path_data) {
 
 			if ($cpt != 0) {
-				$final_path .= '/';
+				$final_path['breadcrumb'] .= ' / ';
 			}
 
-			$final_path .= '<a href="?page=folder&parent_id=' . $path_data['id'] . '">' . $path_data['data'] . '</a>';
+			$final_path['breadcrumb'] .= '<a href="?page=folder&parent_id=' . $path_data['id'] . '">' . $path_data['data'] . '</a>';
 
 			$cpt++;
 		}
-
-		$final_path .= '</span>';
 
 		return $final_path;
 	}

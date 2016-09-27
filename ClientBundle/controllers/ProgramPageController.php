@@ -50,6 +50,7 @@ class ProgramPageController {
 		if (isset($_GET['media_id'])) {
 			$contents = $this->_mediaManager->getAllContentsByIdOrganizationAndParentIdDb($_GET['media_id']);
 			$this->mergeErrorArray($contents);
+			$contents = $this->_mediaManager->formatProgramPageContentForCard($contents);
 
 			$program = $this->_mediaManager->getMediaByIdAndOrganizationIdDb($_GET['media_id']);
 
@@ -72,7 +73,7 @@ class ProgramPageController {
 
 			$this->mergeErrorArray($programs);
 
-			$title = PROGRAM;
+			$title['title'] = PROGRAM;
 		}
 
 		if (isset($_SESSION['id_plateform_organization'])) {

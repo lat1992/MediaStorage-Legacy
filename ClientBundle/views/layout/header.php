@@ -43,10 +43,8 @@
 <?php
 					}
 ?>
-
-
 					<div id="header_title_div">
-						<h1><?= (isset($title)) ? $title : NO_TITLE ?></h1>
+						<h1><?= (isset($title['title'])) ? $title['title'] : NO_TITLE ?></h1>
 					</div>
 
 				</div>
@@ -55,17 +53,38 @@
 
 			<div canvas="container" class="div_canvas">
 
-			<!--
+			<style>
+
+				#breadcrumb {
+					padding: 10px;
+				}
+				#breadcrumb, #breadcrumb a {
+					background-color: #efefef;
+					color: black;
+				}
+
+			</style>
 <?php
+			if (isset($title['breadcrumb'])) {
+?>
+				<div id="breadcrumb">
+					<?= (isset($title['breadcrumb'])) ? $title['breadcrumb'] : '' ?>
+				</div>
+<?php
+			}
+?>
+
+
+			<!--
+<?php /*
 			if (file_exists('ClientBundle/ressources/organization/'.$_SESSION['id_plateform_organization'].'/img/logo.png')) {
 ?>
 				<div style="max-height: 60px; width: 100%; "><a href="?page=home"><img style="display: block; margin: 0 auto; max-height: 60px" src="ClientBundle/ressources/organization/<?= $_SESSION['id_plateform_organization'] ?>/img/logo.png" /></a></div>
 <?php
 			}
-?>
+*/ ?>
 			-->
 
-<!--  -->
 
 <?php
 				if (!empty($this->_errorArray)) {

@@ -55,7 +55,7 @@ form label {
 	margin: 10px 0 0px 5px;
 }
 
-form label, form input, form select {
+form label, form input, form select, form textarea {
     float: left;
 	display: inline-block;
 	border-style: none;
@@ -63,15 +63,15 @@ form label, form input, form select {
     padding: 3px;
 }
 
-form input, form select {
+form input, form select, form textarea {
 	margin: 10px 0 10px 5px;
 }
 
-form input {
+form input, form textarea {
 	width: 30%;
 }
 
-form input, form select, form option {
+form input, form select, form option, form textarea {
 	border: 1px solid #d9d9d9;
 }
 
