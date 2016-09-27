@@ -13,6 +13,7 @@ $this->_route[] = array('upload_thumbnail_admin', 'AdminBundle/controllers/Folde
 $this->_route[] = array('create_program_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'createProgramAction');
 $this->_route[] = array('edit_program_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'editProgramAction');
 $this->_route[] = array('list_program_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'listProgramAction');
+$this->_route[] = array('upload_program_thumbnail_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'uploadProgramThumbnailAction');
 
 $this->_route[] = array('create_content_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'createContentAction');
 $this->_route[] = array('edit_content_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'editContentAction');

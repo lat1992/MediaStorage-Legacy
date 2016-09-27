@@ -26,7 +26,11 @@
 ?>
 		<label for="tumbnail_mediastorage" style="margin: 10px 5px 10px 0" ><?= THUMBNAIL ?> : </label>
 
-		<?php require_once('AdminBundle/views/folder/thumbnail_upload_form.php'); ?>
+<?php
+		$path = "?page=upload_thumbnail_admin&folder_id=" . $_GET['folder_id'];
+
+		require_once('AdminBundle/views/folder/thumbnail_upload_form.php');
+?>
 
         <label><?= PREVIEW ?> : </label>
         <div class="folder_image_div" style="display: inline-block;float: left; margin: 10px">

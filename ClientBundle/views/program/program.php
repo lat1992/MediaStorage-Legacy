@@ -67,8 +67,18 @@ if (isset($_GET['media_id'])) {
                     </div>
 
                     <div class="program_image_div">
-                        <!-- <img src="ClientBundle/ressources/program/img/default.png" /> -->
-                        <img class="program_image" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg" />
+<?php
+                    if (file_exists("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/programs/thumbnail_program_" . $program['id'] . ".png")) {
+?>
+                        <img class="program_image" id="program_image_preview" src="uploads/thumbnails/files/<?= $_SESSION['id_organization'] ?>/programs/thumbnail_program_<?= $program['id'] ?>.png" height=100 width=100/>
+<?php
+                    }
+                    else {
+?>
+                        <img class="program_image" id="program_image_preview" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg " height=100 width=100/>
+<?php
+                    }
+?>
                     </div>
 
                     <div class="program_description">

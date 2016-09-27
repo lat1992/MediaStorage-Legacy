@@ -116,8 +116,7 @@ require_once('ClientBundle/views/layout/header.php');
     }
 
     if (isset($contents)) {
-
-        if (isset($contents['data']->num_rows) && intval($contents['data']->num_rows) != 0) {
+        if (count($contents)) {
 ?>
             <span class="category_title category_title_content" ><?= CONTENT ?></span>
 <?php

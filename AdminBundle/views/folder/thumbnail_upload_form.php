@@ -70,7 +70,7 @@
             var manualUploader = new qq.FineUploader({
             element: document.getElementById('fine-uploader'),
             request: {
-                endpoint: "?page=upload_thumbnail_admin&folder_id=<?= $_GET['folder_id'] ?>",
+                endpoint: "<?= $path ?>",
                 uuidName: 'qquuid',
             },
             // deleteFile: {
