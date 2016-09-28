@@ -110,12 +110,11 @@ class Media extends Model {
 		$reference = $this->_mysqli->real_escape_string($data['reference_mediastorage']);
 		$reference_client = $this->_mysqli->real_escape_string($data['reference_client_mediastorage']);
 		$right_view = $this->_mysqli->real_escape_string($data['right_view_mediastorage']);
-		$handover_date = $this->_mysqli->real_escape_string($data['handover_date_mediastorage']);
 		$created_date = $this->_mysqli->real_escape_string($data['created_date_mediastorage']);
 		$modified_date = $this->_mysqli->real_escape_string($data['modified_date_mediastorage']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_parent, id_folder, id_organization, id_type, reference, reference_client, right_view, handover_date, created_date, modified_date)' .
-			' VALUES (' . $id_parent . ', ' . $id_folder . ', ' . $id_organization . ', ' . $id_type .', "' . $reference . '", "' . $reference_client . '", ' . $right_view . ', "' . $handover_date . '","'. $created_date . '","'. $modified_date . '");'
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_parent, id_folder, id_organization, id_type, reference, reference_client, right_view, created_date, modified_date)' .
+			' VALUES (' . $id_parent . ', ' . $id_folder . ', ' . $id_organization . ', ' . $id_type .', "' . $reference . '", "' . $reference_client . '", ' . $right_view . ',"'. $created_date . '","'. $modified_date . '");'
 		);
 
 		return array(
@@ -148,7 +147,7 @@ class Media extends Model {
 	public function findMediaById($media_id, $user_id_language) {
 		$media_id = $this->_mysqli->real_escape_string($media_id);
 
-		$data = $this->_mysqli->query('SELECT id, id_parent, id_folder, id_organization, id_type, reference, reference_client, right_view, handover_date, created_date, modified_date,
+		$data = $this->_mysqli->query('SELECT id, id_parent, id_folder, id_organization, id_type, reference, reference_client, right_view, created_date, modified_date,
 			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT title FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS translate,
 			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT subtitle FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT subtitle FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS subtitle_translate
 			 FROM ' . $this->_table .
@@ -165,7 +164,7 @@ class Media extends Model {
 		$id_media = $this->_mysqli->real_escape_string($id_media);
 		$id_organization = $this->_mysqli->real_escape_string($id_organization);
 
-		$data = $this->_mysqli->query('SELECT id, id_parent, id_folder, id_organization, id_type, reference, reference_client, right_view, handover_date, created_date, modified_date ' .
+		$data = $this->_mysqli->query('SELECT id, id_parent, id_folder, id_organization, id_type, reference, reference_client, right_view, created_date, modified_date ' .
 			' FROM ' . $this->_table .
 			' WHERE id = ' . $id_media . ' AND id_organization = ' . $id_organization . ' ;'
 		);

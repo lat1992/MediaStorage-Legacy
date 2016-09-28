@@ -29,9 +29,20 @@ class ToolController {
 	}
 
 	public function postProductionWorkFlow() {
-		$id_task = $_POST['task_id'];
-		$wf_json = $_POST['json'];
-		return $this->_workFlowManager->postProductionWorkFlow($task_id, $json);
+		$id_task = $_POST['order_id'];
+		$filepath = $_POST['filepath'];
+		$filename = $_POST['filename'];
+		$right_download = $_POST['right_download'];
+		$right_preview = $_POST['right_preview'];
+		$metadata = $_POST['metadata'];
+
+		return $this->_workFlowManager->postProductionWorkFlow($task_id, $filepath, $filename, $right_download, $right_preview, $metadata);
+	}
+
+	public function endProductionWorkFlow() {
+		$id_task = $_POST['order_id'];
+
+		return $this->_workFlowManager->endProductionWorkFlow($task_id);
 	}
 
 	public function initDB() {

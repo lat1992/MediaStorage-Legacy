@@ -54,10 +54,6 @@
 		<input type="text" name="reference_client_mediastorage" id="reference_client_mediastorage" value="<?= (isset($media['reference_client'])) ? $media['reference_client'] : '' ?>" /><br />
 		<div class="clear"></div>
 
-		<label for="handover_date_mediastorage"><?= HANDOVER_DATE ?> : </label>
-		<input disabled type="text" name="handover_date_mediastorage" id="handover_date_mediastorage ?>" value="<?= (isset($media['handover_date'])) ? $media['handover_date'] : '' ?>" /><br />
-		<div class="clear"></div>
-
 		<input type="hidden" name="right_view_mediastorage" value="0" />
 		<label for="right_view_mediastorage"><?= RIGHT_VIEW ?> : </label>
 		<input type="checkbox" class="input_checkbox" name="right_view_mediastorage" id="right_view_mediastorage" value="1" <?= (isset($media['right_view']) && intval($media['right_view']) == 0) ? '' : 'checked' ?> /><br />
