@@ -7,7 +7,7 @@
 	</tr>
 
 <?php
-	if (isset($media_files) && $media_files && $media_files['data']) {
+	if (isset($media_files) && $media_files && $media_files['data'] && $media_files_linked['data']->num_rows != 0) {
 
 		while ($media_file = $media_files['data']->fetch_assoc()) {
 ?>

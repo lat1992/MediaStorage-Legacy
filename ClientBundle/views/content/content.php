@@ -31,12 +31,41 @@ require_once('ClientBundle/views/layout/header.php');
 
 	<div id="video_div">
 
-		<div id="content_display_div">
-			<video controls preload="none" width="100%">
-	    		<source src="http://download.blender.org/peach/trailer/trailer_1080p.ogg" type="video/ogg">
-	    		Your browser does not support HTML5 video.
-			</video>
+<?php
+		if (!count($media_files)) {
+?>
+		<div id="content_display_div" style="text-align: center;height: 200px;line-height: 200px; background-color: #efefef">
+			<p style="margin: 0"><?= NO_CONTENT_PREVIEW ?></p>
 		</div>
+<?php
+		}
+		else {
+
+			if  (isset($media_files[0])) {
+?>
+				<div id="content_display_div">
+<?php
+				if (strcmp($media_file['type'], "MRES") == 0) {
+?>
+					<video controls preload="none" width="100%">
+			    		<source src="http://essilor.mediastoragekvi.fr/uploads/files/<?= $media_file['filepath'] ?>" type="<?= $media_file['mime_type'] ?>">
+			    		Your browser does not support HTML5 video.
+					</video>
+<?php
+				}
+				elseif (strcmp($media_file['type'], "IMG") == 0) {
+?>
+					<div style="display: none">
+						<img src="http://essilor.mediastoragekvi.fr/uploads/files/<?= $media_file['filepath'] ?>" style="width: 100%" />
+					</div>
+<?php
+				}
+?>
+				</div>
+<?php
+			}
+		}
+?>
 
 		<div id="video_contents_div">
 <?php

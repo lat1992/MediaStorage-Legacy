@@ -339,5 +339,5 @@ define('OVERVIEW', 'Apperçu');
 define('TIMECODE_IN', 'IN');
 define('TIMECODE_OUT', 'OUT');
 define('MORE_OPTION', 'Plus d\'option');
-
 define('DELIVERY', 'Livraison');
+define('NO_CONTENT_PREVIEW', 'Aucune prévisualisation disponible');

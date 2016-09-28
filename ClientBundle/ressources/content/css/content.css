@@ -124,6 +124,10 @@ th {
 	white-space: nowrap;
 }
 
+.text-center {
+	text-align: center;
+}
+
 @media only screen and (max-width: 900px) {
     #video_div {
         width:100%;
