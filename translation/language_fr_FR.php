@@ -332,3 +332,8 @@ define('CLOSE', 'Fermer');
 define('OK', 'Ok');
 define('THUMBNAIL', 'Image');
 define('PREVIEW', 'Prévisualisation de l\'image');
+
+define('DESCRIPTIVE', 'Descriptif');
+define('OVERVIEW', 'Apperçu');
+define('TIMECODE_IN', 'IN');
+define('TIMECODE_OUT', 'OUT');
