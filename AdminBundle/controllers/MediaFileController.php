@@ -41,14 +41,14 @@ class MediaFileController {
 
     public function uploadAction() {
 
-        $mainPath = 'uploads/files/' . $_SESSION['id_organization'] . '/' . $_SESSION['user_id_mediastorage'] . '/';
-        $chunkpath = 'uploads/chunks/' . $_SESSION['id_organization'] . '/' . $_SESSION['user_id_mediastorage'] . '/';
+        $mainPath = 'uploads/files/' . $_SESSION['id_organization'] . '/';
+        $chunkpath = 'uploads/chunks/' . $_SESSION['id_organization'] . '/';
 
-		if (!file_exists('uploads/files/' . $_SESSION['id_organization'] . '/' . $_SESSION['user_id_mediastorage'] . '/')) {
-		    mkdir('uploads/files/' . $_SESSION['id_organization'] . '/' . $_SESSION['user_id_mediastorage'] . '/', 0777, true);
+		if (!file_exists('uploads/files/' . $_SESSION['id_organization'] . '/')) {
+		    mkdir('uploads/files/' . $_SESSION['id_organization'] . '/', 0777, true);
 		}
-		if (!file_exists('uploads/chunks/' . $_SESSION['id_organization'] . '/' . $_SESSION['user_id_mediastorage'] . '/')) {
-		    mkdir('uploads/chunks/' . $_SESSION['id_organization'] . '/' . $_SESSION['user_id_mediastorage'] . '/', 0777, true);
+		if (!file_exists('uploads/chunks/' . $_SESSION['id_organization'] . '/')) {
+		    mkdir('uploads/chunks/' . $_SESSION['id_organization'] . '/', 0777, true);
 		}
 
         $this->_uploadHandler->allowedExtensions = array();
@@ -63,36 +63,22 @@ class MediaFileController {
 
             if (isset($_GET["done"])) {
                 $result = $this->_uploadHandler->combineChunks($mainPath);
-
                 $result["uploadName"] = $this->_uploadHandler->getUploadName();
-
-                $this->_mediaFileManager->formatPostDataFromFileUpload($result);
-
-                $return_value = $this->_mediaFileManager->createMediaFileDb();
-
-                $this->mergeErrorArray($return_value);
-
-                if (count($this->_errorArray) != 0) {
-                	$result['error'] = $this->_errorArray[0];
-                }
-
             }
 
             else {
                 $result = $this->_uploadHandler->handleUpload($mainPath);
+                $result["uploadName"] = $this->_uploadHandler->getUploadName();
+            }
 
-                // // To return a name used for uploaded file you can use the following line.
-                // $result["uploadName"] = $this->_uploadHandler->getUploadName();
+            $this->_mediaFileManager->formatPostDataFromFileUpload($result);
 
-                // $this->_mediaFileManager->formatPostDataFromFileUpload($result);
+            $return_value = $this->_mediaFileManager->createMediaFileDb();
 
-                // $return_value = $this->_mediaFileManager->createMediaFileDb();
+            $this->mergeErrorArray($return_value);
 
-                // $this->mergeErrorArray($return_value);
-
-                // if (count($this->_errorArray) != 0) {
-                // 	$result['error'] = $this->_errorArray[0];
-                // }
+            if (count($this->_errorArray) != 0) {
+            	$result['error'] = $this->_errorArray[0];
             }
 
             echo json_encode($result);

@@ -27,14 +27,24 @@
         </thead>
         <tbody>
 <?php
-            foreach ($media_files as $media_file) {
+            if (count($media_files)) {
+
+                foreach ($media_files as $media_file) {
+?>
+                    <tr>
+                        <td><?= $media_file['filename'] ?></td>
+                        <td><?= $media_file['type'] ?></td>
+                        <td style="padding: 0"><?= '<a class="add_action" href="?page=add_cart&media_id=' . $media_file['id'] . '&original_id='. $_GET['media_id'] . '">' . ADDTOCART . '</a>' ?></td>
+                        <?php /*<td style="padding: 0"><?= ($media_file['right_addtocart']) ? '<a class="add_action" href="#temp">' . ADDTOCART . '</a>' : '' ?></td> */ ?>
+                        <td style="padding: 0"><?= '<a class="add_action" href="?page=add_sharelist_media&media_id=' . $media_file['id'] . '&original_id='. $_GET['media_id'] . '">' . ADDTOSHARELIST . '</a>' ?></td>
+                    </tr>
+<?php
+                }
+            }
+            else {
 ?>
                 <tr>
-                    <td><?= $media_file['filename'] ?></td>
-                    <td><?= $media_file['type'] ?></td>
-                    <td style="padding: 0"><?= '<a class="add_action" href="?page=add_cart&media_id=' . $media_file['id'] . '&original_id='. $_GET['media_id'] . '">' . ADDTOCART . '</a>' ?></td>
-                    <?php /*<td style="padding: 0"><?= ($media_file['right_addtocart']) ? '<a class="add_action" href="#temp">' . ADDTOCART . '</a>' : '' ?></td> */ ?>
-                    <td style="padding: 0"><?= '<a class="add_action" href="?page=add_sharelist_media&media_id=' . $media_file['id'] . '&original_id='. $_GET['media_id'] . '">' . ADDTOSHARELIST . '</a>' ?></td>
+                    <td colspan="4" class="text-center"><?= NO_DATA_AVAILABLE ?></td>
                 </tr>
 <?php
             }
