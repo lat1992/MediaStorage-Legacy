@@ -33,7 +33,12 @@ require_once('ClientBundle/views/layout/header.php');
 
 		<h2><?= MEDIA ?></h2>
 
-		<?php require_once('AdminBundle/views/media/media_create_form.php'); ?>
+<?php
+		$path = "?page=upload_program_thumbnail_admin&media_id=" . $_GET['media_id'];
+		$type = "program";
+
+		require_once('AdminBundle/views/media/media_create_form.php');
+?>
 
 		<br />
 

@@ -610,4 +610,74 @@ class MediaController {
         }
 
 	}
+
+	public function uploadContentThumbnailAction() {
+        $mainPath = 'uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/contents/tmp/';
+        $basePath = 'uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/contents/';
+        $chunkpath = 'uploads/thumbnails/chunks/' . $_SESSION['id_organization'] . '/contents/';
+
+        // CLEAN TMP FOLDER
+		$files = glob($mainPath . '*');
+		foreach($files as $file) {
+			unlink($file);
+		}
+
+		if (!file_exists('uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/contents/tmp/')) {
+		    mkdir('uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/contents/tmp/', 0777, true);
+		}
+		if (!file_exists('uploads/thumbnails/chunks/' . $_SESSION['id_organization'] . '/contents/')) {
+		    mkdir('uploads/thumbnails/chunks/' . $_SESSION['id_organization'] . '/contents/', 0777, true);
+		}
+
+        $this->_uploadHandler->allowedExtensions = array('jpeg', 'png', 'jpg');
+        $this->_uploadHandler->inputName = "qqfile";
+
+        $method = $_SERVER["REQUEST_METHOD"];
+
+        if ($method == "POST") {
+
+            header("Content-Type: text/plain");
+
+            if (isset($_GET["done"])) {
+                $result = $this->_uploadHandler->combineChunks($mainPath);
+
+                $file_name = $this->_uploadHandler->getUploadName();
+            }
+
+            else {
+                $result = $this->_uploadHandler->handleUpload($mainPath);
+
+                $file_name = $this->_uploadHandler->getUploadName();
+            }
+
+            if ($file_name && $result['uuid']) {
+            	$filename_explode_array = explode('.', $file_name);
+            	$filename_explode_array = array_reverse($filename_explode_array);
+
+                $old_path = $mainPath . $result['uuid'] . '/' . $file_name;
+               	$new_path = $mainPath . 'thumbnail_content_' . $_GET['media_id'] . '.' . $filename_explode_array[0];
+               	$result['oldname'] = $old_path;
+
+                rename($old_path, $new_path);
+            	$image = imagecreatefromstring(file_get_contents($new_path));
+            	imagepng($image, $basePath . 'thumbnail_content_' . $_GET['media_id'] . '.png');
+            	imagedestroy($image);
+                rmdir($mainPath . $result['uuid']);
+
+                $result['img_path'] = $basePath . 'thumbnail_content' . $_GET['media_id'] . '.png';
+            }
+
+            echo json_encode($result);
+        }
+
+        else if ($method == "DELETE") {
+            $result = $this->_uploadHandler->handleDelete("files");
+            echo json_encode($result);
+        }
+
+        else {
+            header("HTTP/1.0 405 Method Not Allowed");
+        }
+
+	}
 }

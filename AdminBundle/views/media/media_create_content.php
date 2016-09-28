@@ -29,12 +29,17 @@ require_once('ClientBundle/views/layout/header.php');
 
 	<div id="container">
 
-		<form id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
+		<form class="full-width-form" id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
+
+		<div class="left-block-form">
 
 		<h2><?= MEDIA ?></h2>
+<?php
+		$path = "?page=upload_content_thumbnail_admin&media_id=" . $_GET['media_id'];
+		$type = "content";
 
-		<?php require_once('AdminBundle/views/media/media_create_form.php'); ?>
-
+		require_once('AdminBundle/views/media/media_create_form.php');
+?>
 		<br />
 
 		<h2><?= MEDIA_INFO ?></h2>
@@ -42,24 +47,36 @@ require_once('ClientBundle/views/layout/header.php');
 		<?php require_once('AdminBundle/views/media/media_info_create_form.php'); ?>
 
 		<br />
+		<br />
+
+		<input type="hidden" name="id_media_create_mediastorage" value="895143" />
+
+		<div class="hide-mobile">
+			<a id="cancel_button" class="form_button" href="?page=list_content_admin"><?= CANCEL ?></a>
+			<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
+		</div>
+
+		</div>
+		<div class="right-block-form">
 
 		<h2><?= LINKED_FILE ?></h2>
 
 		<?php require_once('AdminBundle/views/media_file/media_file_with_id_list_form.php'); ?>
 
 		<br />
-		<br />
-
+<?php /*
 		<h2><?= UPLOAD ?></h2>
 
 		<?php require_once('AdminBundle/views/media_file/media_file_upload_form.php'); ?>
 
 		<?php require_once('AdminBundle/views/media_file/media_file_list_form.php'); ?>
+*/ ?>
+		</div>
 
-		<input type="hidden" name="id_media_create_mediastorage" value="895143" />
-
-		<a id="cancel_button" class="form_button" href="?page=list_content_admin"><?= CANCEL ?></a>
-		<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
+		<div class="hide-desktop">
+			<a id="cancel_button" class="form_button" href="?page=list_content_admin"><?= CANCEL ?></a>
+			<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
+		</div>
 
 		</form>
 

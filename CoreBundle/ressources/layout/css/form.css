@@ -75,6 +75,22 @@ form input, form select, form option, form textarea {
 	border: 1px solid #d9d9d9;
 }
 
+form.full-width-form {
+	width: 100%;
+}
+
+div.left-block-form, div.right-block-form {
+	width: 48%;
+}
+
+div.left-block-form {
+	float: left;
+}
+
+div.right-block-form {
+	float: right;
+}
+
 #fine-uploader div.qq-upload-button input{
 	width: 100%;
 }
@@ -141,6 +157,29 @@ input.input_checkbox {
 	text-align: center;
 }
 
+.hide-mobile {
+	display: initial;
+}
+
+.hide-desktop {
+	display: none;
+}
+
+
+div.div_more_info {
+    float: left;
+    margin: 10px 5px 10px 0;
+    padding: 3px;
+}
+
+a.info_link {
+    text-decoration: none;
+}
+
+a#more_info_hide, #more_info_data {
+    display: none;
+}
+
 @media only screen and (max-width: 900px) {
 	#menu_text {
 		display: none;
@@ -169,6 +208,10 @@ input.input_checkbox {
         margin: 20px 0 0 0;
     }
 
+	div.left-block-form, div.right-block-form {
+		width: 100%;
+	}
+
     #cancel_button {
         width: 40%;
         float: left;
@@ -180,5 +223,13 @@ input.input_checkbox {
         float: right;
         margin: 40px 0 0 0 ;
         padding: 7px 12px 6px 12px;
+    }
+
+    .hide-mobile {
+    	display: none;
+    }
+
+    .hide-desktop {
+    	display: initial;
     }
 }

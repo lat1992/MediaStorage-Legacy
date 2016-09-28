@@ -227,6 +227,7 @@ define('RIGHT_VIEW', 'Droit de visionnage');
 define('MEDIA_FILE', 'Fichier du média');
 define('RIGHT_DOWNLOAD', 'Droit de téléchargement');
 define('RIGHT_ADDTOCART', 'Droit de commande');
+define('RIGHT_PREVIEW', 'Droit de Prévisualisation');
 define('FILENAME', 'Nom du fichier');
 define('FILEPATH', 'Chemin du fichier');
 
@@ -332,3 +333,4 @@ define('CLOSE', 'Fermer');
 define('OK', 'Ok');
 define('THUMBNAIL', 'Image');
 define('PREVIEW', 'Prévisualisation de l\'image');
+define('MORE_OPTION', 'Plus d\'option');

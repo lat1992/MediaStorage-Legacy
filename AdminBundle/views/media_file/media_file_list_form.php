@@ -3,7 +3,7 @@
 		<th></th>
 		<th><?= FILENAME ?></th>
 		<th><?= RIGHT_DOWNLOAD ?></th>
-		<th><?= RIGHT_ADDTOCART ?></th>
+		<th><?= RIGHT_PREVIEW ?></th>
 	</tr>
 
 <?php
@@ -15,7 +15,7 @@
 				<td><input type="checkbox" name="media_file_mediastorage[<?= $media_file['id'] ?>] value="1" /></td>
 				<td><?= $media_file['filename'] ?></td>
 				<td><?= $media_file['right_download'] ?></td>
-				<td><?= $media_file['right_addtocart'] ?></td>
+				<td><?= $media_file['right_preview'] ?></td>
 			</tr>
 <?php
 		}

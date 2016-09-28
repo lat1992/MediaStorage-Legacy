@@ -39,4 +39,16 @@ $( document ).ready(function() {
         })
     });
 
+    $('#more_info_show').on('click', function(){
+        $('#more_info_hide').css('display', 'initial');
+        $(this).css('display', 'none')
+        $('#more_info_data').show();
+    });
+
+    $('#more_info_hide').on('click', function(){
+        $('#more_info_show').css('display', 'initial');
+        $(this).css('display', 'none')
+        $('#more_info_data').hide();
+    });
+
 });
