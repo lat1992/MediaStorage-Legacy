@@ -113,16 +113,11 @@ if (isset($_GET['media_id'])) {
                         foreach ($media_extra as $id_info_field => $value) {
                             if (strcmp($value['type'], 'Text') == 0) {
 
-                                foreach ($languages as $language) {
-
-                                    $user_value = "";
-                                    if (isset($media_user_extras[$id_info_field]['language'][$language['id']]['data']))
-                                        $user_value = $media_user_extras[$id_info_field]['language'][$language['id']]['data'];
+                                $user_value = "";
+                                if (isset($media_user_extras[$id_info_field]['language'][$_SESSION['id_language_mediastorage']]['data']))
+                                    $user_value = $media_user_extras[$id_info_field]['language'][$_SESSION['id_language_mediastorage']]['data'];
 ?>
                                 <span class="description_label"><?= $value['data'][0]['data'] ?> : </span><span><?= $user_value ?></span><br />
-<?php
-                                }
-?>
                                 <label></label>
                                 <div class="clear"></div>
 <?php
