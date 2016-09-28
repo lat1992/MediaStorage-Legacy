@@ -93,7 +93,7 @@ class ContentPageController {
 			$media_infos = $this->_mediaInfoManager->getArrayWithIdLanguageKey($media_infos);
 		}
 		else {
-			$title = CONTENT;
+			$title['title'] = CONTENT;
 		}
 
 		if (isset($_SESSION['id_plateform_organization'])) {
