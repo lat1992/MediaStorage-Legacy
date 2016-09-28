@@ -227,6 +227,7 @@ define('RIGHT_VIEW', 'Droit de visionnage');
 define('MEDIA_FILE', 'Fichier du média');
 define('RIGHT_DOWNLOAD', 'Droit de téléchargement');
 define('RIGHT_ADDTOCART', 'Droit de commande');
+define('RIGHT_PREVIEW', 'Droit de Prévisualisation');
 define('FILENAME', 'Nom du fichier');
 define('FILEPATH', 'Chemin du fichier');
 
@@ -337,3 +338,4 @@ define('DESCRIPTIVE', 'Descriptif');
 define('OVERVIEW', 'Apperçu');
 define('TIMECODE_IN', 'IN');
 define('TIMECODE_OUT', 'OUT');
+define('MORE_OPTION', 'Plus d\'option');

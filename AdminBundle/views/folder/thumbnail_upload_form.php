@@ -2,7 +2,7 @@
     if (isset($_SESSION['permits'][PERMIT_UPLOAD_FILE])) {
 ?>
 
-        <div id="fine-uploader" ></div>
+        <div id="fine-uploader-thumbnails" ></div>
 
         <script type="text/template" id="qq-template">
             <div class="qq-uploader-selector qq-uploader"  style="margin: 10px 0 10px 10px" qq-drop-area-text="<?= DROP_FILE_HERE ?>">
@@ -68,7 +68,7 @@
         <script>
 
             var manualUploader = new qq.FineUploader({
-            element: document.getElementById('fine-uploader'),
+            element: document.getElementById('fine-uploader-thumbnails'),
             request: {
                 endpoint: "<?= $path ?>",
                 uuidName: 'qquuid',

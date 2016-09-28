@@ -30,10 +30,22 @@ require_once('ClientBundle/views/layout/header.php');
 if (isset($_GET['media_id'])) {
 ?>
 <div class="program_info">
+
     <div class="program_info_image_div">
-        <!-- <img src="ClientBundle/ressources/program/img/default.png" /> -->
-        <img class="program_info_image" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg" />
+<?php
+    if (file_exists("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/programs/thumbnail_program_" . $_GET['media_id'] . ".png")) {
+?>
+        <img class="program_info_image" id="program_image_preview" src="uploads/thumbnails/files/<?= $_SESSION['id_organization'] ?>/programs/thumbnail_program_<?= $_GET['media_id'] ?>.png" height=100 width=100/>
+<?php
+    }
+    else {
+?>
+        <img class="program_info_image" id="program_image_preview" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg " height=100 width=100/>
+<?php
+    }
+?>
     </div>
+
     <div class="program_info_text_div">
         <!--<div class="field"><?= REFERENCE ?> : <?= $program_data['reference'] ?></div>-->
         <div class="field"><?= REFERENCE ?> : <?= $program_data['reference_client'] ?></div>
@@ -145,9 +157,20 @@ if (isset($_GET['media_id'])) {
                     </div>
 
                     <div class="content_image_div">
-                        <!-- <img src="ClientBundle/ressources/content/img/default.png" /> -->
-                        <img class="content_image" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg" />
+<?php
+                    if (file_exists("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/contents/thumbnail_content_" . $content['id'] . ".png")) {
+?>
+                        <img class="content_image" id="content_image_preview" src="uploads/thumbnails/files/<?= $_SESSION['id_organization'] ?>/contents/thumbnail_content_<?= $content['id'] ?>.png" height=100 width=100/>
+<?php
+                    }
+                    else {
+?>
+                        <img class="content_image" id="content_image_preview" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg " height=100 width=100/>
+<?php
+                    }
+?>
                     </div>
+
 
                     <div class="content_description">
 
@@ -167,11 +190,9 @@ if (isset($_GET['media_id'])) {
 ?>
 
                     </div>
-
-
                 </div>
             </a>
- <?php
+<?php
         }
     }
 ?>
