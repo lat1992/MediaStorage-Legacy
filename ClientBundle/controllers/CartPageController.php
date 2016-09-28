@@ -48,7 +48,7 @@ class CartPageController {
 			}
 		}
 
-		$title = CART;
+		$title['title'] = CART;
 
 		include ('ClientBundle/views/cart/cart.php');
 	}
