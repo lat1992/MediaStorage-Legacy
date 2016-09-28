@@ -13,13 +13,14 @@ class User extends Model {
 		$this->_userInfoModel = new UserInfo();
 	}
 
-	public function findUserByUsernameAndPassword($username, $password) {
+	public function findUserByUsernameAndPassword($username, $password, $id_organization) {
 		$username = $this->_mysqli->real_escape_string($username);
 		$password = $this->_mysqli->real_escape_string($password);
+		$id_organization = $this->_mysqli->real_escape_string($id_organization);
 
 		$result = $this->_mysqli->query('SELECT user.id, username, password, id_role, id_language, id_organization, id_group FROM ' . $this->_table .
 			' LEFT JOIN `organization` ON organization.id = id_organization ' .
-			' WHERE username = "'. $username . '";');
+			' WHERE username = "'. $username . '" AND id_organization = ' . $id_organization . ';');
 
 		if ($result) {
 			while ($row = $result->fetch_assoc()) {

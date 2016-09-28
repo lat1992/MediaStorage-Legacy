@@ -1,3 +1,5 @@
+php_value session.cookie_domain .mediastoragekvi.fr
+
 RewriteEngine On
 RewriteBase /
 
@@ -6,4 +8,4 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{HTTP_HOST} !^(?:www) [NC]
 RewriteCond %{HTTP_HOST} ^([^.]+)\.[^.]+\.[^.]+$
-RewriteRule ^(.*)$ $1?plateform=%1 [L,QSA]
+RewriteRule ^(.*)$ $1?platform=%1 [L,QSA]

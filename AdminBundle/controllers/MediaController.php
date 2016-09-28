@@ -82,9 +82,9 @@ class MediaController {
 
 		}
 
-		if (isset($_SESSION['id_plateform_organization'])) {
+		if (isset($_SESSION['id_platform_organization'])) {
 
-			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
 			$this->mergeErrorArray($designs_data);
 
 			if (count($this->_errorArray) == 0) {
@@ -126,9 +126,9 @@ class MediaController {
 
 		}
 
-		if (isset($_SESSION['id_plateform_organization'])) {
+		if (isset($_SESSION['id_platform_organization'])) {
 
-			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
 			$this->mergeErrorArray($designs_data);
 
 			if (count($this->_errorArray) == 0) {
@@ -208,9 +208,9 @@ class MediaController {
 
 		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
 
-		if (isset($_SESSION['id_plateform_organization'])) {
+		if (isset($_SESSION['id_platform_organization'])) {
 
-			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
 			$this->mergeErrorArray($designs_data);
 
 			if (count($this->_errorArray) == 0) {
@@ -293,9 +293,9 @@ class MediaController {
 
 		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
 
-		if (isset($_SESSION['id_plateform_organization'])) {
+		if (isset($_SESSION['id_platform_organization'])) {
 
-			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
 			$this->mergeErrorArray($designs_data);
 
 			if (count($this->_errorArray) == 0) {
@@ -488,9 +488,9 @@ class MediaController {
 
 		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
 
-		if (isset($_SESSION['id_plateform_organization'])) {
+		if (isset($_SESSION['id_platform_organization'])) {
 
-			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_plateform_organization']);
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
 			$this->mergeErrorArray($designs_data);
 
 			if (count($this->_errorArray) == 0) {

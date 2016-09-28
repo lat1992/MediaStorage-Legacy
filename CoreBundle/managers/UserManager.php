@@ -23,7 +23,7 @@ class UserManager {
 	}
 
 	public function loginDb() {
-		$result = $this->_userModel->findUserByUsernameAndPassword($_POST['username_mediastorage'], $_POST['password_mediastorage']);
+		$result = $this->_userModel->findUserByUsernameAndPassword($_POST['username_mediastorage'], $_POST['password_mediastorage'], $_SESSION['id_platform_organization']);
 
 		if ($result['data'] !== false) {
 			$_SESSION['username_mediastorage'] = $result['data']['username'];

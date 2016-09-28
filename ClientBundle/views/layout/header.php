@@ -27,9 +27,9 @@
 					</div>
 
 <?php
-			if (file_exists('ClientBundle/ressources/organization/'.$_SESSION['id_plateform_organization'].'/img/logo.png')) {
+			if (file_exists('ClientBundle/ressources/organization/'.$_SESSION['id_platform_organization'].'/img/logo.png')) {
 ?>
-				<div class="to_hide_mobile" style="max-height: 40px; width: 100%; "><a href="?page=home"><img style="display: inline-block; float:left; margin: 0 auto auto 15px; max-height: 40px" src="ClientBundle/ressources/organization/<?= $_SESSION['id_plateform_organization'] ?>/img/logo.png" /></a></div>
+				<div class="to_hide_mobile" style="max-height: 40px; width: 100%; "><a href="?page=home"><img style="display: inline-block; float:left; margin: 0 auto auto 15px; max-height: 40px" src="ClientBundle/ressources/organization/<?= $_SESSION['id_platform_organization'] ?>/img/logo.png" /></a></div>
 <?php
 			}
 ?>
@@ -77,9 +77,9 @@
 
 			<!--
 <?php /*
-			if (file_exists('ClientBundle/ressources/organization/'.$_SESSION['id_plateform_organization'].'/img/logo.png')) {
+			if (file_exists('ClientBundle/ressources/organization/'.$_SESSION['id_platform_organization'].'/img/logo.png')) {
 ?>
-				<div style="max-height: 60px; width: 100%; "><a href="?page=home"><img style="display: block; margin: 0 auto; max-height: 60px" src="ClientBundle/ressources/organization/<?= $_SESSION['id_plateform_organization'] ?>/img/logo.png" /></a></div>
+				<div style="max-height: 60px; width: 100%; "><a href="?page=home"><img style="display: block; margin: 0 auto; max-height: 60px" src="ClientBundle/ressources/organization/<?= $_SESSION['id_platform_organization'] ?>/img/logo.png" /></a></div>
 <?php
 			}
 */ ?>
