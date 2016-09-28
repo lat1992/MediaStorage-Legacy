@@ -6,6 +6,8 @@
 .program_info_image_div {
   	display: inline-block;
     vertical-align: middle;
+    float: left;
+	margin: 10px 30px 20px 40px;
 }
 
 .program_info_image {
@@ -20,4 +22,12 @@
 
 .field {
 
+}
+
+div.first_div, div.second_div {
+	text-align: left;
+}
+
+#description_div, #download_link_div {
+	padding: 10px 10px 10px 10px;
 }

@@ -29,8 +29,8 @@
 			<div class="first_div" style="width: 48%; float: left">
 
 				<span class="label"><?= TITLE ?> : </span><?= $media_info['title'] ?><br />
-				<span class="label"><?= SUBTITLE ?> : </span><?= (isset($media_infos['subtitle'])) ? : '' ?><br />
-				<span class="label"><?= DESCRIPTION ?> : </span><?= (isset($media_infos['description'])) ? : '' ?><br />
+				<span class="label"><?= SUBTITLE ?> : </span><?= $media_info['subtitle'] ?><br />
+				<span class="label"><?= DESCRIPTION ?> : </span><?= $media_info['description'] ?><br />
 <?php
 				$nb_lines = $nb_lines + 3;
 
@@ -45,7 +45,6 @@
                 	}
 
                     if (strcmp($value['type'], 'Text') == 0) {
-
                         $user_value = "";
                         if (isset($media_user_extras[$id_info_field]['language'][$_SESSION['id_language_mediastorage']]['data']))
                             $user_value = $media_user_extras[$id_info_field]['language'][$_SESSION['id_language_mediastorage']]['data'];

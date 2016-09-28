@@ -59,8 +59,13 @@ class ProgramPageController {
 
 			$program_info = $this->_mediaInfoManager->getMediaInfoByMediaIdAndLanguageIdDb($_GET['media_id'], $_SESSION['id_language_mediastorage']);
 			$this->mergeErrorArray($program_info);
-			$program_info_data = $program_info['data']->fetch_assoc();
 
+			$media_infos = $this->_toolboxManager->mysqliResultToArray($program_info);
+
+			$media_extras_user_data = $this->_mediaExtraManager->getMediaExtraByMediaIdDb($_GET['media_id']);
+			$this->mergeErrorArray($media_extras_user_data);
+			$media_user_extras = $this->_toolboxManager->mysqliResultToArray($media_extras_user_data);
+			$media_user_extras = $this->_mediaExtraManager->formatMediaExtraDataForView($media_user_extras);
 
 			$title = $this->_mediaManager->getMediaByMediaId($_GET['media_id']);
 

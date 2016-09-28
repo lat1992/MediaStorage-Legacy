@@ -4,6 +4,7 @@ require_once('ClientBundle/views/layout/header.php');
 
 ?>
 
+<link rel="stylesheet" href="ClientBundle/ressources/content/css/content.css">
 <link rel="stylesheet" href="ClientBundle/ressources/folder/css/folder.css">
 <link rel="stylesheet" href="ClientBundle/ressources/program/css/program.css">
 
@@ -46,13 +47,9 @@ if (isset($_GET['media_id'])) {
 ?>
     </div>
 
-    <div class="program_info_text_div">
-        <!--<div class="field"><?= REFERENCE ?> : <?= $program_data['reference'] ?></div>-->
-        <div class="field"><?= REFERENCE ?> : <?= $program_data['reference_client'] ?></div>
-        <div class="field"><?= TITLE ?> : <?= $program_info_data['title'] ?></div>
-        <div class="field"><?= SUBTITLE ?> : <?= $program_info_data['subtitle'] ?></div>
-        <div class="field"><?= DESCRIPTION ?> : <?= $program_info_data['description'] ?></div>
-    </div>
+    <?php require_once('ClientBundle/views/content/media_info_description_list.php'); ?>
+    <div class="clear"></div>
+
 </div>
 <?php
 }
@@ -136,8 +133,7 @@ if (isset($_GET['media_id'])) {
 
 
     if (isset($contents)) {
-
-        if (isset($contents['data']->num_rows) && intval($contents['data']->num_rows) != 0) {
+        if (count($contents)) {
 ?>
             <span class="category_title category_title_content" ><?= CONTENT ?></span>
 <?php
