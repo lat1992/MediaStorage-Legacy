@@ -54,6 +54,20 @@ class Cart extends Model {
 		);
 	}
 
+	public function createNewCartWithChapter($data) {
+		$id_user = $this->_mysqli->real_escape_string($data['id_user_mediastorage']);
+		$id_media = $this->_mysqli->real_escape_string($data['id_media_mediastorage']);
+
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file)' .
+			' VALUES ('. $id_user . ', ' . $id_media . ');'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'createNewCart: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function updateCartWithId($data, $cart_id) {
 		$id_user = $this->_mysqli->real_escape_string($data['id_user_mediastorage']);
 		$id_media = $this->_mysqli->real_escape_string($data['id_media_mediastorage']);
