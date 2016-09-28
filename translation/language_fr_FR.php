@@ -299,7 +299,7 @@ define('USAGE', 'Usage');
 define('SOURCE_FILE', 'Fichier source');
 define('WATCHING_FILE', 'Fichier de visionage');
 define('CUT_FILE', 'Réalisation d\'une découpe');
-define('TRANSCODAGE', 'Transcodage');
+define('TRANSCODE', 'Transcodage');
 define('TOP_MENU', 'Menu du haut');
 define('SIDE_MENU', 'Menu du coté');
 define('PROFILE_BUTTON', 'Bouton du profil');
@@ -339,3 +339,5 @@ define('OVERVIEW', 'Apperçu');
 define('TIMECODE_IN', 'IN');
 define('TIMECODE_OUT', 'OUT');
 define('MORE_OPTION', 'Plus d\'option');
+
+define('DELIVERY', 'Livraison');

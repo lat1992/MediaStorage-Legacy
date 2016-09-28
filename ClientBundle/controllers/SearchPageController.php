@@ -46,6 +46,7 @@ class SearchPageController {
 				$content_data = $content_result['data'];
 			}
 		}
+		$title['title'] = SEARCH;
 		include ('ClientBundle/views/search/search.php');
 	}
 

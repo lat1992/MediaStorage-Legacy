@@ -47,7 +47,12 @@ require_once('ClientBundle/views/layout/header.php');
                         <?= SUBTITLE ?> : <?= $cart_item['translate_subtitle'] ?><br/>
                         <?= DESCRIPTION ?> : <?= $cart_item['translate_description'] ?>
                     </td>
-                    <td><?= $cart_item['type'] . (isset($cart_item['tc_in']) && isset($cart_item['tc_out']) ? '<br/> '. TIMECODE_IN . ' : ' . $cart_item['tc_in'] .'<br/>'. TIMECODE_OUT . ' : ' . $cart_item['tc_out'] : '') ?></td>
+                    <td>
+                    <?= (!strcmp($cart_item['type'], 'Download') ? DOWNLOAD : '').
+                        (!strcmp($cart_item['type'], 'Delivery') ? DELIVERY : '').
+                        (!strcmp($cart_item['type'], 'Transcode') ? TRANSCODE : '').
+                        (isset($cart_item['tc_in']) && isset($cart_item['tc_out']) ? '<br/> '. TIMECODE_IN . ' : ' . $cart_item['tc_in'] .'<br/>'. TIMECODE_OUT . ' : ' . $cart_item['tc_out'] : '') ?>
+                    </td>
                     <td class="button_td delete" ><a href="?page=delete_cart&cart_id=<?= $cart_item['id'] ?>" class="button_a delete"><?= DELETE ?></a></td>
                 </tr>
 <?php
