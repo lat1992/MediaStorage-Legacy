@@ -178,6 +178,7 @@ class MediaExtraManager {
 			}
 
 		}
+		$_POST = $post_save;
 
 		return NULL;
 	}

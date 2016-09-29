@@ -17,6 +17,12 @@
 <?php
 		}
 
+		if (isset($_SESSION['permits'][PERMIT_UPLOAD_FILE])) {
+?>
+			<li><a href="?page=create_media_file_admin"><?= UPLOAD ?></a></li>
+<?php
+		}
+
 		if (isset($_SESSION['permits'][PERMIT_ROOT])) {
 ?>
 			<li><br/></li>

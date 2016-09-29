@@ -7,15 +7,25 @@
 	</tr>
 
 <?php
-	if (isset($media_files) && $media_files && $media_files['data'] && $media_files_linked['data']->num_rows != 0) {
+	// if (isset($media_files) && $media_files && $media_files['data'] && $media_files['data']->num_rows != 0) {
+	if (count($media_files)) {
 
-		while ($media_file = $media_files['data']->fetch_assoc()) {
+		// while ($media_file = $media_files['data']->fetch_assoc()) {
+		foreach($media_files as $key => $media_file) {
 ?>
+<?php /*
 			<tr>
 				<td><input type="checkbox" name="media_file_mediastorage[<?= $media_file['id'] ?>] value="1" /></td>
 				<td><?= $media_file['filename'] ?></td>
 				<td><?= $media_file['right_download'] ?></td>
 				<td><?= $media_file['right_preview'] ?></td>
+			</tr>
+*/?>
+			<tr>
+				<td><input type="checkbox" name="media_file_mediastorage[<?= $key ?>][name]" value="<?= $media_file ?>" /></td>
+				<td><?= $media_file ?></td>
+				<td><input type="hidden" name="media_file_mediastorage[<?= $key ?>][right_download]" checked value="0" /><input type="checkbox" name="media_file_mediastorage[<?= $key ?>][right_download]" checked value="1" /></td>
+				<td><input type="hidden" name="media_file_mediastorage[<?= $key ?>][right_preview]" checked value="0" /><input type="checkbox" name="media_file_mediastorage[<?= $key ?>][right_preview]" checked value="1" /></td>
 			</tr>
 <?php
 		}

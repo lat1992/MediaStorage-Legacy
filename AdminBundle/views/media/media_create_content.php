@@ -34,8 +34,11 @@ require_once('ClientBundle/views/layout/header.php');
 		<div class="left-block-form">
 
 		<h2><?= MEDIA ?></h2>
-<?php
-		$path = "?page=upload_content_thumbnail_admin&media_id=" . $_GET['media_id'];
+<?php 
+		$path = "";
+		if (isset($_GET['media_id'])) {
+			$path = "?page=upload_content_thumbnail_admin&media_id=" . $_GET['media_id'];
+		}
 		$type = "content";
 
 		require_once('AdminBundle/views/media/media_create_form.php');
@@ -61,8 +64,15 @@ require_once('ClientBundle/views/layout/header.php');
 
 		<h2><?= LINKED_FILE ?></h2>
 
-		<?php require_once('AdminBundle/views/media_file/media_file_with_id_list_form.php'); ?>
+		<?php
 
+			if (isset($media_files_linked)) {
+				require_once('AdminBundle/views/media_file/media_file_with_id_list_form.php');
+			}
+			else {
+				require_once('AdminBundle/views/media_file/media_file_with_id_list_array_form.php');
+			}
+		?>
 		<br />
 <?php /*
 		<h2><?= UPLOAD ?></h2>
@@ -77,6 +87,18 @@ require_once('ClientBundle/views/layout/header.php');
 			<a id="cancel_button" class="form_button" href="?page=list_content_admin"><?= CANCEL ?></a>
 			<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 		</div>
+
+<?php
+		if (isset($_POST['media_file_mediastorage']) && count($_POST['media_file_mediastorage'])) {
+			foreach ($_POST['media_file_mediastorage'] as $key => $media_file) {
+?>
+				<input type="hidden" name="media_file_mediastorage[<?= $key ?>][name]" value="<?= $media_file['name'] ?>" />
+				<input type="hidden" name="media_file_mediastorage[<?= $key ?>][right_download]" value="<?= $media_file['right_download'] ?>" />
+				<input type="hidden" name="media_file_mediastorage[<?= $key ?>][right_preview]" value="<?= $media_file['right_preview'] ?>" />
+<?php
+			}
+		}
+?>
 
 		</form>
 

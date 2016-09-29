@@ -16,9 +16,11 @@ $this->_route[] = array('list_program_admin', 'AdminBundle/controllers/MediaCont
 $this->_route[] = array('upload_program_thumbnail_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'uploadProgramThumbnailAction');
 
 $this->_route[] = array('create_content_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'createContentAction');
+$this->_route[] = array('create_content_by_multiple_files_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'createContentByMultipleFilesAction');
 $this->_route[] = array('edit_content_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'editContentAction');
 $this->_route[] = array('list_content_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'listContentAction');
 $this->_route[] = array('upload_content_thumbnail_admin', 'AdminBundle/controllers/MediaController.php', 'MediaController', 'uploadContentThumbnailAction');
+
 
 $this->_route[] = array('create_media_file_admin', 'AdminBundle/controllers/MediaFileController.php', 'MediaFileController', 'createAction');
 $this->_route[] = array('upload_media_file_admin', 'AdminBundle/controllers/MediaFileController.php', 'MediaFileController', 'uploadAction');

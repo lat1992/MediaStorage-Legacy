@@ -273,13 +273,11 @@ class FolderController {
 
             if (isset($_GET["done"])) {
                 $result = $this->_uploadHandler->combineChunks($mainPath);
-
                 $file_name = $this->_uploadHandler->getUploadName();
             }
 
             else {
                 $result = $this->_uploadHandler->handleUpload($mainPath);
-
                 $file_name = $this->_uploadHandler->getUploadName();
             }
 

@@ -33,7 +33,11 @@
 			<label for="tumbnail_mediastorage" style="margin: 10px 5px 10px 0" ><?= THUMBNAIL ?> : </label>
 
 <?php
-			$path = "?page=upload_thumbnail_admin&folder_id=" . $_GET['folder_id'];
+			$path = "";
+			if (isset($_GET['media_id'])) {
+				$path = "?page=upload_thumbnail_admin&folder_id=" . $_GET['folder_id'];
+			}
+			$type = "folder";
 
 			require_once('AdminBundle/views/folder/thumbnail_upload_form.php');
 ?>

@@ -31,24 +31,37 @@ class MediaFileController {
 
 	public function createAction() {
 
-		$title = MEDIA_FILE_UPLOAD_TITLE;
+		$title['title'] = MEDIA_FILE_UPLOAD_TITLE;
 
-		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
-		$this->mergeErrorArray($media_files);
+// 		if (isset($_POST['id_media_file_create']) && (strcmp($_POST['id_media_file_create'], '9732') == 0)) {
+// 			$this->_mediaFileManager->formatPostDataForMultipleQualification();
+// 			// $url = $this->_mediaFileManager->prepareUrlForMultipleQualification($_POST['media_file_mediastorage']);
+
+// var_dump($url);
+// exit;
+// 			header('Location:' . '?page=create_content_by_multiple_files_admin');
+// 			exit;
+
+// 		}
+
+		// $media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
+		// $this->mergeErrorArray($media_files);
+		$media_files = $this->_mediaFileManager->getAllMediaFilesByDirectory();
 
 		include ('AdminBundle/views/media_file/media_file_create.php');
 	}
 
     public function uploadAction() {
 
-        $mainPath = 'uploads/files/' . $_SESSION['id_organization'] . '/';
-        $chunkpath = 'uploads/chunks/' . $_SESSION['id_organization'] . '/';
+        $mainPath = 'uploads/media_files/files/' . $_SESSION['id_organization'] . '/tmp/';
+        $basePath = 'uploads/media_files/files/' . $_SESSION['id_organization'] . '/';
+        $chunkpath = 'uploads/media_files/chunks/' . $_SESSION['id_organization'] . '/';
 
-		if (!file_exists('uploads/files/' . $_SESSION['id_organization'] . '/')) {
-		    mkdir('uploads/files/' . $_SESSION['id_organization'] . '/', 0777, true);
+		if (!file_exists('uploads/media_files/files/' . $_SESSION['id_organization'] . '/tmp/')) {
+		    mkdir('uploads/media_files/files/' . $_SESSION['id_organization'] . '/tmp/', 0777, true);
 		}
-		if (!file_exists('uploads/chunks/' . $_SESSION['id_organization'] . '/')) {
-		    mkdir('uploads/chunks/' . $_SESSION['id_organization'] . '/', 0777, true);
+		if (!file_exists('uploads/media_files/chunks/' . $_SESSION['id_organization'] . '/')) {
+		    mkdir('uploads/media_files/chunks/' . $_SESSION['id_organization'] . '/', 0777, true);
 		}
 
         $this->_uploadHandler->allowedExtensions = array();
@@ -71,15 +84,24 @@ class MediaFileController {
                 $result["uploadName"] = $this->_uploadHandler->getUploadName();
             }
 
-            $this->_mediaFileManager->formatPostDataFromFileUpload($result);
+            if ($result["uploadName"] && $result['uuid']) {
+            	$filename_explode_array = explode('.', $result["uploadName"]);
+            	$filename_explode_array = array_reverse($filename_explode_array);
 
-            $return_value = $this->_mediaFileManager->createMediaFileDb();
+                $old_path = $mainPath . $result['uuid'] . '/' . $result["uploadName"];
+               	$new_path = $basePath . $result["uploadName"];
 
-            $this->mergeErrorArray($return_value);
+                rename($old_path, $new_path);
 
-            if (count($this->_errorArray) != 0) {
-            	$result['error'] = $this->_errorArray[0];
+                $result['file_path'] = $new_path;
             }
+
+            // $this->_mediaFileManager->formatPostDataFromFileUpload($result);
+            // $return_value = $this->_mediaFileManager->createMediaFileDb();
+            // $this->mergeErrorArray($return_value);
+            // if (count($this->_errorArray) != 0) {
+            // 	$result['error'] = $this->_errorArray[0];
+            // }
 
             echo json_encode($result);
         }

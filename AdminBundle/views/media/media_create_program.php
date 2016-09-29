@@ -34,7 +34,10 @@ require_once('ClientBundle/views/layout/header.php');
 		<h2><?= MEDIA ?></h2>
 
 <?php
-		$path = "?page=upload_program_thumbnail_admin&media_id=" . $_GET['media_id'];
+		$path = "";
+		if (isset($_GET['media_id'])) {
+			$path = "?page=upload_program_thumbnail_admin&media_id=" . $_GET['media_id'];
+		}
 		$type = "program";
 
 		require_once('AdminBundle/views/media/media_create_form.php');

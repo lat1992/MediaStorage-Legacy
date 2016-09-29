@@ -18,6 +18,21 @@ class MediaFileManager {
 		return $this->_mediaFileModel->findAllMediaFilesWithoutMediaId();
 	}
 
+	public function getAllMediaFilesByDirectory() {
+		$return_array = array();
+
+		if ($handle = opendir('uploads/media_files/files/' . $_SESSION['id_organization'])) {
+		    while (false !== ($entry = readdir($handle))) {
+		    	if (strcmp('.', $entry) && strcmp('..', $entry) && strcmp('tmp', $entry)) {
+		        	$return_array[] = $entry;
+		    	}
+		    }
+		    closedir($handle);
+		}
+
+		return $return_array;
+	}
+
 	public function getAllMediaFilesByMediaIdDb($id_media) {
 		return $this->_mediaFileModel->findAllMediaFilesByMediaId($id_media);
 	}
@@ -47,10 +62,10 @@ class MediaFileManager {
 		$_POST['id_media_mediastorage'] = 'NULL';
 		$_POST['type_mediastorage'] = 'NULL';
 		$_POST['filename_mediastorage'] = $result['uploadName'];
-		$_POST['filepath_mediastorage'] = $_SESSION['id_organization'] . '/' . $_SESSION['user_id_mediastorage'] . '/' . $result['uuid'] . '/' . $result['uploadName'];
+		$_POST['filepath_mediastorage'] = $result['file_path'];
 		$_POST['metadata_mediastorage'] = 'NULL';
 		$_POST['right_download_mediastorage'] = 1;
-		$_POST['right_addtocart_mediastorage'] = 1;
+		$_POST['right_preview_mediastorage'] = 1;
 	}
 
 	public function getEnumOfTypeDb() {
@@ -81,5 +96,21 @@ class MediaFileManager {
 		/*
 		** TODO
 		*/
+	}
+
+	public function formatPostDataForMultipleQualification() {
+		foreach ($_POST['media_file_mediastorage'] as $key => $media_file) {
+			if (!isset($media_file['name']))
+				unset($_POST['media_file_mediastorage'][$key]);
+		}
+	}
+
+	public function preparePostDataForMediaFileCreation($media_file) {
+		$_POST['type_mediastorage'] = 'NULL';
+		$_POST['filename_mediastorage'] = $media_file['name'];
+		$_POST['filepath_mediastorage'] = 'uploads/media_files/files/' . $_SESSION['id_organization'] . '/' . $media_file['name'];
+		$_POST['metadata_mediastorage'] = 'NULL';
+		$_POST['right_download_mediastorage'] = $media_file['right_download'];
+		$_POST['right_preview_mediastorage'] = $media_file['right_preview'];
 	}
 }

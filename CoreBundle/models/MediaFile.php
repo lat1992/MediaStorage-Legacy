@@ -102,5 +102,4 @@ class MediaFile extends Model {
 			'error' => ($this->_mysqli->error) ? 'findMediaFileByMediaFileId: ' . $this->_mysqli->error : '',
 		);
 	}
-
 }

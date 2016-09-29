@@ -147,6 +147,7 @@ class MediaController {
 
 		if (isset($_POST['id_media_create_mediastorage']) && (strcmp($_POST['id_media_create_mediastorage'], '895143') == 0)) {
 // var_dump($_POST);exit;
+
 			$return_value = $this->_mediaManager->preFillMediaPostData(1);
 			$this->mergeErrorArray($return_value);
 
@@ -308,6 +309,101 @@ class MediaController {
 		include ('AdminBundle/views/media/media_create_content.php');
 	}
 
+	public function createContentByMultipleFilesAction() {
+
+		$media = array();
+		$languages = null;
+
+		if (isset($_POST['media_file_mediastorage'])) {
+			$this->_mediaFileManager->formatPostDataForMultipleQualification();
+		}
+		else {
+			exit;
+		}
+
+		if (isset($_POST['id_media_create_mediastorage']) && (strcmp($_POST['id_media_create_mediastorage'], '895143') == 0)) {
+
+
+			$return_value = $this->_mediaManager->preFillMediaPostData(2);
+			$this->mergeErrorArray($return_value);
+
+			$return_value = $this->_mediaManager->mediaCreateFormCheck();
+			$this->mergeErrorArray($return_value);
+
+			$media = $this->_mediaManager->formatMediaArrayWithPostData();
+			$media_infos = $this->_mediaInfoManager->formatMediaInfoDataWithPostData();
+			$media_user_extras = $this->_mediaExtraManager->formatMediaExtraDataWithPostData();
+
+			foreach ($_POST['media_file_mediastorage'] as $media_file) {
+
+				if (count($this->_errorArray) == 0) {
+
+					$return_value = $this->_mediaManager->mediaCreateDb();
+					$this->mergeErrorArray($return_value);
+
+					if (count($this->_errorArray) == 0) {
+
+						$_POST['id_media_mediastorage'] = $return_value['id'];
+
+						$return_value = $this->_mediaInfoManager->CreateMultipleMediaInfoDb();
+						$this->mergeErrorArray($return_value);
+
+						if (count($this->_errorArray) == 0) {
+
+							$return_value = $this->_mediaExtraManager->CreateMultipleMediaExtraDb();
+							$this->mergeErrorArray($return_value);
+
+							if (count($this->_errorArray) == 0) {
+								$this->_mediaFileManager->preparePostDataForMediaFileCreation($media_file);
+								$return_value = $this->_mediaFileManager->createMediaFileDb();
+								$this->mergeErrorArray($return_value);
+							}
+						}
+					}
+				}
+
+				$_POST['reference_mediastorage'] = intval($_POST['reference_mediastorage']) + 1;
+			}
+			if (count($this->_errorArray) == 0) {
+				$_SESSION['flash_message'] = ACTION_SUCCESS;
+				header('Location:' . '?page=create_media_file_admin');
+				exit;
+			}
+		}
+
+		$folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
+		$enums = $this->_mediaFileManager->getEnumOfTypeDb();
+		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
+		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(2);
+		$parents = $this->_mediaManager->getAllProgramsByIdOrganizationDb();
+		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
+
+		$this->mergeErrorArray($folders);
+		$this->mergeErrorArray($enums);
+		$this->mergeErrorArray($languages_data);
+		$this->mergeErrorArray($media_extra_data);
+		$this->mergeErrorArray($media_files);
+
+		$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
+
+		$enums = $enums['data'];
+
+		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
+
+		if (isset($_SESSION['id_platform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
+
+		$title = CREATE_MEDIA_CONTENT;
+
+		include ('AdminBundle/views/media/media_create_content.php');
+	}
 
 	public function editProgramAction() {
 		$media = array();
