@@ -90,7 +90,7 @@ class MediaFile extends Model {
 	}
 
 	public function findMediaFileByMediaFileId($id_media_file) {
-		$media_id_file = $this->_mysqli->real_escape_string($media_id_file);
+		$id_media_file = $this->_mysqli->real_escape_string($id_media_file);
 
 		$data = $this->_mysqli->query('SELECT id, id_media, mine_type, filename, filepath, right_download, right_preview' .
 			' FROM ' . $this->_table .

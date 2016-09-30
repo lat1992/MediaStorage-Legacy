@@ -80,19 +80,18 @@ class CartPageController {
 		$this->mergeErrorArray($cart_download);
 
 		if ($cart_delivery['data']->num_rows)
-			$this->mergeErrorArray($this->sendEmailForDelivery($cart_delivery['data'], $_SESSION['id_user_mediastorage']));
+			$this->mergeErrorArray($this->sendEmailForDelivery($cart_delivery['data'], $_SESSION['user_id_mediastorage']));
 		if ($cart_download['data']->num_rows)
-			$this->mergeErrorArray($this->showDownloadLink($cart_download['data'], $_SESSION['id_user_mediastorage']));
+			$this->mergeErrorArray($this->showDownloadLink($cart_download['data'], $_SESSION['user_id_mediastorage']));
 		if ($cart_cut['data']->num_rows)
 			$this->mergeErrorArray($this->_workFlowManager->cutVideo($cart_cut['data']));
 		if ($cart_transcode['data']->num_rows)
 			$this->mergeErrorArray($this->_workFlowManager->transcodeCart($cart_transcode['data']));
 
-		$cart_data = $this->_cartManager->emptyCart();
+		$cart_data = $this->_cartManager->emptyCartDb();
 		$this->mergeErrorArray($cart_data);
 		if (count($this->_errorArray) == 0) {
 			$_SESSION['flash_message'] = ACTION_SUCCESS;
-			header('Location:' . '?page=home');
 			exit;
 		}
 		include ('CoreBundle/views/common/error.php');
@@ -131,12 +130,6 @@ class CartPageController {
 	}
 
 	private function showDownloadLink($cart_data, $id_user) {
-		$row = $cart_data->fetch_assoc();
-		$file_data = $this->_mediaFileManager->getMediaFileById($row['id_media_file']);
-		$this->mergeErrorArray($file_data);
-		if (count($this->_errorArray) == 0) {
-			$download = $file_data['data']->fetch_assoc();
-		}
 		include ('ClientBundle/views/cart/cart_download_list.php');
 	}
 

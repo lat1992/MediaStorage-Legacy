@@ -40,7 +40,7 @@ class Cart extends Model {
 		);
 	}
 
-	public function findAllDeliveryById($id_user) {
+	public function findAllDeliveryByUserId($id_user) {
 		$id_user = $this->_mysqli->real_escape_string($id_user);
 		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, cart.comment FROM cart'.
 			' WHERE cart.type LIKE "Delivery" AND cart.id_user = '.$id_user);
@@ -65,7 +65,8 @@ class Cart extends Model {
 
 	public function findAllDownloadByUserId($id_user) {
 		$id_user = $this->_mysqli->real_escape_string($id_user);
-		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file FROM cart'.
+		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, media_file.filename FROM cart'.
+			' JOIN media_file ON cart.id_media_file = media_file.id'.
 			' WHERE cart.type LIKE "Download" AND cart.id_user = '.$id_user);
 
 		return array(
@@ -156,7 +157,7 @@ class Cart extends Model {
 	}
 
 	public function emptyCart() {
-		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table . ' WHERE id_user = ' . $_SESSION['id_user_mediastorage']);
+		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table . ' WHERE id_user = ' . $_SESSION['user_id_mediastorage']);
 
 		return array(
 			'data' => $data,
