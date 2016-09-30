@@ -27,6 +27,10 @@ td.delete:hover {
 	background-color: #ff1a1a;
 }
 
+td.download:hover {
+	background-color: #0099ff;
+}
+
 td.edit a:hover, td.delete a:hover {
 	color: white;
 }
