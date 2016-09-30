@@ -17,21 +17,21 @@ class WorkFlowModel extends Model {
 		$this->_final_path = $settings['archive']['path'];
 	}
 
-	public function transcodingVideo($id_media, $input_file, $input_dir, $id_organization) {
+	public function transcodingVideo($id_media_file, $input_file, $input_dir, $id_organization) {
 		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "video" AND upload = 1');
 		$profile = $data->fetch_assoc();
 		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
-			' (id_media, id_organizatoin, transcoding_type) VALUES'.
-			' ('.$id_media.', "video")');
+			' (id_media_file, id_organizatoin, transcoding_type) VALUES'.
+			' ('.$id_media_file.', "video")');
 		$post = array(
-			'order_id_' => $data->insert_id,
+			'order_id_' => $this->_mysqli->insert_id,
 			'file_in_' => $input_file,
 			'path_in_' => $input_dir.'/',
 			'file_out_' => $input_file,
 			'path_out_' => $this->_output_dir.$id_organization.'/',
 			'path_final_' => $this->_final_path.$id_organization.'/',
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_video_default'),
-			'validwf' => 'ok'
+			'validWf' => 'ok'
 		);
 		return array(
 			'data' => exec_post($post),
@@ -39,21 +39,21 @@ class WorkFlowModel extends Model {
 		);
 	}
 
-	public function transcodingImage($id_media, $input_file, $input_dir, $id_organization) {
+	public function transcodingImage($id_media_file, $input_file, $input_dir, $id_organization) {
 		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "image" AND upload = 1');
 		$profile = $data->fetch_assoc();
 		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
-			' (id_media, transcoding_type) VALUES'.
-			' ('.$id_media.', "image")');
+			' (id_media_file, transcoding_type) VALUES'.
+			' ('.$id_media_file.', "image")');
 		$post = array(
-			'order_id_' => $data->insert_id,
+			'order_id_' => $this->_mysqli->insert_id,
 			'file_in_' => $input_file,
 			'path_in_' => $input_dir.'/',
 			'file_out_' => $input_file,
 			'path_out_' => $this->_output_dir.$id_organization.'/',
 			'path_final_' => $this->_final_path.$id_organization.'/',
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_image_default'),
-			'validwf' => 'ok'
+			'validWf' => 'ok'
 		);
 		return array(
 			'data' => exec_post($post),
@@ -61,21 +61,21 @@ class WorkFlowModel extends Model {
 		);
 	}
 
-	public function transcodingAudio($id_media, $input_file, $input_dir, $id_organization) {
+	public function transcodingAudio($id_media_file, $input_file, $input_dir, $id_organization) {
 		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "audio" AND upload = 1');
 		$profile = $data->fetch_assoc();
 		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
-			' (id_media, transcoding_type) VALUES'.
-			' ('.$id_media.', "audio")');
+			' (id_media_file, transcoding_type) VALUES'.
+			' ('.$id_media_file.', "audio")');
 		$post = array(
-			'order_id_' => $data->insert_id,
+			'order_id_' => $this->_mysqli->insert_id,
 			'file_in_' => $input_file,
 			'path_in_' => $input_dir.'/',
 			'file_out_' => $input_file,
 			'path_out_' => $this->_output_dir.$id_organization.'/',
 			'path_final_' => $this->_final_path.$id_organization.'/',
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_audio_default'),
-			'validwf' => 'ok'
+			'validWf' => 'ok'
 		);
 		return array(
 			'data' => exec_post($post),
@@ -83,24 +83,24 @@ class WorkFlowModel extends Model {
 		);
 	}
 
-	public function transcodingOther($id_media, $input_file, $input_dir, $id_organization) {
+	public function transcodingOther($id_media_file, $input_file, $input_dir, $id_organization) {
 		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "other" AND upload = 1');
 		$profile = $data->fetch_assoc();
-		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
-			' (id_media, transcoding_type) VALUES'.
-			' ('.$id_media.', "other")');
+		$data_order = $this->_mysqli->query('INSERT INTO '.$this->_table.
+			' (id_media_file, transcoding_type) VALUES'.
+			' ('.$id_media_file.', "other")');
 		$post = array(
-			'order_id_' => $data->insert_id,
+			'order_id_' => $this->_mysqli->insert_id,
 			'file_in_' => $input_file,
 			'path_in_' => $input_dir.'/',
 			'file_out_' => $input_file,
 			'path_out_' => $this->_output_dir.$id_organization.'/',
 			'path_final_' => $this->_final_path.$id_organization.'/',
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_other_default'),
-			'validwf' => 'ok'
+			'validWf' => 'ok'
 		);
 		return array(
-			'data' => exec_post($post),
+			'data' => $this->exec_post($post),
 			'error' => ($this->_mysqli->error) ? 'transcodingOther: ' . $this->_mysqli->error : '',
 		);
 	}
