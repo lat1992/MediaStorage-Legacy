@@ -374,8 +374,8 @@ class MediaManager {
 			$media_user_extras = $this->_toolboxManager->mysqliResultToArray($media_extras_user_data);
 			$media_user_extras = $this->_mediaExtraManager->formatMediaExtraDataForView($media_user_extras);
 
-			$return_array[$cpt_array] = $content;
-			$return_array[$cpt_array]['extra'] = array();
+			$return_array[$cpt_return_array] = $content;
+			$return_array[$cpt_return_array]['extra'] = array();
 
             foreach ($media_extra as $id_info_field => $value) {
 
@@ -420,14 +420,13 @@ class MediaManager {
 						$user_value = YES;
 				}
 
-                $return_array[$cpt_array]['extra'][$cpt_array]['key'] = $value['data'][0]['data'];
-				$return_array[$cpt_array]['extra'][$cpt_array]['value'] = $user_value;
+                $return_array[$cpt_return_array]['extra'][$cpt_array]['key'] = $value['data'][0]['data'];
+				$return_array[$cpt_return_array]['extra'][$cpt_array]['value'] = $user_value;
 
 				$cpt_array++;
 			}
 			$cpt_return_array++;
 		}
-
 		return $return_array;
 	}
 }

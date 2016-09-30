@@ -4,6 +4,9 @@ require_once('CoreBundle/managers/MediaExtraFieldManager.php');
 require_once('CoreBundle/managers/MediaExtraFieldLanguageManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
 require_once('CoreBundle/managers/GroupLanguageManager.php');
+require_once('CoreBundle/managers/MediaTypeManager.php');
+require_once('CoreBundle/managers/ToolboxManager.php');
+require_once('CoreBundle/managers/MediaTypeFieldManager.php');
 
 class MediaExtraFieldController {
 
@@ -11,6 +14,9 @@ class MediaExtraFieldController {
 	private $_mediaExtraFieldLanguageManager;
 	private $_organizationManager;
 	private $_groupLanguageManager;
+	private $_mediaTypeManager;
+	private $_mediaTypeFieldManager;
+	private $_toolboxManager;
 
 	private $_errorArray;
 
@@ -19,6 +25,9 @@ class MediaExtraFieldController {
 		 $this->_organizationManager = new OrganizationManager();
 		 $this->_groupLanguageManager = new GroupLanguageManager();
 		 $this->_mediaExtraFieldLanguageManager = new MediaExtraFieldLanguageManager();
+		 $this->_mediaTypeManager = new MediaTypeManager();
+		 $this->_mediaTypeFieldManager = new MediaTypeFieldManager();
+		 $this->_toolboxManager = new ToolboxManager();
 
 		 $this->_errorArray = array();
 	}
@@ -109,11 +118,18 @@ class MediaExtraFieldController {
 						$return_value = $this->_mediaExtraFieldLanguageManager->mediaExtraFieldLanguageCreateDb($_POST['id_field_mediastorage'], $key, $value);
 						$this->mergeErrorArray($return_value);
 					}
-
 					if (count($this->_errorArray) == 0) {
-						$_SESSION['flash_message'] = ACTION_SUCCESS;
-						header('Location:' . '?page=list_media_extra_field_root&id_organization=' . $_GET['id_organization']);
-						exit;
+
+						$_POST['id_type_mediastorage'] = $_POST['id_mediatype_mediastorage'];
+						$_POST['id_media_extra_field_mediastorage'] = $_POST['id_field_mediastorage'];
+
+						$this->_mediaTypeFieldManager->mediaTypeFieldCreateDb();
+
+						if (count($this->_errorArray) == 0) {
+							$_SESSION['flash_message'] = ACTION_SUCCESS;
+							header('Location:' . '?page=list_media_extra_field_root&id_organization=' . $_GET['id_organization']);
+							exit;
+						}
 					}
 				}
 			}
@@ -128,6 +144,9 @@ class MediaExtraFieldController {
 		$groupLanguages = $this->_groupLanguageManager->getGroupLanguageByOrganizationIdDb($id_organization);
 		$this->mergeErrorArray($groupLanguages);
 
+		$mediaTypes_data = $this->_mediaTypeManager->getAllMediaTypesDb();
+		$mediaTypes = $this->_toolboxManager->mysqliResultToArray($mediaTypes_data);
+
 		$title = MEDIA_EXTRA_FIELD_CREATION_TITLE;
 
 		include ('RootBundle/views/media_extra_field/media_extra_field_create.php');
@@ -139,6 +158,8 @@ class MediaExtraFieldController {
 		$id_organization = $mediaExtraFields['id_organization'];
 		$groupLanguages = $this->_groupLanguageManager->getGroupLanguageByOrganizationIdDb($id_organization);
 		$mediaExtraFieldLanguages = $this->_mediaExtraFieldLanguageManager->getMediaExtraFieldLanguagesDb($_GET['media_extra_field_id']);
+		$mediaTypes_data = $this->_mediaTypeManager->getAllMediaTypesDb();
+		$mediaTypes = $this->_toolboxManager->mysqliResultToArray($mediaTypes_data);
 
 		$this->mergeErrorArray($mediaExtraFields);
 		$this->mergeErrorArray($organizations);

@@ -1,10 +1,16 @@
 <?php
 
+require_once('CoreBundle/managers/OrganizationManager.php');
+
 class DashboardController {
+
+	private $_organizationManager;
 
 	private $_errorArray;
 
 	public function __construct() {
+		$this->_organizationManager = new OrganizationManager();
+
 		 $this->_errorArray = array();
 	}
 
@@ -21,6 +27,11 @@ class DashboardController {
 	}
 
 	public function showAction() {
+
+		$organizations = $this->_organizationManager->getAllOrganizationsDb();
+
+		$this->mergeErrorArray($organizations);
+
 		include ('RootBundle/views/dashboard/dashboard.php');
 	}
 

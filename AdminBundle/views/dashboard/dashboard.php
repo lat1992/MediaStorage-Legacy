@@ -8,8 +8,6 @@ require_once('ClientBundle/views/layout/header.php');
 
 	<div id="container">
 
-
-
 	</div>
 
 <?php

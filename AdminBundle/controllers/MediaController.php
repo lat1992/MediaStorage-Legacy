@@ -361,7 +361,7 @@ class MediaController {
 								$return_value = $this->_mediaFileManager->createMediaFileDb();
 								$this->mergeErrorArray($return_value);
 								if (count($this->_errorArray) == 0) {
-									$this->_workflowManager->transcoding($return_value['id'], $_POST['filepath_mediastorage']);
+									// $this->_workflowManager->transcoding($return_value['id'], $_POST['filepath_mediastorage']);
 								}
 							}
 						}
@@ -663,6 +663,7 @@ class MediaController {
 
         $this->_uploadHandler->allowedExtensions = array('jpeg', 'png', 'jpg');
         $this->_uploadHandler->inputName = "qqfile";
+		$this->_uploadHandler->chunksFolder = $chunkpath;
 
         $method = $_SERVER["REQUEST_METHOD"];
 

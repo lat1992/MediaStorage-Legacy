@@ -55,7 +55,7 @@ require_once('ClientBundle/views/layout/header.php');
 				elseif (strcmp($media_files[0]['type'], "IMG") == 0) {
 ?>
 					<div>
-						<img src="http://essilor.mediastoragekvi.fr/uploads/files/<?= $media_files[0]['filepath'] ?>" style="width: 100%" />
+						<img src="<?= $media_files[0]['filepath'] ?>" style="width: 100%" />
 					</div>
 <?php
 				}
@@ -95,7 +95,7 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
 					<div class="video_content">
 						<div style="display: none">
-							<img src="http://essilor.mediastoragekvi.fr/uploads/files/<?= $media_file['filepath'] ?>" style="width: 100%" />
+							<img src="<?= $media_files[0]['filepath'] ?>" style="width: 100%" />
 						</div>
 						<span class="content_thumbnail_header"><?= $media_file['type'] ?></span>
 						<span><?= $media_file['filename'] ?></span>

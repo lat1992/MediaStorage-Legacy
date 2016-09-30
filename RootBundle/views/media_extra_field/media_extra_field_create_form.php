@@ -12,6 +12,16 @@
 		</select>
 		<div class="clear"></div>
 
+		<label for="id_mediatype_mediastorage"><?= MEDIA_TYPE ?> : </label>
+		<select name="id_mediatype_mediastorage" id="id_mediatype_mediastorage" />
+<?php
+			foreach ($mediaTypes as $mediaType) {
+				echo '<option value="' . $mediaType['id'] . '" ' . '>' . $mediaType['type'] . '</option>';
+			}
+?>
+		</select>
+		<div class="clear"></div>
+
 		<label for="type_mediastorage"><?= TYPE ?> : </label>
 		<select name="type_mediastorage" id="type_mediastorage"/>
 			<option value="Text" <?php if (isset($mediaExtraField['type']) && !strcmp('Text', $mediaExtraField['type'])) echo ' selected' ?>><?= TEXT ?></option>

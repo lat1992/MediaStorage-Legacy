@@ -10,10 +10,6 @@ class MediaTypeManager {
 		$this->_mediaType = new MediaType();
 	}
 
-	public function getAllMediaTypesWithMediaTypeLanguageAndLanguageDb() {
-		return $this->_mediaType->findAllMediaTypesWithMediaTypeLanguageAndLanguage();
-	}
-
 	public function getAllMediaTypesDb() {
 		return $this->_mediaType->findAllMediaTypes();
 	}
