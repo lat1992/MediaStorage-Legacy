@@ -21,13 +21,15 @@ class MediaFileManager {
 	public function getAllMediaFilesByDirectory() {
 		$return_array = array();
 
-		if ($handle = opendir('uploads/media_files/files/' . $_SESSION['id_organization'])) {
-		    while (false !== ($entry = readdir($handle))) {
-		    	if (strcmp('.', $entry) && strcmp('..', $entry) && strcmp('tmp', $entry)) {
-		        	$return_array[] = $entry;
-		    	}
-		    }
-		    closedir($handle);
+		if (is_dir ( 'uploads/media_files/files/' . $_SESSION['id_organization'] )) {
+			if ($handle = opendir('uploads/media_files/files/' . $_SESSION['id_organization'])) {
+			    while (false !== ($entry = readdir($handle))) {
+			    	if (strcmp('.', $entry) && strcmp('..', $entry) && strcmp('tmp', $entry)) {
+			        	$return_array[] = $entry;
+			    	}
+			    }
+			    closedir($handle);
+			}
 		}
 
 		return $return_array;
