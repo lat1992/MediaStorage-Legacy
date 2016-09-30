@@ -40,12 +40,11 @@ require_once('ClientBundle/views/layout/header.php');
 <?php
 		}
 		else {
-
 			if  (isset($media_files[0])) {
 ?>
 				<div id="content_display_div">
 <?php
-				if (strcmp($media_file['type'], "MRES") == 0) {
+				if (strcmp($media_files[0]['type'], "MRES") == 0) {
 ?>
 					<video controls preload="none" width="100%">
 			    		<source src="http://essilor.mediastoragekvi.fr/uploads/files/<?= $media_file['filepath'] ?>" type="<?= $media_file['mime_type'] ?>">
@@ -53,10 +52,17 @@ require_once('ClientBundle/views/layout/header.php');
 					</video>
 <?php
 				}
-				elseif (strcmp($media_file['type'], "IMG") == 0) {
+				elseif (strcmp($media_files[0]['type'], "IMG") == 0) {
 ?>
-					<div style="display: none">
-						<img src="http://essilor.mediastoragekvi.fr/uploads/files/<?= $media_file['filepath'] ?>" style="width: 100%" />
+					<div>
+						<img src="http://essilor.mediastoragekvi.fr/uploads/files/<?= $media_files[0]['filepath'] ?>" style="width: 100%" />
+					</div>
+<?php
+				}
+				else {
+?>
+					<div id="content_display_div" style="text-align: center;height: 200px;line-height: 200px; background-color: #efefef">
+						<p style="margin: 0"><?= NO_CONTENT_PREVIEW ?></p>
 					</div>
 <?php
 				}

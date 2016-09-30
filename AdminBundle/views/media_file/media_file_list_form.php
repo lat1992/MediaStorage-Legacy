@@ -4,6 +4,7 @@
 		<th><?= FILENAME ?></th>
 		<th><?= RIGHT_DOWNLOAD ?></th>
 		<th><?= RIGHT_PREVIEW ?></th>
+		<th></th>
 	</tr>
 
 <?php
@@ -26,6 +27,7 @@
 				<td><?= $media_file ?></td>
 				<td><input type="hidden" name="media_file_mediastorage[<?= $key ?>][right_download]" checked value="0" /><input type="checkbox" name="media_file_mediastorage[<?= $key ?>][right_download]" checked value="1" /></td>
 				<td><input type="hidden" name="media_file_mediastorage[<?= $key ?>][right_preview]" checked value="0" /><input type="checkbox" name="media_file_mediastorage[<?= $key ?>][right_preview]" checked value="1" /></td>
+				<td><a href="#"><?= QUALIFY ?></a></td>
 			</tr>
 <?php
 		}

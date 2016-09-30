@@ -10,6 +10,7 @@ require_once('CoreBundle/managers/MediaExtraFieldManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
 require_once('CoreBundle/managers/DesignManager.php');
 require_once('AdminBundle/ressources/fine-uploader-server/handler.php');
+require_once('ToolBundle/managers/WorkFlowManager.php');
 
 class MediaController {
 
@@ -23,6 +24,7 @@ class MediaController {
 	private $_toolboxManager;
 	private $_designManager;
 	private $_uploadHandler;
+	private $_workflowManager;
 
 	private $_errorArray;
 
@@ -37,6 +39,7 @@ class MediaController {
 		$this->_toolboxManager = new ToolboxManager();
 		$this->_designManager = new DesignManager();
 		$this->_uploadHandler = new UploadHandler();
+		$this->_workflowManager = new WorkFlowManager();
 
 		$this->_errorArray = array();
 	}
@@ -357,6 +360,9 @@ class MediaController {
 								$this->_mediaFileManager->preparePostDataForMediaFileCreation($media_file);
 								$return_value = $this->_mediaFileManager->createMediaFileDb();
 								$this->mergeErrorArray($return_value);
+								if (count($this->_errorArray) == 0) {
+									$this->_workflowManager->transcoding($return_value['id'], $_POST['filepath_mediastorage']);
+								}
 							}
 						}
 					}
