@@ -40,6 +40,51 @@ class Cart extends Model {
 		);
 	}
 
+	public function findAllDeliveryById($id_user) {
+		$id_user = $this->_mysqli->real_escape_string($id_user);
+		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, cart.comment FROM cart'.
+			' WHERE cart.type LIKE "Delivery" AND cart.id_user = '.$id_user);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllDeliveryById: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findAllCutByUserId($id_user) {
+		$id_user = $this->_mysqli->real_escape_string($id_user);
+		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, chapter.tc_in, chapter.tc_out FROM cart'.
+			' JOIN chapter ON chapter.id = cart.id_chapter'.
+			' WHERE cart.type LIKE "Cut" AND cart.id_user = '.$id_user);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllCutByUserId: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findAllDownloadByUserId($id_user) {
+		$id_user = $this->_mysqli->real_escape_string($id_user);
+		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file FROM cart'.
+			' WHERE cart.type LIKE "Download" AND cart.id_user = '.$id_user);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllDownloadByUserId: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findAllTranscodeByUserId($id_user) {
+		$id_user = $this->_mysqli->real_escape_string($id_user);
+		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, cart.id_workflow FROM cart'.
+			' WHERE cart.type LIKE "Transcode" AND cart.id_user = '.$id_user);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllTranscodeByUserId: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function createNewCart($data) {
 		$id_user = $this->_mysqli->real_escape_string($data['id_user_mediastorage']);
 		$id_media = $this->_mysqli->real_escape_string($data['id_media_mediastorage']);
@@ -107,6 +152,15 @@ class Cart extends Model {
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'deleteCartById: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function emptyCart() {
+		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table . ' WHERE id_user = ' . $_SESSION['id_user_mediastorage']);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'emptyCart: ' . $this->_mysqli->error : '',
 		);
 	}
 }

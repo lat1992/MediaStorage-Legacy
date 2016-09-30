@@ -11,6 +11,6 @@
 		<li><a href="?page=program"><?= PROGRAM_MENU ?></a></li>
 		<li><a href="?page=list_content"><?= CONTENT_MENU ?></a></li>
 		<li><a href="?page=cart"><?= CART ?></a></li>
-		<li><a href="?page=sharelist"><?= SHARELIST ?></a></li>
+		<!--<li><a href="?page=sharelist"><?= SHARELIST ?></a></li>-->
 	</ul>
 </div>

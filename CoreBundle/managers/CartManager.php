@@ -18,6 +18,22 @@ class CartManager {
 		return $this->_cartModel->findAllCartsByUserId($_SESSION['user_id_mediastorage'], $_SESSION['id_language_mediastorage']);
 	}
 
+	public function getAllDeliveryDB() {
+		return $this->_cartModel->findAllDeliveryByUserId($_SESSION['user_id_mediastorage']);
+	}
+
+	public function getAllCutDB() {
+		return $this->_cartModel->findAllCutByUserId($_SESSION['user_id_mediastorage']);
+	}
+
+	public function getAllDownloadDB() {
+		return $this->_cartModel->findAllDownloadByUserId($_SESSION['user_id_mediastorage']);
+	}
+
+	public function getAllTranscode() {
+		return $this->_cartModel->findAllTranscodeByUserId($_SESSION['user_id_mediastorage']);
+	}
+
 	public function formatCartArrayWithPostData() {
 		$cart = array();
 
@@ -48,4 +64,9 @@ class CartManager {
 	public function removeCartByIdDb($cart_id) {
 		return $this->_cartModel->deleteCartById($cart_id);
 	}
+
+	public function emptyCartDb() {
+		return $this->_cartModel->emptyCart();
+	}
+
 }

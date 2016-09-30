@@ -9,6 +9,13 @@ databasename = 'mediastorage'
 [language]
 default = 'fr_FR'
 
+[mail]
+server = ''
+service = ''
+it-service = ''
+regie = ''
+other = ''
+
 [WorkFlow]
 url = ''
 
