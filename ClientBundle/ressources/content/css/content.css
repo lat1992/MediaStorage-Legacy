@@ -79,11 +79,10 @@ div#download_link_div {
 #download_link_table a {
 	display: inline-block;
 	width: 100%;
-	height: 100%;
 	text-decoration: none;
 	text-align: center;
-	padding: 10px 0 0 0;
 	color: black;
+	line-height: 40px
 }
 
 #download_link_table a:hover {
