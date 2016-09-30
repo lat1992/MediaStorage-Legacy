@@ -4,6 +4,7 @@ require_once('CoreBundle/managers/CartManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
 require_once('CoreBundle/managers/DesignManager.php');
 require_once('CoreBundle/managers/UserManager.php');
+require_once('CoreBundle/managers/MediaFileManager.php');
 require_once('ToolBundle/managers/WorkFlowManager.php');
 
 class CartPageController {
@@ -11,6 +12,7 @@ class CartPageController {
 	private $_cartManager;
 	private $_toolboxManager;
 	private $_designManager;
+	private $_mediaFileManager;
 	private $_workFlowManager;
 	private $_userManager;
 
@@ -20,6 +22,7 @@ class CartPageController {
 		$this->_cartManager = new CartManager();
 		$this->_toolboxManager = new ToolboxManager();
 		$this->_designManager = new DesignManager();
+		$this->_mediaFileManager = new MediaFileManager();
 		$this->_workFlowManager = new WorkFlowManager();
 		$this->_userManager = new UserManager();
 
@@ -129,9 +132,12 @@ class CartPageController {
 
 	private function showDownloadLink($cart_data, $id_user) {
 		$row = $cart_data->fetch_assoc();
-		$download_list = $this->generateDownloadLink($row['id_media_file']);
-
-		include ('ClientBundle/views/cart/download_list.php');
+		$file_data = $this->_mediaFileManager->getMediaFileById($row['id_media_file']);
+		$this->mergeErrorArray($file_data);
+		if (count($this->_errorArray) == 0) {
+			$download = $file_data['data']->fetch_assoc();
+		}
+		include ('ClientBundle/views/cart/cart_download_list.php');
 	}
 
 	private function sendEmailForDelivery($cart_data, $id_user) {

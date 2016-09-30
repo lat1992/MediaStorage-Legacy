@@ -86,6 +86,13 @@ class MediaFileManager {
 		return $enums;
 	}
 
+	public function getMediaFileById($id_media_file) {
+		$media_file = $this->_mediaFileModel->findMediaFileByMediaFileId($id_media_file);
+		/*
+		** TODO
+		*/
+	}
+
 	public function getMediaFile($id_media_file, $file_server) {
 		$media_file = $this->_mediaFileModel->findMediaFileByMediaFileId($id_media_file);
 		if (!empty($media_file['error'])) {
