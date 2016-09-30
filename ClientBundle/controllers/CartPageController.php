@@ -3,12 +3,16 @@
 require_once('CoreBundle/managers/CartManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
 require_once('CoreBundle/managers/DesignManager.php');
+require_once('CoreBundle/managers/UserManager.php');
+require_once('ToolBundle/managers/WorkFlowManager.php');
 
 class CartPageController {
 
 	private $_cartManager;
 	private $_toolboxManager;
 	private $_designManager;
+	private $_workFlowManager;
+	private $_userManager;
 
 	private $_errorArray;
 
@@ -16,6 +20,15 @@ class CartPageController {
 		$this->_cartManager = new CartManager();
 		$this->_toolboxManager = new ToolboxManager();
 		$this->_designManager = new DesignManager();
+		$this->_workFlowManager = new WorkFlowManager();
+		$this->_userManager = new UserManager();
+
+		$settings = parse_ini_file('config.ini.php', true);
+		$this->_mail_addr_server = $settings['mail']['server'];
+		$this->_mail_addr_regie = $settings['mail']['regie'];
+		$this->_mail_addr_it = $settings['mail']['it-service'];
+		$this->_mail_addr_other = $settings['mail']['other'];
+
 
 		$this->_errorArray = array();
 	}
@@ -53,6 +66,35 @@ class CartPageController {
 		include ('ClientBundle/views/cart/cart.php');
 	}
 
+	public function validateCartAction() {
+		$cart_transcode = $this->_cartManager->getAllTranscode();
+		$this->mergeErrorArray($cart_transcode);
+		$cart_delivery = $this->_cartManager->getAllDeliveryDB();
+		$this->mergeErrorArray($cart_delivery);
+		$cart_cut = $this->_cartManager->getAllCutDB();
+		$this->mergeErrorArray($cart_cut);
+		$cart_download = $this->_cartManager->getAllDownloadDB();
+		$this->mergeErrorArray($cart_download);
+
+		if ($cart_delivery['data']->num_rows)
+			$this->mergeErrorArray($this->sendEmailForDelivery($cart_delivery['data'], $_SESSION['id_user_mediastorage']));
+		if ($cart_download['data']->num_rows)
+			$this->mergeErrorArray($this->showDownloadLink($cart_download['data'], $_SESSION['id_user_mediastorage']));
+		if ($cart_cut['data']->num_rows)
+			$this->mergeErrorArray($this->_workFlowManager->cutVideo($cart_cut['data']));
+		if ($cart_transcode['data']->num_rows)
+			$this->mergeErrorArray($this->_workFlowManager->transcodeCart($cart_transcode['data']));
+
+		$cart_data = $this->_cartManager->emptyCart();
+		$this->mergeErrorArray($cart_data);
+		if (count($this->_errorArray) == 0) {
+			$_SESSION['flash_message'] = ACTION_SUCCESS;
+			header('Location:' . '?page=home');
+			exit;
+		}
+		include ('CoreBundle/views/common/error.php');
+	}
+
 	public function createCartAction() {
 		$_POST['id_user_mediastorage'] = $_SESSION['user_id_mediastorage'];
 		$_POST['id_media_mediastorage'] = $_GET['media_id'];
@@ -83,5 +125,24 @@ class CartPageController {
 		}
 
 		include ('ClientBundle/views/cart/cart.php');
+	}
+
+	private function showDownloadLink($cart_data, $id_user) {
+		$row = $cart_data->fetch_assoc();
+		$download_list = $this->generateDownloadLink($row['id_media_file']);
+
+		include ('ClientBundle/views/cart/download_list.php');
+	}
+
+	private function sendEmailForDelivery($cart_data, $id_user) {
+		$user_data = $this->_userManager->getUserByIdDb($id_user);
+		$row = $user_data['data']->fetch_assoc();
+		$row_cart = $cart_data->fetch_assoc();
+		
+		$to = $this->_mail_addr_regie.';'.$this->_mail_addr_it;
+		$cc = $this->_mail_addr_other;
+		$headers = 'From: ' . $this->_mail_addr_server . '\r\n' .
+		'CC: ' . $cc;
+		mail($to, MAIL_SUBJECT_DELIVERY, sprintf(MAIL_BODY_DELIVERY, $id_user, $row['email'], $_SESSION['id_platform_organization'], $row_cart['id_media_file']), $headers);
 	}
 }

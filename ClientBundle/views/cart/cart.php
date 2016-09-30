@@ -61,7 +61,9 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
         </tbody>
     </table>
-
+    <div class="validate_cart">
+    <a id="validate_button" class="form_button" href="?page=validate_cart"><?= VALIDATE ?></a>
+    </div>
 <?php
 
 require_once('ClientBundle/views/layout/footer.php');

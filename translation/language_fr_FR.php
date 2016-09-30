@@ -342,3 +342,6 @@ define('MORE_OPTION', 'Plus d\'option');
 define('DELIVERY', 'Livraison');
 define('NO_CONTENT_PREVIEW', 'Aucune prévisualisation disponible');
 define('MULTIPLE_QUALIFICATION', 'Qualification multiple');
+
+define('MAIL_SUBJECT_DELIVERY', '[MediaStorage]Demande de livraison');
+define('MAIL_BODY_DELIVERY', 'Le client %d (Email: %s) du plateform MediaStorage %d a demandé une livraison de %d.\r\nMediaStorage');

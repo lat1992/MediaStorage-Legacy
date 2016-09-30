@@ -18,7 +18,7 @@ class WorkFlowModel extends Model {
 	}
 
 	public function transcodingVideo($id_media, $input_file, $input_dir, $id_organization) {
-		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type = "video"');
+		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "video" AND upload = 1');
 		$profile = $data->fetch_assoc();
 		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
 			' (id_media, id_organizatoin, transcoding_type) VALUES'.
@@ -40,7 +40,7 @@ class WorkFlowModel extends Model {
 	}
 
 	public function transcodingImage($id_media, $input_file, $input_dir, $id_organization) {
-		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type = "image"');
+		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "image" AND upload = 1');
 		$profile = $data->fetch_assoc();
 		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
 			' (id_media, transcoding_type) VALUES'.
@@ -62,7 +62,7 @@ class WorkFlowModel extends Model {
 	}
 
 	public function transcodingAudio($id_media, $input_file, $input_dir, $id_organization) {
-		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type = "audio"');
+		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "audio" AND upload = 1');
 		$profile = $data->fetch_assoc();
 		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
 			' (id_media, transcoding_type) VALUES'.
@@ -84,7 +84,7 @@ class WorkFlowModel extends Model {
 	}
 
 	public function transcodingOther($id_media, $input_file, $input_dir, $id_organization) {
-		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type = "other"');
+		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "other" AND upload = 1');
 		$profile = $data->fetch_assoc();
 		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
 			' (id_media, transcoding_type) VALUES'.
@@ -120,7 +120,7 @@ class WorkFlowModel extends Model {
 		$row = $data->fetch_assoc();
 		if (isset($row['id_media'])) {
 			$mime = mime_content_type($filepath . $filename);
-			$data $this->_mysqli->query('INSERT INTO media_file (id_media, filename, filepath, right_download, right_preview, metadata, mime_type) VALUES ('. $row['id_media'] .', "'. $filename .'", "'. $filepath .'", '.$right_download.', '.$right_preview.', "'.$metadata.'", "'. $mime_type .'")');
+			$data = $this->_mysqli->query('INSERT INTO media_file (id_media, filename, filepath, right_download, right_preview, metadata, mime_type) VALUES ('. $row['id_media'] .', "'. $filename .'", "'. $filepath .'", '.$right_download.', '.$right_preview.', "'.$metadata.'", "'. $mime_type .'")');
 		}
 
 		return array(

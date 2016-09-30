@@ -17,6 +17,10 @@ td.button_td a {
 	/*padding-top: 10px;*/
 }
 
+.validate_cart {
+	text-align: center;
+}
+
 .button_td {
 	padding: 0 10px 0 10px;
 	vertical-align: middle;

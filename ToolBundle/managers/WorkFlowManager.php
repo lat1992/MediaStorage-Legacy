@@ -22,6 +22,10 @@ class WorkFlowManager {
 			return $this->_workFlowModel->transcodingOther($id_file, pathinfo($file_path, PATHINFO_FILENAME), pathinfo($file_path, PATHINFO_DIRNAME), $_SESSION['id_organization']);
 	}
 
+	public function transcodeCart() {
+		
+	}
+
 	public function postProductionWorkFlow($task_id, $filepath, $filename, $right_download, $right_preview, $metadata) {
 		return $this->_workFlowModel->postProduction($task_id, $filepath, $filename, $right_download, $right_preview, $metadata);
 	}

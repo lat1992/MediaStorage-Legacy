@@ -17,6 +17,7 @@ $this->_route[] = array('ajax_refresh_live_search', 'ClientBundle/controllers/Se
 $this->_route[] = array('cart', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'cartPageAction');
 $this->_route[] = array('add_cart', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'createCartAction');
 $this->_route[] = array('delete_cart', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'deleteCartAction');
+$this->_route[] = array('validate_cart', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'validateCartAction');
 
 $this->_route[] = array('sharelist', 'ClientBundle/controllers/SharelistPageController.php', 'SharelistPageController', 'sharelistPageAction');
 $this->_route[] = array('create_sharelist', 'ClientBundle/controllers/SharelistPageController.php', 'SharelistPageController', 'createSharelistAction');
