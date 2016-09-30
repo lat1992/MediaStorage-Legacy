@@ -342,3 +342,4 @@ define('MORE_OPTION', 'Plus d\'option');
 define('DELIVERY', 'Livraison');
 define('NO_CONTENT_PREVIEW', 'Aucune prévisualisation disponible');
 define('MULTIPLE_QUALIFICATION', 'Qualification multiple');
+define('QUALIFY', 'Qualifier');
