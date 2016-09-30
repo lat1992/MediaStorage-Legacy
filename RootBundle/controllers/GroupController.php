@@ -94,6 +94,7 @@ class GroupController {
 				if (count($this->_errorArray) == 0) {
 
 					$_POST['id_group_mediastorage'] = $return_value['id'];
+					$_POST['id_default_language'] = $_SESSION['id_language_mediastorage'];
 					$return_value = $this->_organizationManager->organizationCreateDb();
 					$this->mergeErrorArray($return_value);
 

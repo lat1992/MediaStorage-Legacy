@@ -77,6 +77,7 @@ class UserController {
 
 	public function createAction() {
 		$user = array();
+		$id_organization = $_GET['id_organization'];
 
 		if (isset($_POST['id_user_create_mediastorage']) && (strcmp($_POST['id_user_create_mediastorage'], '98475') == 0)) {
 			$user = $this->_userManager->formatUserArrayWithPostData();

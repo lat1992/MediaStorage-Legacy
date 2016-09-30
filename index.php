@@ -27,7 +27,7 @@ if (isset($_GET['platform'])) {
 
 	$organizationManager = new OrganizationManager();
 
-	$_SESSION['id_platform_organization'] = $organizationManager->getOrganizationIdByReferenceDb($_GET['platform']);
+	 $organizationManager->getOrganizationIdByReferenceDb($_GET['platform']);
 
 	if (is_null($_SESSION['id_platform_organization']))
 		$page = 'error';
@@ -42,6 +42,7 @@ else if (isset($_SESSION['username_mediastorage']) && isset($_SESSION['role_medi
 	if ((isset($_SESSION['id_platform_organization'])) && (intval($_SESSION['id_platform_organization']) != intval($_SESSION['id_organization']))) {
 		if (isset($_SESSION['permits'][PERMIT_ROOT]) && isset($_SESSION['id_platform_organization'])) {
 			$_SESSION['id_organization'] = $_SESSION['id_platform_organization'];
+			$_SESSION['id_group'] = $_SESSION['id_platform_group'];
 		}
 		else {
 			session_unset();

@@ -76,7 +76,8 @@ class OrganizationManager {
 			return null;
 
 		while ($value = $return_value['data']->fetch_assoc()) {
-			return $value['id'];
+			$_SESSION['id_platform_organization'] = $value['id'];
+			$_SESSION['id_platform_group'] = $value['id_group'];
 		}
 
 		return null;

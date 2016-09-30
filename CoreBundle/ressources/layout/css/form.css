@@ -188,6 +188,10 @@ a#more_info_hide, #more_info_data {
     display: none;
 }
 
+#fine-uploader-thumbnails input {
+	width: 100%;
+}
+
 @media only screen and (max-width: 900px) {
 	#menu_text {
 		display: none;

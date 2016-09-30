@@ -175,6 +175,8 @@ exit;
 	}
 
 	public function findAllUsersWithOrganization($id_organization) {
+		$id_organization = $this->_mysqli->real_escape_string($id_organization);
+
 		$data = $this->_mysqli->query('SELECT '.$this->_table.'.id, username, '.$this->_table.'.id_organization, id_role, email, organization.name AS organization_name, role.role AS role_role FROM ' . $this->_table .
 			' LEFT JOIN organization ON '.$this->_table.'.id_organization = organization.id' .
 			' LEFT JOIN role ON id_role = role.id'.

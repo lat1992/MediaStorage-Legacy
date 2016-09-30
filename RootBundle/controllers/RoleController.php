@@ -101,6 +101,7 @@ class RoleController {
 
 	public function createAction() {
 		$role = array();
+		$id_organization = $_GET['id_organization'];
 
 		if (isset($_POST['id_role_create_mediastorage']) && (strcmp($_POST['id_role_create_mediastorage'], '984156') == 0)) {
 			$role = $this->_roleManager->formatRoleArrayWithPostData();

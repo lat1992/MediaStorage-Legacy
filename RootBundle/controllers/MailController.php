@@ -87,6 +87,7 @@ class MailController {
 
 	public function createAction() {
 		$mail = array();
+		$id_organization = $_GET['id_organization'];
 
 		if (isset($_POST['id_mail_create_mediastorage']) && (strcmp($_POST['id_mail_create_mediastorage'], '754351') == 0)) {
 			$mail = $this->_mailManager->formatMailArrayWithPostData();

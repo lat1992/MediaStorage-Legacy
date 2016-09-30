@@ -44,6 +44,7 @@ class FolderLanguageManager {
 			$data['data_mediastorage'] = $value['data'];
 			$data['id_language_mediastorage'] = $value['id_language'];
 			$data['id_folder_mediastorage'] = $_POST['id_folder_mediastorage'];
+			$data['description_mediastorage'] = $value['description'];
 
 			$return_value = $this->_folderLanguageModel->createNewFolderLanguage($data);
 
