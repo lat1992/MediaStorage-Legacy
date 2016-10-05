@@ -3,6 +3,7 @@
 require_once('CoreBundle/managers/UserManager.php');
 require_once('CoreBundle/managers/DesignManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
+require_once('CoreBundle/managers/OrganizationTextManager.php');
 require_once('CoreBundle/managers/RoleManager.php');
 require_once('CoreBundle/managers/LanguageManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
@@ -12,6 +13,7 @@ class UserController {
 	private $_userManager;
 	private $_designManager;
 	private $_organizationManager;
+	private $_organizationTextManager;
 	private $_roleManager;
 	private $_languageManager;
 	private $_toolboxManager;
@@ -22,6 +24,7 @@ class UserController {
 		 $this->_userManager = new UserManager();
 		 $this->_designManager = new DesignManager();
 		 $this->_organizationManager = new OrganizationManager();
+		 $this->_organizationTextManager = new OrganizationTextManager();
 		 $this->_roleManager = new RoleManager();
 		 $this->_languageManager = new LanguageManager();
 		 $this->_toolboxManager = new ToolBoxManager();
@@ -62,7 +65,7 @@ class UserController {
 					$_SESSION['id_language_mediastorage'] = $result['id_default_language'];
 			}
 			if (isset($_SESSION['id_language_mediastorage'])) {
-				$organization = $this->_organizationManager->getOrganizationTextWithId($_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage']);
+				$organization = $this->_organizationTextManager->getOrganizationTextWithId($_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage']);
 				$this->mergeErrorArray($organization);
 				if (count($this->_errorArray) == 0) {
 					$text = $organization['data']->fetch_assoc();

@@ -110,7 +110,4 @@ class OrganizationManager {
 		return $this->_organizationModel->findOrganizationByReference($organization_reference);
 	}
 
-	public function getOrganizationTextWithId($organization_id, $language_id) {
-		return $this->_organizationModel->findOrganizationTextById($organization_id, $language_id);
-	}
 }

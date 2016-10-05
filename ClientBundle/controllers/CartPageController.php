@@ -6,6 +6,7 @@ require_once('CoreBundle/managers/DesignManager.php');
 require_once('CoreBundle/managers/UserManager.php');
 require_once('CoreBundle/managers/MediaFileManager.php');
 require_once('ToolBundle/managers/WorkFlowManager.php');
+require_once('CoreBundle/managers/OrganizationTextManager.php');
 
 class CartPageController {
 
@@ -15,6 +16,7 @@ class CartPageController {
 	private $_mediaFileManager;
 	private $_workFlowManager;
 	private $_userManager;
+	private $_organizationTextManager;
 
 	private $_errorArray;
 
@@ -25,6 +27,7 @@ class CartPageController {
 		$this->_mediaFileManager = new MediaFileManager();
 		$this->_workFlowManager = new WorkFlowManager();
 		$this->_userManager = new UserManager();
+		$this->_organizationTextManager = new OrganizationTextManager();
 
 		$settings = parse_ini_file('config.ini.php', true);
 		$this->_mail_addr_server = $settings['mail']['server'];
@@ -67,6 +70,27 @@ class CartPageController {
 		$title['title'] = CART;
 
 		include ('ClientBundle/views/cart/cart.php');
+	}
+
+	public function generalConditionPageAction() {
+
+		$general_condition_data = $this->_organizationTextManager->getOrganizationTextWithId($_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage']);
+
+		$this->mergeErrorArray($general_condition_data);
+		$text = $general_condition_data['data']->fetch_assoc();
+		if (isset($_SESSION['id_platform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
+
+		$title['title'] = GENERAL_CONDITION_TITLE;
+
+		include ('ClientBundle/views/cart/general_condition.php');
 	}
 
 	public function validateCartAction() {
@@ -144,4 +168,5 @@ class CartPageController {
 		'CC: ' . $cc;
 		mail($to, MAIL_SUBJECT_DELIVERY, sprintf(MAIL_BODY_DELIVERY, $id_user, $row['email'], $_SESSION['id_platform_organization'], $row_cart['id_media_file']), $headers);
 	}
+
 }
