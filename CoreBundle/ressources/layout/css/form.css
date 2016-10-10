@@ -53,6 +53,11 @@ div.add a {
 	text-align: center;
 }
 
+.page-text {
+    width: 1000px;
+    margin: 30px auto;
+}
+
 form {
 	display: inline-block;
 	width: 70%;
@@ -135,6 +140,11 @@ div.right-block-form {
 	display: inline-block;
 	float: left;
 	font-size: 0.7em;
+}
+
+.validate_form {
+	text-align: center;
+	margin: 20px auto 0 auto;
 }
 
 input.input_checkbox {
