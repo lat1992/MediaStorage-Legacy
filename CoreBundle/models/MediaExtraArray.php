@@ -22,9 +22,11 @@ class MediaExtraArray extends Model {
 	public function createNewMediaExtraArray($data) {
 		$element = $this->_mysqli->real_escape_string($data['element_mediastorage']);
 		$id_media_extra_field = $this->_mysqli->real_escape_string($data['id_media_extra_field_mediastorage']);
+		$id_language = $this->_mysqli->real_escape_string($data['id_language']);
+		$id_order = $this->_mysqli->real_escape_string($data['id_order']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(element, id_field)' .
-			' VALUES ("'. $element . '", ' . $id_media_extra_field . ');'
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(element, id_field, id_language, id_order)' .
+			' VALUES ("'. $element . '", ' . $id_media_extra_field . ',' . $id_language . ', ' . $id_order . ');'
 		);
 
 		return array(
@@ -36,9 +38,11 @@ class MediaExtraArray extends Model {
 	public function updateMediaExtraArrayWithId($data, $media_extra_array_id) {
 		$element = $this->_mysqli->real_escape_string($data['element_mediastorage']);
 		$id_media_extra_field = $this->_mysqli->real_escape_string($data['id_media_extra_field_mediastorage']);
+		$id_language = $this->_mysqli->real_escape_string($data['id_language']);
+		$id_order = $this->_mysqli->real_escape_string($data['id_order']);
 
 		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
-			' SET id_field = ' . $id_media_extra_field . ', element = "' . $element . '"' .
+			' SET id_field = ' . $id_media_extra_field . ', element = "' . $element . '", id_language = ' . $id_language . ', id_order=' . $id_order .
 			' WHERE id = ' . $media_extra_array_id . ';'
 		);
 
@@ -70,6 +74,47 @@ class MediaExtraArray extends Model {
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'deleteMediaExtraArrayById: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function deleteMediaExtraArrayByIdFieldAndIdOrder($id_field, $id_order) {
+		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
+			' WHERE id_field = ' . $id_field . ' AND id_order = ' . $id_order . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'deleteMediaExtraArrayByIdFieldAndIdOrder: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findMediaExtraArrayByIdField($id_field) {
+		$id_field = $this->_mysqli->real_escape_string($id_field);
+
+		$data = $this->_mysqli->query('SELECT id, element, id_field, id_language, id_order' .
+									' FROM ' . $this->_table .
+									' WHERE id_field = ' . $id_field . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findMediaExtraArrayByIdField: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findMediaExtraArrayByIdFieldAndIdLanguageAndIdOrder($id_field, $id_language, $id_order) {
+		$id_field = $this->_mysqli->real_escape_string($id_field);
+		$id_language = $this->_mysqli->real_escape_string($id_language);
+		$id_order = $this->_mysqli->real_escape_string($id_order);
+
+		$data = $this->_mysqli->query('SELECT id, element, id_field, id_language, id_order' .
+									' FROM ' . $this->_table .
+									' WHERE id_field = ' . $id_field . ' AND id_language = ' . $id_language . ' AND id_order = ' . $id_order . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findMediaExtraArrayByIdFieldAndIdLanguageAndIdOrder: ' . $this->_mysqli->error : '',
 		);
 	}
 }

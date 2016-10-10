@@ -48,12 +48,41 @@ class MediaTypeField extends Model {
 		);
 	}
 
+	public function updateMediaTypeFieldWithIdField($data, $id_field) {
+		$id_type = $this->_mysqli->real_escape_string($data['id_mediatype_mediastorage']);
+		$id_field = $this->_mysqli->real_escape_string($id_field);
+
+		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
+			' SET id_type = ' . $id_type .
+			' WHERE id_field = ' . $id_field . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'updateMediaTypeFieldWithId: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function findMediaTypeFieldById($role_id) {
 		$role_id = $this->_mysqli->real_escape_string($role_id);
 
 		$data = $this->_mysqli->query('SELECT id, id_type, id_field' .
 									' FROM ' . $this->_table .
 									' WHERE id = ' . $role_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findMediaTypeFieldById: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findMediaTypeFieldByIdField($id_field) {
+		$id_field = $this->_mysqli->real_escape_string($id_field);
+
+		$data = $this->_mysqli->query('SELECT id, id_type, id_field' .
+									' FROM ' . $this->_table .
+									' WHERE id_field = ' . $id_field . ';'
 		);
 
 		return array(

@@ -42,6 +42,7 @@ if (isset($_SESSION['permits'][PERMIT_ROOT])) {
 	$this->_route[] = array('list_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'listAction');
 	$this->_route[] = array('edit_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'editAction');
 	$this->_route[] = array('delete_media_extra_field_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'deleteAction');
+	$this->_route[] = array('delete_media_extra_array_root', 'RootBundle/controllers/MediaExtraFieldController.php', 'MediaExtraFieldController', 'deleteExtraArrayAction');
 
 	$this->_route[] = array('select_organization_design_root', 'RootBundle/controllers/DesignController.php', 'DesignController', 'selectOrganizationAction');
 	$this->_route[] = array('edit_design_root', 'RootBundle/controllers/DesignController.php', 'DesignController', 'editAction');
