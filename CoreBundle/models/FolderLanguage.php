@@ -107,4 +107,15 @@ class FolderLanguage extends Model {
 			'error' => ($this->_mysqli->error) ? 'deleteFolderLanguageByFolderId: ' . $this->_mysqli->error : '',
 		);
 	}
+
+	public function deleteFolderLanguageByLanguageId($language_id) {
+		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
+			' WHERE id_language = ' . $folder_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'deleteFolderLanguageByLanguageId: ' . $this->_mysqli->error : '',
+		);
+	}
 }

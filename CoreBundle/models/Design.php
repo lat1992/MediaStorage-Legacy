@@ -55,4 +55,13 @@ class Design extends Model {
 			'error' => ($this->_mysqli->error) ? 'updateRoleWithId: ' . $this->_mysqli->error : '',
 		);
 	}
+
+	public function deleteDesignWithOrganizationId($organization_id) {
+		$data = $this->_mysqli->query('DELETE FROM '.$this->_table.' WHERE id_organization = '.$organization_id);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'deleteDesignWithOrganizationId: ' . $this->_mysqli->error : '',
+		);
+	}
 }

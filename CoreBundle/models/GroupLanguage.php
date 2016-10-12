@@ -89,6 +89,17 @@ class GroupLanguage extends Model {
 		);
 	}
 
+	public function deleteGroupLanguageByLanguageId($language_id) {
+		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
+			' WHERE id_language = ' . $language_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'deleteGroupLanguageByLanguageId: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function findGroupLanguageByOrganizationId($organization_id) {
 		$data = $this->_mysqli->query('SELECT language.id, language.name, language.code FROM `group_language` JOIN organization ON group_language.id_group = organization.id_group JOIN language ON language.id = group_language.id_language WHERE organization.id =' . $organization_id
 		);

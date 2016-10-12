@@ -52,5 +52,9 @@ class ChapterLanguageManager {
 	public function removeChapterLanguageByChapterIdDb($chapter_id) {
 		return $this->_chapterLanguageModel->deleteChapterLanguageByChapterId($chapter_id);
 	}
+
+	public function removeChapterLanguageByLanguageIdDb($language_id) {
+		return $this->_chapterLanguageModel->deleteChapterLanguageByLanguageId($language_id);
+	}
 }
 

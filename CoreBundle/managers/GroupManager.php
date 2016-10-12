@@ -1,6 +1,8 @@
 <?php
 
 require_once('CoreBundle/models/Group.php');
+require_once('CoreBundle/managers/GroupLanguageManager.php');
+require_once('CoreBundle/managers/OrganizationManager.php');
 
 class GroupManager {
 
@@ -93,10 +95,11 @@ class GroupManager {
 	}
 
 	public function removeGroupByIdDb($group_id) {
-		// $data = $this->_groupLanguageManager->deleteGroupLanguageByGroupId($group_id);
-		// if (!empty($data['error']))
-		// 	return $data;
+		$_groupLanguageManager = new GroupLanguageManager();
+		$_organizationManager = new OrganizationManager();
 
+		$_groupLanguageManager->removeGroupLanguageByGroupIdDb($group_id);
+		$_organizationManager->removeOrganiationByGroupIdDb($group_id);
 		return $this->_groupModel->deleteGroupById($group_id);
 	}
 }

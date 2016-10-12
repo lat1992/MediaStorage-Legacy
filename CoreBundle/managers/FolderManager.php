@@ -1,6 +1,7 @@
 <?php
 
 require_once('CoreBundle/models/Folder.php');
+require_once('CoreBundle/managers/MediaManager.php');
 
 class FolderManager {
 
@@ -103,10 +104,6 @@ class FolderManager {
 		return $this->_folderModel->updateFolderWithIdAsAdmin($_POST, $folder_data['id']);
 	}
 
-	public function removeFolderByIdDb($folder_id) {
-		return $this->_folderModel->deleteFolderById($folder_id);
-	}
-
 	public function getAllFoldersWithoutParentsByOrganizationDb() {
 		return $this->_folderModel->findAllFolderWithoutParentsByOrganization($_SESSION['id_organization'], $_SESSION['id_language_mediastorage']);
 	}
@@ -177,4 +174,15 @@ class FolderManager {
 
 		return $path;
 	}
+
+	public function removeFolderByIdDb($folder_id) {
+		$_mediaManager = new MediaManager();
+		$_folderLanguageManager = new FolderLanguageManager();
+
+		$_mediaManager->modifyFolderIdWithNullByIdDb($folder_id);
+		$this->_folderModel->updateParentFolderWithNullById($folder_id);
+		$_folderLanguageManager->removeFolderLanguageByFolderIdDb($folder_id);
+		return $this->_folderModel->deleteFolderById($folder_id);
+	}
+
 }

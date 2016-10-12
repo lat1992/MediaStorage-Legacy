@@ -11,6 +11,10 @@ class OrganizationTextManager {
 	}
 
 	public function getOrganizationTextWithId($id_organization, $language_id) {
-		return $this->_organizationTextModel->findOrganizationTextById($id_organization, $language_id);
+		return $this->_organizationTextModel->findOrganizationTextByIdDb($id_organization, $language_id);
+	}
+
+	public function removeOrganizationTextByLanguageId($language_id) {
+		return $this->_organizationTextModel->deleteOrganizationTextByLanguageIdDb($language_id);
 	}
 }

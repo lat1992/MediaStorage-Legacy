@@ -93,6 +93,17 @@ class MediaInfo extends Model {
 		);
 	}
 
+	public function deleteMediaInfoByLanguageId($language_id) {
+		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
+			' WHERE id_language = ' . $language_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'deleteMediaInfoByLanguageId: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function findMediaInfoByMediaId($id_media) {
 		$id_media = $this->_mysqli->real_escape_string($id_media);
 

@@ -84,6 +84,7 @@ class Group extends Model {
 	public function deleteGroupById($group_id) {
 		$group_id = $this->_mysqli->real_escape_string($group_id);
 
+    	$this->_mysqli->query('DELETE FROM organization WHERE id_group = ');
 		$data = $this->_mysqli->query('DELETE FROM `' . $this->_table .
 			'` WHERE id = ' . $group_id . ';'
 		);

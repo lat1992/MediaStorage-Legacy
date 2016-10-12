@@ -60,4 +60,8 @@ class DesignManager {
 
 		return $return_array;
 	}
+
+	public function removeDesignByOrganizationId($organization_id) {
+		return $this->_designModel->deleteDesignByOrganizationIdDb($organization_id);
+	}
 }

@@ -52,5 +52,7 @@ class TagLanguageManager {
 	public function removeTagLanguageByTagIdDb($tag_id) {
 		return $this->_tagLanguageModel->deleteTagLanguageByTagId($tag_id);
 	}
+
+	//public function removeTagLanguage
 }
 

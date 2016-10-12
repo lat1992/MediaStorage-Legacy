@@ -429,4 +429,8 @@ class MediaManager {
 		}
 		return $return_array;
 	}
+
+	public function modifyFolderIdWithNullByIdDb($folder_id) {
+		return $this->_mediaModel->updateFolderWithNullById($folder_id);
+	}
 }

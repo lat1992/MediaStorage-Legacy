@@ -55,10 +55,10 @@ class MediaExtraArrayManager {
 	}
 
 	public function removeMediaExtraArrayByIdDb($media_extra_array_id) {
-		// $data = $this->_mediaExtraFieldManager->deleteMediaExtraFieldByMediaExtraArrayId($media_extra_array_id);
-		// if (!empty($data['error']))
-		// 	return $data;
-
 		return $this->_mediaExtraArrayModel->deleteMediaExtraArrayById($media_extra_array_id);
+	}
+
+	public function removeMediaExtraArrayByLanguageIdDb($language_id) {
+		return $this->_mediaExtraArrayModel->deleteMediaExtraArrayByLanguageId($language_id);
 	}
 }

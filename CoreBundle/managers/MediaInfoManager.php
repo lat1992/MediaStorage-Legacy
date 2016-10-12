@@ -58,6 +58,10 @@ class MediaInfoManager {
 		return $this->_mediaInfoModel->deleteMediaInfoByTagId($media_id);
 	}
 
+	public function removeMediaInfoByLanguageIdDb($language_id) {
+		return $this->_mediaInfoModel->deleteMediaInfoByLanguageId($language_id);
+	}
+
 	public function CreateMultipleMediaInfoDb() {
 		$post_save = $_POST;
 
