@@ -1,5 +1,20 @@
 $( document ).ready(function() {
 
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+
     $('form').on('change', '.parent_mediastorage', function (){
         var elem = this
 
@@ -24,8 +39,11 @@ $( document ).ready(function() {
                     '<select name="id_parent_mediastorage[]" id="id_parent_mediastorage" class="parent_mediastorage">' +
                         '<option value=""></option>'
 
+                var folder_id = getUrlParameter('folder_id');
                 for (i = 0; i < data.length; i++) {
-                     $html += '<option value="' + data[i].id + '">' + data[i].translate + '</option>';
+                    if (folder_id !=  data[i].id) {
+                        $html += '<option value="' + data[i].id + '">' + data[i].translate + '</option>';
+                    }
                 }
 
                 $html += '</select>';

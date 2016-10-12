@@ -1,6 +1,7 @@
 <?php
 
 require_once('CoreBundle/managers/MediaExtraFieldManager.php');
+require_once('CoreBundle/managers/MediaExtraArrayManager.php');
 require_once('CoreBundle/managers/MediaExtraFieldLanguageManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
 require_once('CoreBundle/managers/GroupLanguageManager.php');
@@ -11,6 +12,7 @@ require_once('CoreBundle/managers/MediaTypeFieldManager.php');
 class MediaExtraFieldController {
 
 	private $_mediaExtraFieldManager;
+	private $_mediaExtraArrayManager;
 	private $_mediaExtraFieldLanguageManager;
 	private $_organizationManager;
 	private $_groupLanguageManager;
@@ -22,6 +24,7 @@ class MediaExtraFieldController {
 
 	public function __construct() {
 		 $this->_mediaExtraFieldManager = new MediaExtraFieldManager();
+		 $this->_mediaExtraArrayManager = new MediaExtraArrayManager();
 		 $this->_organizationManager = new OrganizationManager();
 		 $this->_groupLanguageManager = new GroupLanguageManager();
 		 $this->_mediaExtraFieldLanguageManager = new MediaExtraFieldLanguageManager();
@@ -126,6 +129,9 @@ class MediaExtraFieldController {
 						$this->_mediaTypeFieldManager->mediaTypeFieldCreateDb();
 
 						if (count($this->_errorArray) == 0) {
+
+							$this->_mediaExtraArrayManager->createMultipleExtraArray();
+
 							$_SESSION['flash_message'] = ACTION_SUCCESS;
 							header('Location:' . '?page=list_media_extra_field_root&id_organization=' . $_GET['id_organization']);
 							exit;
@@ -143,6 +149,7 @@ class MediaExtraFieldController {
 
 		$groupLanguages = $this->_groupLanguageManager->getGroupLanguageByOrganizationIdDb($id_organization);
 		$this->mergeErrorArray($groupLanguages);
+		$groupLanguages = $this->_toolboxManager->mysqliResultToArray($groupLanguages);
 
 		$mediaTypes_data = $this->_mediaTypeManager->getAllMediaTypesDb();
 		$mediaTypes = $this->_toolboxManager->mysqliResultToArray($mediaTypes_data);
@@ -160,11 +167,16 @@ class MediaExtraFieldController {
 		$mediaExtraFieldLanguages = $this->_mediaExtraFieldLanguageManager->getMediaExtraFieldLanguagesDb($_GET['media_extra_field_id']);
 		$mediaTypes_data = $this->_mediaTypeManager->getAllMediaTypesDb();
 		$mediaTypes = $this->_toolboxManager->mysqliResultToArray($mediaTypes_data);
-
+		$mediaTypeFieldData = $this->_mediaTypeFieldManager->getMediaTypeFieldByIdFieldDb($_GET['media_extra_field_id']);
+		$mediaTypeField = $this->_toolboxManager->mysqliResultToData($mediaTypeFieldData);
+		$mediaExtraArray = $this->_mediaExtraArrayManager->getMediaExtraArrayByIdFieldDb($_GET['media_extra_field_id']);
+		$mediaExtraArray = $this->_mediaExtraArrayManager->formatDataForView($mediaExtraArray);
 		$this->mergeErrorArray($mediaExtraFields);
 		$this->mergeErrorArray($organizations);
 		$this->mergeErrorArray($groupLanguages);
 		$this->mergeErrorArray($mediaExtraFieldLanguages);
+
+		$groupLanguages = $this->_toolboxManager->mysqliResultToArray($groupLanguages);
 
 		if (count($this->_errorArray) == 0) {
 			while ($mediaExtraField_temp = $mediaExtraFields['data']->fetch_assoc()) {
@@ -189,7 +201,12 @@ class MediaExtraFieldController {
 							$this->mergeErrorArray($return_value);
 						}
 
+						$this->_mediaTypeFieldManager->mediaTypeFieldEditByIdFieldDb($_GET['media_extra_field_id']);
+
 						if (count($this->_errorArray) == 0) {
+							$_POST['id_media_extra_field_mediastorage'] = $_GET['media_extra_field_id'];
+							$this->_mediaExtraArrayManager->createMultipleExtraArray();
+
 							$_SESSION['flash_message'] = ACTION_SUCCESS;
 							header('Location:' . '?page=list_media_extra_field_root&id_organization='. $id_organization);
 							exit;
@@ -218,6 +235,16 @@ class MediaExtraFieldController {
 		}
 
 		include ('CoreBundle/views/common/error.php');*/
+	}
+
+	public function deleteExtraArrayAction() {
+
+		if (isset($_GET['id_order'])) {
+			$this->_mediaExtraArrayManager->removeMediaExtraArrayByIdFieldAndIdOrderDb($_GET['media_extra_field_id'], $_GET['id_order']);
+		}
+
+		header('Location:' . '?page=edit_media_extra_field_root&media_extra_field_id='. $_GET['media_extra_field_id']);
+		exit;
 	}
 
 }

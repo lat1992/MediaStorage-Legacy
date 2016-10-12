@@ -7,7 +7,9 @@
 			<option value=""></option>
 <?php
 			while ($folder = $folders['data']->fetch_assoc()) {
-				echo '<option value="' . $folder['id'] . '" >' . $folder['translate'] . '</option>';
+				if (intval($folder['id']) != intval($_GET['folder_id'])) {
+					echo '<option value="' . $folder['id'] . '" >' . $folder['translate'] . '</option>';
+				}
 			}
 ?>
 		</select>

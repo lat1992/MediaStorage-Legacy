@@ -37,8 +37,16 @@ class MediaTypeFieldManager {
 		return $this->_mediaTypeFieldModel->findMediaTypeFieldById($media_type_field_id);
 	}
 
+	public function getMediaTypeFieldByIdFieldDb($id_field) {
+		return $this->_mediaTypeFieldModel->findMediaTypeFieldByIdField($id_field);
+	}
+
 	public function mediaTypeFieldEditDb($media_type_field_data) {
 		return $this->_mediaTypeFieldModel->updateMediaTypeFieldWithId($_POST, $media_type_field_data['id']);
+	}
+
+	public function mediaTypeFieldEditByIdFieldDb($id_field) {
+		return $this->_mediaTypeFieldModel->updateMediaTypeFieldWithIdField($_POST, $id_field);
 	}
 
 	public function removeMediaTypeFieldByIdDb($media_type_field_id) {
