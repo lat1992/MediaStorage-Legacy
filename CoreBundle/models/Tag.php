@@ -71,4 +71,15 @@ class Tag extends Model {
 			'error' => ($this->_mysqli->error) ? 'deleteTagById: ' . $this->_mysqli->error : '',
 		);
 	}
+
+	public function deleteTagByMediaId($media_id) {
+		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
+			' WHERE id_media = ' . $media_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'deleteTagByMediaId: ' . $this->_mysqli->error : '',
+		);
+	}
 }

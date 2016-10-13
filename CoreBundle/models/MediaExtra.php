@@ -137,6 +137,17 @@ class MediaExtra extends Model {
 		);
 	}
 
+	public function deleteMediaExtraByMediaId($media_id) {
+		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
+			' WHERE id_media = ' . $media_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'deleteMediaExtraByMediaId: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function findMediaExtraByMediaId($id_media) {
 		$id_media = $this->_mysqli->real_escape_string($id_media);
 

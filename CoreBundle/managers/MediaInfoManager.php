@@ -54,8 +54,8 @@ class MediaInfoManager {
 		return $this->_mediaInfoModel->deleteMediaInfoById($media_info_id);
 	}
 
-	public function removeMediaInfoByTagIdDb($media_id) {
-		return $this->_mediaInfoModel->deleteMediaInfoByTagId($media_id);
+	public function removeMediaInfoByMediaIdDb($media_id) {
+		return $this->_mediaInfoModel->deleteMediaInfoByMediaId($media_id);
 	}
 
 	public function removeMediaInfoByLanguageIdDb($language_id) {

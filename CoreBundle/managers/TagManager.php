@@ -56,4 +56,8 @@ class TagManager {
 		return $this->_tagModel->deleteTagById($tag_id);
 	}
 
+	public function removeTagByMediaDb($media_id) {
+		return $this->_tagModel->deleteTagByMediaId($media_id);
+	}
+
 }

@@ -122,4 +122,8 @@ class MediaFileManager {
 		$_POST['right_download_mediastorage'] = $media_file['right_download'];
 		$_POST['right_preview_mediastorage'] = $media_file['right_preview'];
 	}
+
+	public function removeMediaFileByMediaIdDb($media_id) {
+		return $this->_mediaFileModel->deleteMediaFileByMediaId($media_id);
+	}
 }
