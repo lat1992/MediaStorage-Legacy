@@ -11,6 +11,8 @@ require_once('CoreBundle/managers/MediaInfoManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
 require_once('CoreBundle/managers/OrganizationTextManager.php');
 require_once('CoreBundle/managers/RoleLanguageManager.php');
+require_once('CoreBundle/managers/TagLanguageManager.php');
+require_once('CoreBundle/managers/UserManager.php');
 
 class LanguageManager {
 
@@ -88,6 +90,8 @@ class LanguageManager {
 		$_organizationManager = new OrganizationManager();
 		$_organizationTextManager = new OrganizationTextManager();
 		$_roleLanguageManager = new RoleLanguageManager();
+		$_tagLanguageManager = new TagLanguageManager();
+		$_userManager = new UserManager();
 
 		$_chapterLanguageManager->removeChapterLanguageByIdDb($language_id);
 		$_folderLanguageManager->removeFolderLanguageByLanguageIdDb($language_id);
@@ -99,6 +103,8 @@ class LanguageManager {
 		$_organizationManager->setLanguageToOneByLanguageIdDb($language_id);
 		$_organizationTextManager->removeOrganizationTextByLanguageId($language_id);
 		$_roleLanguageManager->removeRoleLanguageByLanguageIdDb($language_id);
+		$_tagLanguageManager->removeTagLanguageByLanguageIdDb($language_id);
+		$_userManager->setLanguageToOneByLanguageIdDb($language_id);
 		return $this->_languageModel->deleteLanguageById($language_id);
 	}
 

@@ -57,7 +57,7 @@ class TagLanguage extends Model {
 		$tag_language_id = $this->_mysqli->real_escape_string($tag_language_id);
 
 		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
-			' WHERE id = ' . $tag_language_id . ';'
+			' WHERE id_language = ' . $tag_language_id . ';'
 		);
 
 		return array(

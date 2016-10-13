@@ -55,4 +55,5 @@ class TagManager {
 	public function removeTagByIdDb($tag_id) {
 		return $this->_tagModel->deleteTagById($tag_id);
 	}
+
 }
