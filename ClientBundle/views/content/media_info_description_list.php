@@ -1,10 +1,15 @@
 <?php
 
 	$nb_lines = 0;
+?>
+<?php
 
 	foreach ($media_infos as $media_info) {
 ?>
 		<div id="description_div">
+
+			<h2 class="content_subtitle"><?= DESCRIPTION ?></h2>
+
 <?php /*	        <table id="description_table">
 	            <tbody>
 	                <tr>

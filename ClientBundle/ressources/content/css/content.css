@@ -15,7 +15,7 @@ table {
 	margin: 10px 10px 10px 10px;
 }
 
-#description_div {
+#description_div, #chapter_div {
 	float: left;
 	width: 42%;
 	margin: 10px 0px 0px 5px;
@@ -62,17 +62,17 @@ div#download_link_div {
 
 }
 
-#description_div, #download_link_div {
-	padding: 10px 5px 10px 5px;
+#description_div, #download_link_div, #chapter_div {
+	padding: 10px 5px 10px 10px;
 }
 
 /* DOWNLOAD LINKS BLOCK */
 
-#download_link_table {
+#download_link_table, #chapter_table {
 	border-collapse: collapse;
 }
 
-#download_link_table thead th {
+#download_link_table thead th, #chapter_table thead th {
 	text-align: left;
 }
 
@@ -90,32 +90,32 @@ div#download_link_div {
 	color: white;
 }
 
-#download_link_table th, #download_link_table td {
+#download_link_table th, #download_link_table td , #chapter_table th, #chapter_table td{
 	padding: 10px;
 }
 
-#download_link_table td {
+#download_link_table td, #chapter_table td {
 	background-color: #f2f2f2;
 }
 
-#download_link_table, #download_link_table th, #download_link_table td {
+#download_link_table, #download_link_table th, #download_link_table td , #chapter_tablem #chapter_table th, #chapter_table td {
 	border: 1px solid black;
 	border-color: #d5d5d5;
 }
 
-#download_link_table th {
+#download_link_table th, #chapter_table th{
 	background-color: #d5d5d5;
 }
 
 /* DESCRIPTION BLOCK */
 
-#description_div {
+#description_div , #chapter_div{
 	background-color: #f2f2f2;
     border: 1px solid black;
     border-color: #d5d5d5;
 }
 
-#description_div .label {
+#description_div .label, #chapter_div .label {
 	font-weight: bold;
 }
 
@@ -125,6 +125,35 @@ th {
 
 .text-center {
 	text-align: center;
+}
+
+.content_subtitle {
+	padding: 15px 0 15px 10px;
+	/*display: inline-block;*/
+	margin: 0 0 10px 0;
+	/*border-bottom: 1px solid #d5d5d5;*/
+	font-size: 1.2em;
+	text-decoration: underline;
+}
+
+#chapter_create a, .submit {
+	display: inline-block;
+	text-decoration: none;
+	background-color: #e9e7e2;
+	padding: 5px;
+	margin: 5px;
+	color:black;
+	border: 1px solid black;
+}
+
+.label {
+	display: inline-block;
+	padding: 10px;
+}
+
+.submit {
+	margin-top: 25px;
+	margin-bottom: 15px;
 }
 
 @media only screen and (max-width: 900px) {
@@ -139,7 +168,7 @@ th {
     	border: none;
     }
 
-    #description_div, div#download_link_div {
+    #description_div, div#download_link_div, #chapter_div {
         width:100%;
         margin-left: 0;
         margin-right: 0;
