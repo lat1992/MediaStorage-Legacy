@@ -79,6 +79,17 @@ class Organization extends Model {
 		);
 	}
 
+	public function updateLanguageToOneByLanguageIdDb($language_id) {
+		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
+			' SET id_default_language = 1 WHERE id_default_language = ' . $language_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'updateLanguageToOneByLanguageIdDb: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function deleteOrganizationById($organization_id) {
 		$organization_id = $this->_mysqli->real_escape_string($organization_id);
 
@@ -89,6 +100,19 @@ class Organization extends Model {
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'deleteOrganizationById: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function deleteOrganizationByGroupId($group_id) {
+		$group_id = $this->_mysqli->real_escape_string($group_id);
+
+		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
+			' WHERE id_group = ' . $group_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'deleteOrganizationByGroupId: ' . $this->_mysqli->error : '',
 		);
 	}
 

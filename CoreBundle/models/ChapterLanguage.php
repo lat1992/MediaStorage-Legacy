@@ -76,4 +76,15 @@ class ChapterLanguage extends Model {
 			'error' => ($this->_mysqli->error) ? 'deleteChapterLanguageByChapterId: ' . $this->_mysqli->error : '',
 		);
 	}
+
+	public function deleteGroupLanguageByLanguageId($language_id) {
+		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
+			' WHERE id_language = ' . $language_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'deleteChapterLanguageByLanguageId: ' . $this->_mysqli->error : '',
+		);
+	}
 }

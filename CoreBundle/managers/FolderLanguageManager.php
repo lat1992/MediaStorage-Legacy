@@ -109,5 +109,9 @@ class FolderLanguageManager {
 	public function removeFolderLanguageByFolderIdDb($folder_id) {
 		return $this->_folderLanguageModel->deleteFolderLanguageByFolderId($folder_id);
 	}
+
+	public function removeFolderLanguageByLanguageIdDb($language_id) {
+		return $this->_folderLanguageModel->deleteFolderLanguageByLanguageId($language_id);
+	}
 }
 

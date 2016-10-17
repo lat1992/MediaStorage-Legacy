@@ -187,4 +187,13 @@ exit;
 			'error' => ($this->_mysqli->error) ? 'findAllUsersWithOrganization: ' . $this->_mysqli->error : '',
 		);
 	}
+
+	public function updateLanguageToOneByLanguageIdDb($language_id) {
+		$data = $this->_mysqli->query('UPDATE user SET id_language = 1 WHERE id_language = '.$language_id);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'updateLanguageToOneByLanguageIdDb: ' . $this->_mysqli->error : '',
+		);
+	}
 }

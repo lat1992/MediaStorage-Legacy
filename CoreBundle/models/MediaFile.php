@@ -102,4 +102,13 @@ class MediaFile extends Model {
 			'error' => ($this->_mysqli->error) ? 'findMediaFileByMediaFileId: ' . $this->_mysqli->error : '',
 		);
 	}
+
+	public function deleteMediaFileByMediaId($media_id) { 
+		$data = $this->_mysqli->query('DELETE FROM media_file WHERE id_media = '.$media_id);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'removeMediaFileByMediaId: ' . $this->_mysqli->error : '',
+		);
+	}
 }

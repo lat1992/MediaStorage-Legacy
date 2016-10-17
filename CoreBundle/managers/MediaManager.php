@@ -5,6 +5,7 @@ require_once('CoreBundle/managers/FolderManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
 require_once('CoreBundle/managers/MediaExtraFieldManager.php');
 require_once('CoreBundle/managers/MediaExtraManager.php');
+require_once('CoreBundle/managers/MediaFileManager.php');
 
 class MediaManager {
 
@@ -131,10 +132,14 @@ class MediaManager {
 	}
 
 	public function removeMediaByIdDb($media_id) {
-		//$data = $this->_mediaInfoManager->deleteMediaInfoByMediaId($media_id);
-		if (!empty($data['error']))
-			return $data;
+		$_mediaFileManager = new MediaFileManager();
+		$_mediaInfoManager = new MediaInfoManager();
+		$_tagManager = new TagManager();
 
+		$this->_mediaExtraManager->removeMediaExtraByMediaIdDb($media_id);
+		$_mediaFileManager->removeMediaFileByMediaIdDb($media_id);
+		$_mediaInfoManager->removeMediaInfoByMediaIdDb($media_id);
+		$_tagManager->removeTagByMediaDb($media_id);
 		return $this->_mediaModel->deleteMediaById($media_id);
 	}
 
@@ -428,5 +433,9 @@ class MediaManager {
 			$cpt_return_array++;
 		}
 		return $return_array;
+	}
+
+	public function modifyFolderIdWithNullByIdDb($folder_id) {
+		return $this->_mediaModel->updateFolderWithNullById($folder_id);
 	}
 }

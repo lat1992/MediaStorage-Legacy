@@ -83,6 +83,15 @@ class Folder extends Model {
 		);
 	}
 
+	public function updateParentFolderWithNullById($folder_id) {
+		$data = $this->_mysqli->query('UPDATE '. $this->_table .' SET id_parent = NULL WHERE id_parent = '. $folder_id);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'updateParentFolderWithNullById: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function deleteFolderById($folder_id) {
 		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
 			' WHERE id = ' . $folder_id . ';'

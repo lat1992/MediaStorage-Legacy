@@ -1,6 +1,7 @@
 <?php
 
 require_once('CoreBundle/models/Chapter.php');
+require_once('CoreBundle/managers/ChapterLanguageManager.php');
 
 class ChapterManager {
 
@@ -51,6 +52,8 @@ class ChapterManager {
 	}
 
 	public function removeChapterByIdDb($chapter_id) {
+		$_chapterLanguageManager = new ChapterLanguageManager();
+		$_chapterLanguageModel->removeChapterLanguageByChapterIdDb($chapter_id);
 		return $this->_chapterModel->deleteChapterById($chapter_id);
 	}
 

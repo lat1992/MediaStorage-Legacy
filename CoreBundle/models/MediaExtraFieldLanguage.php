@@ -51,4 +51,13 @@ class MediaExtraFieldLanguage extends Model {
 			'error' => ($this->_mysqli->error) ? 'updateOrInsertMediaExtraFieldLanguage: ' . $this->_mysqli->error : '',
 		);
 	}
+
+	public function deleteMediaExtraFieldLanguageByLanguageId($language_id) {
+		$data = $this->_mysqli->query('DELETE FROM '.$this->_table.' WHERE id_laguage = '.$language_id);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'deleteMediaExtraFieldByLanguageId: ' . $this->_mysqli->error : '',
+		);
+	}
 }

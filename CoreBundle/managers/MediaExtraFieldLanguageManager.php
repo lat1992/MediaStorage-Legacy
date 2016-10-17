@@ -21,4 +21,8 @@ class MediaExtraFieldLanguageManager {
 	public function getMediaExtraFieldLanguagesDb($id_field) {
 		return $this->_mediaExtraFieldLanguage->findMediaExtraFieldLanguagesByIdField($id_field);
 	}
+
+	public function removeMediaExtraFieldLanguageByLanguageIdDb($language_id) {
+		return $this->_mediaExtraFieldLanguage->deleteMediaExtraFieldLanguageByLanguageId($language_id);
+	}
 }

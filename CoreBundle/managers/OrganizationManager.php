@@ -106,8 +106,15 @@ class OrganizationManager {
 		return $this->_organizationModel->deleteOrganizationById($organization_id);
 	}
 
+	public function removeOrganiationByGroupIdDb($group_id) {
+		return $this->_organizationModel->deleteOrganizationByGroupId($group_id);
+	}
+
 	public function getOrganizationWithReference($organization_reference) {
 		return $this->_organizationModel->findOrganizationByReference($organization_reference);
 	}
 
+	public function setLanguageToOneByLanguageIdDb($language_id) {
+		return $this->_organizationModel->updateLanguageToOneByLanguageIdDb($language_id);
+	}	
 }

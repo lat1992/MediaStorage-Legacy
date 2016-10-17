@@ -144,6 +144,24 @@ class Media extends Model {
 		);
 	}
 
+	public function updateFolderWithNullById($folder_id) {
+		$data = $this->_mysqli->query('UPDATE '. $this->_table .' SET id_folder = NULL WHERE id_folder = '. $folder_id);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'updateFolderWithNullById: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function updateParentMediaWithNullById($media_id) {
+		$data = $this->_mysqli->query('UPDATE '. $this->_table .' SET id_parent = NULL WHERE id_parent = '. $media_id);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'updateParentMediaWithNullById: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function findMediaById($media_id, $user_id_language) {
 		$media_id = $this->_mysqli->real_escape_string($media_id);
 

@@ -59,6 +59,14 @@ class MediaExtraManager {
 		return $this->_mediaExtraModel->deleteMediaExtraById($media_extra_id);
 	}
 
+	public function removeMediaExtraByLanguageIdDb($language_id) {
+		return $this->_mediaExtraModel->deleteMediaExtraByLanguageId($language_id);
+	}
+
+	public function removeMediaExtraByMediaIdDb($media_id) {
+		return $this->_mediaExtraModel->deleteMediaExtraByMediaId($media_id);
+	}
+
 	public function CreateMultipleMediaExtraDb() {
 		$post_save = $_POST;
 

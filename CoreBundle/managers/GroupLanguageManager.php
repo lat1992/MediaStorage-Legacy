@@ -67,6 +67,10 @@ class GroupLanguageManager {
 		return $this->_groupLanguageModel->deleteGroupLanguageByGroupId($group_id);
 	}
 
+	public function removeGroupLanguageByLanguageIdDb($language_id) {
+		return $this->_groupLanguageModel->deleteGroupLanguageByLanguageId($language_id);
+	}
+
 	public function groupLanguageMultipleUpdateByGroupIdDb($group_id) {
 		$return_value = $this->_groupLanguageModel->deleteGroupLanguageByGroupId($group_id);
 		if (!empty($return_value['error'])) {
