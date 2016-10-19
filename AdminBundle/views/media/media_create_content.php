@@ -96,7 +96,6 @@ require_once('ClientBundle/views/layout/header.php');
             </ul> -->
 
 		</div>
-
 		<div class="hide-desktop">
 			<a id="cancel_button" class="form_button" href="?page=list_content_admin"><?= CANCEL ?></a>
 			<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
