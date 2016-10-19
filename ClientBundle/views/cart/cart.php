@@ -37,6 +37,7 @@ require_once('ClientBundle/views/layout/header.php');
         </thead>
         <tbody>
 <?php
+        if ($cart_data['data']->num_rows) {
             while ($cart_item = $cart_data['data']->fetch_assoc()) {
 ?>
                 <tr>
@@ -58,24 +59,36 @@ require_once('ClientBundle/views/layout/header.php');
                 </tr>
 <?php
             }
+        }
+        else {
+?>
+            <tr>
+                <td colspan="5" class="text-center"><?= NO_DATA_AVAILABLE ?></td>
+            </tr>
+<?php
+        }
 ?>
         </tbody>
     </table>
-    <div  class="validate_form"><?= VALIDATE_THE ?><a href="?page=general_condition" target="_blank"><?= GENERAL_CONDITION ?></a>: <input type="checkbox" id="validate_check" onchange="validate()"></div>
-    <div class="validate_cart" id="validate_cart">
-        <a id="validate_button" class="form_button" href="?page=validate_cart" style="pointer-events: none; cursor: default;"><?= VALIDATE ?></a>
-    </div>
-    <script>
-    function validate() {
-        var status = document.getElementById("validate_check").checked;
-        if (status == true)
-            document.getElementById("validate_cart").innerHTML = '<a id="validate_button" class="form_button" href="?page=validate_cart"><?= VALIDATE ?></a>';
-        else
-            document.getElementById("validate_cart").innerHTML = '<a id="validate_button" class="form_button" href="?page=validate_cart" style="pointer-events: none; cursor: default;"><?= VALIDATE ?></a>';
-    }
-    </script>
 <?php
+    if ($cart_data['data']->num_rows) {
+?>
+        <div  class="validate_form"><?= VALIDATE_THE ?><a href="?page=general_condition" target="_blank"><?= GENERAL_CONDITION ?></a>: <input type="checkbox" id="validate_check" onchange="validate()"></div>
+        <div class="validate_cart" id="validate_cart">
+            <a id="validate_button" class="form_button" href="?page=validate_cart" style="pointer-events: none; cursor: default;"><?= VALIDATE ?></a>
+        </div>
+        <script>
+        function validate() {
+            var status = document.getElementById("validate_check").checked;
+            if (status == true)
+                document.getElementById("validate_cart").innerHTML = '<a id="validate_button" class="form_button" href="?page=validate_cart"><?= VALIDATE ?></a>';
+            else
+                document.getElementById("validate_cart").innerHTML = '<a id="validate_button" class="form_button" href="?page=validate_cart" style="pointer-events: none; cursor: default;"><?= VALIDATE ?></a>';
+        }
+        </script>
+<?php
+    }
 
-require_once('ClientBundle/views/layout/footer.php');
+    require_once('ClientBundle/views/layout/footer.php');
 
 ?>
