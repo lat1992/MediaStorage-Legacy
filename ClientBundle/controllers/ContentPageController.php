@@ -124,6 +124,11 @@ class ContentPageController {
 			$chapters_data = $this->_chapterManager->getChapterByMediaIdDb($_GET['media_id']);
 			$chapters = $this->_toolboxManager->mysqliResultToArray($chapters_data);
 
+			if (isset($_GET['file']))
+				$current_media_file = $media_files[$_GET['file']];
+			elseif (count($media_files) && isset($media_files[0]))
+				$current_media_file = $media_files[0];
+
 		}
 		else {
 			$title['title'] = CONTENT;

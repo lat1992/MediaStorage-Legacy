@@ -50,7 +50,7 @@
             else {
 ?>
                 <tr>
-                    <td colspan="3" class="text-center"><?= NO_DATA_AVAILABLE ?></td>
+                    <td colspan="4" class="text-center"><?= NO_DATA_AVAILABLE ?></td>
                 </tr>
 <?php
             }

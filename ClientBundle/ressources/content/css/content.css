@@ -50,6 +50,10 @@ table {
 	margin-top: 10px;
 }
 
+#video_contents_div a {
+	color: black;
+}
+
 .clear {
 	clear: both;
 }
@@ -82,7 +86,7 @@ div#download_link_div {
 	text-decoration: none;
 	text-align: center;
 	color: black;
-	line-height: 40px
+	line-height: 40px;
 }
 
 #download_link_table a:hover {
@@ -128,7 +132,7 @@ th {
 }
 
 .content_subtitle {
-	padding: 15px 0 15px 10px;
+	padding: 0px 0 0px 10px;
 	/*display: inline-block;*/
 	margin: 0 0 10px 0;
 	/*border-bottom: 1px solid #d5d5d5;*/
@@ -148,7 +152,7 @@ th {
 
 .label {
 	display: inline-block;
-	padding: 10px;
+	padding: 5px;
 }
 
 .submit {

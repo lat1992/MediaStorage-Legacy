@@ -60,4 +60,17 @@ class TagManager {
 		return $this->_tagModel->deleteTagByMediaId($media_id);
 	}
 
+	public function createOrDeleteMultipleTag($media_id) {
+		$ret = $this->getAllTagsWithIdMediaAndIdLanguage($media_id, $_SESSION['id_language_mediastorage']);
+
+		if (empty($ret['error']))
+			return $ret;
+
+		// foreach ()
+
+
+		// foreach ($_POST["tags"] as $tag) {
+		// }
+	}
+
 }

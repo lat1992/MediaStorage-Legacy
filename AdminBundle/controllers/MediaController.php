@@ -9,6 +9,7 @@ require_once('CoreBundle/managers/LanguageManager.php');
 require_once('CoreBundle/managers/MediaExtraFieldManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
 require_once('CoreBundle/managers/DesignManager.php');
+require_once('CoreBundle/managers/TagManager.php');
 require_once('AdminBundle/ressources/fine-uploader-server/handler.php');
 require_once('ToolBundle/managers/WorkFlowManager.php');
 
@@ -25,6 +26,7 @@ class MediaController {
 	private $_designManager;
 	private $_uploadHandler;
 	private $_workflowManager;
+	private $_tagManager;
 
 	private $_errorArray;
 
@@ -38,6 +40,7 @@ class MediaController {
 		$this->_mediaExtraFieldManager = new MediaExtraFieldManager();
 		$this->_toolboxManager = new ToolboxManager();
 		$this->_designManager = new DesignManager();
+		$this->_tagManager = new DesignManager();
 		$this->_uploadHandler = new UploadHandler();
 		$this->_workflowManager = new WorkFlowManager();
 
@@ -325,7 +328,9 @@ class MediaController {
 		}
 
 		if (isset($_POST['id_media_create_mediastorage']) && (strcmp($_POST['id_media_create_mediastorage'], '895143') == 0)) {
+			// $this->_tagManager->createOrDeleteMultipleTag();
 
+// var_dump($_POST);exit;
 
 			$return_value = $this->_mediaManager->preFillMediaPostData(2);
 			$this->mergeErrorArray($return_value);
@@ -362,6 +367,8 @@ class MediaController {
 								$this->mergeErrorArray($return_value);
 								if (count($this->_errorArray) == 0) {
 									// $this->_workflowManager->transcoding($return_value['id'], $_POST['filepath_mediastorage']);
+
+									// $this->_tagManager->createOrDeleteMultipleTag();
 								}
 							}
 						}
