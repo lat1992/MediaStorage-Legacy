@@ -1,6 +1,7 @@
 <?php
 
 require_once('CoreBundle/models/MediaExtraField.php');
+require_once('CoreBundle/managers/MediaExtraArrayManager.php');
 
 class MediaExtraFieldManager {
 
@@ -98,6 +99,8 @@ class MediaExtraFieldManager {
 	}
 
 	public function removeMediaExtraFieldByIdDb($media_extra_field_id) {
+		$_mediaExtraArrayManager = new MediaExtraArrayManager();
+		$_mediaExtraArrayManager->removeMediaExtraArrayByFieldIdDb($media_extra_field_id);
 		return $this->_mediaExtraFieldModel->deleteMediaExtraFieldById($media_extra_field_id);
 	}
 

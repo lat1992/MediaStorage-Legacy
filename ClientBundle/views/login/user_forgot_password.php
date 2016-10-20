@@ -24,6 +24,25 @@
 
   </head>
     <body class="login-page">
+
+<?php
+    if (isset($_GET['token']) {
+?>
+<?php
+    }
+    else {
+?>
+    <h1>Formulaire de demande de mot de passe</h1>
+    <form>
+        <span>Veuillez remplir votre e-mail :</span>
+        <input type="text" name="mail">
+        <input type="hidden" name="id_login_mediastorage" value="98374">
+        <input type="submit">
+    </form>
+<?php
+    }
+?>
+    <!--
         <div class="page-login">
             <div class= "logo" style="background-image: url(ClientBundle/ressources/organization/<?= $_SESSION['id_platform_organization'] ?>/img/logo.png); background-size: contain;"></div>
             <div class="form">
@@ -46,5 +65,7 @@
 <?php
     }
 ?>
+
+-->
     </body>
 </html>

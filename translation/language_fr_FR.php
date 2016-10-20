@@ -352,3 +352,5 @@ define('MAIL_BODY_DELIVERY', 'Le client %d (Email: %s) du plateform MediaStorage
 define('VALIDATE_THE', 'Valider le ');
 define('GENERAL_CONDITION', 'condition général');
 define('GENERAL_CONDITION_TITLE', 'Condition Général');
+define('FORGOT_PASSWORD', 'Mot de passe oublié');
+define('CONTACT_ADMIN', 'Contactez-nous');

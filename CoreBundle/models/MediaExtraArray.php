@@ -77,6 +77,17 @@ class MediaExtraArray extends Model {
 		);
 	}
 
+	public function deleteMediaExtraArrayByFieldId($field_id) {
+		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
+			' WHERE id_field = ' . $field_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'deleteMediaExtraArrayByFieldId: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function deleteMediaExtraArrayByLanguageId($language_id) {
 		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table .
 			' WHERE id_language = ' . $language_id . ';');
