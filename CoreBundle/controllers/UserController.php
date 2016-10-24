@@ -93,7 +93,7 @@ class UserController {
 		header('Location:' . '?page=login');
 	}
 
-	public function forgotPassewordAction() {
+	public function forgotPasswordAction() {
 		if(isset($_GET['platform'])) {
 			$organization = $this->_organizationManager->getOrganizationWithReference($_GET['platform']);
 			$this->mergeErrorArray($organization);
@@ -103,12 +103,12 @@ class UserController {
 				if (isset($result['id_default_language']))
 					$_SESSION['id_language_mediastorage'] = $result['id_default_language'];
 			}
-			if (isset($_SESSION['id_language_mediastorage'])) {
-				$organization = $this->_organizationTextManager->getOrganizationTextWithId($_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage']);
-				$this->mergeErrorArray($organization);
-				if (count($this->_errorArray) == 0) {
-					$text = $organization['data']->fetch_assoc();
+			if (isset($_GET['token'])) {
+				if (isset($_POST['id_login_mediastorage']) && (strcmp($_POST['id_login_mediastorage'], '98374') == 0)) {
+
+
 				}
+				include('ClientBundle/views/login/set_password.php');
 			}
 		}
 		if (isset($_SESSION['id_platform_organization'])) {
@@ -119,12 +119,7 @@ class UserController {
 				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 			}
 		}
-		if (isset($_GET['token'])) {
-			if ((strcmp($_POST['id_login_mediastorage'], '98374') == 0)) {
-				
-			}
-		}
-		include('CoreBundle/views/user/user_forgot_password.php');
+		include('ClientBundle/views/login/user_forgot_password.php');
 	}
 
 	public function createAction() {

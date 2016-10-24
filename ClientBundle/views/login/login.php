@@ -33,7 +33,7 @@
                     <input type="hidden" name="id_login_mediastorage" value="98374" />
                     <button type="submit"><?= VALIDATE ?></button>
                 </form>
-                <a href=""><?= FORGOT_PASSWORD ?></a><br/>
+                <a href="?page=forgot_password"><?= FORGOT_PASSWORD ?></a><br/>
                 <a href="mailto:admin@capitalvision.fr"><?= CONTACT_ADMIN ?></a>
             </div>
         </div>
