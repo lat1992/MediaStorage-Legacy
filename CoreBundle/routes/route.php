@@ -3,6 +3,7 @@
 // LOGIN
 
 $this->_route[] = array('login', 'CoreBundle/controllers/UserController.php', 'UserController', 'loginAction');
+$this->_route[] = array('forgot_password');
 
 // LOGOUT
 

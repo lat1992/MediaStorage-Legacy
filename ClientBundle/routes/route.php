@@ -8,6 +8,8 @@ $this->_route[] = array('program', 'ClientBundle/controllers/ProgramPageControll
 
 $this->_route[] = array('content', 'ClientBundle/controllers/ContentPageController.php', 'ContentPageController', 'contentPageAction');
 $this->_route[] = array('list_content', 'ClientBundle/controllers/ContentPageController.php', 'ContentPageController', 'listContentAction');
+$this->_route[] = array('delete_chapter', 'ClientBundle/controllers/ContentPageController.php', 'ContentPageController', 'deleteChapterAction');
+
 
 $this->_route[] = array('profile', 'ClientBundle/controllers/ProfilePageController.php', 'ProfilePageController', 'profileAction');
 

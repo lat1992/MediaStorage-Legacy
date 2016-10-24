@@ -2,7 +2,7 @@
 
 require_once('CoreBundle/models/MediaExtraArray.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
-
+require_once('CoreBundle/managers/MediaExtraManager.php');
 require_once('CoreBundle/managers/MediaExtraFieldManager.php');
 
 class MediaExtraArrayManager {
@@ -82,7 +82,13 @@ class MediaExtraArrayManager {
 	}
 
 	public function removeMediaExtraArrayByIdDb($media_extra_array_id) {
+		$_mediaExtraManager = new MediaExtraManager();
+		$_mediaExtraManager->removeMediaExtraByArrayIdDb($media_extra_array_id);
 		return $this->_mediaExtraArrayModel->deleteMediaExtraArrayById($media_extra_array_id);
+	}
+
+	public function removeMediaExtraArrayByFieldIdDb($field_id) {
+		return $this->_mediaExtraArrayModel->deleteMediaExtraArrayByFieldId($field_id);
 	}
 
 	public function removeMediaExtraArrayByLanguageIdDb($language_id) {

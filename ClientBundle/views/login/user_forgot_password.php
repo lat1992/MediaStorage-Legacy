@@ -7,17 +7,6 @@
 
     <style>
 
-    .login_div_error {
-        color: white;
-        background-color: red;
-        margin-bottom: 10px;
-    }
-
-    .login_div_error span{
-        display: inline-block;
-        padding: 10px;
-    }
-
 <?php
             if (isset($designs)) {
 
@@ -35,6 +24,25 @@
 
   </head>
     <body class="login-page">
+
+<?php
+    if (isset($_GET['token']) {
+?>
+<?php
+    }
+    else {
+?>
+    <h1>Formulaire de demande de mot de passe</h1>
+    <form>
+        <span>Veuillez remplir votre e-mail :</span>
+        <input type="text" name="mail">
+        <input type="hidden" name="id_login_mediastorage" value="98374">
+        <input type="submit">
+    </form>
+<?php
+    }
+?>
+    <!--
         <div class="page-login">
             <div class= "logo" style="background-image: url(ClientBundle/ressources/organization/<?= $_SESSION['id_platform_organization'] ?>/img/logo.png); background-size: contain;"></div>
             <div class="form">
@@ -44,14 +52,6 @@
                     <input type="hidden" name="id_login_mediastorage" value="98374" />
                     <button type="submit"><?= VALIDATE ?></button>
                 </form>
-
-                <div class="login_div_error">
-<?php
-                    if (isset($to_print_errors)) {
-                        echo '<span>' . $to_print_errors . '</span>';
-                    }
-?>
-                </div>
                 <a href=""><?= FORGOT_PASSWORD ?></a><br/>
                 <a href="mailto:admin@capitalvision.fr"><?= CONTACT_ADMIN ?></a>
             </div>
@@ -60,10 +60,12 @@
     if (isset($text['text'])) {
 ?>
         <div class="page-text">
-            <?= $text['text'] ?>
+        <?= $text['text'] ?>
         </div>
 <?php
     }
 ?>
+
+-->
     </body>
 </html>

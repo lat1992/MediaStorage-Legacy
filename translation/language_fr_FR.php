@@ -349,9 +349,11 @@ define('QUALIFY', 'Qualifier');
 define('MAIL_SUBJECT_DELIVERY', '[MediaStorage]Demande de livraison');
 define('MAIL_BODY_DELIVERY', 'Le client %d (Email: %s) du plateform MediaStorage %d a demandé une livraison de %d.\r\nMediaStorage');
 
-define('VALIDATE_THE', 'Valider les ');
-define('GENERAL_CONDITION', 'conditions générales');
-define('GENERAL_CONDITION_TITLE', 'Conditions Générales');
+define('VALIDATE_THE', 'Valider le ');
+define('GENERAL_CONDITION', 'condition général');
+define('GENERAL_CONDITION_TITLE', 'Condition Général');
+define('FORGOT_PASSWORD', 'Mot de passe oublié');
+define('CONTACT_ADMIN', 'Contactez-nous');
 
 define('INVALID_TC_IN_EMPTY', 'Tc in vide');
 define('INVALID_TC_OUT_EMPTY', 'Tc out vide');

@@ -67,6 +67,10 @@ class MediaExtraManager {
 		return $this->_mediaExtraModel->deleteMediaExtraByMediaId($media_id);
 	}
 
+	public function removeMediaExtraByArrayIdDb($array_id) {
+		return $this->_mediaExtraModel->deleteMediaExtraByArrayId($array_id);
+	}
+
 	public function CreateMultipleMediaExtraDb() {
 		$post_save = $_POST;
 
