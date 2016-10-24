@@ -354,3 +354,7 @@ define('GENERAL_CONDITION', 'condition général');
 define('GENERAL_CONDITION_TITLE', 'Condition Général');
 define('FORGOT_PASSWORD', 'Mot de passe oublié');
 define('CONTACT_ADMIN', 'Contactez-nous');
+
+define('INVALID_TC_IN_EMPTY', 'Tc in vide');
+define('INVALID_TC_OUT_EMPTY', 'Tc out vide');
+define('INVALID_NAME_EMPTY', 'Nom vide');

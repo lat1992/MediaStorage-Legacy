@@ -4,6 +4,14 @@ require_once('ClientBundle/views/layout/header.php');
 
 ?>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="AdminBundle/ressources/tag-it-master/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
+    <link href="AdminBundle/ressources/tag-it-master/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="AdminBundle/ressources/tag-it-master/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+
 	<script src="AdminBundle/ressources/media/js/media.js"></script>
 	<script src="AdminBundle/ressources/fine-uploader/fine-uploader.js"></script>
 
@@ -81,8 +89,13 @@ require_once('ClientBundle/views/layout/header.php');
 
 		<?php require_once('AdminBundle/views/media_file/media_file_list_form.php'); ?>
 */ ?>
-		</div>
+<!-- 			<h2><?= TAG ?></h2>
+            <ul id="myULTags">
+                <li>Tag1</li>
+                <li>Tag2</li>
+            </ul> -->
 
+		</div>
 		<div class="hide-desktop">
 			<a id="cancel_button" class="form_button" href="?page=list_content_admin"><?= CANCEL ?></a>
 			<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
@@ -103,6 +116,16 @@ require_once('ClientBundle/views/layout/header.php');
 		</form>
 
 	</div>
+
+<script>
+			// var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+   //          $('#myULTags').tagit({
+   //              availableTags: sampleTags, // this param is of course optional. it's for autocomplete.
+   //              // configure the name of the input field (will be submitted with form), default: item[tags]
+   //              itemName: 'item[]',
+   //              fieldName: 'tags[]'
+   //          });
+</script>
 
 <?php
 

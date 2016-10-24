@@ -40,22 +40,40 @@ require_once('ClientBundle/views/layout/header.php');
 <?php
 		}
 		else {
-			if  (isset($media_files[0])) {
+			if  (isset($current_media_file)) {
 ?>
 				<div id="content_display_div">
 <?php
-				if (strcmp($media_files[0]['type'], "MRES") == 0) {
+				if (strcmp($current_media_file['type'], "MRES") == 0) {
 ?>
-					<video controls preload="none" width="100%">
-			    		<source src="http://essilor.mediastoragekvi.fr/uploads/files/<?= $media_file['filepath'] ?>" type="<?= $media_file['mime_type'] ?>">
+					<video controls preload="none" width="100%" id="video_player">
+			    		<source  src="<?= $current_media_file['filepath']?>" type="<?= $current_media_file['mime_type'] ?>">
 			    		Your browser does not support HTML5 video.
 					</video>
+					<div id="video_controls">
+						<div style="background-color: #d5d5d5; width: 170px;line-height: 30px;padding:5px;margin:15px 0 0 0;text-align: center; display: inline-block">Temps :
+							<span  id="video_timer">00:00:00
+							</span>
+						</div>
+
+						<div style="background-color: #d5d5d5; width: 170px;line-height: 30px;padding:5px;margin:15px 0 0 0;text-align: center; display: inline-block">Seconde :
+							<span  id="video_timer_second">00.00
+							</span>
+						</div>
+
+						<div style="background-color: #d5d5d5; width: 150px;line-height: 30px;padding:5px;margin:15px 0 0 0;text-align: center; display: inline-block"><a id="prev_button" href="#"><<</a>
+						</div>
+
+						<div style="background-color: #d5d5d5; width: 150px;line-height: 30px;padding:5px;margin:15px 0 0 0;text-align: center; display: inline-block"><a id="next_button" href="#">>></a>
+						</div>
+
+					</div>
 <?php
 				}
-				elseif (strcmp($media_files[0]['type'], "IMG") == 0) {
+				elseif (strcmp($current_media_file['type'], "IMG") == 0) {
 ?>
 					<div>
-						<img src="<?= $media_files[0]['filepath'] ?>" style="width: 100%" />
+						<img src="<?= $current_media_file['filepath'] ?>" style="width: 100%" />
 					</div>
 <?php
 				}
@@ -75,47 +93,104 @@ require_once('ClientBundle/views/layout/header.php');
 
 		<div id="video_contents_div">
 <?php
-			foreach ($media_files as $media_file) {
-
-				if (strcmp($media_file['type'], "MRES") == 0) {
+			foreach ($media_files as $key => $media_file) {
 ?>
+				<a href="?page=content&media_id=<?= $_GET['media_id'] ?>&file=<?= $key ?>">
 					<div class="video_content">
-						<div style="display: none">
-							<video controls preload="none" width="100%">
-					    		<source src="http://essilor.mediastoragekvi.fr/uploads/files/<?= $media_file['filepath'] ?>" type="<?= $media_file['mime_type'] ?>">
-					    		Your browser does not support HTML5 video.
-							</video>
-						</div>
+<?php
+					if (strcmp($media_file['type'], "MRES") == 0) {
+?>
 						<span class="content_thumbnail_header"><?= $media_file['type'] ?></span>
 						<span><?= $media_file['filename'] ?></span>
-					</div>
 <?php
-				}
-				elseif (strcmp($media_file['type'], "IMG") == 0) {
+					}
+					elseif (strcmp($media_file['type'], "IMG") == 0) {
 ?>
-					<div class="video_content">
-						<div style="display: none">
-							<img src="<?= $media_files[0]['filepath'] ?>" style="width: 100%" />
-						</div>
 						<span class="content_thumbnail_header"><?= $media_file['type'] ?></span>
 						<span><?= $media_file['filename'] ?></span>
+\<?php
+					}
+?>
 					</div>
+				</a>
 <?php
-				}
 			}
 ?>
 		</div>
 	</div>
 
-	<?php require_once('ClientBundle/views/content/media_info_description_list.php'); ?>
-
-	<?php require_once('ClientBundle/views/content/media_file_action_list.php'); ?>
+<?php
+		require_once('ClientBundle/views/content/media_info_description_list.php');
+		if (isset($current_media_file) && strcmp($current_media_file['type'], "MRES") == 0) {
+			require_once('ClientBundle/views/content/chapter_list.php');
+		}
+ 		require_once('ClientBundle/views/content/media_file_action_list.php');
+?>
 
 </div>
-
-
-
 <?php
+if (isset($current_media_file) && strcmp($current_media_file['type'], "MRES") == 0) {
+?>
+	<script>
+
+		$( document ).ready(function() {
+
+			var video_player = document.getElementById('video_player');
+			var video_timer = document.getElementById('video_timer');
+
+			video_player.addEventListener('timeupdate',function(){
+				time = video_player.currentTime.toFixed(2);
+				min = Math.floor(time / 60);
+				timeArray = (time % 60).toFixed(2).toString().split(".");
+			    video_timer.innerHTML = min.toString() + ":" + timeArray[0] + ":" + timeArray[1];
+			    video_timer_second.innerHTML = time;
+			});
+
+			var prev_button = document.getElementById('prev_button');
+			var next_button = document.getElementById('next_button');
+
+			prev_button.addEventListener("click", function(event) {
+				video_player.play();
+				video_player.pause();
+				video_player.currentTime = video_player.currentTime - 0.1;
+			});
+
+			next_button.addEventListener("click", function(event) {
+				video_player.play();
+				video_player.pause();
+				video_player.currentTime = video_player.currentTime + 0.1;
+			});
+
+			var tc_in_button = document.getElementById('tc_in_button');
+			var tc_out_button = document.getElementById('tc_out_button');
+			var tc_in_input = document.getElementById('tc_in_input');
+			var tc_out_input = document.getElementById('tc_out_input');
+
+			tc_in_button.addEventListener("click", function(event) {
+				tc_in_input.value = video_player.currentTime.toFixed(2);
+			});
+
+			tc_out_button.addEventListener("click", function(event) {
+				tc_out_input.value = video_player.currentTime.toFixed(2);
+			});
+
+			$(".chapter_link").on("click", function(event) {
+				video_player.currentTime = $(this).parent().parent().find(".tc_in").html();
+
+				if (video_player.paused)
+					video_player.play();
+
+				tc_out_time = parseInt($(this).parent().parent().find(".tc_out").html());
+
+				video_player.addEventListener('timeupdate',function(){
+					if (video_player.currentTime > tc_out_time)
+						video_player.pause();
+				});
+			});
+		});
+	</script>
+<?php
+}
 
 require_once('ClientBundle/views/layout/footer.php');
 

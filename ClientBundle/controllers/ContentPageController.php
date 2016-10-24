@@ -7,6 +7,8 @@ require_once('CoreBundle/managers/MediaExtraManager.php');
 require_once('CoreBundle/managers/MediaExtraFieldManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
 require_once('CoreBundle/managers/DesignManager.php');
+require_once('CoreBundle/managers/ChapterManager.php');
+require_once('CoreBundle/managers/ChapterLanguageManager.php');
 
 class ContentPageController {
 
@@ -17,6 +19,8 @@ class ContentPageController {
 	private $_mediaExtraFieldManager;
 	private $_toolboxManager;
 	private $_designManager;
+	private $_chapterManager;
+	private $_chapterLanguageManager;
 
 	private $_errorArray;
 
@@ -28,6 +32,8 @@ class ContentPageController {
 		$this->_mediaExtraFieldManager = new MediaExtraFieldManager();
 		$this->_toolboxManager = new ToolboxManager();
 		$this->_designManager = new DesignManager();
+		$this->_chapterManager = new ChapterManager();
+		$this->_chapterLanguageManager = new ChapterLanguageManager();
 
 		$this->_errorArray = array();
 	}
@@ -68,6 +74,29 @@ class ContentPageController {
 
 	public function contentPageAction() {
 
+		if (isset($_POST) && isset($_POST['chapter_create'])) {
+
+			$return_value = $this->_chapterManager->checkFormForChapterData();
+			$this->mergeErrorArray($return_value);
+
+			if (count($this->_errorArray) == 0) {
+				$return_value = $this->_chapterManager->chapterCreateDb();
+				$this->mergeErrorArray($return_value);
+
+				$_POST['id_chapter_mediastorage'] = $return_value['id'];
+				$_POST['id_language_mediastorage'] = $_SESSION['id_language_mediastorage'];
+
+				$return_value = $this->_chapterLanguageManager->chapterLanguageCreateDb();
+				$this->mergeErrorArray($return_value);
+
+				if (count($this->_errorArray) == 0) {
+					$_SESSION['flash_message'] = ACTION_SUCCESS;
+					header('Location:' . '?page=content&media_id=' .$_GET['media_id']);
+					exit;
+				}
+			}
+		}
+
 		if (isset($_GET['media_id'])) {
 			$title = $this->_mediaManager->getMediaByMediaId($_GET['media_id']);
 			$title = $this->_mediaManager->formatPathData($title);
@@ -91,6 +120,15 @@ class ContentPageController {
 			$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
 
 			$media_infos = $this->_mediaInfoManager->getArrayWithIdLanguageKey($media_infos);
+
+			$chapters_data = $this->_chapterManager->getChapterByMediaIdDb($_GET['media_id']);
+			$chapters = $this->_toolboxManager->mysqliResultToArray($chapters_data);
+
+			if (isset($_GET['file']))
+				$current_media_file = $media_files[$_GET['file']];
+			elseif (count($media_files) && isset($media_files[0]))
+				$current_media_file = $media_files[0];
+
 		}
 		else {
 			$title['title'] = CONTENT;

@@ -1,18 +1,24 @@
 <?php
 
 require_once('CoreBundle/managers/MediaFileManager.php');
+require_once('CoreBundle/managers/ToolboxManager.php');
+require_once('CoreBundle/managers/DesignManager.php');
 require_once('AdminBundle/ressources/fine-uploader-server/handler.php');
 
 class MediaFileController {
 
 	private $_mediaFileManager;
 	private $_uploadHandler;
+    private $_designManager;
+    private $_toolboxManager;
 
 	private $_errorArray;
 
 	public function __construct() {
 		$this->_mediaFileManager = new MediaFileManager();
 		$this->_uploadHandler = new UploadHandler();
+        $this->_designManager = new DesignManager();
+        $this->_toolboxManager = new ToolboxManager();
 
 		$this->_errorArray = array();
 	}
@@ -46,7 +52,17 @@ class MediaFileController {
 
 		// $media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
 		// $this->mergeErrorArray($media_files);
-		$media_files = $this->_mediaFileManager->getAllMediaFilesByDirectory();
+        $media_files = $this->_mediaFileManager->getAllMediaFilesByDirectory();
+
+        if (isset($_SESSION['id_platform_organization'])) {
+
+            $designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
+            $this->mergeErrorArray($designs_data);
+
+            if (count($this->_errorArray) == 0) {
+                $designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+            }
+        }
 
 		include ('AdminBundle/views/media_file/media_file_create.php');
 	}

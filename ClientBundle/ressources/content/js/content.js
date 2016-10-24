@@ -2,11 +2,11 @@ $( document ).ready(function() {
 
 	    // CONTENT DIV CHANGE
 
-	    $('.video_content').click(function(){
+	    // $('.video_content').click(function(){
 
-	    	$('#content_display_div').html($(this).children().html());
+	    // 	$('#content_display_div').html($(this).children().html());
 
-	    })
+	    // })
 
 	    // OVERLAY
 

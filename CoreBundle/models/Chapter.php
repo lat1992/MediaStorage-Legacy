@@ -30,6 +30,7 @@ class Chapter extends Model {
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'createNewChapter: ' . $this->_mysqli->error : '',
+			'id' => $this->_mysqli->insert_id,
 		);
 	}
 
@@ -55,6 +56,21 @@ class Chapter extends Model {
 		$data = $this->_mysqli->query('SELECT id, tc_in, tc_out, id_media' .
 									' FROM ' . $this->_table .
 									' WHERE id = ' . $chapter_id . ';'
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findChapterById: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findChapterByMediaId($media_id, $user_language_id) {
+		$media_id = $this->_mysqli->real_escape_string($media_id);
+		$user_language_id = $this->_mysqli->real_escape_string($user_language_id);
+
+		$data = $this->_mysqli->query('SELECT chapter.id, tc_in, tc_out, id_media, IF ((SELECT data FROM chapter_language WHERE chapter_language.id_chapter = chapter.id AND id_language = ' . $user_language_id . ' LIMIT 1) IS NOT NULL,(SELECT data FROM chapter_language WHERE chapter_language.id_chapter = chapter.id AND id_language = ' . $user_language_id . ' LIMIT 1), (SELECT data FROM chapter_language WHERE chapter_language.id_chapter = chapter.id LIMIT 1)) AS data' .
+									' FROM ' . $this->_table .
+									' WHERE id_media = ' . $media_id . ';'
 		);
 
 		return array(
