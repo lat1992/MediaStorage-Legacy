@@ -25,14 +25,13 @@ class User extends Model {
 		if ($result) {
 			while ($row = $result->fetch_assoc()) {
 				if (password_verify($password, $row['password']))
-					// var_dump($row['username']);
 					return array(
 						'data' => $row,
 						'error' => ($this->_mysqli->error) ? 'findUserByUsernameAndPassword: ' . $this->_mysqli->error : '',
 					);
 			}
 		}
-exit;
+
 		return array(
 			'data' => false,
 			'error' => ($this->_mysqli->error) ? 'findUserByUsernameAndPassword: ' . $this->_mysqli->error : '',
