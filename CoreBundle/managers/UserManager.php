@@ -25,7 +25,7 @@ class UserManager {
 	public function loginDb() {
 		$result = $this->_userModel->findUserByUsernameAndPassword($_POST['username_mediastorage'], $_POST['password_mediastorage'], $_SESSION['id_platform_organization']);
 
-		if ($result['data'] !== false) {
+		if (empty($result['error'])) {
 			$_SESSION['username_mediastorage'] = $result['data']['username'];
 			$_SESSION['user_id_mediastorage'] = $result['data']['id'];
 			$_SESSION['role_mediastorage'] = $result['data']['id_role'];
@@ -35,6 +35,7 @@ class UserManager {
 			$_SESSION['id_group'] = $result['data']['id_group'];
 
 			$return_value = $this->_rolePermitManager->getRolePermitByRoleIdDb($_SESSION['role_mediastorage']);
+
 			if (empty($return_value['error'])) {
 				while ($data = $return_value['data']->fetch_assoc()) {
 					$_SESSION['permits'][$data['id_permit']] = $data['id_permit'];
@@ -49,7 +50,7 @@ class UserManager {
 
  		return array(
  			'data' => false,
- 			'error' => $result['data']['error'],
+ 			'error' => $result['error'],
 	 	);
 	}
 

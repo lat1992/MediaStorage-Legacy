@@ -48,7 +48,7 @@ class UserController {
 		if (isset($_POST['id_login_mediastorage']) && (strcmp($_POST['id_login_mediastorage'], '98374') == 0)) {
 
 			$return_value = $this->_userManager->loginDb();
-			$this->mergeErrorArray($return_value);
+			$to_print_errors = $return_value['error'];
 
 			if ($return_value['data']) {
 				header('Location:' . '?page=home');

@@ -7,6 +7,12 @@
 
     <style>
 
+    .login_div_error {
+        color: white;
+        background-color: red;
+        padding: 10px;
+    }
+
 <?php
             if (isset($designs)) {
 
@@ -33,13 +39,20 @@
                     <input type="hidden" name="id_login_mediastorage" value="98374" />
                     <button type="submit"><?= VALIDATE ?></button>
                 </form>
+                <div class="login_div_error">
+<?php
+                    if (isset($to_print_errors)) {
+                        echo $to_print_errors;
+                    }
+?>
+                </div>
             </div>
         </div>
 <?php
     if (isset($text['text'])) {
 ?>
         <div class="page-text">
-        <?= $text['text'] ?>
+            <?= $text['text'] ?>
         </div>
 <?php
     }

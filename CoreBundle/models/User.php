@@ -23,11 +23,21 @@ class User extends Model {
 			' WHERE username = "'. $username . '" AND id_organization = ' . $id_organization . ';');
 
 		if ($result) {
+
+			if ($result->num_rows == 0)
+				return array(
+						'error' => INVALID_USERNAME,
+					);
+
 			while ($row = $result->fetch_assoc()) {
 				if (password_verify($password, $row['password']))
 					return array(
 						'data' => $row,
 						'error' => ($this->_mysqli->error) ? 'findUserByUsernameAndPassword: ' . $this->_mysqli->error : '',
+					);
+				else
+					return array(
+						'error' => INVALID_PASSWORD,
 					);
 			}
 		}
