@@ -1,0 +1,11 @@
+php_value session.cookie_domain [domaine_here]
+
+RewriteEngine On
+RewriteBase /
+
+#RewriteRule ^(.+)$ index.php?page=$1
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{HTTP_HOST} !^(?:www) [NC]
+RewriteCond %{HTTP_HOST} ^([^.]+)\.[^.]+\.[^.]+$
+RewriteRule ^(.*)$ $1?platform=%1 [L,QSA]
