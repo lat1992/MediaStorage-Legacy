@@ -44,10 +44,6 @@
                     <input type="hidden" name="id_login_mediastorage" value="98374" />
                     <button type="submit"><?= VALIDATE ?></button>
                 </form>
-<<<<<<< HEAD
-                <a href="?page=forgot_password"><?= FORGOT_PASSWORD ?></a><br/>
-=======
-
                 <div class="login_div_error">
 <?php
                     if (isset($to_print_errors)) {
@@ -55,8 +51,7 @@
                     }
 ?>
                 </div>
-                <a href=""><?= FORGOT_PASSWORD ?></a><br/>
->>>>>>> b22a0ce6265240a364d8f43cb03f372836f9bf7e
+                <a href="?page=forgot_password"><?= FORGOT_PASSWORD ?></a><br/>
                 <a href="mailto:admin@capitalvision.fr"><?= CONTACT_ADMIN ?></a>
             </div>
         </div>
