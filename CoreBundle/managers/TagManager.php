@@ -85,34 +85,36 @@ class TagManager {
 			}
 		}
 
-		foreach ($_POST["tags"] as $tag) {
-			$ret_value = $this->_tagModel->findTagWithData($tag);
+		if (isset($_POST["tags"])) {
+			foreach ($_POST["tags"] as $tag) {
+				$ret_value = $this->_tagModel->findTagWithData($tag);
 
-			if (!empty($ret_value['error']))
-				return $ret_value;
+				if (!empty($ret_value['error']))
+					return $ret_value;
 
-			$tag_data = $this->_toolboxManager->mysqliResultToData($ret_value);
+				$tag_data = $this->_toolboxManager->mysqliResultToData($ret_value);
 
-			if (!empty($tag_data)) {
+				if (!empty($tag_data)) {
 
-				$check_presence = $this->_tagModel->findTagdByIdMediaAndIdTag($tag_data['id_tag'], $media_id);
+					$check_presence = $this->_tagModel->findTagdByIdMediaAndIdTag($tag_data['id_tag'], $media_id);
 
-				if (!empty($check_presence['error']))
-					return $check_presence;
+					if (!empty($check_presence['error']))
+						return $check_presence;
 
-				if ($check_presence['data']->num_rows == 0) {
+					if ($check_presence['data']->num_rows == 0) {
 
-					$ret_value = $this->_tagModel->createTagLink($tag_data['id_tag'], $media_id);
+						$ret_value = $this->_tagModel->createTagLink($tag_data['id_tag'], $media_id);
+
+						if (!empty($ret_value['error']))
+							return $ret_value;
+					}
+				}
+				else {
+					$ret_value = $this->createNewTagAndLink($tag, $media_id);
 
 					if (!empty($ret_value['error']))
 						return $ret_value;
 				}
-			}
-			else {
-				$ret_value = $this->createNewTagAndLink($tag, $media_id);
-
-				if (!empty($ret_value['error']))
-					return $ret_value;
 			}
 		}
 
