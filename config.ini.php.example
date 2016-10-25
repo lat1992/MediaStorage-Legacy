@@ -16,11 +16,11 @@ it-service = ''
 regie = ''
 other = ''
 
-[WorkFlow]
+[workflow]
 url = ''
 
-[Storage]
+[storage]
 path = ''
 
-[Archive]
+[archive]
 path = ''
