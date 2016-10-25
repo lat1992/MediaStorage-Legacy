@@ -1,5 +1,7 @@
 <div id="download_link_div">
 
+    <h2 class="content_subtitle"><?= ACTION ?></h2>
+
     <div id="temp" style="width: 50%; height: 50%; position: absolute;top:0;bottom: 0;left: 0;right: 0;margin: auto;display: none; background-color: white">
         <span>Livraison</span>
         <form>
