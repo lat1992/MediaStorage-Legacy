@@ -76,4 +76,16 @@ class TagLanguage extends Model {
 			'error' => ($this->_mysqli->error) ? 'deleteTagLanguageByTagId: ' . $this->_mysqli->error : '',
 		);
 	}
+
+	public function findAllTagsByIdLanguage($id_language) {
+		$id_language = $this->_mysqli->real_escape_string($id_language);
+
+		$data = $this->_mysqli->query('SELECT data FROM tag_language');
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllTagsByIdLanguage: ' . $this->_mysqli->error : '',
+		);
+
+	}
 }

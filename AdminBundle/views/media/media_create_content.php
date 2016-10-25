@@ -1,3 +1,4 @@
+
 <?php
 
 require_once('ClientBundle/views/layout/header.php');
@@ -89,11 +90,16 @@ require_once('ClientBundle/views/layout/header.php');
 
 		<?php require_once('AdminBundle/views/media_file/media_file_list_form.php'); ?>
 */ ?>
-<!-- 			<h2><?= TAG ?></h2>
+			<h2><?= TAG ?></h2>
             <ul id="myULTags">
-                <li>Tag1</li>
-                <li>Tag2</li>
-            </ul> -->
+<?php
+			if (isset($actual_tags)) {
+				foreach ($actual_tags as $actual_tag) {
+					echo '<li>' . $actual_tag . '</li>';
+				}
+			}
+?>
+            </ul>
 
 		</div>
 		<div class="hide-desktop">
@@ -118,13 +124,17 @@ require_once('ClientBundle/views/layout/header.php');
 	</div>
 
 <script>
-			// var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
-   //          $('#myULTags').tagit({
-   //              availableTags: sampleTags, // this param is of course optional. it's for autocomplete.
-   //              // configure the name of the input field (will be submitted with form), default: item[tags]
-   //              itemName: 'item[]',
-   //              fieldName: 'tags[]'
-   //          });
+			var sampleTags = [<?php
+				foreach ($tags_proposition_data as $value) {
+					echo '"' . $value . '", ';
+				}
+			?>];
+            $('#myULTags').tagit({
+                availableTags: sampleTags, // this param is of course optional. it's for autocomplete.
+                // configure the name of the input field (will be submitted with form), default: item[tags]
+                itemName: 'item[]',
+                fieldName: 'tags[]'
+            });
 </script>
 
 <?php

@@ -146,4 +146,18 @@ class ContentPageController {
 
 		include ('ClientBundle/views/content/content.php');
 	}
+
+	public function deleteChapterAction() {
+		if (isset($_GET['chapter_id'])) {
+
+			$return_value = $this->_chapterManager->removeChapterByIdDb($_GET['chapter_id']);
+			$this->mergeErrorArray($return_value);
+
+			if (count($this->_errorArray) == 0) {
+				$_SESSION['flash_message'] = ACTION_SUCCESS;
+				header('Location:' . '?page=content&media_id=' . $_GET['media_id']);
+				exit;
+			}
+		}
+	}
 }

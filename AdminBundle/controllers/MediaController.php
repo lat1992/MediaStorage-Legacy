@@ -40,7 +40,7 @@ class MediaController {
 		$this->_mediaExtraFieldManager = new MediaExtraFieldManager();
 		$this->_toolboxManager = new ToolboxManager();
 		$this->_designManager = new DesignManager();
-		$this->_tagManager = new DesignManager();
+		$this->_tagManager = new TagManager();
 		$this->_uploadHandler = new UploadHandler();
 		$this->_workflowManager = new WorkFlowManager();
 
@@ -187,9 +187,14 @@ class MediaController {
 							$this->mergeErrorArray($return_value);
 
 							if (count($this->_errorArray) == 0) {
-								$_SESSION['flash_message'] = ACTION_SUCCESS;
-								header('Location:' . '?page=list_program_admin');
-								exit;
+
+								$this->_tagManager->createOrDeleteMultipleTagDb();
+
+								if (count($this->_errorArray) == 0) {
+									$_SESSION['flash_message'] = ACTION_SUCCESS;
+									header('Location:' . '?page=list_program_admin');
+									exit;
+								}
 							}
 						}
 					}
@@ -202,6 +207,10 @@ class MediaController {
 		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(1);
 		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
+
+		$tags_proposition_data = $this->_tagManager->getAllTagsByIdLanguageDb();
+		$tags_proposition_data = $this->_toolboxManager->mysqliResultToArray($tags_proposition_data);
+		$tags_proposition_data = $this->_tagManager->formatTagsDataArray($tags_proposition_data);
 
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($enums);
@@ -269,13 +278,16 @@ class MediaController {
 							$this->mergeErrorArray($return_value);
 
 							if (count($this->_errorArray) == 0) {
-								$_SESSION['flash_message'] = ACTION_SUCCESS;
-								header('Location:' . '?page=list_content_admin');
-								exit;
+
+								$this->_tagManager->createOrDeleteMultipleTagDb();
+
+								if (count($this->_errorArray) == 0) {
+									$_SESSION['flash_message'] = ACTION_SUCCESS;
+									header('Location:' . '?page=list_content_admin');
+									exit;
+								}
 							}
 						}
-
-
 					}
 				}
 			}
@@ -287,6 +299,10 @@ class MediaController {
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(2);
 		$parents = $this->_mediaManager->getAllProgramsByIdOrganizationDb();
 		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
+
+		$tags_proposition_data = $this->_tagManager->getAllTagsByIdLanguageDb();
+		$tags_proposition_data = $this->_toolboxManager->mysqliResultToArray($tags_proposition_data);
+		$tags_proposition_data = $this->_tagManager->formatTagsDataArray($tags_proposition_data);
 
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($enums);
@@ -328,9 +344,6 @@ class MediaController {
 		}
 
 		if (isset($_POST['id_media_create_mediastorage']) && (strcmp($_POST['id_media_create_mediastorage'], '895143') == 0)) {
-			// $this->_tagManager->createOrDeleteMultipleTag();
-
-// var_dump($_POST);exit;
 
 			$return_value = $this->_mediaManager->preFillMediaPostData(2);
 			$this->mergeErrorArray($return_value);
@@ -366,9 +379,11 @@ class MediaController {
 								$return_value = $this->_mediaFileManager->createMediaFileDb();
 								$this->mergeErrorArray($return_value);
 								if (count($this->_errorArray) == 0) {
-									// $this->_workflowManager->transcoding($return_value['id'], $_POST['filepath_mediastorage']);
+									$this->_tagManager->createOrDeleteMultipleTagDb();
 
-									// $this->_tagManager->createOrDeleteMultipleTag();
+									if (count($this->_errorArray) == 0) {
+										// $this->_workflowManager->transcoding($return_value['id'], $_POST['filepath_mediastorage']);
+									}
 								}
 							}
 						}
@@ -390,6 +405,10 @@ class MediaController {
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(2);
 		$parents = $this->_mediaManager->getAllProgramsByIdOrganizationDb();
 		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
+
+		$tags_proposition_data = $this->_tagManager->getAllTagsByIdLanguageDb();
+		$tags_proposition_data = $this->_toolboxManager->mysqliResultToArray($tags_proposition_data);
+		$tags_proposition_data = $this->_tagManager->formatTagsDataArray($tags_proposition_data);
 
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($enums);
@@ -460,9 +479,13 @@ class MediaController {
 								$this->mergeErrorArray($return_value);
 
 								if (count($this->_errorArray) == 0) {
-									$_SESSION['flash_message'] = ACTION_SUCCESS;
-									header('Location:' . '?page=list_program_admin');
-									exit;
+									$this->_tagManager->createOrDeleteMultipleTagDb();
+
+									if (count($this->_errorArray) == 0) {
+										$_SESSION['flash_message'] = ACTION_SUCCESS;
+										header('Location:' . '?page=list_program_admin');
+										exit;
+									}
 								}
 							}
 						}
@@ -490,6 +513,14 @@ class MediaController {
 		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(1);
 		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
+
+		$tags_proposition_data = $this->_tagManager->getAllTagsByIdLanguageDb();
+		$tags_proposition_data = $this->_toolboxManager->mysqliResultToArray($tags_proposition_data);
+		$tags_proposition_data = $this->_tagManager->formatTagsDataArray($tags_proposition_data);
+
+		$actual_tags = $this->_tagManager->getTagdByIdMediaAndIdLanguageDb($_GET['media_id']);
+		$actual_tags = $this->_toolboxManager->mysqliResultToArray($actual_tags);
+		$actual_tags = $this->_tagManager->formatTagsDataArray($actual_tags);
 
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($enums);
@@ -551,9 +582,13 @@ class MediaController {
 								$this->mergeErrorArray($return_value);
 
 								if (count($this->_errorArray) == 0) {
-									$_SESSION['flash_message'] = ACTION_SUCCESS;
-									header('Location:' . '?page=list_content_admin');
-									exit;
+									$this->_tagManager->createOrDeleteMultipleTagDb();
+
+									if (count($this->_errorArray) == 0) {
+										$_SESSION['flash_message'] = ACTION_SUCCESS;
+										header('Location:' . '?page=list_content_admin');
+										exit;
+									}
 								}
 							}
 						}
@@ -583,6 +618,14 @@ class MediaController {
 		$parents = $this->_mediaManager->getAllProgramsByIdOrganizationDb();
 		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
 		$media_files_linked = $this->_mediaFileManager->getAllMediaFilesByMediaIdDb($_GET['media_id']);
+
+		$tags_proposition_data = $this->_tagManager->getAllTagsByIdLanguageDb();
+		$tags_proposition_data = $this->_toolboxManager->mysqliResultToArray($tags_proposition_data);
+		$tags_proposition_data = $this->_tagManager->formatTagsDataArray($tags_proposition_data);
+
+		$actual_tags = $this->_tagManager->getTagdByIdMediaAndIdLanguageDb($_GET['media_id']);
+		$actual_tags = $this->_toolboxManager->mysqliResultToArray($actual_tags);
+		$actual_tags = $this->_tagManager->formatTagsDataArray($actual_tags);
 
 		$this->mergeErrorArray($folders);
 		$this->mergeErrorArray($enums);

@@ -7,6 +7,17 @@
 
     <style>
 
+    .login_div_error {
+        color: white;
+        background-color: red;
+        margin-bottom: 10px;
+    }
+
+    .login_div_error span{
+        display: inline-block;
+        padding: 10px;
+    }
+
 <?php
             if (isset($designs)) {
 
@@ -33,7 +44,19 @@
                     <input type="hidden" name="id_login_mediastorage" value="98374" />
                     <button type="submit"><?= VALIDATE ?></button>
                 </form>
+<<<<<<< HEAD
                 <a href="?page=forgot_password"><?= FORGOT_PASSWORD ?></a><br/>
+=======
+
+                <div class="login_div_error">
+<?php
+                    if (isset($to_print_errors)) {
+                        echo '<span>' . $to_print_errors . '</span>';
+                    }
+?>
+                </div>
+                <a href=""><?= FORGOT_PASSWORD ?></a><br/>
+>>>>>>> b22a0ce6265240a364d8f43cb03f372836f9bf7e
                 <a href="mailto:admin@capitalvision.fr"><?= CONTACT_ADMIN ?></a>
             </div>
         </div>
@@ -41,7 +64,7 @@
     if (isset($text['text'])) {
 ?>
         <div class="page-text">
-        <?= $text['text'] ?>
+            <?= $text['text'] ?>
         </div>
 <?php
     }
