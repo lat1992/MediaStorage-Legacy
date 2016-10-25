@@ -46,6 +46,27 @@ table {
 	color: #000000;
 }
 
+.video_content span {
+	width: 100%;
+}
+
+div.div_video_control {
+	text-align: center;
+	display: inline-block;
+	width: 170px;
+	line-height: 30px;
+	margin: 15px 0 0 0;
+}
+
+div.div-video-padding {
+	padding: 5px;
+}
+
+div.div_video_control {
+	color: #000000;
+	background-color: #d5d5d5;
+}
+
 .content_thumbnail_header {
 	display: inline-block;
 	width: 100%;
@@ -58,6 +79,7 @@ table {
 .content_thumbnail_body {
 	display: inline-block;
 	margin-top: 10px;
+	padding-bottom: 10px
 }
 
 label.label-content-thumbnail {

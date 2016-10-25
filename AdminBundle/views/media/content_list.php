@@ -4,6 +4,7 @@ require_once('ClientBundle/views/layout/header.php');
 
 ?>
 	<link rel="stylesheet" href="CoreBundle/ressources/layout/css/form.css">
+	<link rel="stylesheet" href="ClientBundle/ressources/content/css/button.css">
 
 	<style>
 
@@ -27,9 +28,9 @@ require_once('ClientBundle/views/layout/header.php');
 <?php
 		if(isset($_SESSION['permits'][PERMIT_CREATE_CONTENT])) {
 ?>
-			<div class="add">
-				<a href="?page=create_content_admin"><?= CREATE_MEDIA_CONTENT ?></a>
-			</div>
+			<!-- <div class="add"> -->
+				<a class="button button-add" href="?page=create_content_admin"><?= CREATE_MEDIA_CONTENT ?></a>
+			<!-- </div> -->
 <?php
 		}
 

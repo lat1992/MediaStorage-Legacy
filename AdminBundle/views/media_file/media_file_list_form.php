@@ -23,11 +23,11 @@
 			</tr>
 */?>
 			<tr>
-				<td><input type="checkbox" name="media_file_mediastorage[<?= $key ?>][name]" value="<?= $media_file ?>" /></td>
+				<td><input class="input-checkbox" type="checkbox" name="media_file_mediastorage[<?= $key ?>][name]" value="<?= $media_file ?>" /></td>
 				<td><?= $media_file ?></td>
 				<td><input type="hidden" name="media_file_mediastorage[<?= $key ?>][right_download]" checked value="0" /><input type="checkbox" name="media_file_mediastorage[<?= $key ?>][right_download]" checked value="1" /></td>
 				<td><input type="hidden" name="media_file_mediastorage[<?= $key ?>][right_preview]" checked value="0" /><input type="checkbox" name="media_file_mediastorage[<?= $key ?>][right_preview]" checked value="1" /></td>
-				<td><a href="#"><?= QUALIFY ?></a></td>
+				<td class="td-link td-qualification-button" ><a class="td-link-button qualification-button" href="#"><?= QUALIFY ?></a></td>
 			</tr>
 <?php
 		}

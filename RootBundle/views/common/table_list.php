@@ -1,4 +1,4 @@
-	<table cellspacing="0">
+	<table class="table-list" cellspacing="0">
 		<tr>
 <?php
 		foreach ($table_header as $header) {

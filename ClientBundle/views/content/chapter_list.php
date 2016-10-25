@@ -42,7 +42,7 @@
                         <td data-id="<?= $chapter['id'] ?>" class="td-link"><a href="#"  class="chapter_link td-link-button chapter-button"><?= $chapter['data'] ?></a></td>
                         <td class="tc_in"><?= $chapter['tc_in'] ?></td>
                         <td class="tc_out"><?= $chapter['tc_out'] ?></td>
-                        <td data-id="<?= $chapter['id'] ?>" class="td-link" ><a class="td-link-button delete-button" href="?page=delete_chapter&media_id=<?= $_GET['media_id'] ?>&chapter_id=<?= $chapter['id'] ?>" ><?= DELETE ?></a></td>
+                        <td data-id="<?= $chapter['id'] ?>" class="td-link" ><a class="td-link-button button-delete" href="?page=delete_chapter&media_id=<?= $_GET['media_id'] ?>&chapter_id=<?= $chapter['id'] ?>" ><?= DELETE ?></a></td>
                     </tr>
 <?php
                 }

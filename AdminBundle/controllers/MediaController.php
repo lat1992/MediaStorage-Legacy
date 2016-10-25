@@ -80,9 +80,9 @@ class MediaController {
 				$table_data[] = array(
 					'<td>' . $media['reference'] . '</td>',
 					'<td>' . $media['reference_client'] . '</td>',
-					'<td>' . $media['right_view'] . '</td>',
-					'<td class="button_td edit" ><a href="?page=edit_program_admin&media_id=' . $media['id'] . '" class="button_a edit">' . EDIT . '</a></td>',
-					'<td class="button_td delete" ><a href="?page=delete_programmau_admin&media_id=' . $media['id'] . '" class="button_a delete">' . DELETE . '</a></td>',
+					'<td>' . (($media['right_view'] == 1) ? YES : NON) . '</td>',
+					'<td class="td-link" ><a href="?page=edit_program_admin&media_id=' . $media['id'] . '" class="td-link-button button-edit">' . EDIT . '</a></td>',
+					'<td class="td-link" ><a href="?page=delete_programmau_admin&media_id=' . $media['id'] . '" class="td-link-button button-delete">' . DELETE . '</a></td>',
 				);
 			}
 
@@ -124,9 +124,9 @@ class MediaController {
 				$table_data[] = array(
 					'<td>' . $media['reference'] . '</td>',
 					'<td>' . $media['reference_client'] . '</td>',
-					'<td>' . $media['right_view'] . '</td>',
-					'<td class="button_td edit" ><a href="?page=edit_content_admin&media_id=' . $media['id'] . '" class="button_a edit">' . EDIT . '</a></td>',
-					(isset($_SESSION['permits'][PERMIT_DELETE_CONTENT])) ? '<td class="button_td delete" ><a href="?page=delete_contentmau_admin&media_id=' . $media['id'] . '" class="button_a delete">' . DELETE . '</a></td>' : '',
+					'<td>' . (($media['right_view'] == 1) ? YES : NON) . '</td>',
+					'<td class="td-link" ><a href="?page=edit_content_admin&media_id=' . $media['id'] . '" class="td-link-button button-edit">' . EDIT . '</a></td>',
+					(isset($_SESSION['permits'][PERMIT_DELETE_CONTENT])) ? '<td class="td-link" ><a href="?page=delete_contentmau_admin&media_id=' . $media['id'] . '" class="td-link-button button-delete">' . DELETE . '</a></td>' : '',
 				);
 			}
 

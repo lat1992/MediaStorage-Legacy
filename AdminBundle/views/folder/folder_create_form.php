@@ -93,8 +93,8 @@
 ?>
 		<input type="hidden" name="id_folder_create_mediastorage" value="984156" />
 
-		<a id="cancel_button" class="form_button" href="?page=list_folder_admin"><?= CANCEL ?></a>
-		<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
+		<a class="button button-delete margin-top" href="?page=list_folder_admin"><?= CANCEL ?></a>
+		<a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 
 	</form>
 

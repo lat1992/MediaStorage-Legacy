@@ -1,0 +1,135 @@
+#chapter_table td.td-link, td.td-link {
+	padding: 0px;
+}
+
+a.td-link-button, div.div_video_control a.button-video-control {
+	display: inline-block;
+	line-height: 40px;
+	width: 100%;
+	text-align: center;
+	text-decoration: none;
+}
+
+div.video_frame, div.div_video_control a.button-video-control {
+	width: 80px;
+}
+
+a.button, button.button, label.label-chapter {
+	display: inline-block;
+	line-height: 40px;
+	text-align: center;
+	text-decoration: none;
+	border: none;
+	padding: 0 10px 0 10px;
+	margin: 5px 0 5px 0;
+}
+
+a.button {
+	width: 80px;
+}
+
+a.button-add {
+	width: 200px;
+	float: left;
+	margin: 20px 0 20px 0;
+	/*margin: 0 0 20px 0;*/
+}
+
+button.button {
+	background:none;
+	border:none;
+	font-size:1em;
+	color:blue;
+	font-weight: normal;
+	width: 120px;
+}
+
+button.button-multiple-qualification {
+	width: 200px;
+	float: left;
+	margin: 20px 0 20px 0;
+}
+
+a.button-chapter, label.label-chapter {
+	width: 80px;
+}
+
+input.input-line-height {
+	line-height: 25px;
+	padding: 2px 5px 2px 5px;
+}
+
+label.label-chapter {
+	color: #000000;
+	background-color: #dfdfdf;
+}
+
+#chapter_table tr:hover td, #download_link_table tr:hover td {
+	background-color: #eaeaea;
+}
+
+#upload_list tr:hover td {
+	background-color: #f9f9f9;
+}
+
+a.button, button.button, div.div_video_control a.button-video-control {
+	background-color: #999999;
+	color: #ffffff;
+}
+
+a.button:hover, button.button:hover, div.div_video_control a.button-video-control:hover {
+	background-color: #777777;
+	color: #ffffff;
+}
+
+a.button-delete {
+	background-color: #ff6666;
+	color: #ffffff;
+}
+
+a.button-delete:hover {
+	background-color: #ff3333;
+	color: #ffffff;
+}
+
+a.chapter-button {
+	background-color: #999999;
+	color: #ffffff;
+}
+
+a.chapter-button:hover {
+	background-color: #777777;
+	color: #ffffff;
+}
+
+button.button-validate, a.button-validate {
+	color: #ffffff;
+	background-color: #7bd55d;
+}
+
+button.button-validate:hover, a.button-validate:hover {
+	color: #ffffff;
+	background-color: #5acb34;
+}
+
+a.qualification-button, button.qualification-button, button.button-multiple-qualification, #download_link_table a, a.button-add, a.button-edit {
+	background-color: #66c2ff;
+	color: #ffffff;
+}
+
+a.qualification-button:hover, button.qualification-button:hover, button.button-multiple-qualification:hover, #download_link_table a:hover, a.button-add:hover, a.button-edit:hover {
+	background-color: #33adff;
+	color: #ffffff;
+}
+
+.qq-upload-button {
+	background-color: #66c2ff;
+	color: #ffffff;
+	border: none;
+}
+
+.qq-upload-button:hover {
+	background-color: #33adff;
+	color: #ffffff;
+	border: none;
+}

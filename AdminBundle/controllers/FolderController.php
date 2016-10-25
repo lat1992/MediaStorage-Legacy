@@ -62,8 +62,8 @@ class FolderController {
 			while ($folder = $folders['data']->fetch_assoc()) {
 				$table_data[] = array(
 					'<td>' . $folder['translate'] . '</td>',
-					'<td class="button_td edit" ><a href="?page=edit_folder_admin&folder_id=' . $folder['id'] . '" class="button_a edit">' . EDIT . '</a></td>',
-					'<td class="button_td delete" ><a href="?page=delete_folder_admin&folder_id=' . $folder['id'] . '" class="button_a delete">' . DELETE . '</a></td>',
+					'<td class="td-link" ><a href="?page=edit_folder_admin&folder_id=' . $folder['id'] . '" class="td-link-button button-edit">' . EDIT . '</a></td>',
+					'<td class="td-link" ><a href="?page=delete_folder_admin&folder_id=' . $folder['id'] . '" class="td-link-button button-delete">' . DELETE . '</a></td>',
 				);
 			}
 

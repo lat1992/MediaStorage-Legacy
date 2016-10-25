@@ -5,6 +5,7 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
 
 <link rel="stylesheet" href="ClientBundle/ressources/content/css/content.css">
+<link rel="stylesheet" href="ClientBundle/ressources/content/css/button.css">
 <link rel="stylesheet" href="ClientBundle/ressources/jOverlay-master/src/jOverlay.css">
 
 <script src="ClientBundle/ressources/jOverlay-master/src/jquery.jOverlay.js"></script>
@@ -12,125 +13,8 @@ require_once('ClientBundle/views/layout/header.php');
 
 <style>
 
-	#chapter_table td.td-link {
-		padding: 0px;
-	}
 
-	a.td-link-button, div.div_video_control a.button-video-control {
-		display: inline-block;
-		line-height: 40px;
-		width: 100%;
-		text-align: center;
-		text-decoration: none;
-	}
 
-	a.button, button.button, label.label-chapter {
-		display: inline-block;
-		line-height: 40px;
-		text-align: center;
-		text-decoration: none;
-		border: none;
-		padding: 0 10px 0 10px;
-		margin: 5px 0 5px 0;
-	}
-
-	a.button {
-		width: 80px;
-	}
-
-	button.button {
-		background:none;
-		border:none;
-		font-size:1em;
-		color:blue;
-		font-weight: normal;
-		width: 120px;
-	}
-
-	a.button-chapter, label.label-chapter {
-		width: 80px;
-	}
-
-	input.input-line-height {
-		line-height: 25px;
-		padding: 2px 5px 2px 5px;
-	}
-
-	div.div_video_control {
-		text-align: center;
-		display: inline-block;
-		width: 170px;
-		line-height: 30px;
-		margin: 15px 0 0 0;
-	}
-
-	div.div-video-padding {
-		padding: 5px;
-	}
-
-	div.div_video_control {
-		color: #000000;
-		background-color: #d5d5d5;
-	}
-
-	label.label-chapter {
-		color: #000000;
-		background-color: #dfdfdf;
-	}
-
-	a.delete-button {
-		background-color: #ff6666;
-		color: #ffffff;
-	}
-
-	a.delete-button:hover {
-		background-color: #ff3333;
-		color: #ffffff;
-	}
-
-	#chapter_table tr:hover td, #download_link_table tr:hover td{
-		background-color: #eaeaea;
-	}
-
-	a.chapter-button {
-		background-color: #999999;
-		color: #ffffff;
-	}
-
-	a.chapter-button:hover {
-		background-color: #777777;
-		color: #ffffff;
-	}
-
-	a.button, button.button, div.div_video_control a.button-video-control {
-		background-color: #999999;
-		color: #ffffff;
-	}
-
-	a.button:hover, button.button:hover, div.div_video_control a.button-video-control:hover {
-		background-color: #777777;
-		color: #ffffff;
-	}
-
-	button.button-validate {
-		color: #ffffff;
-		background-color: #7bd55d;
-	}
-
-	button.button-validate:hover {
-		color: #ffffff;
-		background-color: #5acb34;
-	}
-
-	#download_link_table a {
-		background-color: #66c2ff;
-		color: #ffffff;
-	}
-
-	#download_link_table a:hover {
-		background-color: #33adff;
-		color: #ffffff;
-	}
 
 <?php
     if (isset($designs)) {
@@ -181,10 +65,10 @@ require_once('ClientBundle/views/layout/header.php');
 							</span>
 						</div>
 
-						<div class="div_video_control"><a class="button-video-control" id="prev_button" href="#"><<</a>
+						<div class="div_video_control video_frame"><a class="button-video-control" id="prev_button" href="#"><<</a>
 						</div>
 
-						<div class="div_video_control"><a class="button-video-control" id="next_button" href="#">>></a>
+						<div class="div_video_control video_frame"><a class="button-video-control" id="next_button" href="#">>></a>
 						</div>
 
 					</div>

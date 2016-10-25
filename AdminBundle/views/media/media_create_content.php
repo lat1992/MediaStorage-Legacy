@@ -18,6 +18,7 @@ require_once('ClientBundle/views/layout/header.php');
 
 	<link rel="stylesheet" href="CoreBundle/ressources/layout/css/form.css">
 	<link rel="stylesheet" href="AdminBundle/ressources/fine-uploader/fine-uploader-new.css">
+	<link rel="stylesheet" href="ClientBundle/ressources/content/css/button.css">
 
 	<style>
 
@@ -64,8 +65,8 @@ require_once('ClientBundle/views/layout/header.php');
 		<input type="hidden" name="id_media_create_mediastorage" value="895143" />
 
 		<div class="hide-mobile">
-			<a id="cancel_button" class="form_button" href="?page=list_content_admin"><?= CANCEL ?></a>
-			<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
+			<a class="button button-delete margin-top" href="?page=list_content_admin"><?= CANCEL ?></a>
+			<a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 		</div>
 
 		</div>
@@ -103,8 +104,8 @@ require_once('ClientBundle/views/layout/header.php');
 
 		</div>
 		<div class="hide-desktop">
-			<a id="cancel_button" class="form_button" href="?page=list_content_admin"><?= CANCEL ?></a>
-			<a id="validate_button" class="form_button" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
+			<a class="button button-delete margin-top" href="?page=list_content_admin"><?= CANCEL ?></a>
+			<a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 		</div>
 
 <?php

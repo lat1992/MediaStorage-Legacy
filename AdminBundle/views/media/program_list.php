@@ -4,6 +4,7 @@ require_once('ClientBundle/views/layout/header.php');
 
 ?>
 	<link rel="stylesheet" href="CoreBundle/ressources/layout/css/form.css">
+	<link rel="stylesheet" href="ClientBundle/ressources/content/css/button.css">
 
 	<style>
 
@@ -24,9 +25,9 @@ require_once('ClientBundle/views/layout/header.php');
 
 	<div id="container">
 
-		<div class="add">
-			<a href="?page=create_program_admin"><?= CREATE_MEDIA_PROGRAM ?></a>
-		</div>
+		<!-- <div class="add"> -->
+			<a class="button button-add" href="?page=create_program_admin"><?= CREATE_MEDIA_PROGRAM ?></a>
+		<!-- </div> -->
 
 <?php
 

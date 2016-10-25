@@ -49,7 +49,7 @@ div.add a {
 }
 
 #container {
-	margin: 20px;
+	margin: 0 20px 20px 20px;
 	text-align: center;
 }
 
@@ -78,6 +78,7 @@ form label, form input, form select, form textarea {
 	border-style: none;
     font-size: 0.9em;
     padding: 3px;
+    /*line-height: 25px;*/
 }
 
 form input, form select, form textarea {
@@ -85,7 +86,7 @@ form input, form select, form textarea {
 }
 
 form input, form textarea {
-	width: 30%;
+	width: 50%;
 }
 
 form input, form select, form option, form textarea {
@@ -158,7 +159,7 @@ input.input_checkbox {
 }
 
 .upload_list tr td input {
-	width: 100%;
+	width: 13px;
 	margin: 0;
 }
 
@@ -204,6 +205,22 @@ a#more_info_hide, #more_info_data {
 
 #fine-uploader-thumbnails input {
 	width: 100%;
+}
+
+.table-list td {
+	border: 1px solid #d5d5d5;
+}
+
+form a.margin-left {
+	margin: 0 0 0 30px;
+}
+
+form a.margin-top {
+	margin-top: 30px;
+}
+
+ul.tagit {
+	background-color: #ffffff;
 }
 
 @media only screen and (max-width: 900px) {
