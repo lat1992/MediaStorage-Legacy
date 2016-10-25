@@ -382,7 +382,9 @@ class MediaController {
 									$this->_tagManager->createOrDeleteMultipleTagDb();
 
 									if (count($this->_errorArray) == 0) {
+										echo "lol";
 										$this->_workflowManager->transcoding($_POST['id_media_mediastorage'], $_POST['filepath_mediastorage']);
+										exit;
 									}
 								}
 							}
