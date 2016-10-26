@@ -87,6 +87,6 @@ a.link_div_folder, a.link_div_program, a.link_div_content {
 }
 
 .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
 }

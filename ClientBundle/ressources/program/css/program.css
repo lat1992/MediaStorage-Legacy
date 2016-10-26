@@ -1,5 +1,5 @@
 .program_info {
-    text-align: center;
+    text-align: left;
     margin: 15px 0 0 0;
 }
 
@@ -26,6 +26,7 @@
 
 div.first_div, div.second_div {
 	text-align: left;
+  color: #4f4f4f;
 }
 
 #description_div, #download_link_div {
