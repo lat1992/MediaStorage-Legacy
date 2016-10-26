@@ -27,9 +27,9 @@ require_once('ClientBundle/views/layout/header.php');
 
 	</style>
 
-	<?php require_once('AdminBundle/views/media_file/media_file_create_form.php'); ?>
-
 	<script src="AdminBundle/ressources/fine-uploader/fine-uploader.js"></script>
+
+	<?php require_once('AdminBundle/views/media_file/media_file_create_form.php'); ?>
 
 	<script>
 

@@ -39,19 +39,6 @@ class MediaFileController {
 
 		$title['title'] = MEDIA_FILE_UPLOAD_TITLE;
 
-// 		if (isset($_POST['id_media_file_create']) && (strcmp($_POST['id_media_file_create'], '9732') == 0)) {
-// 			$this->_mediaFileManager->formatPostDataForMultipleQualification();
-// 			// $url = $this->_mediaFileManager->prepareUrlForMultipleQualification($_POST['media_file_mediastorage']);
-
-// var_dump($url);
-// exit;
-// 			header('Location:' . '?page=create_content_by_multiple_files_admin');
-// 			exit;
-
-// 		}
-
-		// $media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
-		// $this->mergeErrorArray($media_files);
         $media_files = $this->_mediaFileManager->getAllMediaFilesByDirectory();
 
         if (isset($_SESSION['id_platform_organization'])) {
