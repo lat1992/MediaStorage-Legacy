@@ -35,7 +35,7 @@
 	else {
 ?>
 			<tr>
-				<td colspan="4" class="text-center"><?= NO_DATA_AVAILABLE ?></td>
+				<td colspan="5" class="text-center"><?= NO_DATA_AVAILABLE ?></td>
 			</tr>
 <?php
 	}
