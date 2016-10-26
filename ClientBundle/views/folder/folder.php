@@ -53,7 +53,7 @@ require_once('ClientBundle/views/layout/header.php');
                     }
                     else {
 ?>
-                        <img class="folder_image" id="folder_image_preview" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg " height=100 width=100/>
+                        <img class="folder_image" id="folder_image_preview" src="ClientBundle/ressources/folder/img/default_folder.png" height=100 width=100/>
 <?php
                     }
 ?>
@@ -95,7 +95,7 @@ require_once('ClientBundle/views/layout/header.php');
 
                     <div class="program_image_div">
                         <!-- <img src="ClientBundle/ressources/program/img/default.png" /> -->
-                        <img class="program_image" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg" />
+                        <img class="program_image" src="ClientBundle/ressources/program/img/default_program.png" />
                     </div>
 
                     <div class="program_description">
@@ -132,7 +132,7 @@ require_once('ClientBundle/views/layout/header.php');
 
                     <div class="content_image_div">
                         <!-- <img src="ClientBundle/ressources/content/img/default.png" /> -->
-                        <img class="content_image" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg" />
+                        <img class="content_image" src="ClientBundle/ressources/content/img/default_content.png" />
                     </div>
 
                     <div class="content_description">

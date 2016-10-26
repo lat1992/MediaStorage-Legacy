@@ -185,4 +185,8 @@ class FolderManager {
 		return $this->_folderModel->deleteFolderById($folder_id);
 	}
 
+	// public function getParentFolderDataByFolderIdDb($folder_id) {
+	// 	$
+	// }
+
 }

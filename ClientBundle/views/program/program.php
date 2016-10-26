@@ -41,7 +41,7 @@ if (isset($_GET['media_id'])) {
     }
     else {
 ?>
-        <img class="program_info_image" id="program_image_preview" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg " height=100 width=100/>
+        <img class="program_info_image" id="program_image_preview" src="ClientBundle/ressources/program/img/default_program.png" height=100 width=100/>
 <?php
     }
 ?>
@@ -84,7 +84,7 @@ if (isset($_GET['media_id'])) {
                     }
                     else {
 ?>
-                        <img class="program_image" id="program_image_preview" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg " height=100 width=100/>
+                        <img class="program_image" id="program_image_preview" src="ClientBundle/ressources/program/img/default_program.png" height=100 width=100/>
 <?php
                     }
 ?>
@@ -156,7 +156,7 @@ if (isset($_GET['media_id'])) {
                     }
                     else {
 ?>
-                        <img class="content_image" id="content_image_preview" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg " height=100 width=100/>
+                        <img class="content_image" id="content_image_preview" src="ClientBundle/ressources/content/img/default_content.png" height=100 width=100/>
 <?php
                     }
 ?>
