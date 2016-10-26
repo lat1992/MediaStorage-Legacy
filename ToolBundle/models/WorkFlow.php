@@ -7,13 +7,15 @@ class WorkFlowModel extends Model {
 	private $_workflow_addr;
 	private $_output_dir;
 	private $_final_path;
+	private $_input_dir;
 
 	public function __construct() {
 		parent::__construct('workflow');
 
 		$settings = parse_ini_file('config.ini.php', true);
 		$this->_workflow_addr = $settings['workflow']['url'];
-		$this->_output_dir = $settings['storage']['path'];
+		$this->_input_dir = $settings['storage']['input_path'];
+		$this->_output_dir = $settings['storage']['output_path'];
 		$this->_final_path = $settings['archive']['path'];
 	}
 
@@ -31,12 +33,12 @@ class WorkFlowModel extends Model {
 		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "video" AND upload = 1');
 		$profile = $data->fetch_assoc();
 		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
-			' (id_media_file, id_organizatoin, transcoding_type) VALUES'.
+			' (id_media_file, transcoding_type) VALUES'.
 			' ('.$id_media_file.', "video")');
 		$post = array(
 			'order_id_' => $this->_mysqli->insert_id,
 			'file_in_' => $input_file,
-			'path_in_' => $input_dir.'/',
+			'path_in_' => $this->_input_dir.$input_dir.'/',
 			'file_out_' => $input_file,
 			'path_out_' => $this->_output_dir.$id_organization.'/',
 			'path_final_' => $this->_final_path.$id_organization.'/',
@@ -44,7 +46,7 @@ class WorkFlowModel extends Model {
 			'validWf' => 'ok'
 		);
 		return array(
-			'data' => exec_post($post),
+			'data' => $this->exec_post($post),
 			'error' => ($this->_mysqli->error) ? 'transcodingVideo: ' . $this->_mysqli->error : '',
 		);
 	}
@@ -52,13 +54,14 @@ class WorkFlowModel extends Model {
 	public function transcodingImage($id_media_file, $input_file, $input_dir, $id_organization) {
 		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "image" AND upload = 1');
 		$profile = $data->fetch_assoc();
+		echo $id_media_file;
 		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
 			' (id_media_file, transcoding_type) VALUES'.
 			' ('.$id_media_file.', "image")');
 		$post = array(
 			'order_id_' => $this->_mysqli->insert_id,
 			'file_in_' => $input_file,
-			'path_in_' => $input_dir.'/',
+			'path_in_' => $this->_input_dir.$input_dir.'/',
 			'file_out_' => $input_file,
 			'path_out_' => $this->_output_dir.$id_organization.'/',
 			'path_final_' => $this->_final_path.$id_organization.'/',
@@ -66,7 +69,7 @@ class WorkFlowModel extends Model {
 			'validWf' => 'ok'
 		);
 		return array(
-			'data' => exec_post($post),
+			'data' => $this->exec_post($post),
 			'error' => ($this->_mysqli->error) ? 'transcodingImage: ' . $this->_mysqli->error : '',
 		);
 	}
@@ -80,7 +83,7 @@ class WorkFlowModel extends Model {
 		$post = array(
 			'order_id_' => $this->_mysqli->insert_id,
 			'file_in_' => $input_file,
-			'path_in_' => $input_dir.'/',
+			'path_in_' => $this->_input_dir.$input_dir.'/',
 			'file_out_' => $input_file,
 			'path_out_' => $this->_output_dir.$id_organization.'/',
 			'path_final_' => $this->_final_path.$id_organization.'/',
@@ -88,7 +91,7 @@ class WorkFlowModel extends Model {
 			'validWf' => 'ok'
 		);
 		return array(
-			'data' => exec_post($post),
+			'data' => $this->exec_post($post),
 			'error' => ($this->_mysqli->error) ? 'transcodingAudio: ' . $this->_mysqli->error : '',
 		);
 	}
@@ -102,7 +105,7 @@ class WorkFlowModel extends Model {
 		$post = array(
 			'order_id_' => $this->_mysqli->insert_id,
 			'file_in_' => $input_file,
-			'path_in_' => $input_dir.'/',
+			'path_in_' => $this->_input_dir.$input_dir.'/',
 			'file_out_' => $input_file,
 			'path_out_' => $this->_output_dir.$id_organization.'/',
 			'path_final_' => $this->_final_path.$id_organization.'/',

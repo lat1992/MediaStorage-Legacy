@@ -20,7 +20,8 @@ other = ''
 url = ''
 
 [storage]
-path = ''
+input_path = ''
+output_path = ''
 
 [archive]
 path = ''

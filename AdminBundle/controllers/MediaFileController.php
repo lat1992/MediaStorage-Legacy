@@ -95,7 +95,7 @@ class MediaFileController {
                	$new_path = $basePath . $result["uploadName"];
 
                 rename($old_path, $new_path);
-
+                chmod($new_path, 0777);
                 $result['file_path'] = $new_path;
             }
 
