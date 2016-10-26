@@ -12,11 +12,11 @@ class WorkFlowManager {
 
 	public function transcoding($id_file, $file_path) {
 		$wf_type = mime_content_type($file_path);
-		if (strpos($wf_type, 'video'))
+		if (strpos($wf_type, 'video') !== false)
 			return $this->_workFlowModel->transcodingVideo($id_file, pathinfo($file_path, PATHINFO_FILENAME), pathinfo($file_path, PATHINFO_DIRNAME), $_SESSION['id_organization']);
-		else if (strpos($wf_type, 'image'))
+		else if (strpos($wf_type, 'image') !== false)
 			return $this->_workFlowModel->transcodingImage($id_file, pathinfo($file_path, PATHINFO_FILENAME), pathinfo($file_path, PATHINFO_DIRNAME), $_SESSION['id_organization']);
-		else if (strpos($wf_type, 'audio'))
+		else if (strpos($wf_type, 'audio') !== false)
 			return $this->_workFlowModel->transcodingAudio($id_file, pathinfo($file_path, PATHINFO_FILENAME), pathinfo($file_path, PATHINFO_DIRNAME), $_SESSION['id_organization']);
 		else
 			return $this->_workFlowModel->transcodingOther($id_file, pathinfo($file_path, PATHINFO_FILENAME), pathinfo($file_path, PATHINFO_DIRNAME), $_SESSION['id_organization']);
