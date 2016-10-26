@@ -17,6 +17,16 @@ class WorkFlowModel extends Model {
 		$this->_final_path = $settings['archive']['path'];
 	}
 
+	private function exec_post($post) {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $this->_workflow_addr);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+		$result = curl_exec($ch);
+		curl_close($ch);
+		return ($result);
+	}
+
 	public function transcodingVideo($id_media_file, $input_file, $input_dir, $id_organization) {
 		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "video" AND upload = 1');
 		$profile = $data->fetch_assoc();
@@ -103,16 +113,6 @@ class WorkFlowModel extends Model {
 			'data' => $this->exec_post($post),
 			'error' => ($this->_mysqli->error) ? 'transcodingOther: ' . $this->_mysqli->error : '',
 		);
-	}
-
-	private function exec_post($post) {
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->_workflow_addr);
-		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
-		$result = curl_exec($ch);
-		curl_close($ch);
-		return ($result);
 	}
 
 	public function postProduction($task_id, $filepath, $filename, $right_download, $right_preview, $metadata) {
