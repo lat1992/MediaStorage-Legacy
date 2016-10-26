@@ -2,27 +2,66 @@
 
 	<form id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
 
-		<label for="id_parent_mediastorage"><?= PARENT_FOLDER ?></label>
-		<select name="id_parent_mediastorage[]" id="id_parent_mediastorage" class="parent_mediastorage">
-			<option value=""></option>
 <?php
-			while ($folder = $folders['data']->fetch_assoc()) {
-				if (intval($folder['id']) != intval($_GET['folder_id'])) {
-					echo '<option value="' . $folder['id'] . '" >' . $folder['translate'] . '</option>';
-				}
-			}
+		// Drawing tree of folders for parent folder selection
+		if (isset($parent_folder_data) && count($parent_folder_data) > 1) {
+			foreach ($parent_folder_data as $pos => $select) {
+
+				if ($pos == 0) {
 ?>
-		</select>
+					<label for="id_parent_mediastorage"><?= PARENT_FOLDER ?></label>
+<?php
+				}
+				else {
+?>
+					<div class="clear" class="parent_mediastorage_clear"></div>
+					<label for="id_parent_mediastorage" class="parent_mediastorage_label"></label>
+<?php
+				}
+?>
+				<select name="id_parent_mediastorage[]" id="id_parent_mediastorage" class="parent_mediastorage">
+<?php
+					foreach ($select['folders'] as $key => $option) {
+						// In order to have the first emmpty select
+						if ($key == 0) {
+?>
+							<option value=""></option>
+<?php
+						}
+
+						// In order to pre-select the value of the selects, based on the parent if of the current folder and the id of all the folders
+						$selected = (strcmp($select['data']['id'], $option['id']) == 0) ? 'selected' : '';
+?>
+						<option value="<?= $option['id'] ?>" <?= $selected ?> ><?= $option['translate'] ?></option>
+<?php
+					}
+?>
+				</select>
+<?php
+			}
+		}
+		else {
+			// Drawing the base empty tree
+?>
+			<label for="id_parent_mediastorage"><?= PARENT_FOLDER ?></label>
+			<select name="id_parent_mediastorage[]" id="id_parent_mediastorage" class="parent_mediastorage">
+				<option value=""></option>
+<?php
+				while ($folder = $folders['data']->fetch_assoc()) {
+					if (intval($folder['id']) != intval($_GET['folder_id'])) {
+						echo '<option value="' . $folder['id'] . '" >' . $folder['translate'] . '</option>';
+					}
+				}
+?>
+			</select>
+<?php
+		}
+?>
 		<div class="clear"></div>
 
 <?php
 
 		if (isset($_GET['folder_id']))  {
-?>
-			<label></label>
-			<span class="info_multiple_select"><?= INFO_MOVE_DIRECTORY ?></span>
-			<div class="clear"></div>
-<?php
 ?>
 			<label for="tumbnail_mediastorage" ><?= MORE_OPTION ?> : </label>
 			<div class="div_more_info">( <a class="info_link" id="more_info_show" href="#">+</a><a class="info_link" id="more_info_hide" href="#">-</a> )</div>

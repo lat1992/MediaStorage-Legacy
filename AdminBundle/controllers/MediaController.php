@@ -513,6 +513,7 @@ class MediaController {
 		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(1);
 		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
+		$parent_folder_data = $this->_folderManager->getParentFolderDataByMediaDb($media);
 
 		$tags_proposition_data = $this->_tagManager->getAllTagsByIdLanguageDb();
 		$tags_proposition_data = $this->_toolboxManager->mysqliResultToArray($tags_proposition_data);
@@ -533,6 +534,8 @@ class MediaController {
 		$enums = $enums['data'];
 
 		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
+
+		$type = 1;
 
 		$title = EDIT_MEDIA_PROGRAM;
 
@@ -612,6 +615,8 @@ class MediaController {
 		$media_user_extras = $this->_mediaExtraManager->formatMediaExtraDataForView($media_user_extras);
 
 		$folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
+		$parent_folder_data = $this->_folderManager->getParentFolderDataByMediaDb($media);
+
 		$enums = $this->_mediaFileManager->getEnumOfTypeDb();
 		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(2);
@@ -649,6 +654,8 @@ class MediaController {
 				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 			}
 		}
+
+		$type = 2;
 
 		$title = EDIT_MEDIA_CONTENT;
 		include ('AdminBundle/views/media/media_create_content.php');

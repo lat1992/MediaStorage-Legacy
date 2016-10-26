@@ -126,6 +126,7 @@ class Media extends Model {
 
 	public function updateMediaWithId($data, $media_id) {
 		$id_parent = $this->_mysqli->real_escape_string($data['id_parent_mediastorage']);
+		$id_folder = $this->_mysqli->real_escape_string($data['id_folder_mediastorage']);
 		$id_organization = $this->_mysqli->real_escape_string($data['id_organization_mediastorage']);
 		$id_type = $this->_mysqli->real_escape_string($data['id_type_mediastorage']);
 		//$reference = $this->_mysqli->real_escape_string($data['reference_mediastorage']);
@@ -134,7 +135,7 @@ class Media extends Model {
 		$reference_client = $this->_mysqli->real_escape_string($data['reference_client_mediastorage']);
 
 		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
-		' SET id_parent = ' . $id_parent . ', id_organization = ' . $id_organization . ', id_type = ' . $id_type . ', reference_client = "' . $reference_client . '", right_view = ' . $right_view . ', modified_date = "' . $modified_date . '" ' .
+		' SET id_parent = ' . $id_parent . ', id_folder = ' . $id_folder . ', id_organization = ' . $id_organization . ', id_type = ' . $id_type . ', reference_client = "' . $reference_client . '", right_view = ' . $right_view . ', modified_date = "' . $modified_date . '" ' .
 			' WHERE id = ' . $media_id . ';'
 		);
 

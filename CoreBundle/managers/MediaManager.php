@@ -104,14 +104,6 @@ class MediaManager {
 	}
 
 	public function checkAndMediaEditDb($media_data) {
-		if (strcmp($_POST['id_folder_mediastorage'], 'NULL') == 0) {
-			if (is_null($media_data['id_folder'])) {
-				$_POST['id_folder_mediastorage'] = 'NULL';
-			}
-			else {
-				$_POST['id_folder_mediastorage'] = $media_data['id_folder'];
-			}
-		}
 		if (strcmp($_POST['id_parent_mediastorage'], 'NULL') == 0) {
 			if (is_null($media_data['id_parent'])) {
 				$_POST['id_parent_mediastorage'] = 'NULL';

@@ -1,3 +1,5 @@
+		<!-- PARENT -->
+
 <?php
 		if (isset($parents)) {
 ?>
@@ -5,8 +7,17 @@
 			<select name="id_parent_mediastorage[]" id="id_parent_mediastorage" class="parent_mediastorage">
 				<option value=""></option>
 <?php
+
+				$selected = "";
+
 				while ($parent = $parents['data']->fetch_assoc()) {
-					echo '<option value="' . $parent['id'] . '" >' . $parent['reference_client'] . '</option>';
+
+					if (isset($media)) {
+						if (intval($parent['id']) == intval($media['id_parent']))
+							$selected = "selected";
+					}
+
+					echo '<option value="' . $parent['id'] . '" ' . $selected . '>' . $parent['reference_client'] . '</option>';
 				}
 ?>
 			</select>
@@ -22,26 +33,69 @@
 			}
 		}
 ?>
-		<label for="id_folder_mediastorage"><?= FOLDER_PARENT ?></label>
-		<select name="id_folder_mediastorage[]" id="id_folder_mediastorage" class="folder_mediastorage">
-			<option value=""></option>
-<?php
-			while ($folder = $folders['data']->fetch_assoc()) {
-				echo '<option value="' . $folder['id'] . '" >' . $folder['translate'] . '</option>';
-			}
-?>
-		</select>
-		<div class="clear"></div>
+
+		<!-- FOLDER PARENT -->
 
 <?php
-		if (isset($_GET['media_id']))  {
+		// Drawing tree of folders for parent folder selection
+		if (isset($parent_folder_data) && count($parent_folder_data) > 0) {
+			foreach ($parent_folder_data as $pos => $select) {
+
+				if ($pos == 0) {
 ?>
-			<label></label>
-			<span class="info_multiple_select"><?= INFO_MOVE_DIRECTORY ?></span>
-			<div class="clear"></div>
+					<label for="id_folder_mediastorage"><?= PARENT_FOLDER ?></label>
+<?php
+				}
+				else {
+?>
+					<div class="clear" class="folder_mediastorage_clear"></div>
+					<label for="id_folder_mediastorage" class="folder_mediastorage_label"></label>
+<?php
+				}
+?>
+				<select name="id_folder_mediastorage[]" id="id_folder_mediastorage" class="folder_mediastorage">
+<?php
+					foreach ($select['folders'] as $key => $option) {
+						// In order to have the first emmpty select
+						if ($key == 0) {
+?>
+							<option value=""></option>
+<?php
+						}
+
+						// In order to pre-select the value of the selects, based on the parent if of the current folder and the id of all the folders
+						$selected = (strcmp($select['data']['id'], $option['id']) == 0) ? 'selected' : '';
+?>
+						<option value="<?= $option['id'] ?>" <?= $selected ?> ><?= $option['translate'] ?></option>
+<?php
+					}
+?>
+				</select>
+<?php
+			}
+		}
+		else {
+			// Drawing the base empty tree
+?>
+			<label for="id_folder_mediastorage"><?= PARENT_FOLDER ?></label>
+			<select name="id_folder_mediastorage[]" id="id_folder_mediastorage" class="folder_mediastorage">
+				<option value=""></option>
+<?php
+				while ($folder = $folders['data']->fetch_assoc()) {
+					if (intval($folder['id']) != intval($_GET['folder_id'])) {
+						echo '<option value="' . $folder['id'] . '" >' . $folder['translate'] . '</option>';
+					}
+				}
+?>
+			</select>
 <?php
 		}
+?>
+		<div class="clear"></div>
 
+		<!-- REFERENCE -->
+
+<?php
 		if (isset($_GET['media_id']))  {
 ?>
 			<label for="reference_mediastorage"><?= REFERENCE ?> : </label>
@@ -86,8 +140,17 @@
 <?php
 					}
 					else {
+						if (strcmp($type, 'program') == 0) {
 ?>
-						<img class="folder_image" id="folder_image_preview" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg	" height=100 width=100 />
+							<img class="folder_image" id="folder_image_preview" src="ClientBundle/ressources/program/img/default_program.png" height=100 width=100 />
+<?php
+						}
+						else {
+?>
+							<img class="folder_image" id="folder_image_preview" src="ClientBundle/ressources/content/img/default_content.png" height=100 width=100 />
+<?php
+						}
+?>
 
 				        <div class="clear"></div>
 			            <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=1" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
@@ -120,9 +183,17 @@
 	<?php
 				}
 				else {
-	?>
-					<img class="folder_image" id="folder_image_preview" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg	" height=100 width=100 />
-
+						if (strcmp($type, 'program') == 0) {
+?>
+							<img class="folder_image" id="folder_image_preview" src="ClientBundle/ressources/program/img/default_program.png" height=100 width=100 />
+<?php
+						}
+						else {
+?>
+							<img class="folder_image" id="folder_image_preview" src="ClientBundle/ressources/content/img/default_content.png" height=100 width=100 />
+<?php
+						}
+?>
 			        <div class="clear"></div>
 		            <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=1" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
 	<?php

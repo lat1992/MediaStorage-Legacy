@@ -138,7 +138,7 @@ class FolderController {
 		$folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
 		$languages = $this->_languageManager->getAllLanguagesByGroupDb();
 		$folder_language_data = $this->_folderLanguageManager->getFolderLanguageByFolderIdDb($_GET['folder_id']);
-		// $parent_folder_data = $this->_folderManager->getParentFolderDataByFolderIdDb($_GET['folder_id']);
+		$parent_folder_data = $this->_folderManager->getParentFolderDataByFolderIdDb($_GET['folder_id']);
 
 		$this->mergeErrorArray($folder_data);
 		$this->mergeErrorArray($folders);
@@ -164,9 +164,6 @@ class FolderController {
 				$this->mergeErrorArray($return_value);
 
 				if (count($this->_errorArray) == 0) {
-					if (!$_POST['id_parent_mediastorage']) {
-						$_POST['id_parent_mediastorage'] = $folder['id_parent'];
-					}
 					$return_value = $this->_folderManager->folderEditAsAdminDb($folder);
 					$this->mergeErrorArray($return_value);
 

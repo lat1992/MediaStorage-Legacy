@@ -2,13 +2,18 @@
 
 require_once('CoreBundle/models/Folder.php');
 require_once('CoreBundle/managers/MediaManager.php');
+require_once('CoreBundle/managers/ToolboxManager.php');
 
 class FolderManager {
 
 	private $_folderModel;
+	private $_toolboxManager;
+	private $_mediaManager;
 
 	public function __construct() {
 		$this->_folderModel = new Folder();
+		$this->_toolboxManager = new ToolboxManager();
+		// $this->_mediaManager = new MediaManager();
 	}
 
 	public function getAllFoldersDb() {
@@ -92,15 +97,6 @@ class FolderManager {
 	}
 
 	public function folderEditAsAdminDb($folder_data) {
-		if (strcmp($_POST['id_parent_mediastorage'], 'NULL') == 0) {
-			if (is_null($folder_data['id_parent'])) {
-				$_POST['id_parent_mediastorage'] = 'NULL';
-			}
-			else {
-				$_POST['id_parent_mediastorage'] = $folder_data['id_parent'];
-			}
-		}
-
 		return $this->_folderModel->updateFolderWithIdAsAdmin($_POST, $folder_data['id']);
 	}
 
@@ -185,8 +181,125 @@ class FolderManager {
 		return $this->_folderModel->deleteFolderById($folder_id);
 	}
 
-	// public function getParentFolderDataByFolderIdDb($folder_id) {
-	// 	$
-	// }
+	public function getParentFolderDataByMediaDb($media) {
+		$exit = 0;
+		$cpt = 0;
+		$data = array();
+		$return_data = array();
 
+		// Return empty array in case of link to any folder
+		if (is_null($media))
+			return $return_data;
+
+		$result = $media;
+
+		while ($exit != 1) {
+			// Make sure that the folder exist
+			if (isset($result['data']) && $result['data']->num_rows == 0) {
+				$exit = 1;
+			}
+			else {
+
+				$data = $this->gatherAndFillDataForParentFolderView($result, $return_data, $cpt);
+
+				// Check if the current folder is the highest folder
+				if (is_null($data['id_parent']))
+					$exit = 1;
+				else {
+					// Get next folder (the next one is the parent)
+					$result = $this->getFolderByIdDb($data['id_parent'], $_SESSION['id_language_mediastorage']);
+				}
+			}
+			$cpt++;
+		}
+
+		$this->formatDataForParentFolderView($return_data);
+
+		return $return_data;
+	}
+
+	public function getParentFolderDataByFolderIdDb($folder_id) {
+		$exit = 0;
+		$cpt = 0;
+		$data = array();
+		$return_data = array();
+
+		// Return empty array in case of link to any folder
+		if (is_null($folder_id))
+			return $return_data;
+
+		// Get the first current folder
+		$result = $this->getFolderByIdDb($folder_id, $_SESSION['id_language_mediastorage']);
+
+		while ($exit != 1) {
+			// Make sure that the folder exist
+			if ($result['data']->num_rows == 0) {
+				$exit = 1;
+			}
+			else {
+
+				$data = $this->gatherAndFillDataForParentFolderView($result, $return_data, $cpt);
+
+				// Check if the current folder is the highest folder
+				if (is_null($data['id_parent']))
+					$exit = 1;
+				else {
+					// Get next folder (the next one is the parent)
+					$result = $this->getFolderByIdDb($data['id_parent'], $_SESSION['id_language_mediastorage']);
+				}
+			}
+			$cpt++;
+		}
+
+		$this->formatDataForParentFolderView($return_data);
+
+		return $return_data;
+	}
+
+	public function gatherAndFillDataForParentFolderView(&$result, &$return_data, &$cpt) {
+		// data is now containing the current folder data
+		if (isset($result['data']))
+			$data = $this->_toolboxManager->mysqliResultToData($result);
+		else {
+			$data = $result;
+			$data['id_parent'] = $data['id_folder'];
+		}
+
+		// Checking if the current folder is the higher one (without parents or not)
+		if (!is_null($data['id_parent'])) {
+			// Get all folders with the parent id equal to the current folder, so we have all the folders with the same parents id
+			$folders = $this->getFolderByParentIdAndOrganizationIdDb($data['id_parent']);
+		}
+		else {
+			// Get all folders without parents, means we gather the higher lever of folders
+			$folders = $this->getAllFoldersWithoutParentsByOrganizationDb();
+		}
+
+		$return_data[$cpt]['data'] = $data;
+		$return_data[$cpt]['id'] = $data['id_parent'];
+		$return_data[$cpt]['folders'] = $this->_toolboxManager->mysqliResultToArray($folders);
+
+		// Returning the data in order to make some checl on the current folder
+		return $data;
+	}
+
+	public function formatDataForParentFolderView(&$return_data) {
+		// Unset the first element because it contains the folder itself
+		if (count($return_data) > 0) {
+			foreach ($return_data[0]['folders'] as $key => $value) {
+				if (strcmp($return_data[0]['data']['id'], $value['id']) == 0) {
+					unset($return_data[0]['folders'][$key]);
+					if (empty($return_data[0]['folders'])) {
+						unset($return_data[0]);
+					}
+				}
+			}
+		}
+
+		if (empty($return_data[0]['folders']))
+			unset($return_data[0]);
+
+		// Reverse in order to have the closest folder of the folder at the end for the view, look at the view of file creation/edit to understand
+		$return_data = array_reverse($return_data);
+	}
 }
