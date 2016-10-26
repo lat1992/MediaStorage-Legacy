@@ -44,7 +44,7 @@ class WorkFlowModel extends Model {
 			'validWf' => 'ok'
 		);
 		return array(
-			'data' => exec_post($post),
+			'data' => $this->exec_post($post),
 			'error' => ($this->_mysqli->error) ? 'transcodingVideo: ' . $this->_mysqli->error : '',
 		);
 	}
@@ -66,7 +66,7 @@ class WorkFlowModel extends Model {
 			'validWf' => 'ok'
 		);
 		return array(
-			'data' => exec_post($post),
+			'data' => $this->exec_post($post),
 			'error' => ($this->_mysqli->error) ? 'transcodingImage: ' . $this->_mysqli->error : '',
 		);
 	}
@@ -88,7 +88,7 @@ class WorkFlowModel extends Model {
 			'validWf' => 'ok'
 		);
 		return array(
-			'data' => exec_post($post),
+			'data' => $this->exec_post($post),
 			'error' => ($this->_mysqli->error) ? 'transcodingAudio: ' . $this->_mysqli->error : '',
 		);
 	}
