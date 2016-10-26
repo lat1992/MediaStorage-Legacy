@@ -44,7 +44,7 @@ class UserManager {
 
 	 		return array(
 	 			'data' => true,
-	 			'error' => $result['error'],
+	 			'error' => $result['data']['error'],
 	 		);
  		}
 
