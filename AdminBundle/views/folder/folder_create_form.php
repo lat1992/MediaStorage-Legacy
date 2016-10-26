@@ -15,7 +15,6 @@
 		</select>
 		<div class="clear"></div>
 
-
 <?php
 
 		if (isset($_GET['folder_id']))  {
@@ -57,10 +56,9 @@
 				}
 				else {
 	?>
-					<img class="folder_image" id="folder_image_preview" src="https://www.carmelsaintjoseph.com/wp-content/uploads/2016/08/8.-Ao%C3%BBt-2016-100x100.jpg	" height=100 width=100 />
+					<img class="folder_image" id="folder_image_preview" src="ClientBundle/ressources/folder/img/default_folder.png" height=100 width=100 />
 
 			        <div class="clear"></div>
-		            <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=1" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
 	<?php
 				}
 	?>
