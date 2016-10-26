@@ -59,7 +59,6 @@ class WorkFlowModel extends Model {
 			' (id_media_file, transcoding_type) VALUES'.
 			' ('.$id_media_file.', "image")');
 		$post = array(
-			'error' => $this->_mysqli->error,
 			'order_id_' => $this->_mysqli->insert_id,
 			'file_in_' => $input_file,
 			'path_in_' => $this->_input_dir.$input_dir.'/',
@@ -69,8 +68,6 @@ class WorkFlowModel extends Model {
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_image_default'),
 			'validWf' => 'ok'
 		);
-		print_r($post);
-		exit;
 		return array(
 			'data' => $this->exec_post($post),
 			'error' => ($this->_mysqli->error) ? 'transcodingImage: ' . $this->_mysqli->error : '',
