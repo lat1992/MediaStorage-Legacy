@@ -41,7 +41,7 @@ class WorkFlowModel extends Model {
 			'path_in_' => $this->_input_dir . $input_dir .'/',
 			'file_out_' => $this->_mysqli->insert_id . $output_file,
 			'path_out_' => $this->_output_dir . $id_organization.'/videos/',
-			'path_final_' => $this->_final_path . $id_organization.'/',
+			'path_final_' => $this->_final_path . $id_organization.'/'. $this->_mysqli->insert_id,
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_video_default'),
 			'validWf' => 'ok'
 		);
@@ -64,7 +64,7 @@ class WorkFlowModel extends Model {
 			'path_in_' => $this->_input_dir.$input_dir.'/',
 			'file_out_' => $this->_mysqli->insert_id . $output_file,
 			'path_out_' => $this->_output_dir.$id_organization.'/images/',
-			'path_final_' => $this->_final_path.$id_organization.'/',
+			'path_final_' => $this->_final_path.$id_organization.'/'. $this->_mysqli->insert_id,
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_image_default'),
 			'validWf' => 'ok'
 		);
@@ -86,7 +86,7 @@ class WorkFlowModel extends Model {
 			'path_in_' => $this->_input_dir.$input_dir.'/',
 			'file_out_' => $this->_mysqli->insert_id . $output_file,
 			'path_out_' => $this->_output_dir.$id_organization.'/audios/',
-			'path_final_' => $this->_final_path.$id_organization.'/',
+			'path_final_' => $this->_final_path.$id_organization .'/'. $this->_mysqli->insert_id,
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_audio_default'),
 			'validWf' => 'ok'
 		);
@@ -108,7 +108,7 @@ class WorkFlowModel extends Model {
 			'path_in_' => $this->_input_dir.$input_dir.'/',
 			'file_out_' => $this->_mysqli->insert_id . $output_file,
 			'path_out_' => $this->_output_dir.$id_organization.'/others/',
-			'path_final_' => $this->_final_path.$id_organization.'/',
+			'path_final_' => $this->_final_path.$id_organization.'/'. $this->_mysqli->insert_id,
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_other_default'),
 			'validWf' => 'ok'
 		);

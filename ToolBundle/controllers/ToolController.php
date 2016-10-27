@@ -36,7 +36,7 @@ class ToolController {
 		$right_preview = $_POST['right_preview'];
 		$metadata = $_POST['metadata'];
 
-		return $this->_workFlowManager->postProductionWorkFlow($task_id, $filepath, $filename, $right_download, $right_preview, $metadata);
+		return $this->_workFlowManager->postProductionWorkFlow($id_task, $filepath, $filename, $right_download, $right_preview, $metadata);
 	}
 
 	public function endProductionWorkFlow() {
