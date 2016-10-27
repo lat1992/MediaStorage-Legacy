@@ -121,7 +121,7 @@ class WorkFlowModel extends Model {
 		$data = $this->_mysqli->query('SELECT id_media_file FROM workflow WHERE id = '. $task_id);
 		$row = $data->fetch_assoc();
 		if (isset($row['id_media_file'])) {
-			$data = $this->_mysqli->query('SELECT id_media FROM media_file WHERE id = '.$row['id_media_file']);
+			$data = $this->_mysqli->query('SELECT id_media, id_organization FROM media_file WHERE id = '.$row['id_media_file']);
 			$row = $data->fetch_assoc();
 			if (isset($row['id_media'])) {
 				$mime = mime_content_type('/var/www/html/mediastorage/'.$filepath . $filename);
