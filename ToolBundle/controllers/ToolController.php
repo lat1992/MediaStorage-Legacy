@@ -29,20 +29,12 @@ class ToolController {
 	}
 
 	public function postProductionWorkFlow() {
-		/*$id_task = $_POST['order_id'];
+		$id_task = $_POST['order_id'];
 		$filepath = $_POST['filepath'];
 		$filename = $_POST['filename'];
 		$right_download = $_POST['right_download'];
 		$right_preview = $_POST['right_preview'];
-		$metadata = $_POST['metadata'];*/
-
-
-		$id_task = $_GET['order_id'];
-		$filepath = $_GET['filepath'];
-		$filename = $_GET['filename'];
-		$right_download = $_GET['right_download'];
-		$right_preview = $_GET['right_preview'];
-		$metadata = $_GET['metadata'];
+		$metadata = $_POST['metadata'];
 
 		return $this->_workFlowManager->postProductionWorkFlow($id_task, $filepath, $filename, $right_download, $right_preview, $metadata);
 	}
