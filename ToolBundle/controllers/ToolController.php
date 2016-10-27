@@ -42,7 +42,7 @@ class ToolController {
 	public function endProductionWorkFlow() {
 		$id_task = $_POST['order_id'];
 
-		return $this->_workFlowManager->endProductionWorkFlow($task_id);
+		return $this->_workFlowManager->endProductionWorkFlow($id_task);
 	}
 
 	public function initDB() {
