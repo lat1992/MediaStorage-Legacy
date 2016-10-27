@@ -124,7 +124,7 @@ class WorkFlowModel extends Model {
 			$data = $this->_mysqli->query('SELECT id_media FROM media_file WHERE id = '.$row['id_media_file']);
 			$row = $data->fetch_assoc();
 			if (isset($row['id_media'])) {
-				$mime = mime_content_type('/var/www/html/mediastorage'.$filepath . $filename);
+				$mime = mime_content_type('/var/www/html/mediastorage/'.$filepath . $filename);
 				$data = $this->_mysqli->query('INSERT INTO media_file (id_organization, id_media, filename, filepath, right_download, right_preview, metadata, mime_type) VALUES ('. $row['id_organization'] .', '. $row['id_media'] .', "'. $filename .'", "'. $filepath .'", '.$right_download.', '.$right_preview.', "'.$metadata.'", "'. $mime .'")');
 			}
 		}
