@@ -119,9 +119,9 @@ class WorkFlowModel extends Model {
 	}
 
 	public function postProduction($task_id, $filepath, $filename, $right_download, $right_preview, $metadata) {
-		$data = $this->_mysqli->query('SELECT id_media FROM workflow WHERE id = '. $task_id);
+		$data = $this->_mysqli->query('SELECT id_media_file FROM workflow WHERE id = '. $task_id);
 		$row = $data->fetch_assoc();
-		if (isset($row['id_media'])) {
+		if (isset($row['id_media_file'])) {
 			$mime = mime_content_type($filepath . $filename);
 			$data = $this->_mysqli->query('INSERT INTO media_file (id_media, filename, filepath, right_download, right_preview, metadata, mime_type) VALUES ('. $row['id_media'] .', "'. $filename .'", "'. $filepath .'", '.$right_download.', '.$right_preview.', "'.$metadata.'", "'. $mime_type .'")');
 		}
