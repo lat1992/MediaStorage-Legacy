@@ -29,7 +29,7 @@ class WorkFlowModel extends Model {
 		return ($result);
 	}
 
-	public function transcodingVideo($id_media_file, $input_file, $input_dir, $id_organization) {
+	public function transcodingVideo($id_media_file, $input_file, $input_dir, $output_file, $id_organization) {
 		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "video" AND upload = 1');
 		$profile = $data->fetch_assoc();
 		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
@@ -38,10 +38,10 @@ class WorkFlowModel extends Model {
 		$post = array(
 			'order_id_' => $this->_mysqli->insert_id,
 			'file_in_' => $input_file,
-			'path_in_' => $this->_input_dir.$input_dir.'/',
-			'file_out_' => $input_file,
-			'path_out_' => $this->_output_dir.$id_organization.'/',
-			'path_final_' => $this->_final_path.$id_organization.'/',
+			'path_in_' => $this->_input_dir . $input_dir .'/',
+			'file_out_' => $this->_mysqli->insert_id . $output_file,
+			'path_out_' => $this->_output_dir . $id_organization.'/videos/',
+			'path_final_' => $this->_final_path . $id_organization.'/',
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_video_default'),
 			'validWf' => 'ok'
 		);
@@ -51,7 +51,7 @@ class WorkFlowModel extends Model {
 		);
 	}
 
-	public function transcodingImage($id_media_file, $input_file, $input_dir, $id_organization) {
+	public function transcodingImage($id_media_file, $input_file, $input_dir, $output_file, $id_organization) {
 		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "image" AND upload = 1');
 		$profile = $data->fetch_assoc();
 		echo $id_media_file;
@@ -62,8 +62,8 @@ class WorkFlowModel extends Model {
 			'order_id_' => $this->_mysqli->insert_id,
 			'file_in_' => $input_file,
 			'path_in_' => $this->_input_dir.$input_dir.'/',
-			'file_out_' => $input_file,
-			'path_out_' => $this->_output_dir.$id_organization.'/',
+			'file_out_' => $this->_mysqli->insert_id . $output_file,
+			'path_out_' => $this->_output_dir.$id_organization.'/images/',
 			'path_final_' => $this->_final_path.$id_organization.'/',
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_image_default'),
 			'validWf' => 'ok'
@@ -74,7 +74,7 @@ class WorkFlowModel extends Model {
 		);
 	}
 
-	public function transcodingAudio($id_media_file, $input_file, $input_dir, $id_organization) {
+	public function transcodingAudio($id_media_file, $input_file, $input_dir, $output_file, $id_organization) {
 		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "audio" AND upload = 1');
 		$profile = $data->fetch_assoc();
 		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
@@ -84,8 +84,8 @@ class WorkFlowModel extends Model {
 			'order_id_' => $this->_mysqli->insert_id,
 			'file_in_' => $input_file,
 			'path_in_' => $this->_input_dir.$input_dir.'/',
-			'file_out_' => $input_file,
-			'path_out_' => $this->_output_dir.$id_organization.'/',
+			'file_out_' => $this->_mysqli->insert_id . $output_file,
+			'path_out_' => $this->_output_dir.$id_organization.'/audios/',
 			'path_final_' => $this->_final_path.$id_organization.'/',
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_audio_default'),
 			'validWf' => 'ok'
@@ -96,7 +96,7 @@ class WorkFlowModel extends Model {
 		);
 	}
 
-	public function transcodingOther($id_media_file, $input_file, $input_dir, $id_organization) {
+	public function transcodingOther($id_media_file, $input_file, $input_dir, $output_file, $id_organization) {
 		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "other" AND upload = 1');
 		$profile = $data->fetch_assoc();
 		$data_order = $this->_mysqli->query('INSERT INTO '.$this->_table.
@@ -106,8 +106,8 @@ class WorkFlowModel extends Model {
 			'order_id_' => $this->_mysqli->insert_id,
 			'file_in_' => $input_file,
 			'path_in_' => $this->_input_dir.$input_dir.'/',
-			'file_out_' => $input_file,
-			'path_out_' => $this->_output_dir.$id_organization.'/',
+			'file_out_' => $this->_mysqli->insert_id . $output_file,
+			'path_out_' => $this->_output_dir.$id_organization.'/others/',
 			'path_final_' => $this->_final_path.$id_organization.'/',
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_other_default'),
 			'validWf' => 'ok'
