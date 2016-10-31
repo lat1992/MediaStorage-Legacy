@@ -30,7 +30,7 @@ class ToolController {
 
 	public function postProductionWorkFlow() {
 		$id_task = $_POST['order_id'];
-		$filepath = $_POST['filepath'].$_POST['filename'];
+		$filepath = $_POST['filepath'];
 		$filename = $_POST['filename'];
 		$right_download = $_POST['right_download'];
 		$right_preview = $_POST['right_preview'];
