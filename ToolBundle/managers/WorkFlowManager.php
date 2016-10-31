@@ -19,11 +19,16 @@ class WorkFlowManager {
 		else if (strpos($wf_type, 'audio') !== false)
 			return $this->_workFlowModel->transcodingAudio($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_DIRNAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization']);
 		else
-			return $this->_workFlowModel->transcodingOther($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization']);
+			return $this->_workFlowModel->transcodingOther($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_DIRNAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization']);
 	}
 
 	public function transcodeCart() {
 		
+	}
+
+
+	public function postProductionWorkFlowMaster($task_id, $filepath, $filename, $right_download, $right_preview, $metadata) {
+		return $this->_workFlowModel->postProductionMaster($task_id, $filepath, $filename, $right_download, $right_preview, $metadata);
 	}
 
 	public function postProductionWorkFlow($task_id, $filepath, $filename, $right_download, $right_preview, $metadata) {
