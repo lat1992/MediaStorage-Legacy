@@ -30,13 +30,14 @@ class ToolController {
 
 	public function postProductionWorkFlow() {
 		$id_task = $_POST['order_id'];
-		$filepath = $_POST['filepath'];
+		$filepath = $_POST['filepath'].$_POST['filename'];
 		$filename = $_POST['filename'];
 		$right_download = $_POST['right_download'];
 		$right_preview = $_POST['right_preview'];
+		$type = $_POST['type'];
 		$metadata = $_POST['metadata'];
 
-		return $this->_workFlowManager->postProductionWorkFlow($id_task, $filepath, $filename, $right_download, $right_preview, $metadata);
+		return $this->_workFlowManager->postProductionWorkFlow($id_task, $filepath, $filename, $right_download, $right_preview, $metadata, $type);
 	}
 
 	public function postProductionWorkFlowMaster() {
@@ -45,9 +46,10 @@ class ToolController {
 		$filename = $_POST['filename'];
 		$right_download = $_POST['right_download'];
 		$right_preview = $_POST['right_preview'];
+		$type = $_POST['type'];
 		$metadata = $_POST['metadata'];
 
-		return $this->_workFlowManager->postProductionWorkFlowMaster($id_task, $filepath, $filename, $right_download, $right_preview, $metadata);
+		return $this->_workFlowManager->postProductionWorkFlowMaster($id_task, $filepath, $filename, $right_download, $right_preview, $metadata, $type);
 	}
 
 	public function endProductionWorkFlow() {
