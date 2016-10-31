@@ -138,7 +138,7 @@ class ContentPageController {
 				if ($selected_media == -1 && count($media_files) && isset($media_files[0]))
 					$current_media_file = $media_files[0];
 				else
-					$current_media_file = $media_files[$current_media_file];
+					$current_media_file = $media_files[$selected_media];
 			}
 
 		}
