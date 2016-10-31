@@ -106,7 +106,7 @@ require_once('ClientBundle/views/layout/header.php');
 		<div id="video_contents_div">
 <?php
 			foreach ($media_files as $key => $media_file) {
-				if (intval($current_media_file['right_preview']) == 1) {
+				if (intval($media_file['right_preview']) == 1) {
 ?>
 					<a href="?page=content&media_id=<?= $_GET['media_id'] ?>&file=<?= $key ?>">
 						<div class="video_content">
