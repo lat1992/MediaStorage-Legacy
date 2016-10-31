@@ -116,13 +116,13 @@ class MediaFileManager {
 
 	public function preparePostDataForMediaFileCreation($media_file) {
 		$_POST['type_mediastorage'] = 'NULL';
-		$_POST['filename_mediastorage'] = $media_file['name'];
+		$_POST['filename_mediastorage'] = str_replace(' ', '_', $media_file['name']);//$media_file['name'];
 		$_POST['metadata_mediastorage'] = 'NULL';
 		$_POST['right_download_mediastorage'] = $media_file['right_download'];
 		$_POST['right_preview_mediastorage'] = $media_file['right_preview'];
 
 		$old_path = 'uploads/media_files/files/' . $_SESSION['id_organization'] . '/' . $media_file['name'];
-		$new_path = 'uploads/media_files/files/' . $_SESSION['id_organization'] . '/tmp_to_move/' . $media_file['name'];
+		$new_path = 'uploads/media_files/files/' . $_SESSION['id_organization'] . '/tmp_to_move/' . str_replace(' ', '_', $media_file['name']);
 
 		rename($old_path, $new_path);
 
