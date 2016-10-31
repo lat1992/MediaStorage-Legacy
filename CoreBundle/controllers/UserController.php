@@ -110,16 +110,16 @@ class UserController {
 				}
 				include('ClientBundle/views/login/set_password.php');
 			}
-		}
-		if (isset($_SESSION['id_platform_organization'])) {
-			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
-			$this->mergeErrorArray($designs_data);
+			if (isset($_SESSION['id_platform_organization'])) {
+				$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
+				$this->mergeErrorArray($designs_data);
 
-			if (count($this->_errorArray) == 0) {
-				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+				if (count($this->_errorArray) == 0) {
+					$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+				}
 			}
+			include('ClientBundle/views/login/user_forgot_password.php');
 		}
-		include('ClientBundle/views/login/user_forgot_password.php');
 	}
 
 	public function createAction() {
