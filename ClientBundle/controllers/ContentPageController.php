@@ -134,15 +134,11 @@ class ContentPageController {
 						$selected_media = $key;
 						break;
 					}
-					var_dump($key);
-					var_dump($value['right_preview']);
 				}
-				var_dump($selected_media);
 				if ($selected_media == -1 && count($media_files) && isset($media_files[0]))
 					$current_media_file = $media_files[0];
 				else
-					$current_media_file = $selected_media;
-var_dump($current_media_file);exit;
+					$current_media_file = $media_files[$current_media_file];
 			}
 
 		}
