@@ -124,10 +124,13 @@ class WorkFlowModel extends Model {
 	public function postProductionMaster($task_id, $filepath, $filename, $right_download, $right_preview, $metadata, $type) {
 		$data = $this->_mysqli->query('SELECT id_media_file FROM workflow WHERE id = '. $task_id);
 		$row_workflow = $data->fetch_assoc();
+		echo "debug1";
 		if (isset($row['id_media_file'])) {
+			echo "debug2";
 			$data = $this->_mysqli->query('SELECT id_media, id_organization FROM media_file WHERE id = '.$row_workflow['id_media_file']);
 			$row = $data->fetch_assoc();
 			if (isset($row['id_media'])) {
+				echo "debug3";
 				$mime = mime_content_type('/var/www/html/mediastorage/'. $filepath . $filename);
 				$data = $this->_mysqli->query('UPDATE media_file SET id_organization = '. $row['id_organization'] .', filename = "'.$filename.'", filepath = "'.$filepath.$filename.'", right_download = '.$right_download.', right_preview = '.$right_preview .', metadata = "'.$metadata.'", type = "'.$type.'", mime_type = "'.$mime.'" WHERE id = '. $row_workflow['id_media_file'] );
 			}
