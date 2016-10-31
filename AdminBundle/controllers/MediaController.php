@@ -337,9 +337,22 @@ class MediaController {
 		$languages = null;
 
 		if (isset($_POST['media_file_mediastorage'])) {
+
+			foreach ($_POST['media_file_mediastorage'] as $key => $value) {
+				if (!isset($value['name'])) {
+					unset($_POST['media_file_mediastorage'][$key]);
+				}
+			}
+
+			if (empty($_POST['media_file_mediastorage'])) {
+				header('Location:' . '?page=create_media_file_admin');
+				exit;
+			}
+
 			$this->_mediaFileManager->formatPostDataForMultipleQualification();
 		}
 		else {
+			header('Location:' . '?page=create_media_file_admin');
 			exit;
 		}
 

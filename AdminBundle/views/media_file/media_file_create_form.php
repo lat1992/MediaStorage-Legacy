@@ -9,7 +9,7 @@
 		<a href="?page=program"><?= LINK_MEDIA_PROGRAM ?></a>
 		<a href="?page=content"><?= LINK_MEDIA_CONTENT ?></a>
 */ ?>
-		<button class="button button-multiple-qualification" type="submit"><?= MULTIPLE_QUALIFICATION ?></button>
+		<button class="button button-multiple-qualification" id="" type="submit"><?= MULTIPLE_QUALIFICATION ?></button>
 
 		<input type="hidden" name="id_media_file_create" value="9732" />
 

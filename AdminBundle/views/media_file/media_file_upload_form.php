@@ -169,7 +169,7 @@
                 },
 
                 onAllComplete: function(){
-                    // ajaxRefreshUploadList();
+                    window.location.reload();
                 }
             }
         });

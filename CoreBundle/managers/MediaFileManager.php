@@ -126,4 +126,10 @@ class MediaFileManager {
 	public function removeMediaFileByMediaIdDb($media_id) {
 		return $this->_mediaFileModel->deleteMediaFileByMediaId($media_id);
 	}
+
+	public function removeMediaFileByMediaNameDb($media_name) {
+        $basePath = 'uploads/media_files/files/' . $_SESSION['id_organization'] . '/';
+
+		unlink($basePath . $media_name);
+	}
 }

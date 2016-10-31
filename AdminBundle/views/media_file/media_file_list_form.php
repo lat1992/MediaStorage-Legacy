@@ -5,6 +5,7 @@
 		<th><?= RIGHT_DOWNLOAD ?></th>
 		<th><?= RIGHT_PREVIEW ?></th>
 		<th></th>
+		<th></th>
 	</tr>
 
 <?php
@@ -28,6 +29,7 @@
 				<td><input type="hidden" name="media_file_mediastorage[<?= $key ?>][right_download]" checked value="0" /><input type="checkbox" name="media_file_mediastorage[<?= $key ?>][right_download]" checked value="1" /></td>
 				<td><input type="hidden" name="media_file_mediastorage[<?= $key ?>][right_preview]" checked value="0" /><input type="checkbox" name="media_file_mediastorage[<?= $key ?>][right_preview]" checked value="1" /></td>
 				<td class="td-link td-qualification-button" ><a class="td-link-button qualification-button" href="#"><?= QUALIFY ?></a></td>
+				<td class="td-link td-delete-button" ><a class="td-link-button button-delete" href="?page=delete_media_file_admin&name_media_file=<?= $media_file ?>"><?= DELETE ?></a></td>
 			</tr>
 <?php
 		}
@@ -35,7 +37,7 @@
 	else {
 ?>
 			<tr>
-				<td colspan="5" class="text-center"><?= NO_DATA_AVAILABLE ?></td>
+				<td colspan="6" class="text-center"><?= NO_DATA_AVAILABLE ?></td>
 			</tr>
 <?php
 	}

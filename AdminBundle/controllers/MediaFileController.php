@@ -120,25 +120,34 @@ class MediaFileController {
         }
     }
 
-    public function ajaxRefreshUploadListAction() {
+  //   public function ajaxRefreshUploadListAction() {
 
-		$media_files_data = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
-		$this->mergeErrorArray($media_files_data);
+		// $media_files_data = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
+		// $this->mergeErrorArray($media_files_data);
 
-		if (count($this->_errorArray) == 0) {
+		// if (count($this->_errorArray) == 0) {
 
-			$media_file = array();
+		// 	$media_file = array();
 
-			while ($media_file_data_temp = $media_files_data['data']->fetch_assoc()) {
-				$media_file[] = $media_file_data_temp;
-			}
+		// 	while ($media_file_data_temp = $media_files_data['data']->fetch_assoc()) {
+		// 		$media_file[] = $media_file_data_temp;
+		// 	}
 
-			if ($media_file)
-				echo json_encode($media_file);
-		}
+		// 	if ($media_file)
+		// 		echo json_encode($media_file);
+		// }
 
-		echo '';
-		return;
+		// echo '';
+		// return;
 
+  //   }
+
+    public function DeleteAction() {
+        $this->_mediaFileManager->removeMediaFileByMediaNameDb($_GET['name_media_file']);
+
+        $_SESSION['flash_message'] = ACTION_SUCCESS;
+        header('Location:' . '?page=create_media_file_admin');
+        exit;
     }
 }
+
