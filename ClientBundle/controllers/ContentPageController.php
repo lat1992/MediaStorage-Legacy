@@ -130,16 +130,15 @@ class ContentPageController {
 				$selected_media = -1;
 
 				foreach ($media_files as $key => $value) {
-					if (intval($value['right_preview'])) {
+					if (intval($value['right_preview']) == 1) {
 						$selected_media = $key;
 						break;
 					}
 				}
-
 				if ($selected_media == -1 && count($media_files) && isset($media_files[0]))
 					$current_media_file = $media_files[0];
 				else
-					$current_media_file = $selected_media;
+					$current_media_file = $media_files[$selected_media];
 			}
 
 		}
