@@ -132,16 +132,13 @@ class ContentPageController {
 				foreach ($media_files as $key => $value) {
 					if (intval($value['right_preview']) == 1) {
 						$selected_media = $key;
-						var_dump('INNNN');
 						break;
 					}
 				}
-var_dump($selected_media);
 				if ($selected_media == -1 && count($media_files) && isset($media_files[0]))
 					$current_media_file = $media_files[0];
 				else
 					$current_media_file = $selected_media;
-var_dump($current_media_file);exit;
 			}
 
 		}
