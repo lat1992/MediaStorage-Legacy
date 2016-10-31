@@ -44,7 +44,7 @@ require_once('ClientBundle/views/layout/header.php');
 <?php
 		}
 		else {
-			if  (isset($current_media_file)) {
+			if  (isset($current_media_file) && intval($current_media_file['right_preview']) == 1) {
 ?>
 				<div id="content_display_div">
 <?php
