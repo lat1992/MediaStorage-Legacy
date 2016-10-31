@@ -24,7 +24,7 @@ class MediaFileManager {
 		if (is_dir ( 'uploads/media_files/files/' . $_SESSION['id_organization'] )) {
 			if ($handle = opendir('uploads/media_files/files/' . $_SESSION['id_organization'])) {
 			    while (false !== ($entry = readdir($handle))) {
-			    	if (strcmp('.', $entry) && strcmp('..', $entry) && strcmp('tmp', $entry)) {
+			    	if (strcmp('.', $entry) && strcmp('..', $entry) && strcmp('tmp', $entry) && strcmp('tmp_to_move', $entry)) {
 			        	$return_array[] = $entry;
 			    	}
 			    }
