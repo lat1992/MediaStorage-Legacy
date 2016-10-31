@@ -48,7 +48,7 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
 				<div id="content_display_div">
 <?php
-				if (strcmp($current_media_file['type'], "MRES") == 0) {
+				if (strpos($current_media_file['mime_type'], "video/mp4") !== false) {
 ?>
 					<video controls preload="none" width="100%" id="video_player" poster="ClientBundle/ressources/content/img/logo-video-play.png">
 			    		<source  src="<?= $current_media_file['filepath']?>" type="<?= $current_media_file['mime_type'] ?>">
@@ -74,11 +74,19 @@ require_once('ClientBundle/views/layout/header.php');
 					</div>
 <?php
 				}
-				elseif (strcmp($current_media_file['type'], "IMG") == 0) {
+				elseif (strpos($current_media_file['mime_type'], "image") !== false) {
 ?>
 					<div>
 						<img src="<?= $current_media_file['filepath'] ?>" style="width: 100%" />
 					</div>
+<?php
+				}
+				elseif (strpos($current_media_file['mime_type'], "audio") !== false) {
+?>
+					<audio controls preload="none" width="100%" poster="ClientBundle/ressources/content/img/logo-video-play.png">
+			    		<source  src="<?= $current_media_file['filepath']?>" type="<?= $current_media_file['mime_type'] ?>">
+			    		Your browser does not support HTML5 video.
+					</audio>
 <?php
 				}
 				else {
