@@ -121,25 +121,25 @@ class WorkFlowModel extends Model {
 		);
 	}
 
-	public function postProductionMaster($task_id, $filepath, $filename, $right_download, $right_preview, $metadata) {
+	public function postProductionMaster($task_id, $filepath, $filename, $right_download, $right_preview, $metadata, $type) {
 		$data = $this->_mysqli->query('SELECT id_media_file FROM workflow WHERE id = '. $task_id);
 		$row_workflow = $data->fetch_assoc();
 		if (isset($row['id_media_file'])) {
 			$data = $this->_mysqli->query('SELECT id_media, id_organization FROM media_file WHERE id = '.$row_workflow['id_media_file']);
 			$row = $data->fetch_assoc();
 			if (isset($row['id_media'])) {
-				$mime = mime_content_type('/var/www/html/mediastorage/'.$filepath . $filename);
-				$data = $this->_mysqli->query('UPDATE media_file SET id_organization = '. $row['id_organization'] .', filename = "'.$filename.'", filepath = "'.$filepath.'", right_download = '.$right_download.', right_preview = '.$right_preview .' WHERE id = '. $row_workflow['id_media_file'] );
+				$mime = mime_content_type('/var/www/html/mediastorage/'. $filepath . $filename);
+				$data = $this->_mysqli->query('UPDATE media_file SET id_organization = '. $row['id_organization'] .', filename = "'.$filename.'", filepath = "'.$filepath.$filename.'", right_download = '.$right_download.', right_preview = '.$right_preview .', metadata = "'.$metadata.'", type = "'.$type.'", mime_type = "'.$mime.'" WHERE id = '. $row_workflow['id_media_file'] );
 			}
 		}
 
 		return array(
 			'data' => $data,
-			'error' => ($this->_mysqli->error) ? 'postProduction: ' . $this->_mysqli->error : '',
+			'error' => ($this->_mysqli->error) ? 'postProductionMaster: ' . $this->_mysqli->error : '',
 		);
 	}
 
-	public function postProduction($task_id, $filepath, $filename, $right_download, $right_preview, $metadata) {
+	public function postProduction($task_id, $filepath, $filename, $right_download, $right_preview, $metadata, $type) {
 		$data = $this->_mysqli->query('SELECT id_media_file FROM workflow WHERE id = '. $task_id);
 		$row = $data->fetch_assoc();
 		if (isset($row['id_media_file'])) {
@@ -147,7 +147,7 @@ class WorkFlowModel extends Model {
 			$row = $data->fetch_assoc();
 			if (isset($row['id_media'])) {
 				$mime = mime_content_type('/var/www/html/mediastorage/'.$filepath . $filename);
-				$data = $this->_mysqli->query('INSERT INTO media_file (id_organization, id_media, filename, filepath, right_download, right_preview, metadata, mime_type) VALUES ('. $row['id_organization'] .', '. $row['id_media'] .', "'. $filename .'", "'. $filepath .'", '.$right_download.', '.$right_preview.', "'.$metadata.'", "'. $mime .'")');
+				$data = $this->_mysqli->query('INSERT INTO media_file (id_organization, id_media, filename, filepath, right_download, right_preview, metadata, mime_type, type) VALUES ('. $row['id_organization'] .', '. $row['id_media'] .', "'. $filename .'", "'. $filepath.$filename .'", '.$right_download.', '.$right_preview.', "'.$metadata.'", "'. $mime .'", "'.$type.'")');
 			}
 		}
 
