@@ -5,6 +5,7 @@
 	}
 
 	$this->_route[] = array('use_workflow_api', 'ToolBundle/controllers/ToolController.php', 'ToolController', 'useWorkFlow');
+	$this->_route[] = array('post_production_workflow_master_api', 'ToolBundle/controllers/ToolController.php', 'ToolController', 'postProductionWorkFlowMaster');
 	$this->_route[] = array('post_production_workflow_api', 'ToolBundle/controllers/ToolController.php', 'ToolController', 'postProductionWorkFlow');
 	$this->_route[] = array('end_production_workflow_api', 'ToolBundle/controllers/ToolController.php', 'ToolController', 'endProductionWorkFlow');
 ?>
