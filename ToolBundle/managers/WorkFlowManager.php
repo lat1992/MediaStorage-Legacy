@@ -14,7 +14,7 @@ class WorkFlowManager {
 		$wf_type = mime_content_type($file_path);
 		if (strpos($wf_type, 'video') !== false)
 			return $this->_workFlowModel->transcodingVideo($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_DIRNAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization']);
-		else if (strpos($wf_type, 'image') !== false)
+		else if (strpos($wf_type, 'image') !== false || strpos($wf_type, 'application/x-photoshop') !== false || strpos($wf_type, 'application/photoshop') !== false || strpos($wf_type, 'application/psd') !== false)
 			return $this->_workFlowModel->transcodingImage($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_DIRNAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization']);
 		else if (strpos($wf_type, 'audio') !== false)
 			return $this->_workFlowModel->transcodingAudio($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_DIRNAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization']);
