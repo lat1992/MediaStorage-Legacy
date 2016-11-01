@@ -91,7 +91,7 @@ require_once('ClientBundle/views/layout/header.php');
 				}
 				else if (strpos($current_media_file['mime_type'], "application/pdf") !== false) {
 ?>
-					<embed src="<?= $current_media_file['filepath']?>"  width= “500” height= “375”>
+					<embed src="<?= $current_media_file['filepath']?>"  width="600" height="500">
 <?php
 				}
 				else {
