@@ -74,19 +74,24 @@ require_once('ClientBundle/views/layout/header.php');
 					</div>
 <?php
 				}
-				elseif (strpos($current_media_file['mime_type'], "image") !== false) {
+				else if (strpos($current_media_file['mime_type'], "image") !== false) {
 ?>
 					<div>
 						<img src="<?= $current_media_file['filepath'] ?>" style="width: 100%" />
 					</div>
 <?php
 				}
-				elseif (strpos($current_media_file['mime_type'], "audio") !== false) {
+				else if (strpos($current_media_file['mime_type'], "audio") !== false) {
 ?>
 					<audio controls preload="none" width="100%" poster="ClientBundle/ressources/content/img/logo-video-play.png">
 			    		<source  src="<?= $current_media_file['filepath']?>" type="<?= $current_media_file['mime_type'] ?>">
 			    		Your browser does not support HTML5 video.
 					</audio>
+<?php
+				}
+				else if (strpos($current_media_file['mime_type'], "application/pdf") !== false) {
+?>
+					<embed src="<?= $current_media_file['filepath']?>"  width= “500” height= “375”>
 <?php
 				}
 				else {
