@@ -18,7 +18,7 @@ class WorkFlowManager {
 			return $this->_workFlowModel->transcodingImage($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_DIRNAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization']);
 		else if (strpos($wf_type, 'audio') !== false)
 			return $this->_workFlowModel->transcodingAudio($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_DIRNAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization']);
-		else if (strpos($wf_type, 'application/msword') !== false || strpos($wf_type, 'application/vnd'))
+		else if (strpos($wf_type, 'application/msword') !== false || strpos($wf_type, 'application/vnd') !== false)
 			return $this->_workFlowModel->transcodingDocument($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_DIRNAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization']);
 		else
 			return $this->_workFlowModel->transcodingOther($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_DIRNAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization']);
