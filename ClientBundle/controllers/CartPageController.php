@@ -35,7 +35,6 @@ class CartPageController {
 		$this->_mail_addr_it = $settings['mail']['it-service'];
 		$this->_mail_addr_other = $settings['mail']['other'];
 
-
 		$this->_errorArray = array();
 	}
 
@@ -155,6 +154,17 @@ class CartPageController {
 
 	private function showDownloadLink($cart_data, $id_user) {
 		include ('ClientBundle/views/cart/cart_download_list.php');
+	}
+
+	private function downloadAction() {
+		$token = $_GET['token'];
+
+		$data = $this->_mediaFileManager->getMediaFileByToken($token);
+
+		include('ClientBundle/views/cart/download_review.php');
+
+		$this->_mediaFileManager->getMediaFileStreamByToken($token);
+		exit ;
 	}
 
 	private function sendEmailForDelivery($cart_data, $id_user) {

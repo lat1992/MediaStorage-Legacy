@@ -86,22 +86,22 @@ class MediaFileManager {
 		return $enums;
 	}
 
-	public function getMediaFileById($id_media_file) {
-		$media_file = $this->_mediaFileModel->findMediaFileByMediaFileId($id_media_file);
+	public function getMediaFileByToken($token) {
+		//$media_file = $this->_mediaFileModel->findMediaFileByMediaFileId($id_media_file);
 		/*
 		** TODO
 		*/
 	}
 
-	public function getMediaFile($id_media_file, $file_server) {
-		$media_file = $this->_mediaFileModel->findMediaFileByMediaFileId($id_media_file);
+	public function getMediaFileStreamByToken($token) {
+		/*$media_file = $this->_mediaFileModel->findMediaFileByMediaFileId($id_media_file);
 		if (!empty($media_file['error'])) {
 			return $media_file;
 		}
 		$row = $media_file['data']->fetch_assoc();
 		$file_path = $file_server . $row['filepath'];
 		$file_name = $row['filename'];
-		$file_type = $row['mine_type'];
+		$file_type = $row['mime_type'];*/
 		/*
 		** TODO
 		*/

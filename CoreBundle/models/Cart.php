@@ -65,8 +65,10 @@ class Cart extends Model {
 
 	public function findAllDownloadByUserId($id_user) {
 		$id_user = $this->_mysqli->real_escape_string($id_user);
-		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, media_file.filename FROM cart'.
+		$this->_mysqli->query('INSERT INTO user_download_token (id_user, token) VALUES ('. $id_user .', "'. md5(uniqid(rand(), true)) .'")');
+		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, media_file.filename, user_download_token.token FROM cart'.
 			' JOIN media_file ON cart.id_media_file = media_file.id'.
+			' JOIN user_download_token.id_user = cart.id_user'.
 			' WHERE cart.type LIKE "Download" AND cart.id_user = '.$id_user);
 
 		return array(

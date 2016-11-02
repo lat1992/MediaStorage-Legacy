@@ -28,7 +28,6 @@ class WorkFlowManager {
 		
 	}
 
-
 	public function postProductionWorkFlowMaster($task_id, $filepath, $filename, $right_download, $right_preview, $metadata, $type) {
 		return $this->_workFlowModel->postProductionMaster($task_id, $filepath, $filename, $right_download, $right_preview, $metadata, $type);
 	}

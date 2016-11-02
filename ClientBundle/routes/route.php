@@ -10,7 +10,6 @@ $this->_route[] = array('content', 'ClientBundle/controllers/ContentPageControll
 $this->_route[] = array('list_content', 'ClientBundle/controllers/ContentPageController.php', 'ContentPageController', 'listContentAction');
 $this->_route[] = array('delete_chapter', 'ClientBundle/controllers/ContentPageController.php', 'ContentPageController', 'deleteChapterAction');
 
-
 $this->_route[] = array('profile', 'ClientBundle/controllers/ProfilePageController.php', 'ProfilePageController', 'profileAction');
 
 $this->_route[] = array('search', 'ClientBundle/controllers/SearchPageController.php', 'SearchPageController', 'searchPageAction');
@@ -21,6 +20,7 @@ $this->_route[] = array('add_cart', 'ClientBundle/controllers/CartPageController
 $this->_route[] = array('delete_cart', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'deleteCartAction');
 $this->_route[] = array('validate_cart', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'validateCartAction');
 $this->_route[] = array('general_condition', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'generalConditionPageAction');
+$this->_route[] = array('download_file', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'downloadAction');
 
 $this->_route[] = array('sharelist', 'ClientBundle/controllers/SharelistPageController.php', 'SharelistPageController', 'sharelistPageAction');
 $this->_route[] = array('create_sharelist', 'ClientBundle/controllers/SharelistPageController.php', 'SharelistPageController', 'createSharelistAction');
