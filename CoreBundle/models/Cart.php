@@ -67,8 +67,8 @@ class Cart extends Model {
 		$id_user = $this->_mysqli->real_escape_string($id_user);
 		$this->_mysqli->query('INSERT INTO user_download_token (id_user, token) VALUES ('. $id_user .', "'. md5(uniqid(rand(), true)) .'")');
 		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, media_file.filename, user_download_token.token FROM cart'.
-			' JOIN user_download_token ON user_download_token.id_user = cart.id_user'.
-			' JOIN LEFT media_file ON cart.id_media_file = media_file.id'.
+			' LEFT JOIN user_download_token ON user_download_token.id_user = cart.id_user'.
+			' LEFT JOIN media_file ON cart.id_media_file = media_file.id'.
 			' WHERE cart.type LIKE "Download" AND cart.id_user = '.$id_user);
 
 		return array(
