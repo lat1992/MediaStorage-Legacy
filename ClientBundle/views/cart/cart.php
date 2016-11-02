@@ -74,7 +74,7 @@ require_once('ClientBundle/views/layout/header.php');
     if ($cart_data['data']->num_rows) {
 ?>
         <div  class="validate_form"><?= VALIDATE_THE ?><a href="?page=general_condition" target="_blank"><?= GENERAL_CONDITION ?></a>: <input type="checkbox" id="validate_check" onchange="validate()"></div>
-        <div class="validate_cart" id="validate_cart">
+        <div class="validate_cart" id="validate_cart" style="min-height: 150px;">
             <a id="validate_button" class="form_button" href="?page=validate_cart" style="pointer-events: none; cursor: default;"><?= VALIDATE ?></a>
         </div>
         <script>
