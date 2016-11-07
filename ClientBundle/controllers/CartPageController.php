@@ -167,11 +167,12 @@ class CartPageController {
 		$user_data = $this->_userManager->getUserByIdDb($id_user);
 		$row = $user_data['data']->fetch_assoc();
 		$row_cart = $cart_data->fetch_assoc();
-		$to = $this->_mail_addr_regie.';'.$this->_mail_addr_it;
+		$to = $this->_mail_addr_regie.','.$this->_mail_addr_it;
 		$cc = $this->_mail_addr_other;
 		$headers = 'From: ' . $this->_mail_addr_server . '\r\n' .
 		'CC: ' . $cc;
 		mail($to, MAIL_SUBJECT_DELIVERY, sprintf(MAIL_BODY_DELIVERY, $id_user, $row['email'], $_SESSION['id_platform_organization'], $row_cart['id_media_file']), $headers);
+		header('Location:'.'?page=cart');
 	}
 
 }
