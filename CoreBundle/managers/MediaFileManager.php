@@ -92,7 +92,7 @@ class MediaFileManager {
 
 	public function getMediaFileStreamByData($data) {
 		var_dump($data['data']);
-		if ($row = $data['data']->mysqli_fetch_assoc()) {
+		if ($data['data']->mysqli_fetch_assoc()) {
 			var_dump($row);
 			header ('Content-type: octet/stream');
 			header ('Content-disposition: attachment; filename='.$row['filename'].';');
