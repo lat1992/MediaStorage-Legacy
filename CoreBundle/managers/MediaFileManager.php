@@ -92,8 +92,8 @@ class MediaFileManager {
 
 	public function getMediaFileStreamByData($data) {
 		if ($row = $data['data']->fetch_assoc()) {
-			header ('Content-type: octet/stream');
-			header ('Content-disposition: attachment; filename='.$row['filename'].';');
+			header('Content-type: application/force-download');
+			header('Content-disposition: attachment; filename='.$row['filename'].';');
 			header('Content-Length: '.filesize($row['filepath']));
 			readfile($row['filepath']);
 		}
