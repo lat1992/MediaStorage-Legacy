@@ -9,7 +9,7 @@ class Cart extends Model {
 	}
 
 	public function findAllCarts() {
-		$data = $this->_mysqli->query('SELECT id, id_user, id_media ' .
+		$data = $this->_mysqli->query('SELECT id, id_user, id_media_file ' .
 			' FROM ' . $this->_table
 		);
 
@@ -66,8 +66,8 @@ class Cart extends Model {
 	public function findAllDownloadByUserId($id_user) {
 		$id_user = $this->_mysqli->real_escape_string($id_user);
 		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, media_file.filename, user_download_token.token FROM cart'.
-			' LEFT JOIN user_download_token ON user_download_token.id_media_file = media_file.id'.
 			' LEFT JOIN media_file ON cart.id_media_file = media_file.id'.
+			' LEFT JOIN user_download_token ON user_download_token.id_media_file = media_file.id'.
 			' WHERE cart.type LIKE "Download" AND cart.id_user = '.$id_user);
 
 		return array(
@@ -91,7 +91,7 @@ class Cart extends Model {
 		$id_user = $this->_mysqli->real_escape_string($data['id_user_mediastorage']);
 		$id_media_file = $this->_mysqli->real_escape_string($data['id_media_file_mediastorage']);
 
-		$this->_mysqli->query('INSERT INTO user_download_token (id_user, id_media_file, token) VALUES ('. $id_user .', '. $id_media_file .', "'. md5(uniqid(rand(), true)) .'")');
+		$result = $this->_mysqli->query('INSERT INTO user_download_token (id_user, id_media_file, token) VALUES ('. $id_user .', '. $id_media_file .', "'. md5(uniqid(rand(), true)) .'")');
 		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file)' .
 			' VALUES ('. $id_user . ', ' . $id_media_file . ');'
 		);
