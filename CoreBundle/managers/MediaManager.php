@@ -61,7 +61,7 @@ class MediaManager {
 	}
 
 	public function getPageNumberForFolderViewDb($id_folder, $id_type) {
-		$result = $this->_mediaModel->getAllMediasCountByIdFolder($_SESSION['id_organization'], $id_type, $_SESSION['id_language_mediastorage'], $id_folder);
+		$result = $this->_mediaModel->getAllMediasCountByIdFolder($_SESSION['id_organization'], $id_type, $id_folder);
 		$data = $this->_toolboxManager->mysqliResultToData($result);
 		$pages = intval($data['count']) / $this->_rowNbPerViewPages;
 		return (ceil($pages));

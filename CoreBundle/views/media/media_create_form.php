@@ -5,7 +5,6 @@
 	<select name="id_parent_mediastorage" id="id_parent_mediastorage"/>
 	<option value="NULL"><?= null ?></option>
 <?php
-	var_dump($parents['data']);
 		while ($parent = $parents['data']->fetch_assoc()) {
 			echo '<option value="' . $parent['id'] . '" ' . ((intval($parent['id']) == intval($media['id_parent'])) ? ' selected' : '') . '>' . $parent['reference'] . '</option>';
 		}
