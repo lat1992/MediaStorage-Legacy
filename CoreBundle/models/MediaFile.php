@@ -106,9 +106,9 @@ class MediaFile extends Model {
 	public function findMediaFileByToken($token) {
 		$token = $this->_mysqli->real_escape_string($token);
 
-		$data = $this->_mysqli->query('SELECT id, id_media, mine_type, filename, filepath, right_download, right_preview' .
+		$data = $this->_mysqli->query('SELECT media_file.id, media_file.id_media, media_file.mine_type, media_file.filename, media_file.filepath, media_file.right_download, media_file.right_preview' .
 			' FROM ' . $this->_table .
-			' LEFT JOIN user_download_token ON user_download_token.id_media_file = id'.
+			' LEFT JOIN user_download_token ON user_download_token.id_media_file = media_file.id'.
 			' WHERE user_download_token LIKE "' . $token .'"'
 		);
 
