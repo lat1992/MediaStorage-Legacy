@@ -156,7 +156,7 @@ class CartPageController {
 		include ('ClientBundle/views/cart/cart_download_list.php');
 	}
 
-	private function downloadAction() {
+	public function downloadAction() {
 		$token = $_GET['token'];
 
 		$data = $this->_mediaFileManager->getMediaFileByToken($token);
