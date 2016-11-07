@@ -122,7 +122,7 @@ class CartPageController {
 
 	public function createCartAction() {
 		$_POST['id_user_mediastorage'] = $_SESSION['user_id_mediastorage'];
-		$_POST['id_media_mediastorage'] = $_GET['media_id'];
+		$_POST['id_media_file_mediastorage'] = $_GET['media_file_id'];
 
 		$cart_data = $this->_cartManager->cartCreateDb();
 
