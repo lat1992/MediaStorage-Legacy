@@ -172,6 +172,11 @@ class CartPageController {
 		$headers = 'From: ' . $this->_mail_addr_server . '\r\n' .
 		'CC: ' . $cc;
 		mail($to, MAIL_SUBJECT_DELIVERY, sprintf(MAIL_BODY_DELIVERY, $id_user, $row['email'], $_SESSION['id_platform_organization'], $row_cart['id_media_file']), $headers);
+		echo $to;
+		echo MAIL_SUBJECT_DELIVERY;
+		echo sprintf(MAIL_BODY_DELIVERY, $id_user, $row['email'], $_SESSION['id_platform_organization'], $row_cart['id_media_file']);
+		echo $headers;
+		exit;
 		header('Location:'.'?page=cart');
 	}
 
