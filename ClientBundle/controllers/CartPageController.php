@@ -171,7 +171,6 @@ class CartPageController {
 		$user_data = $this->_userManager->getUserByIdDb($id_user);
 		$row = $user_data['data']->fetch_assoc();
 		$row_cart = $cart_data->fetch_assoc();
-		
 		$to = $this->_mail_addr_regie.';'.$this->_mail_addr_it;
 		$cc = $this->_mail_addr_other;
 		$headers = 'From: ' . $this->_mail_addr_server . '\r\n' .

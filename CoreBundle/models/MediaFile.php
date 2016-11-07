@@ -109,7 +109,7 @@ class MediaFile extends Model {
 		$data = $this->_mysqli->query('SELECT media_file.id, media_file.id_media, media_file.mime_type, media_file.filename, media_file.filepath, media_file.metadata, media_file.right_download, media_file.right_preview' .
 			' FROM ' . $this->_table .
 			' LEFT JOIN user_download_token ON user_download_token.id_media_file = media_file.id'.
-			' WHERE user_download_token LIKE "' . $token .'"'
+			' WHERE user_download_token.token LIKE "' . $token .'"'
 		);
 
 		return array(
