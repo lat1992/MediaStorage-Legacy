@@ -132,10 +132,7 @@ class DesignController {
 
 		if (isset($_POST['design_create_mediastorage']) && (strcmp($_POST['design_create_mediastorage'], '87463975') == 0)) {
 
-			// var_dump($_POST);exit;
-
 			$return_value = $this->_designManager->createOrEditDesignsDb();
-			// exit;
 
 			if (count($this->_errorArray) == 0) {
 				$_SESSION['flash_message'] = ACTION_SUCCESS;

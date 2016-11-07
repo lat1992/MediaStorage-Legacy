@@ -42,12 +42,13 @@ class Media extends Model {
 
 		$data = $this->_mysqli->query('SELECT COUNT(*) as count
 			 FROM ' . $this->_table .
-			' WHERE id_organization = ' . $id_organization . ' AND id_type = ' . $id_type .
-			';');
+			' WHERE id_organization = ' . $id_organization .
+			' AND id_type = ' . $id_type
+		);
 
 		return array(
 			'data' => $data,
-			'error' => ($this->_mysqli->error) ? 'findAllMediasByIdOrganization: ' . $this->_mysqli->error : '',
+			'error' => ($this->_mysqli->error) ? 'getAllMediasCount: ' . $this->_mysqli->error : '',
 		);
 	}
 
@@ -60,25 +61,26 @@ class Media extends Model {
 			$data = $this->_mysqli->query('SELECT COUNT(*) as count
 				 FROM ' . $this->_table .
 				' WHERE id_organization = ' . $id_organization .
+				' AND id_type = ' . $id_type .
 				' AND id_parent = ' . $id_parent
 			);
-			// var_dump($data);
 		}
 		else {
 			$data = $this->_mysqli->query('SELECT COUNT(*) as count
 				 FROM ' . $this->_table .
-				' WHERE id_organization = ' . $id_organization . ' AND id_type = ' . $id_type .
+				' WHERE id_organization = ' . $id_organization .
+				' AND id_type = ' . $id_type .
 				' AND id_parent IS NULL'
 			);
 		}
 
 		return array(
 			'data' => $data,
-			'error' => ($this->_mysqli->error) ? 'findAllMediasByIdOrganization: ' . $this->_mysqli->error : '',
+			'error' => ($this->_mysqli->error) ? 'getAllMediasCountByIdParent: ' . $this->_mysqli->error : '',
 		);
 	}
 
-	public function getAllMediasCountByIdFolder($id_organization, $id_type, $user_id_language, $id_folder) {
+	public function getAllMediasCountByIdFolder($id_organization, $id_type, $id_folder) {
 		$id_type = $this->_mysqli->real_escape_string($id_type);
 		$id_organization = $this->_mysqli->real_escape_string($id_organization);
 		$id_folder = $this->_mysqli->real_escape_string($id_folder);

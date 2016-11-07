@@ -156,7 +156,6 @@ class MediaController {
 		$languages = null;
 
 		if (isset($_POST['id_media_create_mediastorage']) && (strcmp($_POST['id_media_create_mediastorage'], '895143') == 0)) {
-// var_dump($_POST);exit;
 
 			$return_value = $this->_mediaManager->preFillMediaPostData(1);
 			$this->mergeErrorArray($return_value);

@@ -68,6 +68,9 @@ class ContentPageController {
 			}
 		}
 
+		$total_pages = $this->_mediaManager->getPageNumberDb(2);
+		$this->_mediaManager->setCurrentPage($current_page);
+
 		include ('ClientBundle/views/program/program.php');
 
 	}
