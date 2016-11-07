@@ -94,6 +94,7 @@ class MediaFileManager {
 		if ($row = $data['data']->fetch_assoc()) {
 			header('Content-type: application/octet-stream');
 			header('Content-Disposition: attachment; filename="'.$row['filename'].'"');
+			header('Content-Transfer-Encoding: binary\n');
 			header('Content-length: '.filesize($row['filepath']));
 			readfile($row['filepath']);
 			exit ;
