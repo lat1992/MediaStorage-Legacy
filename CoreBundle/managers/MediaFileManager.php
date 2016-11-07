@@ -91,11 +91,13 @@ class MediaFileManager {
 	}
 
 	public function getMediaFileStreamByData($data) {
-		$data = $data['data']->mysqli_fetch_assoc();
+		var_dump($data['data']);
+		$row = $data['data']->mysqli_fetch_assoc();
+		var_dump($row);
 		header ('Content-type: octet/stream');
-		header ('Content-disposition: attachment; filename='.$data['filename'].';');
-		header('Content-Length: '.filesize($data['filepath']));
-		readfile($data['filepath']);
+		header ('Content-disposition: attachment; filename='.$row['filename'].';');
+		header('Content-Length: '.filesize($row['filepath']));
+		readfile($row['filepath']);
 	}
 
 	public function formatPostDataForMultipleQualification() {
