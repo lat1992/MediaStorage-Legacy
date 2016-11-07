@@ -24,6 +24,11 @@ div[canvas] {
     display: inline-block;
 }
 
+.view-page-paging {
+	width: 100%;
+	text-align: center;
+}
+
 @media only screen and (max-width: 900px) {
 	.to_hide_mobile {
 		display: none;

@@ -82,3 +82,7 @@ ul li a.root_button:hover {
 .to_hide_mobile a {
     color: white;
 }
+
+.link-paging {
+    color: #000000;
+}

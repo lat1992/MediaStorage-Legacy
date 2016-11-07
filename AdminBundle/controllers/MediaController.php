@@ -61,6 +61,8 @@ class MediaController {
 
 	public function listProgramAction() {
 		$medias = $this->_mediaManager->getAllProgramsByIdOrganizationDb();
+		$total_pages = $this->_mediaManager->getPageNumberDb(1);
+		$this->_mediaManager->setCurrentPage($current_page);
 
 		$this->mergeErrorArray($medias);
 
@@ -105,6 +107,8 @@ class MediaController {
 
 	public function listContentAction() {
 		$medias = $this->_mediaManager->getAllContentsByIdOrganizationDb();
+		$total_pages = $this->_mediaManager->getPageNumberDb(2);
+		$this->_mediaManager->setCurrentPage($current_page);
 
 		$this->mergeErrorArray($medias);
 

@@ -157,8 +157,9 @@ require_once('ClientBundle/views/layout/header.php');
         }
     }
 ?>
-<?php
 
-require_once('ClientBundle/views/layout/footer.php');
+<div class="view-page-paging">
+    <?php require_once('AdminBundle/views/layout/paging.php'); ?>
+</div>
 
-?>
+<?php require_once('ClientBundle/views/layout/footer.php'); ?>

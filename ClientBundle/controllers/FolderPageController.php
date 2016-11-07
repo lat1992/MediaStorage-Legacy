@@ -40,7 +40,10 @@ class FolderPageController {
 		if (isset($_GET['parent_id'])) {
 			$folders = $this->_folderManager->getFolderByParentIdAndOrganizationIdDb($_GET['parent_id']);
 			$programs = $this->_mediaManager->getAllProgramsByIdOrganizationAndFolderIdDb($_GET['parent_id']);
+			$total_pages_program = $this->_mediaManager->getPageNumberForFolderViewDb($_GET['parent_id'], 1);
+
 			$contents = $this->_mediaManager->getAllContentsByIdOrganizationAndFolderIdDb($_GET['parent_id']);
+			$total_pages_content = $this->_mediaManager->getPageNumberForFolderViewDb($_GET['parent_id'], 2);
 
 			$this->mergeErrorArray($folders);
 			$this->mergeErrorArray($programs);
@@ -51,13 +54,19 @@ class FolderPageController {
 			$title = $this->_folderManager->getFolderPathByFolderId($_GET['parent_id']);
 			$title = $this->_folderManager->formatPathData($title);
 
+			$total_pages = $this->_folderManager->getPageNumberForFolderViewDb($_GET['parent_id']);
+			$this->_folderManager->setCurrentPage($current_page);
+
+			$total_pages = max($total_pages, $total_pages_program, $total_pages_content);
 		}
 		else {
 			$folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
 
 			$title['title'] = FOLDER;
-		}
 
+			$total_pages = $this->_folderManager->getPageNumberForFolderViewDb(null);
+			$this->_folderManager->setCurrentPage($current_page);
+		}
 		$this->mergeErrorArray($folders);
 
 		if (isset($_SESSION['id_platform_organization'])) {

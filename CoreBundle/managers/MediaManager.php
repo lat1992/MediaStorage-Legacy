@@ -16,6 +16,9 @@ class MediaManager {
 	private $_mediaExtraFieldManager;
 	private $_mediaExtraManager;
 
+	private $_rowNbPerPages = 5;
+	private $_rowNbPerViewPages = 5;
+
 	public function __construct() {
 		$this->_mediaModel = new Media();
 
@@ -26,27 +29,127 @@ class MediaManager {
 	}
 
 	public function getAllMediasDb() {
-		return $this->_mediaModel->findAllMedias();
+		// This is in order to paginate the results
+		$page = 0;
+
+		if (isset($_GET['paginate'])) {
+			$page = intval($_GET['paginate']) - 1;
+			if ($page < 0)
+				$page = 0;
+		}
+
+		$size = $this->_rowNbPerPages;
+		$offset = $page * $size;
+
+		return $this->_mediaModel->findAllmediasByIdOrganizationAndIdType($_SESSION['id_organization'], 1, $_SESSION['id_language_mediastorage'], $offset, $size);
 	}
 
+	public function getPageNumberDb($id_type) {
+		$result = $this->_mediaModel->getAllMediasCount($_SESSION['id_organization'], $id_type, $_SESSION['id_language_mediastorage']);
+		$data = $this->_toolboxManager->mysqliResultToData($result);
+		$pages = intval($data['count']) / $this->_rowNbPerPages;
+
+		return (ceil($pages));
+	}
+
+	public function getPageNumberForMediaViewDb($id_parent, $id_type) {
+		$result = $this->_mediaModel->getAllMediasCountByIdParent($_SESSION['id_organization'], $id_type, $_SESSION['id_language_mediastorage'], $id_parent);
+		$data = $this->_toolboxManager->mysqliResultToData($result);
+		$pages = intval($data['count']) / $this->_rowNbPerViewPages;
+
+		return (ceil($pages));
+	}
+
+	public function getPageNumberForFolderViewDb($id_folder, $id_type) {
+		$result = $this->_mediaModel->getAllMediasCountByIdFolder($_SESSION['id_organization'], $id_type, $_SESSION['id_language_mediastorage'], $id_folder);
+		$data = $this->_toolboxManager->mysqliResultToData($result);
+		$pages = intval($data['count']) / $this->_rowNbPerViewPages;
+		return (ceil($pages));
+	}
+
+	public function setCurrentPage(&$current_page) {
+		$current_page = (isset($_GET['paginate'])) ? intval($_GET['paginate']) : 1;
+	}
+
+
 	public function getAllProgramsByIdOrganizationDb() {
-		return $this->_mediaModel->findAllmediasByIdOrganizationAndIdType($_SESSION['id_organization'], 1, $_SESSION['id_language_mediastorage']);
+		// This is in order to paginate the results
+		$page = 0;
+
+		if (isset($_GET['paginate'])) {
+			$page = intval($_GET['paginate']) - 1;
+			if ($page < 0)
+				$page = 0;
+		}
+
+		$size = $this->_rowNbPerPages;
+		$offset = $page * $size;
+
+		return $this->_mediaModel->findAllmediasByIdOrganizationAndIdType($_SESSION['id_organization'], 1, $_SESSION['id_language_mediastorage'], $offset, $size);
 	}
 
 	public function getAllContentsByIdOrganizationDb() {
-		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdType($_SESSION['id_organization'], 2, $_SESSION['id_language_mediastorage']);
+		// This is in order to paginate the results
+		$page = 0;
+
+		if (isset($_GET['paginate'])) {
+			$page = intval($_GET['paginate']) - 1;
+			if ($page < 0)
+				$page = 0;
+		}
+
+		$size = $this->_rowNbPerPages;
+		$offset = $page * $size;
+
+		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdType($_SESSION['id_organization'], 2, $_SESSION['id_language_mediastorage'], $offset, $size);
 	}
 
 	public function getAllProgramsByIdOrganizationAndFolderIdDb($id_folder) {
-		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndFolderId($_SESSION['id_organization'], 1, $id_folder, $_SESSION['id_language_mediastorage']);
+		// This is in order to paginate the results
+		$page = 0;
+
+		if (isset($_GET['paginate'])) {
+			$page = intval($_GET['paginate']) - 1;
+			if ($page < 0)
+				$page = 0;
+		}
+
+		$size = $this->_rowNbPerViewPages;
+		$offset = $page * $size;
+
+		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndFolderId($_SESSION['id_organization'], 1, $id_folder, $_SESSION['id_language_mediastorage'], $offset, $size);
 	}
 
 	public function getAllContentsByIdOrganizationAndFolderIdDb($id_folder) {
-		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndFolderId($_SESSION['id_organization'], 2, $id_folder, $_SESSION['id_language_mediastorage']);
+		// This is in order to paginate the results
+		$page = 0;
+
+		if (isset($_GET['paginate'])) {
+			$page = intval($_GET['paginate']) - 1;
+			if ($page < 0)
+				$page = 0;
+		}
+
+		$size = $this->_rowNbPerViewPages;
+		$offset = $page * $size;
+
+		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndFolderId($_SESSION['id_organization'], 2, $id_folder, $_SESSION['id_language_mediastorage'], $offset, $size);
 	}
 
 	public function getAllContentsByIdOrganizationAndParentIdDb($id_parent) {
-		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndParentId($_SESSION['id_organization'], 2, $id_parent, $_SESSION['id_language_mediastorage']);
+		// This is in order to paginate the results
+		$page = 0;
+
+		if (isset($_GET['paginate'])) {
+			$page = intval($_GET['paginate']) - 1;
+			if ($page < 0)
+				$page = 0;
+		}
+
+		$size = $this->_rowNbPerPages;
+		$offset = $page * $size;
+
+		return $this->_mediaModel->findAllMediasByIdOrganizationAndIdTypeAndParentId($_SESSION['id_organization'], 2, $id_parent, $_SESSION['id_language_mediastorage'], $offset, $size);
 	}
 
 	public function getAllProgramsWithoutParentsByOrganizationDb() {

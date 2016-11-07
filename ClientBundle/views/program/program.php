@@ -187,6 +187,11 @@ if (isset($_GET['media_id'])) {
         }
     }
 ?>
+
+<div class="view-page-paging">
+    <?php require_once('AdminBundle/views/layout/paging.php'); ?>
+</div>
+
 <?php
 
 require_once('ClientBundle/views/layout/footer.php');

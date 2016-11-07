@@ -10,14 +10,49 @@ class FolderManager {
 	private $_toolboxManager;
 	private $_mediaManager;
 
+	private $_rowNbPerPages = 5;
+	private $_rowNbPerViewPages = 2;
+
 	public function __construct() {
 		$this->_folderModel = new Folder();
 		$this->_toolboxManager = new ToolboxManager();
-		// $this->_mediaManager = new MediaManager();
 	}
 
 	public function getAllFoldersDb() {
-		return $this->_folderModel->findAllFolders($_SESSION['id_organization']);
+		// This is in order to paginate the results
+		$page = 0;
+
+		if (isset($_GET['paginate'])) {
+			$page = intval($_GET['paginate']) - 1;
+			if ($page < 0)
+				$page = 0;
+		}
+
+		$size = $this->_rowNbPerPages;
+		$offset = $page * $size;
+
+		return $this->_folderModel->findAllFoldersWithLimit($_SESSION['id_organization'], $offset, $size);
+	}
+
+	public function getPageNumberDb() {
+		$result = $this->_folderModel->getAllFoldersCount($_SESSION['id_organization']);
+		$data = $this->_toolboxManager->mysqliResultToData($result);
+		$pages = intval($data['count']) / $this->_rowNbPerPages;
+
+		return (ceil($pages));
+	}
+
+	public function getPageNumberForFolderViewDb($id_parent) {
+		$result = $this->_folderModel->getAllFoldersCountByIdParent($_SESSION['id_organization'], $id_parent);
+		$data = $this->_toolboxManager->mysqliResultToData($result);
+		$pages = intval($data['count']) / $this->_rowNbPerViewPages;
+		$pages = ($pages) ? : 1;
+
+		return (ceil($pages));
+	}
+
+	public function setCurrentPage(&$current_page) {
+		$current_page = (isset($_GET['paginate'])) ? intval($_GET['paginate']) : 1;
 	}
 
 	public function formatFolderArrayWithPostData() {
@@ -101,11 +136,35 @@ class FolderManager {
 	}
 
 	public function getAllFoldersWithoutParentsByOrganizationDb() {
-		return $this->_folderModel->findAllFolderWithoutParentsByOrganization($_SESSION['id_organization'], $_SESSION['id_language_mediastorage']);
+		// This is in order to paginate the results
+		$page = 0;
+
+		if (isset($_GET['paginate'])) {
+			$page = intval($_GET['paginate']) - 1;
+			if ($page < 0)
+				$page = 0;
+		}
+
+		$size = $this->_rowNbPerViewPages;
+		$offset = $page * $size;
+
+		return $this->_folderModel->findAllFolderWithoutParentsByOrganization($_SESSION['id_organization'], $_SESSION['id_language_mediastorage'], $offset, $size);
 	}
 
 	public function getFolderByParentIdAndOrganizationIdDb($parent_id) {
-		return $this->_folderModel->findAllFolderWithParentIdAndOrganization($parent_id, $_SESSION['id_organization'], $_SESSION['id_language_mediastorage']);
+		// This is in order to paginate the results
+		$page = 0;
+
+		if (isset($_GET['paginate'])) {
+			$page = intval($_GET['paginate']) - 1;
+			if ($page < 0)
+				$page = 0;
+		}
+
+		$size = $this->_rowNbPerViewPages;
+		$offset = $page * $size;
+
+		return $this->_folderModel->findAllFolderWithParentIdAndOrganization($parent_id, $_SESSION['id_organization'], $_SESSION['id_language_mediastorage'], $offset, $size);
 	}
 
 	public function ajaxGetFolderByParentIdDb($parent_id) {

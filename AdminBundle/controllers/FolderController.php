@@ -46,6 +46,8 @@ class FolderController {
 
 	public function listAction() {
 		$folders = $this->_folderManager->getAllFoldersDb();
+		$total_pages = $this->_folderManager->getPageNumberDb();
+		$this->_folderManager->setCurrentPage($current_page);
 
 		$this->mergeErrorArray($folders);
 

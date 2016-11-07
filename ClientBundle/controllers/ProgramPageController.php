@@ -72,6 +72,9 @@ class ProgramPageController {
 			$this->mergeErrorArray($title);
 
 			$title = $this->_mediaManager->formatPathData($title);
+
+			$total_pages = $this->_mediaManager->getPageNumberForMediaViewDb($_GET['media_id'], 1);
+			$this->_mediaManager->setCurrentPage($current_page);
 		}
 		else {
 			$programs = $this->_mediaManager->getAllProgramsWithoutParentsByOrganizationDb();
@@ -79,6 +82,9 @@ class ProgramPageController {
 			$this->mergeErrorArray($programs);
 
 			$title['title'] = PROGRAM;
+
+			$total_pages = $this->_mediaManager->getPageNumberForMediaViewDb(null, 1);
+			$this->_mediaManager->setCurrentPage($current_page);
 		}
 
 		if (isset($_SESSION['id_platform_organization'])) {

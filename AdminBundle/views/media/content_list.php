@@ -36,6 +36,7 @@ require_once('ClientBundle/views/layout/header.php');
 
 		require_once('RootBundle/views/common/table_list.php');
 
+		require_once('AdminBundle/views/layout/paging.php');
 ?>
 
 	</div>
