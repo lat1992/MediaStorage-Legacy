@@ -161,6 +161,7 @@ class CartPageController {
 
 		$data = $this->_mediaFileManager->getMediaFileByToken($token);
 
+		var_dump($data);
 		include('ClientBundle/views/cart/download_review.php');
 
 		$this->_mediaFileManager->getMediaFileStreamByData($data);
