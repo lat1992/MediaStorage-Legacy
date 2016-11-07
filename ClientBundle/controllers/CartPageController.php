@@ -159,7 +159,8 @@ class CartPageController {
 	public function downloadAction() {
 		$token = $_GET['token'];
 		$data = $this->_mediaFileManager->getMediaFileByToken($token);
-		//include('ClientBundle/views/cart/download_review.php')
+		include('ClientBundle/views/cart/download_review.php');
+		exit;
 		$this->_mediaFileManager->getMediaFileStreamByData($data);
 	}
 
