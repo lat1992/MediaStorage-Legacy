@@ -161,7 +161,6 @@ class CartPageController {
 		$data = $this->_mediaFileManager->getMediaFileByToken($token);
 		include('ClientBundle/views/cart/download_review.php');
 		$this->_mediaFileManager->getMediaFileStreamByData($data);
-		exit ;
 	}
 
 	private function sendEmailForDelivery($cart_data, $id_user) {
