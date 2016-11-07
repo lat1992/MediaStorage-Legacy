@@ -163,7 +163,7 @@ class CartPageController {
 
 		include('ClientBundle/views/cart/download_review.php');
 
-		$this->_mediaFileManager->getMediaFileStreamByToken($token);
+		$this->_mediaFileManager->getMediaFileStreamByData($data);
 		exit ;
 	}
 

@@ -87,24 +87,15 @@ class MediaFileManager {
 	}
 
 	public function getMediaFileByToken($token) {
-		//$media_file = $this->_mediaFileModel->findMediaFileByMediaFileId($id_media_file);
-		/*
-		** TODO
-		*/
+		return $this->_mediaFileModel->findMediaFileByToken($token);
 	}
 
-	public function getMediaFileStreamByToken($token) {
-		/*$media_file = $this->_mediaFileModel->findMediaFileByMediaFileId($id_media_file);
-		if (!empty($media_file['error'])) {
-			return $media_file;
-		}
-		$row = $media_file['data']->fetch_assoc();
-		$file_path = $file_server . $row['filepath'];
-		$file_name = $row['filename'];
-		$file_type = $row['mime_type'];*/
-		/*
-		** TODO
-		*/
+	public function getMediaFileStreamByData($data) {
+		$data = $data->mysqli_fetch_assoc();
+		header ('Content-type: octet/stream');
+		header ('Content-disposition: attachment; filename='.$data['filename'].';');
+		header('Content-Length: '.filesize($data['filepath']));
+		readfile($data['filepath']);
 	}
 
 	public function formatPostDataForMultipleQualification() {
