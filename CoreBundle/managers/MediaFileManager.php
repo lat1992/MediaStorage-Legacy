@@ -96,7 +96,7 @@ class MediaFileManager {
 			header('Content-Disposition: attachment; filename="'.$row['filename'].'"');
 			header('Content-Transfer-Encoding: binary\n');
 			header('Content-length: '.filesize($row['filepath']));
-			readfile($row['filepath']);
+			//readfile($row['filepath']);
 			exit ;
 		}
 	}
