@@ -91,10 +91,20 @@ class Cart extends Model {
 		$id_user = $this->_mysqli->real_escape_string($data['id_user_mediastorage']);
 		$id_media_file = $this->_mysqli->real_escape_string($data['id_media_file_mediastorage']);
 
-		$result = $this->_mysqli->query('INSERT INTO user_download_token (id_user, id_media_file, token) VALUES ('. $id_user .', '. $id_media_file .', "'. md5(uniqid(rand(), true)) .'")');
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file)' .
-			' VALUES ('. $id_user . ', ' . $id_media_file . ');'
-		);
+		$tmp = $this->_mysqli->query('SELECT * FROM media_file WHERE id = '.$id_media_file);
+		if ($row = $tmp->fetch_assoc()) {
+			if ($row['right_download'] == 1) {
+				$result = $this->_mysqli->query('INSERT INTO user_download_token (id_user, id_media_file, token) VALUES ('. $id_user .', '. $id_media_file .', "'. md5(uniqid(rand(), true)) .'")');
+				$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file)' .
+					' VALUES ('. $id_user . ', ' . $id_media_file . ');'
+				);
+			}
+			else {
+				$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file, type)' .
+					' VALUES ('. $id_user . ', ' . $id_media_file . ', "Delivery");'
+				);
+			}
+		}
 
 		return array(
 			'data' => $data,
