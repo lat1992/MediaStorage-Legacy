@@ -22,6 +22,11 @@
     text-decoration: none;
 }
 
+.livesearch-result {
+    padding: 2px 5px 2px 5px;
+    border-bottom: 1px solid #eeeeee;
+}
+
 a.link_div_folder, a.link_div_program, a.link_div_content {
     display: inline-block;
     text-decoration: none;
