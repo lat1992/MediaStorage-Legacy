@@ -26,7 +26,8 @@ class RolePermitManager {
 	}
 
 	public function rolePermitMultipleCreateDb() {
-
+		if (isset($_POST['id_permit_mediastorage']) && !is_array($_POST['id_permit_mediastorage']) && $_POST['id_permit_mediastorage'])
+			$_POST['id_permit_mediastorage'][] = $_POST['id_permit_mediastorage'];
 		foreach ($_POST['id_permit_mediastorage'] as $id_permit) {
 			$data['id_permit_mediastorage'] = $id_permit;
 			$data['id_role_mediastorage'] = $_POST['id_role_mediastorage'];

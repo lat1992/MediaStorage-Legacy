@@ -23,7 +23,13 @@
             <tr>
                 <th><?= FILENAME ?></th>
                 <th><?= TYPE ?></th>
-                <th><?= ACTION ?></th>
+<?php
+                if (isset($_SESSION['permits'][PERMIT_EDIT_CONTENT])) {
+?>
+                    <th><?= ACTION ?></th>
+<?php
+                }
+?>
                 <!-- <th><?= ACTION ?></th> -->
             </tr>
         </thead>
@@ -36,7 +42,15 @@
                     <tr>
                         <td><?= $media_file['filename'] ?></td>
                         <td><?= $media_file['type'] ?></td>
-                        <td style="padding: 0"><?= '<a class="add_action" href="?page=add_cart&media_file_id=' . $media_file['id'] . '&original_id='. $_GET['media_id'] . '">' . ADDTOCART . '</a>' ?></td>
+<?php
+                        if (isset($_SESSION['permits'][PERMIT_EDIT_CONTENT])) {
+?>
+
+                            <td style="padding: 0"><?= '<a class="add_action" href="?page=add_cart&media_file_id=' . $media_file['id'] . '&original_id='. $_GET['media_id'] . '">' . ADDTOCART . '</a>' ?></td>
+<?php
+                        }
+?>
+
                         <?php /*<td style="padding: 0"><?= ($media_file['right_addtocart']) ? '<a class="add_action" href="#temp">' . ADDTOCART . '</a>' : '' ?></td> */ ?>
                         <!-- <td style="padding: 0"><?= '<a class="add_action" href="?page=add_sharelist_media&media_file_id=' . $media_file['id'] . '&original_id='. $_GET['media_id'] . '">' . ADDTOSHARELIST . '</a>' ?></td> -->
                     </tr>
