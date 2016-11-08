@@ -745,7 +745,6 @@ class MediaController {
 		if (!file_exists('uploads/thumbnails/chunks/' . $_SESSION['id_organization'] . '/programs/')) {
 		    mkdir('uploads/thumbnails/chunks/' . $_SESSION['id_organization'] . '/programs/', 0777, true);
 		}
-		thumbnails/files/8/programs
 
         $this->_uploadHandler->allowedExtensions = array('jpeg', 'png', 'jpg');
         $this->_uploadHandler->inputName = "qqfile";
