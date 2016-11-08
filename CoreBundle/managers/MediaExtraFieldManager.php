@@ -121,7 +121,7 @@ class MediaExtraFieldManager {
 	}
 
 	public function getAllMediaExtraFieldByOrganizationAndType($type) {
-		return $this->_mediaExtraFieldModel->findAllMediaExtraFieldByOrganizationAndType($type, $_SESSION['id_organization']);
+		return $this->_mediaExtraFieldModel->findAllMediaExtraFieldByOrganizationAndType($type, $_SESSION['id_organization'], $_SESSION['id_language_mediastorage']);
 	}
 
 	public function prepareDataForView($media_extra_data) {

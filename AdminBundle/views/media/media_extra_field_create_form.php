@@ -61,7 +61,6 @@ if (isset($media_extra)) {
 				<select name="media_extra_mediastorage[<?= $id_info_field ?>][id_array]" id="media_extra_mediastorage_<?= $id_info_field  ?>" />
 <?php
 					foreach ($value['data'] as $row) {
-
 						$user_value = "";
 						if (isset($media_user_extras[$id_info_field]['id_array']) && intval($row['id_element']) == intval($media_user_extras[$id_info_field]['id_array']))
 							$user_value = "selected";
