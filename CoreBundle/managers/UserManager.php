@@ -5,6 +5,8 @@ require_once('CoreBundle/models/UserInfo.php');
 
 require_once('CoreBundle/managers/LanguageManager.php');
 require_once('CoreBundle/managers/RolePermitManager.php');
+require_once('CoreBundle/managers/ToolboxManager.php');
+require_once('CoreBundle/managers/RoleManager.php');
 
 class UserManager {
 
@@ -13,6 +15,10 @@ class UserManager {
 
 	private $_languageManager;
 	private $_rolePermitManager;
+	private $_toolboxManager;
+	private $_roleManager;
+
+	private $_rowNbPerPages = 5;
 
 	public function __construct() {
 		$this->_userModel = new User();
@@ -20,6 +26,8 @@ class UserManager {
 
 		$this->_languageManager = new LanguageManager();
 		$this->_rolePermitManager = new RolePermitManager();
+		$this->_toolboxManager = new ToolboxManager();
+		$this->_roleManager = new RoleManager();
 	}
 
 	public function loginDb() {
@@ -285,10 +293,196 @@ class UserManager {
 	}
 
 	public function getAllUsersWithOrganizationDb($id_organization) {
-		return $this->_userModel->findAllUsersWithOrganization($id_organization);
+		$this->getPagingValues($size, $offset);
+
+		return $this->_userModel->findAllUsersWithOrganizationWithLimit($id_organization, $size, $offset);
 	}
 
 	public function setLanguageToOneByLanguageIdDb($language_id) {
 		return $this->_userModel->updateLanguageToOneByLanguageIdDb($language_id);
 	}
+
+	//
+	// ADMIN USER CONTROLLER'S MANAGER CODE
+	//
+
+	// List Action Code
+
+	public function getTableDataForView(&$table_data, &$id_organization) {
+		$this->getUsersForTableData($users, $id_organization);
+
+		$this->getHtmlForTableData($table_data, $users);
+	}
+
+	private function getUsersForTableData(&$users, &$id_organization) {
+		$users_data = $this->getAllUsersWithOrganizationDb($id_organization);
+
+		// Format sql result into an array to be usable
+		$users = $this->_toolboxManager->mysqliResultToArray($users_data);
+	}
+
+	private function getHtmlForTableData(&$table_data, &$users) {
+		$this->getTableHeaderForTableData($table_data);
+
+		$this->getTableDataForTableData($table_data, $users);
+	}
+
+	private function getTableHeaderForTableData(&$table_data) {
+		$table_header = array(
+				'<th>' . ID . '</th>',
+				'<th>' . USERNAME . '</th>',
+				'<th>' . ORGANIZATION . '</th>',
+				'<th>' . ROLE . '</th>',
+				'<th>' . EMAIL . '</th>',
+				'<th></th>',
+				'<th></th>',
+		);
+
+		$table_data['header'] = $table_header;
+	}
+
+	private function getTableDataForTableData(&$table_data, &$users) {
+		$data[] = array();
+
+		// Fill table data with html and user data in order to have user infirmation in each column and users per lines.
+		foreach ($users as $key => $value) {
+			$data[] = array(
+				'<td>' . $value['id'] . '</td>',
+				'<td>' . $value['username'] . '</td>',
+				'<td>' . $value['organization_name'] . '</td>',
+				'<td>' . $value['role_role'] . '</td>',
+				'<td>' . $value['email'] . '</td>',
+				'<td class="td-link" >' .
+					'<a href="?page=edit_user_admin&user_id=' . $value['id'] . '" class="td-link-button button-edit" >' . EDIT . '</a>' .
+				'</td>',
+				'<td class="td-link" >' .
+					'<a href="?page=delete_user_admin&user_id=' . $value['id'] . '" class="td-link-button button-delete" >' . DELETE . '</a>' .
+				'</td>',
+			);
+		}
+
+		$table_data['data'] = $data;
+	}
+
+	// Paging code
+
+	private function getPagingValues(&$size, &$offset) {
+		// This is in order to paginate the results
+		$page = 0;
+
+		if (isset($_GET['paginate'])) {
+			$page = intval($_GET['paginate']) - 1;
+			if ($page < 0)
+				$page = 0;
+		}
+
+		$size = $this->_rowNbPerPages;
+		$offset = $page * $size;
+	}
+
+	public function getPageNumberDb() {
+		$result = $this->_userModel->getAllUserCountByIdOrganization($_SESSION['id_organization']);
+		$data = $this->_toolboxManager->mysqliResultToData($result);
+		$pages = intval($data['count']) / $this->_rowNbPerPages;
+
+		return (ceil($pages));
+	}
+
+	public function setCurrentPage(&$current_page) {
+		$current_page = (isset($_GET['paginate'])) ? intval($_GET['paginate']) : 1;
+	}
+
+	// Create action code
+
+	public function getCreateViewData(&$select_data) {
+		$this->getCreateViewSelectListData($select_data);
+	}
+
+	// Get all datas for select box
+	private function getCreateViewSelectListData(&$select_data) {
+		$role_data = $this->_roleManager->getAllRolesDb();
+		$select_data['roles'] = $this->_toolboxManager->mysqliResultToArray($role_data);
+
+		$languages_data = $this->_languageManager->getAllLanguagesDb();
+		$select_data['languages'] = $this->_toolboxManager->mysqliResultToArray($languages_data);
+	}
+
+	public function checkFormDataAndValidityAndCreate(&$user, &$errors, &$success_redirect_url) {
+		// Check if the right validate button has been pressed
+		if (isset($_POST['id_user_create_mediastorage']) &&
+			(strcmp($_POST['id_user_create_mediastorage'], '98475') == 0)) {
+			$_POST['id_organization_mediastorage'] = $_SESSION['id_organization'];
+
+			// Get data typed by user to reprint if fail on form validation
+			$user = $this->formatUserArrayWithPostData();
+
+			$errors['error'] = $this->userEditFormCheck();
+
+			if (!empty($errors['error']))
+				return;
+
+			$this->createUserInDatabase($errors);
+
+			$this->redirectOnSuccess($errors, $success_redirect_url);
+		}
+
+	}
+
+	private function createUserInDatabase(&$errors) {
+		$errors = $this->userCreateDb();
+	}
+
+	private function redirectOnSuccess(&$errors, &$success_redirect_url) {
+		if (!empty($errors['error']))
+			return;
+
+
+		$_SESSION['flash_message'] = ACTION_SUCCESS;
+		header('Location:' . $success_redirect_url);
+		exit;
+	}
+
+	// User Edit Code
+
+	public function checkFormDataAndValidityAndEdit(&$user, &$errors, &$success_redirect_url) {
+		// Check if the right validate button has been pressed
+		if (isset($_POST['id_user_create_mediastorage']) &&
+			(strcmp($_POST['id_user_create_mediastorage'], '98475') == 0)) {
+			$_POST['id_organization_mediastorage'] = $user['id_organization'];
+
+			// Get data typed by user to reprint if fail on form validation
+
+			$errors['error'] = $this->userEditFormCheck();
+
+			if (!empty($errors['error']))
+				return;
+
+			$this->editUserInDatabase($errors, $user);
+
+			$this->redirectOnSuccess($errors, $success_redirect_url);
+		}
+
+	}
+
+	private function editUserInDatabase(&$errors, &$user) {
+		$errors = $this->userEditAsAdminDb($user);
+	}
+
+	public function getUser(&$id_user, &$user) {
+		$id_organization = $_SESSION['id_organization'];
+
+		$data = $this->_userModel->findUserByIdAndIdOrganization($id_user, $id_organization);
+
+		if (!empty($data['error']))
+			return;
+
+		$user_data = $this->_toolboxManager->mysqliResultToData($data);
+
+		$data = $this->_userInfoModel->findUserInfoById($id_user);
+
+		$user_info_data = $this->_toolboxManager->mysqliResultToData($data);
+
+		$user = array_merge($user_data, $user_info_data);
+	}
+
 }

@@ -26,4 +26,10 @@ $this->_route[] = array('create_media_file_admin', 'AdminBundle/controllers/Medi
 $this->_route[] = array('upload_media_file_admin', 'AdminBundle/controllers/MediaFileController.php', 'MediaFileController', 'uploadAction');
 $this->_route[] = array('ajax_refresh_upload_list', 'AdminBundle/controllers/MediaFileController.php', 'MediaFileController', 'ajaxRefreshUploadListAction');
 $this->_route[] = array('delete_media_file_admin', 'AdminBundle/controllers/MediaFileController.php', 'MediaFileController', 'deleteAction');
+
+$this->_route[] = array('list_users_admin', 'AdminBundle/controllers/UserController.php', 'UserController', 'listAction');
+$this->_route[] = array('create_user_admin', 'AdminBundle/controllers/UserController.php', 'UserController', 'createAction');
+$this->_route[] = array('edit_user_admin', 'AdminBundle/controllers/UserController.php', 'UserController', 'editAction');
+$this->_route[] = array('delete_user_admin', 'AdminBundle/controllers/UserController.php', 'UserController', 'deleteAction');
+
 ?>

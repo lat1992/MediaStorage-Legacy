@@ -29,6 +29,8 @@ class UserInfo extends Model {
 	}
 
 	public function findUserInfoById($id) {
+		$id = $this->_mysqli->real_escape_string($id);
+
 		$data = $this->_mysqli->query('SELECT first_name, last_name, address, zipcode, city, country, phone, mobile, company, job FROM ' . $this->_table . ' WHERE id = ' . $id . ';');
 
 		return array(
@@ -59,6 +61,8 @@ class UserInfo extends Model {
 	}
 
 	public function deleteUserInfoById($user_id) {
+		$user_id = $this->_mysqli->real_escape_string($user_id);
+
 		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table . ' WHERE id = ' . $user_id . ';');
 
 		return array(

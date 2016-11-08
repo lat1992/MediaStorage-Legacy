@@ -49,7 +49,7 @@ class Folder extends Model {
 
 		return array(
 			'data' => $data,
-			'error' => ($this->_mysqli->error) ? 'findAllFolders: ' . $this->_mysqli->error : '',
+			'error' => ($this->_mysqli->error) ? 'getAllFoldersCount: ' . $this->_mysqli->error : '',
 		);
 	}
 

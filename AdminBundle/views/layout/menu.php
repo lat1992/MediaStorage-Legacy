@@ -17,6 +17,12 @@
 <?php
 		}
 
+		if (isset($_SESSION['permits'][PERMIT_MANAGE])) {
+?>
+			<li><a href="?page=list_users_admin"><?= USERS ?></a></li>
+<?php
+		}
+
 		if (isset($_SESSION['permits'][PERMIT_UPLOAD_FILE])) {
 ?>
 			<li><a href="?page=create_media_file_admin"><?= UPLOAD ?></a></li>
