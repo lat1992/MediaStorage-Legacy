@@ -749,7 +749,8 @@ class MediaController {
         $this->_uploadHandler->allowedExtensions = array('jpeg', 'png', 'jpg');
         $this->_uploadHandler->inputName = "qqfile";
 		$this->_uploadHandler->chunksFolder = $chunkpath;
-
+		echo "success";
+/*
         $method = $_SERVER["REQUEST_METHOD"];
 
         if ($method == "POST") {
@@ -767,7 +768,7 @@ class MediaController {
 
                 $file_name = $this->_uploadHandler->getUploadName();
             }
-/*
+
             if ($file_name && $result['uuid']) {
             	$filename_explode_array = explode('.', $file_name);
             	$filename_explode_array = array_reverse($filename_explode_array);
@@ -784,7 +785,7 @@ class MediaController {
 
                 $result['img_path'] = $basePath . 'thumbnail_program_' . $_GET['media_id'] . '.png';
             }
-*/
+
             echo json_encode($result);
         }
 
@@ -796,7 +797,7 @@ class MediaController {
         else {
             header("HTTP/1.0 405 Method Not Allowed");
         }
-
+*/
 	}
 
 	public function uploadContentThumbnailAction() {
