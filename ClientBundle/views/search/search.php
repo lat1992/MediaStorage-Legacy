@@ -2,6 +2,8 @@
 require_once('ClientBundle/views/layout/header.php');
 ?>
 <link rel="stylesheet" type="text/css" href="ClientBundle/ressources/search/css/styles.css" />
+<link rel="stylesheet" type="text/css" href="ClientBundle/ressources/folder/css/folder.css" />
+<link rel="stylesheet" type="text/css" href="ClientBundle/ressources/content/css/button.css" />
 <style>
 
 <?php
@@ -40,30 +42,40 @@ require_once('ClientBundle/views/layout/header.php');
 		}
 		while ($folder = $folder_data->fetch_assoc()) {
 ?>
-			<a class="link_div_folder" href="?page=folder&parent_id=<?= $folder['id']; ?>" >
-                <div class="hvr-grow col folder">
+            <div class="hvr-grow col folder">
+
+                <a href="?page=folder&parent_id=<?= $folder['id']; ?>" >
                     <div class="folder_title_div">
                         <span class="folder_title_span" ><?= $folder['data'] ?></span>
                     </div>
-                    <div class="folder_image_div">
-                        <!-- <img src="ClientBundle/ressources/folder/img/default.png" /> -->
+                </a>
+                <div class="folder_image_div">
+                    <!-- <img src="ClientBundle/ressources/folder/img/default.png" /> -->
+                    <a href="?page=folder&parent_id=<?= $folder['id']; ?>" >
                         <img class="folder_image" src="ClientBundle/ressources/folder/img/default_folder.png" />
-                    </div>
-
-                    <div class="folder_description">
-<?php
-                        if (isset($folder['description']) && $folder['description']) {
-?>
-                            <span class="description_label"><?= DESCRIPTION ?> : </span><span><?= $folder['description'] ?></span>
-<?php
-                        }
-                        else {
-                            echo '<span class="program_description_empty">' . NO_DESCRIPTION_AVAILABLE . '</span>';
-                        }
-?>
-                    </div>
+                    </a>
                 </div>
-            </a>
+
+                <div class="folder_description">
+<?php
+                    if (isset($folder['description']) && $folder['description']) {
+?>
+                        <span class="description_label"><?= DESCRIPTION ?> : </span><span><?= $folder['description'] ?></span>
+<?php
+                    }
+                    else {
+                        echo '<span class="program_description_empty">' . NO_DESCRIPTION_AVAILABLE . '</span>';
+                    }
+?>
+                </div>
+<?php
+                if (isset($_SESSION['permits'][PERMIT_EDIT_CONTENT])) {
+?>
+                    <a class="button-edit-from-view" href="?page=edit_folder_admin&folder_id=<?= $folder['id'] ?>"><?= EDIT ?></a>
+<?php
+                }
+?>
+            </div>
 <?php
 		}
     }
@@ -77,31 +89,40 @@ require_once('ClientBundle/views/layout/header.php');
         }
         while ($program = $program_data->fetch_assoc()) {
 ?>
-            <a class="link_div_program" href="?page=program&media_id=<?= $program['id']; ?>" >
-                <div class="hvr-grow col program">
+            <div class="hvr-grow col program">
 
+                <a href="?page=program&media_id=<?= $program['id']; ?>" >
                     <div class="program_title_div">
                         <span class="program_title_span" ><?= $program['title'] ?></span>
                     </div>
+                </a>
 
-                    <div class="program_image_div">
-                        <!-- <img src="ClientBundle/ressources/program/img/default.png" /> -->
+                <div class="program_image_div">
+                    <!-- <img src="ClientBundle/ressources/program/img/default.png" /> -->
+                    <a href="?page=program&media_id=<?= $program['id']; ?>" >
                         <img class="program_image" src="<?php if (file_exists('uploads/thumbnails/files/8/programs/thumbnail_program_'.$program['id'].'.png')) echo 'uploads/thumbnails/files/8/programs/thumbnail_program_'.$program['id'].'.png'; else echo 'ClientBundle/ressources/program/img/default_program.png'; ?>" />
-                    </div>
-
-                    <div class="program_description">
-
-                        <span class="description_label"><?= REFERENCE ?> : </span><span><?= $program['reference_client'] ?></span><br />
-<?php
-                        if (isset($program['subtitle']) && $program['subtitle']) {
-?>
-                            <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $program['subtitle'] ?></span>
-<?php
-                        }
-?>
-                    </div>
+                    </a>
                 </div>
-            </a>
+
+                <div class="program_description">
+
+                    <span class="description_label"><?= REFERENCE ?> : </span><span><?= $program['reference_client'] ?></span><br />
+<?php
+                    if (isset($program['subtitle']) && $program['subtitle']) {
+?>
+                        <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $program['subtitle'] ?></span>
+<?php
+                    }
+?>
+                </div>
+<?php
+                if (isset($_SESSION['permits'][PERMIT_EDIT_CONTENT])) {
+?>
+                    <a class="button-edit-from-view" href="?page=edit_program_admin&media_id=<?= $program['id'] ?>"><?= EDIT ?></a>
+<?php
+                }
+?>
+            </div>
 <?php
         }
     }
@@ -115,31 +136,40 @@ require_once('ClientBundle/views/layout/header.php');
         }
         while ($content = $content_data->fetch_assoc()) {
 ?>
-            <a class="link_div_content" href="?page=content&media_id=<?= $content['id']; ?>" >
-                <div class="hvr-grow col content">
+            <div class="hvr-grow col content">
 
+                <a href="?page=content&media_id=<?= $content['id']; ?>" >
                     <div class="content_title_div">
                         <span class="content_title_span" ><?= $content['title'] ?></span>
                     </div>
+                </a>
 
-                    <div class="content_image_div">
-                        <!-- <img src="ClientBundle/ressources/content/img/default.png" /> -->
+                <div class="content_image_div">
+                    <!-- <img src="ClientBundle/ressources/content/img/default.png" /> -->
+                    <a href="?page=content&media_id=<?= $content['id']; ?>" >
                         <img class="content_image" src="ClientBundle/ressources/content/img/default_content.png" />
-                    </div>
-
-                    <div class="content_description">
-
-                        <span class="description_label"><?= REFERENCE ?> : </span><span><?= $content['reference_client'] ?></span><br />
-<?php
-                        if (isset($content['description']) && $content['description']) {
-?>
-                            <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $content['subtitle'] ?></span>
-<?php
-                        }
-?>
-                    </div>
+                    </a>
                 </div>
-            </a>
+
+                <div class="content_description">
+
+                    <span class="description_label"><?= REFERENCE ?> : </span><span><?= $content['reference_client'] ?></span><br />
+<?php
+                    if (isset($content['description']) && $content['description']) {
+?>
+                        <span class="description_label"><?= SUBTITLE ?> : </span><span><?= $content['subtitle'] ?></span>
+<?php
+                    }
+?>
+                </div>
+<?php
+                if (isset($_SESSION['permits'][PERMIT_EDIT_CONTENT])) {
+?>
+                    <a class="button-edit-from-view" href="?page=edit_content_admin&media_id=<?= $content['id'] ?>"><?= EDIT ?></a>
+<?php
+                }
+?>
+            </div>
  <?php
         }
     }
