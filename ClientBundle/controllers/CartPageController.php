@@ -174,7 +174,7 @@ class CartPageController {
 		$headers .= 'From: Mediastorage <' . $this->_mail_addr_server . '>'. "\r\n" .
 		'Cc: ' . $cc . "\r\n";
 		mail($to, MAIL_SUBJECT_DELIVERY, sprintf(MAIL_BODY_DELIVERY, $row['username'], $id_user, $row['email'], $_GET['platform'], $_SESSION['id_platform_organization'], $row_cart['id_media_file']), $headers);
-		header('Location:'.'?page=cart');
+		header('Location:'.'?page=validate_cart');
 	}
 
 }
