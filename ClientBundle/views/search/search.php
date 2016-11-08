@@ -86,7 +86,7 @@ require_once('ClientBundle/views/layout/header.php');
 
                     <div class="program_image_div">
                         <!-- <img src="ClientBundle/ressources/program/img/default.png" /> -->
-                        <img class="program_image" src="ClientBundle/ressources/program/img/default_program.png" />
+                        <img class="program_image" src="<?php if (file_exists('uploads/thumbnails/files/8/programs/thumbnail_program_'.$program['id'].'.png')) echo 'uploads/thumbnails/files/8/programs/thumbnail_program_'.$program['id'].'.png'; else echo 'ClientBundle/ressources/program/img/default_program.png'; ?>" />
                     </div>
 
                     <div class="program_description">
