@@ -324,7 +324,7 @@ define('CONTENT_ACTION_BUTTON', 'Bouton du bloc action');
 define('FILE_BLOCK', 'Bloc de media');
 define('UPLOAD', 'Upload');
 define('LINKED_FILE', 'Fichier lié');
-define('NO_DATA_AVAILABLE', 'Aucunes données disponible');
+define('NO_DATA_AVAILABLE', 'Aucunes données disponibles');
 
 // UPLOAD BOX
 define('DROP_FILES_HERE', 'Déposez les fichiers ici');
