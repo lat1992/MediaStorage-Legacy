@@ -806,6 +806,7 @@ class MediaController {
         $chunkpath = 'uploads/thumbnails/chunks/' . $_SESSION['id_organization'] . '/contents/';
 
         // CLEAN TMP FOLDER
+        echo "lol";
 		$files = glob($mainPath . '*');
 		foreach($files as $file) {
 			var_dump(unlink($file));
