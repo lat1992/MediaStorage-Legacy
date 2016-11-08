@@ -262,7 +262,7 @@ define('INVALID_MEDIA_REFERENCE_TOO_LONG', 'Reference trop longue');
 define('MANDATORY', 'Obligatoire');
 
 define('DASHBOARD', 'Dashboard');
-define('ADMIN_INFORMATION', 'Attention: Toute modification doit être verifier');
+define('ADMIN_INFORMATION', 'Attention: Toutes modifications doit être verifiées');
 define('ROOT', 'Portal Root');
 
 // Media FIle
