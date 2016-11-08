@@ -113,6 +113,10 @@ define('RIGHT_VIEW', 'Right viewing');
 define('RIGHT_PREVIEW', 'Right viewing');
 define('LINKED_FILE', 'Linked file');
 define('TAG', 'Tag');
+define('DROP_FILES_HERE', 'Drop files here');
+define('UPLOAD_A_FILE', 'Upload a file');
+define('MULTIPLE_QUALIFICATION', 'Multiple qualification');
+define('QUALIFY', 'Qualify');
 
 // Media info
 define('MEDIA_INFO', 'Media information');
@@ -195,3 +199,9 @@ define('CHAPTER', 'Chapter');
 define('TC_IN', 'TC_IN');
 define('TC_OUT', 'TC_OUT');
 define('ADDTOCART', 'Add to cart');
+
+// Cart
+define('OVERVIEW', 'Overview');
+define('DESCRIPTIVE', 'Descriptive');
+define('USAGE', 'Usage');
+define('NO_DATA_AVAILABLE', 'No data available');
