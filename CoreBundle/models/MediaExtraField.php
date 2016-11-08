@@ -35,12 +35,12 @@ class MediaExtraField extends Model {
  		$type = $this->_mysqli->real_escape_string($type);
  		$id_organization = $this->_mysqli->real_escape_string($id_organization);
 
- 		$data = $this->_mysqli->query('SELECT type, media_extra_field_language.data, media_extra_field_language.id_language, element, media_extra_field.id, media_extra_array.id as id_element, display_in_card' .
+ 		$data = $this->_mysqli->query('SELECT type, media_extra_field_language.data, media_extra_field_language.id_language, element, media_extra_field.id, media_extra_array.id as id_element, display_in_card, media_extra_array.id_language as id_language_array' .
  									' FROM ' . $this->_table .
- 									' JOIN media_type_field ON media_type_field.id_field = media_extra_field.id ' .
- 									' JOIN media_extra_field_language ON media_extra_field_language.id_field = media_extra_field.id ' .
- 									' JOIN media_extra_array ON media_extra_array.id_field = media_extra_field.id ' .
- 									' WHERE media_type_field.id_type = ' . $type . ' AND id_organization = ' . $id_organization . ' AND media_extra_array.id_language = ' . $id_language . ' AND media_extra_field_language.id_language = ' . $id_language . ';'
+ 									' LEFT JOIN media_type_field ON media_type_field.id_field = media_extra_field.id ' .
+ 									' LEFT JOIN media_extra_field_language ON media_extra_field_language.id_field = media_extra_field.id ' .
+ 									' LEFT JOIN media_extra_array ON media_extra_array.id_field = media_extra_field.id ' .
+ 									' WHERE media_type_field.id_type = ' . $type . ' AND id_organization = ' . $id_organization . ';'
  		);
 
  		return array(
