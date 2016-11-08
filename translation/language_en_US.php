@@ -110,7 +110,7 @@ define('REFERENCE_CLIENT', 'Client\'s reference');
 define('HANDOVER_DATE', 'Handover date');
 define('MORE_OPTION', 'More option');
 define('RIGHT_VIEW', 'Right viewing');
-define('RIGHT_PREVIEW', 'Right viewing')
+define('RIGHT_PREVIEW', 'Right viewing');
 define('LINKED_FILE', 'Linked file');
 define('TAG', 'Tag');
 
