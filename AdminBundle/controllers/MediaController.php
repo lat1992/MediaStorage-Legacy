@@ -735,8 +735,10 @@ class MediaController {
 
         // CLEAN TMP FOLDER
 		$files = glob($mainPath . '*');
+		var_dump($mainPath);
+		var_dump($files);
 		foreach($files as $file) {
-			unlink($file);
+			var_dump(unlink($file));
 		}
 
 		if (!file_exists('uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/programs/tmp/')) {
@@ -805,12 +807,9 @@ class MediaController {
         $chunkpath = 'uploads/thumbnails/chunks/' . $_SESSION['id_organization'] . '/contents/';
 
         // CLEAN TMP FOLDER
-        echo "lol";
 		$files = glob($mainPath . '*');
-		var_dump($mainPath);
-		var_dump($files);
 		foreach($files as $file) {
-			var_dump(unlink($file));
+			unlink($file);
 		}
 
 		if (!file_exists('uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/contents/tmp/')) {
