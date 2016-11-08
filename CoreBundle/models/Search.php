@@ -59,29 +59,11 @@ class Search extends Model {
 			' LEFT JOIN tag ON tag.id = tag_media.id_tag'.
 			' LEFT JOIN memory_tag_language ON memory_tag_language.id_tag = tag.id'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization. ' AND '.
-			'(memory_media_info.id_language = '.$id_language.' OR memory_chapter_language.id_language = '.$id_language.' OR memory_folder_language.id_language = '.$id_language.' OR memory_media_extra.id_language = '.$id_language.' OR memory_media_extra_array.id_language = '.$id_language.' OR memory_tag_language.id_language = '.$id_language.') AND '.
+			'((memory_media_info.id_language = '.$id_language.' OR memory_media_info.id_language IS NULL) AND (memory_chapter_language.id_language = '.$id_language.' OR memory_chapter_language.id_language IS NULL) AND (memory_folder_language.id_language = '.$id_language.' OR memory_folder_language.id_language IS NULL) AND (memory_media_extra.id_language = '.$id_language.' OR memory_media_extra.id_language IS NULL) AND (memory_media_extra_array.id_language = '.$id_language.' OR memory_media_extra_array.id_language IS NULL) AND (memory_tag_language.id_language = '.$id_language.' OR memory_tag_language.id_language IS NULL)) AND '.
+			//'(memory_media_info.id_language = '.$id_language.' OR memory_chapter_language.id_language = '.$id_language.' OR memory_folder_language.id_language = '.$id_language.' OR memory_media_extra.id_language = '.$id_language.' OR memory_media_extra_array.id_language = '.$id_language.' OR memory_tag_language.id_language = '.$id_language.') AND '.
 			'(memory_chapter_language.data LIKE "%'.$keyword.'%" OR memory_folder_language.data LIKE "%'.$keyword.'%" OR memory_media.reference = '.intval($keyword).' OR memory_media.reference_client LIKE "'.$keyword.'" OR memory_media_extra.data LIKE "%'.$keyword.'%" OR memory_media_extra_array.element LIKE "%'.$keyword.'%" OR memory_media_file.filename LIKE "%'.$keyword.'%" OR memory_media_info.title LIKE "%'.$keyword.'%" OR memory_media_info.subtitle LIKE "%'.$keyword.'%" OR media_info.description LIKE "%'.$keyword.'%" OR memory_tag_language.data LIKE "%'.$keyword.'%")'.
 			' LIMIT '.($paginate * $gap - $gap).','.($paginate * $gap).';'
 			);
-		echo 'SELECT DISTINCT(memory_media.id), memory_media.reference, memory_media.reference_client, memory_media_info.title, memory_media_info.subtitle, media_info.description FROM  memory_media_info'.
-			' LEFT JOIN media_info ON media_info.id = memory_media_info.id'.
-			' LEFT JOIN memory_media ON memory_media.id = media_info.id_media'.
-			' LEFT JOIN memory_media_file ON memory_media_file.id_media = memory_media.id'.
-			' LEFT JOIN chapter ON chapter.id_media = memory_media.id'.
-			' LEFT JOIN memory_chapter_language ON chapter.id = memory_chapter_language.id_chapter'.
-			' LEFT JOIN folder ON folder.id = memory_media.id_folder'.
-			' LEFT JOIN memory_folder_language ON memory_folder_language.id_folder = folder.id'.
-			' LEFT JOIN media_extra_field ON media_extra_field.id_organization = memory_media.id_organization'.
-			' LEFT JOIN memory_media_extra ON memory_media_extra.id_media = memory_media.id AND memory_media_extra.id_field = media_extra_field.id'.
-			' LEFT JOIN memory_media_extra_array ON memory_media_extra_array.id = memory_media_extra.id_array'.
-			' LEFT JOIN tag_media ON tag_media.id_media = memory_media.id'.
-			' LEFT JOIN tag ON tag.id = tag_media.id_tag'.
-			' LEFT JOIN memory_tag_language ON memory_tag_language.id_tag = tag.id'.
-			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization. ' AND '.
-			'(memory_media_info.id_language = '.$id_language.' OR memory_chapter_language.id_language = '.$id_language.' OR memory_folder_language.id_language = '.$id_language.' OR memory_media_extra.id_language = '.$id_language.' OR memory_media_extra_array.id_language = '.$id_language.' OR memory_tag_language.id_language = '.$id_language.') AND '.
-			'(memory_chapter_language.data LIKE "%'.$keyword.'%" OR memory_folder_language.data LIKE "%'.$keyword.'%" OR memory_media.reference = '.intval($keyword).' OR memory_media.reference_client LIKE "'.$keyword.'" OR memory_media_extra.data LIKE "%'.$keyword.'%" OR memory_media_extra_array.element LIKE "%'.$keyword.'%" OR memory_media_file.filename LIKE "%'.$keyword.'%" OR memory_media_info.title LIKE "%'.$keyword.'%" OR memory_media_info.subtitle LIKE "%'.$keyword.'%" OR media_info.description LIKE "%'.$keyword.'%" OR memory_tag_language.data LIKE "%'.$keyword.'%")'.
-			' LIMIT '.($paginate * $gap - $gap).','.($paginate * $gap).';';
-			exit;
 
 		return array(
 			'data' => $data,
