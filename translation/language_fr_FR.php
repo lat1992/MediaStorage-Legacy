@@ -12,7 +12,7 @@ define('ADMINISTRATOR', 'Administrateur');
 define('EDIT', 'Editer');
 define('DELETE', 'Supprimer');
 define('CANCEL', 'Annuler');
-define('ACTION_SUCCESS', 'Action effectué avec succès');
+define('ACTION_SUCCESS', 'Action effectuée avec succès');
 define('INFO_MULTIPLE_SELECT', 'Maintenir CTRL pour selection multiple');
 define('RETURN_HOMEPAGE', 'Retourner a la page d\'accueil');
 define('ID', 'Id');
