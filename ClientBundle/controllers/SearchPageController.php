@@ -1,14 +1,19 @@
 <?php
 
 require_once('CoreBundle/managers/SearchManager.php');
+require_once('CoreBundle/managers/DesignManager.php');
+require_once('CoreBundle/managers/ToolboxManager.php');
 
 class SearchPageController {
 
 	private $_errorArray;
 	private $_searchManager;
+	private $_designManager;
 
 	public function __construct() {
 		$this->_searchManager = new SearchManager();
+		$this->_designManager = new DesignManager();
+		$this->_toolboxManager = new ToolboxManager();
 		$this->_errorArray = array();
 	}
 
@@ -25,6 +30,16 @@ class SearchPageController {
 	}
 
 	public function searchPageAction() {
+		if (isset($_SESSION['id_platform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
+		
 		if (isset($_GET['keyword']) && isset($_GET['filtre'])) {
 			$result = $this->_searchManager->quickSearch($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage']);
 			$this->mergeErrorArray($result);
