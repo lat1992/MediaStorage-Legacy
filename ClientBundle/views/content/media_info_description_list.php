@@ -72,7 +72,7 @@
 <?php
 							$cpt = 0;
 							foreach ($value['data'] as $row) {
-							if ((intval($row['id_language']) == intval($_SESSION['id_language_mediastorage'])) && (intval($row['id_language_array']) == intval($_SESSION['id_language_mediastorage']))) {
+								if ((intval($row['id_language']) == intval($_SESSION['id_language_mediastorage'])) && (intval($row['id_language_array']) == intval($_SESSION['id_language_mediastorage']))) {
 
 									$user_value = "";
 									if (isset($media_user_extras[$id_info_field]['multiple']) && array_search($row['id_element'], array_column($media_user_extras[$id_info_field]['multiple'], 'id_array')) !== false) {
@@ -94,11 +94,13 @@
 
 <?php
 							foreach ($value['data'] as $row) {
+								if ((intval($row['id_language']) == intval($_SESSION['id_language_mediastorage'])) && (intval($row['id_language_array']) == intval($_SESSION['id_language_mediastorage']))) {
 
-								$user_value = "";
+									$user_value = "";
 
-								if (isset($media_user_extras[$id_info_field]['id_array']) && intval($row['id_element']) == intval($media_user_extras[$id_info_field]['id_array'])) {
-									echo $row['element'];
+									if (isset($media_user_extras[$id_info_field]['id_array']) && intval($row['id_element']) == intval($media_user_extras[$id_info_field]['id_array'])) {
+										echo $row['element'];
+									}
 								}
 							}
 ?>

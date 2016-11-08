@@ -24,9 +24,9 @@
                 <th><?= FILENAME ?></th>
                 <th><?= TYPE ?></th>
 <?php
-                if (isset($_SESSION['permits'][PERMIT_EDIT_CONTENT])) {
+                if (isset($_SESSION['permits'][PERMIT_DOWNLOAD_CONTENT])) {
 ?>
-                    <th><?= ACTION ?></th>
+                    <th></th>
 <?php
                 }
 ?>
@@ -43,10 +43,10 @@
                         <td><?= $media_file['filename'] ?></td>
                         <td><?= $media_file['type'] ?></td>
 <?php
-                        if (isset($_SESSION['permits'][PERMIT_EDIT_CONTENT])) {
+                        if (isset($_SESSION['permits'][PERMIT_DOWNLOAD_CONTENT])) {
 ?>
 
-                            <td style="padding: 0"><?= '<a class="add_action" href="?page=add_cart&media_file_id=' . $media_file['id'] . '&original_id='. $_GET['media_id'] . '">' . ADDTOCART . '</a>' ?></td>
+                            <td class="td-link" style="padding: 0"><?= '<a class="td-link-button button-add" style="margin: 0" href="?page=add_cart&media_file_id=' . $media_file['id'] . '&original_id='. $_GET['media_id'] . '">' . ADDTOCART . '</a>' ?></td>
 <?php
                         }
 ?>
