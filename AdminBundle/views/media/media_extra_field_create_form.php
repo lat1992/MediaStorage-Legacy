@@ -40,11 +40,13 @@ if (isset($media_extra)) {
 <?php
 					foreach ($value['data'] as $row) {
 
-						$user_value = "";
-						if (isset($media_user_extras[$id_info_field]['multiple']) && array_search($row['id_element'], array_column($media_user_extras[$id_info_field]['multiple'], 'id_array')) !== false)
-							$user_value = "selected";
+						if ((intval($row['id_language']) == intval($_SESSION['id_language_mediastorage'])) && (intval($row['id_language_array']) == intval($_SESSION['id_language_mediastorage']))) {
+							$user_value = "";
+							if (isset($media_user_extras[$id_info_field]['multiple']) && array_search($row['id_element'], array_column($media_user_extras[$id_info_field]['multiple'], 'id_array')) !== false)
+								$user_value = "selected";
 
-						echo '<option value="' . $row['id_element'] . '" ' . $user_value . ' >' . $row['element'] . '</option>';
+							echo '<option value="' . $row['id_element'] . '" ' . $user_value . ' >' . $row['element'] . '</option>';
+						}
 					}
 ?>
 				</select>
@@ -61,11 +63,14 @@ if (isset($media_extra)) {
 				<select name="media_extra_mediastorage[<?= $id_info_field ?>][id_array]" id="media_extra_mediastorage_<?= $id_info_field  ?>" />
 <?php
 					foreach ($value['data'] as $row) {
-						$user_value = "";
-						if (isset($media_user_extras[$id_info_field]['id_array']) && intval($row['id_element']) == intval($media_user_extras[$id_info_field]['id_array']))
-							$user_value = "selected";
 
-						echo '<option value="' . $row['id_element'] . '" ' . $user_value . ' >' . $row['element'] . '</option>';
+						if ((intval($row['id_language']) == intval($_SESSION['id_language_mediastorage'])) && (intval($row['id_language_array']) == intval($_SESSION['id_language_mediastorage']))) {
+							$user_value = "";
+							if (isset($media_user_extras[$id_info_field]['id_array']) && intval($row['id_element']) == intval($media_user_extras[$id_info_field]['id_array']))
+								$user_value = "selected";
+
+							echo '<option value="' . $row['id_element'] . '" ' . $user_value . ' >' . $row['element'] . '</option>';
+						}
 					}
 ?>
 				</select>
