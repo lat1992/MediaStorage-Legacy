@@ -738,7 +738,7 @@ class MediaController {
 		var_dump($mainPath);
 		var_dump($files);
 		foreach($files as $file) {
-			var_dump(unlink($file));
+			var_dump(rmdir($file));
 		}
 
 		if (!file_exists('uploads/thumbnails/files/' . $_SESSION['id_organization'] . '/programs/tmp/')) {
