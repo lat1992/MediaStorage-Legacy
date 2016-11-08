@@ -84,7 +84,7 @@ class MediaController {
 					'<td>' . $media['reference_client'] . '</td>',
 					'<td>' . (($media['right_view'] == 1) ? YES : NON) . '</td>',
 					'<td class="td-link" ><a href="?page=edit_program_admin&media_id=' . $media['id'] . '" class="td-link-button button-edit">' . EDIT . '</a></td>',
-					'<td class="td-link" ><a href="?page=delete_programmau_admin&media_id=' . $media['id'] . '" class="td-link-button button-delete">' . DELETE . '</a></td>',
+					'<td class="td-link" ><a href="?page=delete_program_admin&media_id=' . $media['id'] . '" class="td-link-button button-delete">' . DELETE . '</a></td>',
 				);
 			}
 
@@ -130,7 +130,7 @@ class MediaController {
 					'<td>' . $media['reference_client'] . '</td>',
 					'<td>' . (($media['right_view'] == 1) ? YES : NON) . '</td>',
 					'<td class="td-link" ><a href="?page=edit_content_admin&media_id=' . $media['id'] . '" class="td-link-button button-edit">' . EDIT . '</a></td>',
-					(isset($_SESSION['permits'][PERMIT_DELETE_CONTENT])) ? '<td class="td-link" ><a href="?page=delete_contentmau_admin&media_id=' . $media['id'] . '" class="td-link-button button-delete">' . DELETE . '</a></td>' : '',
+					(isset($_SESSION['permits'][PERMIT_DELETE_CONTENT])) ? '<td class="td-link" ><a href="?page=delete_content_admin&media_id=' . $media['id'] . '" class="td-link-button button-delete">' . DELETE . '</a></td>' : '',
 				);
 			}
 
@@ -508,6 +508,12 @@ class MediaController {
 					}
 				}
 			}
+			elseif (isset($_GET['delete_image'])) {
+				unlink("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/programs/thumbnail_program_" . $_GET['media_id'] . ".png");
+				header('location: ' . '?page=edit_program_admin&media_id=' . $_GET['media_id']);
+				exit;
+			}
+
 		}
 
 		$media_infos_data = $this->_mediaInfoManager->getMediaInfoByMediaIdDb($_GET['media_id']);
@@ -614,6 +620,12 @@ class MediaController {
 					}
 				}
 			}
+			elseif (isset($_GET['delete_image'])) {
+				unlink("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/contents/thumbnail_content_" . $_GET['media_id'] . ".png");
+				header('location: ' . '?page=edit_content_admin&media_id=' . $_GET['media_id']);
+				exit;
+			}
+
 		}
 
 		$media_infos_data = $this->_mediaInfoManager->getMediaInfoByMediaIdDb($_GET['media_id']);
@@ -855,5 +867,17 @@ class MediaController {
             header("HTTP/1.0 405 Method Not Allowed");
         }
 
+	}
+
+	public function deleteProgramAction() {
+		$_SESSION['flash_message'] = 'Action non fonctionnelle pour le moment';
+		header('Location:' . '?page=list_program_admin');
+		exit;
+	}
+
+	public function deleteContentAction() {
+		$_SESSION['flash_message'] = 'Action non fonctionnelle pour le moment';
+		header('Location:' . '?page=list_content_admin');
+		exit;
 	}
 }

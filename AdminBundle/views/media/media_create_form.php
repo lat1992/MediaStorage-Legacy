@@ -117,7 +117,7 @@
 			if (isset($_GET['media_id'])) {
 ?>
 				<label for="tumbnail_mediastorage" ><?= MORE_OPTION ?> : </label>
-				<div class="div_more_info">( <a class="info_link" id="more_info_show" href="#">+</a><a class="info_link" id="more_info_hide" href="#">-</a> )</div>
+				<div class="div_more_info"><a class="button button-more-options" id="more_info_show" href="#">+</a><a class="button button-more-options" id="more_info_hide" href="#">-</a></div>
 			    <div class="clear"></div>
 
 
@@ -136,7 +136,7 @@
 			            <img class="<?= $type ?>_image" id="<?= $type ?>_image_preview" src="uploads/thumbnails/files/<?= $_SESSION['id_organization'] ?>/<?= $type ?>s/thumbnail_<?= $type ?>_<?= $_GET['media_id'] ?>.png" height=100 width=100/>
 
 				        <div class="clear"></div>
-			            <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=1" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
+			            <a class="button button-delete" href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=<?= $_GET['media_id'] ?>" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
 <?php
 					}
 					else {
@@ -153,7 +153,7 @@
 ?>
 
 				        <div class="clear"></div>
-			            <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=1" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
+			            <a class="button button-delete" href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=<?= $_GET['media_id'] ?>" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
 <?php
 					}
 ?>
@@ -179,7 +179,7 @@
 		            <img class="<?= $type ?>_image" id="<?= $type ?>_image_preview" src="uploads/thumbnails/files/<?= $_SESSION['id_organization'] ?>/<?= $type ?>s/thumbnail_<?= $type ?>_<?= $_GET['media_id'] ?>.png" height=100 width=100/>
 
 			        <div class="clear"></div>
-		            <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=1" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
+		            <a class="button button-delete" href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=<?= $_GET['media_id'] ?>" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
 	<?php
 				}
 				else {
@@ -195,7 +195,7 @@
 						}
 ?>
 			        <div class="clear"></div>
-		            <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=1" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
+		            <a class="button button-delete" href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=<?= $_GET['media_id'] ?>" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
 	<?php
 				}
 	?>

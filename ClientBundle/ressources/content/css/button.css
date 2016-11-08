@@ -117,12 +117,12 @@ button.button-validate:hover, a.button-validate:hover {
 	background-color: #5acb34;
 }
 
-a.qualification-button, button.qualification-button, button.button-multiple-qualification, #download_link_table a, a.button-add, a.button-edit, a.button-more-options {
+a.qualification-button, button.qualification-button, button.button-multiple-qualification, #download_link_table a, a.button-add, a.button-edit, a.button-more-options, a.button-edit-from-view {
 	background-color: #66c2ff;
 	color: #ffffff;
 }
 
-a.qualification-button:hover, button.qualification-button:hover, button.button-multiple-qualification:hover, #download_link_table a:hover, a.button-add:hover, a.button-edit:hover, a.button-more-options:hover {
+a.qualification-button:hover, button.qualification-button:hover, button.button-multiple-qualification:hover, #download_link_table a:hover, a.button-add:hover, a.button-edit:hover, a.button-more-options:hover, a.button-edit-from-view:hover {
 	background-color: #33adff;
 	color: #ffffff;
 }
@@ -137,4 +137,15 @@ a.qualification-button:hover, button.qualification-button:hover, button.button-m
 	background-color: #33adff;
 	color: #ffffff;
 	border: none;
+}
+
+a.button-edit-from-view {
+	display: inline-block;
+	line-height: 25px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	text-align: center;
+	padding: 0 5px 0 5px;
+	text-decoration: none;
 }

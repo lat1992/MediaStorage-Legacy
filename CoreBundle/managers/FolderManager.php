@@ -10,8 +10,8 @@ class FolderManager {
 	private $_toolboxManager;
 	private $_mediaManager;
 
-	private $_rowNbPerPages = 5;
-	private $_rowNbPerViewPages = 2;
+	private $_rowNbPerPages = 10;
+	private $_rowNbPerViewPages = 10;
 
 	public function __construct() {
 		$this->_folderModel = new Folder();

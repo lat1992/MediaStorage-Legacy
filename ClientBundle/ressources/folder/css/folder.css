@@ -80,6 +80,8 @@ a.link_div_folder, a.link_div_program, a.link_div_content {
     transition-duration: 0.3s;
     -webkit-transition-property: transform;
     transition-property: transform;
+
+    margin: 20px 0 0 20px;
 }
 
 .description_label {

@@ -92,7 +92,7 @@
 		            <img class="folder_image" id="folder_image_preview" src="uploads/thumbnails/files/<?= $_SESSION['id_organization'] ?>/folders/thumbnail_folder_<?= $_GET['folder_id'] ?>.png" height=100 width=100/>
 
 			        <div class="clear"></div>
-		            <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=1" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
+		            <a class="button button-delete" href="<?= $_SERVER['REQUEST_URI'] ?>&delete_image=1" style="display: inline-block;margin-top: 5px"><?= DELETE ?></a>
 	<?php
 				}
 				else {
