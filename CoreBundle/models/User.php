@@ -103,6 +103,21 @@ class User extends Model {
 		);
 	}
 
+	public function findUserByIdAndIdOrganization($id, $id_organization) {
+		$id = $this->_mysqli->real_escape_string($id);
+		$id_organization = $this->_mysqli->real_escape_string($id_organization);
+
+		$data = $this->_mysqli->query('SELECT id, username, password, id_role, id_language, id_organization, email FROM ' . $this->_table .
+			' WHERE id = ' . $id .
+			' AND id_organization = ' . $id_organization
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findUserByIdAndIdOrganization: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function findUserByUsernameAndIdOrganization($username, $id_organization) {
 		$username = $this->_mysqli->real_escape_string($username);
 		$id_organization = $this->_mysqli->real_escape_string($id_organization);
@@ -194,6 +209,38 @@ class User extends Model {
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'findAllUsersWithOrganization: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findAllUsersWithOrganizationWithLimit($id_organization, $size, $offset) {
+		$id_organization = $this->_mysqli->real_escape_string($id_organization);
+		$size = $this->_mysqli->real_escape_string($size);
+		$offset = $this->_mysqli->real_escape_string($offset);
+
+		$data = $this->_mysqli->query('SELECT '.$this->_table.'.id, username, '.$this->_table.'.id_organization, id_role, email, organization.name AS organization_name, role.role AS role_role FROM ' . $this->_table .
+			' LEFT JOIN organization ON '.$this->_table.'.id_organization = organization.id' .
+			' LEFT JOIN role ON id_role = role.id'.
+			' WHERE '.$this->_table.'.id_organization = '. $id_organization .
+			' LIMIT ' . $offset . ', ' . $size
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllUsersWithOrganization: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function getAllUserCountByIdOrganization($id_organization) {
+		$id_organization = $this->_mysqli->real_escape_string($id_organization);
+
+		$data = $this->_mysqli->query('SELECT COUNT(*) as count ' .
+			' FROM ' . $this->_table .
+			' WHERE id_organization = ' . $id_organization
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'getAllUserCountByIdOrganization: ' . $this->_mysqli->error : '',
 		);
 	}
 

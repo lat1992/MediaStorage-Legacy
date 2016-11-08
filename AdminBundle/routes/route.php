@@ -5,7 +5,7 @@ $this->_route[] = array('dashboard_admin', 'AdminBundle/controllers/DashboardCon
 $this->_route[] = array('create_folder_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'createAction');
 $this->_route[] = array('list_folder_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'listAction');
 $this->_route[] = array('edit_folder_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'editAction');
-// $this->_route[] = array('delete_folder_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'deleteAction');
+$this->_route[] = array('delete_folder_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'deleteAction');
 $this->_route[] = array('ajax_get_folder_by_parent_id_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'ajaxGetFolderByParentIdAction');
 $this->_route[] = array('upload_thumbnail_admin', 'AdminBundle/controllers/FolderController.php', 'FolderController', 'uploadThumbnailAction');
 
@@ -26,4 +26,10 @@ $this->_route[] = array('create_media_file_admin', 'AdminBundle/controllers/Medi
 $this->_route[] = array('upload_media_file_admin', 'AdminBundle/controllers/MediaFileController.php', 'MediaFileController', 'uploadAction');
 $this->_route[] = array('ajax_refresh_upload_list', 'AdminBundle/controllers/MediaFileController.php', 'MediaFileController', 'ajaxRefreshUploadListAction');
 $this->_route[] = array('delete_media_file_admin', 'AdminBundle/controllers/MediaFileController.php', 'MediaFileController', 'deleteAction');
+
+$this->_route[] = array('list_users_admin', 'AdminBundle/controllers/UserController.php', 'UserController', 'listAction');
+$this->_route[] = array('create_user_admin', 'AdminBundle/controllers/UserController.php', 'UserController', 'createAction');
+$this->_route[] = array('edit_user_admin', 'AdminBundle/controllers/UserController.php', 'UserController', 'editAction');
+$this->_route[] = array('delete_user_admin', 'AdminBundle/controllers/UserController.php', 'UserController', 'deleteAction');
+
 ?>

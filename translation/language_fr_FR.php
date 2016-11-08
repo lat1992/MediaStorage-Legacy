@@ -95,6 +95,7 @@ define('SHARELIST_MEDIA_CREATION_TITLE', 'Ajout d\'un média pour liste de parta
 define('SHARELIST', 'Liste de partage');
 define('REFERENCE', 'Référence');
 define('USER', 'Utilisateur');
+define('USERS', 'Utilisateurs');
 
 // Organization
 

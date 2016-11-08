@@ -105,7 +105,6 @@ class UserController {
 		$this->mergeErrorArray($roles);
 		$this->mergeErrorArray($languages);
 
-		$id_organization = $_GET['id_organization'];
 		$user['id_language'] = $_SESSION['id_language_mediastorage'];
 
 		$title = USER_CREATION_TITLE;

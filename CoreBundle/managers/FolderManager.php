@@ -148,7 +148,7 @@ class FolderManager {
 		$size = $this->_rowNbPerViewPages;
 		$offset = $page * $size;
 
-		return $this->_folderModel->findAllFolderWithoutParentsByOrganization($_SESSION['id_organization'], $_SESSION['id_language_mediastorage'], $offset, $size);
+		return $this->_folderModel->findAllFolderWithoutParentsByOrganizationWithLimit($_SESSION['id_organization'], $_SESSION['id_language_mediastorage'], $offset, $size);
 	}
 
 	public function getFolderByParentIdAndOrganizationIdDb($parent_id) {
@@ -164,7 +164,7 @@ class FolderManager {
 		$size = $this->_rowNbPerViewPages;
 		$offset = $page * $size;
 
-		return $this->_folderModel->findAllFolderWithParentIdAndOrganization($parent_id, $_SESSION['id_organization'], $_SESSION['id_language_mediastorage'], $offset, $size);
+		return $this->_folderModel->findAllFolderWithParentIdAndOrganizationWithLimit($parent_id, $_SESSION['id_organization'], $_SESSION['id_language_mediastorage'], $offset, $size);
 	}
 
 	public function ajaxGetFolderByParentIdDb($parent_id) {
