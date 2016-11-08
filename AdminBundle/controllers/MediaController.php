@@ -807,6 +807,8 @@ class MediaController {
         // CLEAN TMP FOLDER
         echo "lol";
 		$files = glob($mainPath . '*');
+		var_dump($mainPath);
+		var_dump($files);
 		foreach($files as $file) {
 			var_dump(unlink($file));
 		}
