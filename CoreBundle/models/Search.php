@@ -23,7 +23,7 @@ class Search extends Model {
 			' UNION '.
 			'SELECT memory_media_info.subtitle AS data FROM memory_media_info, memory_media WHERE memory_media_info.id_media = memory_media.id AND memory_media.id_organization = '.$id_organization.' AND memory_media_info.id_language = '.$id_language.' AND memory_media_info.subtitle LIKE "%'.$keyword.'%"'.
 			' UNION '.
-			'SELECT memory_tag_language.data FROM memory_tag_language, tag, memory_media WHERE memory_tag_language.id_tag = tag.id AND tag.id_media = memory_media.id AND memory_media.id_organization = '.$id_organization.' AND memory_tag_language.id_language = '.$id_language.' AND memory_tag_language.data LIKE "%'.$keyword.'%"'.
+			'SELECT memory_tag_language.data FROM memory_tag_language, tag, tag_media, memory_media WHERE memory_tag_language.id_tag = tag.id AND memory_tag_language.id_tag = tag_media.id_tag AND tag_media.id_media = memory_media.id AND memory_media.id_organization = '.$id_organization.' AND memory_tag_language.id_language = '.$id_language.' AND memory_tag_language.data LIKE "%'.$keyword.'%"'.
 			' ORDER BY (CASE WHEN data LIKE "'.$keyword.'%" THEN 1 WHEN data REGEXP "[0-9]+" THEN 3 ELSE 2 END), data ASC LIMIT 0,10;'
 		);
 		return array(
@@ -55,7 +55,8 @@ class Search extends Model {
 			' LEFT JOIN media_extra_field ON media_extra_field.id_organization = memory_media.id_organization'.
 			' LEFT JOIN memory_media_extra ON memory_media_extra.id_media = memory_media.id AND memory_media_extra.id_field = media_extra_field.id'.
 			' LEFT JOIN memory_media_extra_array ON memory_media_extra_array.id = memory_media_extra.id_array'.
-			' LEFT JOIN tag ON tag.id_media = memory_media.id'.
+			' LEFT JOIN tag_media ON tag_media.id_media = memory_media.id'.
+			' LEFT JOIN tag ON tag.id = tag_media.id_tag'.
 			' LEFT JOIN memory_tag_language ON memory_tag_language.id_tag = tag.id'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization. ' AND '.
 			'(memory_media_info.id_language = '.$id_language.' OR memory_chapter_language.id_language = '.$id_language.' OR memory_folder_language.id_language = '.$id_language.' OR memory_media_extra.id_language = '.$id_language.' OR memory_media_extra_array.id_language = '.$id_language.' OR memory_tag_language.id_language = '.$id_language.') AND '.
@@ -74,7 +75,8 @@ class Search extends Model {
 			' JOIN media_info.id ON media_info.id = memory_media_info.id'.
 			' JOIN memory_media ON memory_media.id = media_info.id_media'.
 			' JOIN chapter ON chapter.id_media = memory_media.id'.
-			' JOIN tag ON tag.id_media = memory_media.id'.
+			' JOIN tag_media ON tag_media.id_media = memory_media.id'.
+			' JOIN tag ON tag.id = tag_media.id_tag'.
 			' JOIN memory_tag_language ON memory_tag_language.id_tag = tag.id'.
 			' WHERE memory_media.id_type = '.$id_type.' AND memory_media.id_organization = '.$id_organization.' AND memory_media_info.id_language = '.$id_language.' AND memory_tag_language.id_language = '.$id_language.' AND '.
 			'(memory_tag_language.data LIKE "%'.$keyword.'%")'.
