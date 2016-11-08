@@ -12,6 +12,8 @@ define('LANGUAGE_TRANSLATE', 'Tanslate');
 define('ID', 'ID');
 define('NO_TITLE', 'No title');
 define('INFO_MULTIPLE_SELECT', '');
+define('ACTION', 'Action');
+define('YES', 'Yes');
 
 // Information
 define('ACTION_SUCCESS', 'Successful Action');
@@ -56,6 +58,8 @@ define('CONTENT_MENU', 'All contents');
 define('CART', 'Cart');
 define('DASHBOARD', 'Dashboard');
 define('ADMIN_INFORMATION', 'Attention: Please check before all kind of modification.');
+define('USERS', 'Users');
+define('UPLOAD', 'Upload');
 
 // Root
 define('ROOT', 'Root portal');
@@ -98,12 +102,21 @@ define('FOLDER_CREATION_TITLE', 'Add folder');
 // Media
 define('MEDIA', 'Media');
 define('MEDIA_PARENT', 'Parent media');
+define('PARENT_FOLDER', 'Parent folder');
 define('FOLDER_PARENT', 'Parent folder');
 define('INFO_MOVE_DIRECTORY', 'Leave blank if not nessessary');
 define('REFERENCE', 'Reference');
 define('REFERENCE_CLIENT', 'Client\'s reference');
 define('HANDOVER_DATE', 'Handover date');
+define('MORE_OPTION', 'More option');
 define('RIGHT_VIEW', 'Right viewing');
+define('RIGHT_PREVIEW', 'Right viewing');
+define('LINKED_FILE', 'Linked file');
+define('TAG', 'Tag');
+define('DROP_FILES_HERE', 'Drop files here');
+define('UPLOAD_A_FILE', 'Upload a file');
+define('MULTIPLE_QUALIFICATION', 'Multiple qualification');
+define('QUALIFY', 'Qualify');
 
 // Media info
 define('MEDIA_INFO', 'Media information');
@@ -177,3 +190,18 @@ define('EMAIL', 'EMAIL');
 define('MAIL_LIST_TITLE', 'Mail list');
 define('MAIL_CREATION_TITLE', 'Add mail');
 define('MAIL_EDIT_TITLE', 'Edit mail');
+
+// Search
+define('SEARCH', 'Search');
+
+// Chapter
+define('CHAPTER', 'Chapter');
+define('TC_IN', 'TC_IN');
+define('TC_OUT', 'TC_OUT');
+define('ADDTOCART', 'Add to cart');
+
+// Cart
+define('OVERVIEW', 'Overview');
+define('DESCRIPTIVE', 'Descriptive');
+define('USAGE', 'Usage');
+define('NO_DATA_AVAILABLE', 'No data available');

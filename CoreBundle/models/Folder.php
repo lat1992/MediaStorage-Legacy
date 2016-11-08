@@ -164,6 +164,7 @@ class Folder extends Model {
 		$id_organization = $this->_mysqli->real_escape_string($id_organization);
 		$offset = $this->_mysqli->real_escape_string($offset);
 		$size = $this->_mysqli->real_escape_string($size);
+		$id_language = $this->_mysqli->real_escape_string($_SESSION['id_language_mediastorage']);
 
 		$data = $this->_mysqli->query('SELECT id, id_parent, id_organization, IF ((SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = ' . $user_language_id . ' LIMIT 1) IS NOT NULL,(SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = ' . $user_language_id . ' LIMIT 1), (SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate, IF ((SELECT description FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1) IS NOT NULL,(SELECT description FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = 3 LIMIT 1), (SELECT description FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate_description ' .
 			' FROM ' . $this->_table .
