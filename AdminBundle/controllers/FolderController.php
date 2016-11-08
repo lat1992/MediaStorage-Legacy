@@ -71,7 +71,7 @@ class FolderController {
 
 		}
 
-		$title = FOLDER_LIST_TITLE;
+		$title['title'] = FOLDER_LIST_TITLE;
 
 		if (isset($_SESSION['id_platform_organization'])) {
 

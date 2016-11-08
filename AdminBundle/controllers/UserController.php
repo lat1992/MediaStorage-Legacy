@@ -36,7 +36,7 @@ class UserController {
 		$this->_userManager->getTableDataForView($table_data, $id_organization);
 
 		// Title
-		$title = USER_LIST_TITLE;
+		$title['title'] = USER_LIST_TITLE;
 
 		$total_pages = $this->_userManager->getPageNumberDb();
 		$this->_userManager->setCurrentPage($current_page);
@@ -55,7 +55,7 @@ class UserController {
 
 		$this->_userManager->getCreateViewData($select_data);
 
-		$title = USER_CREATION_TITLE;
+		$title['title'] = USER_CREATION_TITLE;
 
 		include ('AdminBundle/views/user/user_create.php');
 	}
@@ -72,7 +72,7 @@ class UserController {
 
 		$this->_userManager->getCreateViewData($select_data);
 
-		$title = USER_CREATION_TITLE;
+		$title['title'] = USER_EDIT_TITLE;
 
 		include ('AdminBundle/views/user/user_create.php');
 

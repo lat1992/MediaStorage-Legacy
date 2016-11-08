@@ -45,7 +45,7 @@ class DesignController {
 
 		$this->mergeErrorArray($organizations);
 
-		$title = DESIGN;
+		$title['title'] = DESIGN;
 
 		include ('RootBundle/views/common/select_organization.php');
 	}
@@ -148,7 +148,7 @@ class DesignController {
 
 		}
 
-		$title = DESIGN;
+		$title['title'] = DESIGN;
 
 		include ('RootBundle/views/design/design_create.php');
 	}

@@ -35,7 +35,7 @@ class SharelistPageController {
 
 		$this->mergeErrorArray($sharelist_data);
 
-		$title = SHARELIST;
+		$title['title'] = SHARELIST;
 
 		include ('ClientBundle/views/sharelist/sharelist.php');
 	}
@@ -97,7 +97,7 @@ class SharelistPageController {
 
 		}
 
-		$title = FOLDER_LIST_TITLE;
+		$title['title'] = FOLDER_LIST_TITLE;
 
 		include ('ClientBundle/views/sharelist/sharelist_create.php');
 	}
@@ -114,7 +114,7 @@ class SharelistPageController {
 
 		$sharelist_data = $sharelist_data['data']->fetch_assoc();
 
-		$title = SHARELIST . ' : ' . $sharelist_data['reference'];
+		$title['title'] = SHARELIST . ' : ' . $sharelist_data['reference'];
 
 		include ('ClientBundle/views/sharelist/sharelist_edit.php');
 	}
