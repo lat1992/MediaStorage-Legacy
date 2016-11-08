@@ -41,7 +41,7 @@ class ProfilePageController {
 		$user_info_data = $this->_userManager->getUserInfoByIdDb($_SESSION['user_id_mediastorage']);
 		$organizations = $this->_organizationManager->getAllOrganizationsDb();
 		$roles = $this->_roleManager->getAllRolesDb();
-		$languages = $this->_languageManager->getAllLanguagesDb();
+		$languages = $this->_languageManager->getAllLanguagesByGroupDb();
 
 		$this->mergeErrorArray($user_data);
 		$this->mergeErrorArray($user_info_data);
