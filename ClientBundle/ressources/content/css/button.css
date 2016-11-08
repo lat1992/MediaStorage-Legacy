@@ -35,6 +35,11 @@ a.button-add {
 	/*margin: 0 0 20px 0;*/
 }
 
+a.button-more-options {
+	width: 30px;
+	margin-top: 0px;
+}
+
 button.button {
 	background:none;
 	border:none;
@@ -112,12 +117,12 @@ button.button-validate:hover, a.button-validate:hover {
 	background-color: #5acb34;
 }
 
-a.qualification-button, button.qualification-button, button.button-multiple-qualification, #download_link_table a, a.button-add, a.button-edit {
+a.qualification-button, button.qualification-button, button.button-multiple-qualification, #download_link_table a, a.button-add, a.button-edit, a.button-more-options {
 	background-color: #66c2ff;
 	color: #ffffff;
 }
 
-a.qualification-button:hover, button.qualification-button:hover, button.button-multiple-qualification:hover, #download_link_table a:hover, a.button-add:hover, a.button-edit:hover {
+a.qualification-button:hover, button.qualification-button:hover, button.button-multiple-qualification:hover, #download_link_table a:hover, a.button-add:hover, a.button-edit:hover, a.button-more-options:hover {
 	background-color: #33adff;
 	color: #ffffff;
 }

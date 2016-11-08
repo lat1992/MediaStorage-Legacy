@@ -66,7 +66,7 @@
 		if (isset($_GET['folder_id']))  {
 ?>
 			<label for="tumbnail_mediastorage" ><?= MORE_OPTION ?> : </label>
-			<div class="div_more_info">( <a class="info_link" id="more_info_show" href="#">+</a><a class="info_link" id="more_info_hide" href="#">-</a> )</div>
+			<div class="div_more_info"><a class="button button-more-options" id="more_info_show" href="#">+</a><a class="button button-more-options" id="more_info_hide" href="#">-</a></div>
 	        <div class="clear"></div>
 
 	        <div id="more_info_data">
