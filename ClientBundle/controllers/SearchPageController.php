@@ -1,14 +1,17 @@
 <?php
 
 require_once('CoreBundle/managers/SearchManager.php');
+require_once('CoreBundle/managers/DesignManager.php');
 
 class SearchPageController {
 
 	private $_errorArray;
 	private $_searchManager;
+	private $_designManager;
 
 	public function __construct() {
 		$this->_searchManager = new SearchManager();
+		$this->_designManager = new DesignManager();
 		$this->_errorArray = array();
 	}
 
