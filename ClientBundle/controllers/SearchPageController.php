@@ -25,6 +25,16 @@ class SearchPageController {
 	}
 
 	public function searchPageAction() {
+		if (isset($_SESSION['id_platform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
+		
 		if (isset($_GET['keyword']) && isset($_GET['filtre'])) {
 			$result = $this->_searchManager->quickSearch($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage']);
 			$this->mergeErrorArray($result);
