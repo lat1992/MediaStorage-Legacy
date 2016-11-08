@@ -122,7 +122,7 @@ class CartPageController {
 
 	public function createCartAction() {
 		$_POST['id_user_mediastorage'] = $_SESSION['user_id_mediastorage'];
-		$_POST['id_media_mediastorage'] = $_GET['media_id'];
+		$_POST['id_media_file_mediastorage'] = $_GET['media_file_id'];
 
 		$cart_data = $this->_cartManager->cartCreateDb();
 
@@ -156,27 +156,25 @@ class CartPageController {
 		include ('ClientBundle/views/cart/cart_download_list.php');
 	}
 
-	private function downloadAction() {
+	public function downloadAction() {
 		$token = $_GET['token'];
-
 		$data = $this->_mediaFileManager->getMediaFileByToken($token);
-
-		include('ClientBundle/views/cart/download_review.php');
-
-		$this->_mediaFileManager->getMediaFileStreamByToken($token);
-		exit ;
+		$this->_mediaFileManager->getMediaFileStreamByData($data);
+		exit;
 	}
 
 	private function sendEmailForDelivery($cart_data, $id_user) {
 		$user_data = $this->_userManager->getUserByIdDb($id_user);
 		$row = $user_data['data']->fetch_assoc();
 		$row_cart = $cart_data->fetch_assoc();
-		
-		$to = $this->_mail_addr_regie.';'.$this->_mail_addr_it;
+		$to = $this->_mail_addr_regie.','.$this->_mail_addr_it;
 		$cc = $this->_mail_addr_other;
-		$headers = 'From: ' . $this->_mail_addr_server . '\r\n' .
-		'CC: ' . $cc;
-		mail($to, MAIL_SUBJECT_DELIVERY, sprintf(MAIL_BODY_DELIVERY, $id_user, $row['email'], $_SESSION['id_platform_organization'], $row_cart['id_media_file']), $headers);
+		$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+		$headers .= 'From: Mediastorage <' . $this->_mail_addr_server . '>'. "\r\n" .
+		'Cc: ' . $cc . "\r\n";
+		mail($to, MAIL_SUBJECT_DELIVERY, sprintf(MAIL_BODY_DELIVERY, $row['username'], $id_user, $row['email'], $_GET['platform'], $_SESSION['id_platform_organization'], $row_cart['id_media_file']), $headers);
+		header('Location:'.'?page=cart');
 	}
 
 }

@@ -348,7 +348,7 @@ define('MULTIPLE_QUALIFICATION', 'Qualification multiple');
 define('QUALIFY', 'Qualifier');
 
 define('MAIL_SUBJECT_DELIVERY', '[MediaStorage]Demande de livraison');
-define('MAIL_BODY_DELIVERY', 'Le client %d (Email: %s) du plateform MediaStorage %d a demandé une livraison de %d.\r\nMediaStorage');
+define('MAIL_BODY_DELIVERY', 'Le client %s (id: %d) (Email: %s) de la plateforme MediaStorage %s (id: %d) a demandé une livraison de %d.<br/>MediaStorage');
 
 define('VALIDATE_THE', 'Valider le ');
 define('GENERAL_CONDITION', 'condition général');
