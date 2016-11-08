@@ -158,7 +158,7 @@ define('MAILLIST_CREATION_TITLE', 'Création de maillist');
 // Folder
 
 define('FOLDER', 'Dossier');
-define('PARENT_FOLDER', 'Dossier parent');
+define('PARENT_FOLDER', 'Dossier');
 define('FOLDER_CREATION_TITLE', 'Création d\'un dossier');
 define('FOLDER_LANGUAGE_CREATION_TITLE', 'Ajout d\'une langue a dossier');
 define('FOLDER_MEDIA_CREATION_TITLE', 'Ajout d\'un media a dossier');
@@ -184,7 +184,7 @@ define('SOUND_VERSION', 'Version du son');
 define('HANDOVER_DATE', 'Date de prise en charge');
 
 define('MEDIA', 'Média');
-define('MEDIA_PARENT', 'Parent');
+define('MEDIA_PARENT', 'Programme');
 define('MEDIA_TYPE', 'Type du média');
 define('MEDIA_TYPE_PROGRAMME', 'Programme');
 define('MEDIA_TYPE_CONTENT', 'Contenu');
