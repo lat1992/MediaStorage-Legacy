@@ -170,7 +170,7 @@ class CartPageController {
 		$to = $this->_mail_addr_regie.','.$this->_mail_addr_it;
 		$cc = $this->_mail_addr_other;
 		$headers  = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 		$headers .= 'From: Mediastorage <' . $this->_mail_addr_server . '>'. "\r\n" .
 		'Cc: ' . $cc . "\r\n";
 		mail($to, MAIL_SUBJECT_DELIVERY, sprintf(MAIL_BODY_DELIVERY, $row['username'], $id_user, $row['email'], $_GET['platform'], $_SESSION['id_platform_organization'], $row_cart['id_media_file']), $headers);
