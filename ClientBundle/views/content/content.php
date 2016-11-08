@@ -128,7 +128,7 @@ require_once('ClientBundle/views/layout/header.php');
 
 <?php
 		require_once('ClientBundle/views/content/media_info_description_list.php');
-		if (isset($current_media_file) && strcmp($current_media_file['type'], "MRES") == 0) {
+		if (isset($current_media_file) && strpos($current_media_file['mime_type'], "video") !== false && isset($_SESSION['permits'][PERMIT_EDIT_CONTENT])) {
 			require_once('ClientBundle/views/content/chapter_list.php');
 		}
  		require_once('ClientBundle/views/content/media_file_action_list.php');
@@ -136,7 +136,7 @@ require_once('ClientBundle/views/layout/header.php');
 
 </div>
 <?php
-if (isset($current_media_file) && strcmp($current_media_file['type'], "MRES") == 0) {
+if (isset($current_media_file) && strpos($current_media_file['mime_type'], "video") !== false) {
 ?>
 	<script>
 

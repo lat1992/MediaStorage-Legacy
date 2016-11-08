@@ -69,7 +69,7 @@ class GroupController {
 
 		}
 
-		$title = GROUP_LIST_TITLE;
+		$title['title'] = GROUP_LIST_TITLE;
 
 		include ('RootBundle/views/group/group_list.php');
 	}
@@ -119,7 +119,7 @@ class GroupController {
 
 		$selected_group_language[] = $_SESSION['id_language_mediastorage'];
 
-		$title = GROUP_CREATION_TITLE;
+		$title['title'] = GROUP_CREATION_TITLE;
 
 		include ('RootBundle/views/group/group_create.php');
 	}
@@ -175,7 +175,7 @@ class GroupController {
 			}
 		}
 
-		$title = GROUP_EDIT_TITLE;
+		$title['title'] = GROUP_EDIT_TITLE;
 
 		include ('RootBundle/views/group/group_create.php');
 	}
@@ -205,7 +205,7 @@ class GroupController {
 		// 	$this->mergeErrorArray($error_id_not_found);
 		// }
 
-		$title = GROUP_DELETE_TITLE;
+		$title['title'] = GROUP_DELETE_TITLE;
 
 		include ('RootBundle/views/common/error.php');
 	}

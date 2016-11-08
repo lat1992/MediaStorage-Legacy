@@ -70,18 +70,19 @@
 ?>
                         <span class="label"><?= $value['data'][0]['data'] ?> : </span><span>
 <?php
+							$cpt = 0;
 							foreach ($value['data'] as $row) {
+							if ((intval($row['id_language']) == intval($_SESSION['id_language_mediastorage'])) && (intval($row['id_language_array']) == intval($_SESSION['id_language_mediastorage']))) {
 
-								$user_value = "";
-								$cpt = 0;
-								if (isset($media_user_extras[$id_info_field]['multiple']) && array_search($row['id_element'], array_column($media_user_extras[$id_info_field]['multiple'], 'id_array')) !== false) {
-									if ($cpt > 0)
-										echo ', ' . $row['element'];
-									else
-										echo $row['element'];
-									$cpt++;
+									$user_value = "";
+									if (isset($media_user_extras[$id_info_field]['multiple']) && array_search($row['id_element'], array_column($media_user_extras[$id_info_field]['multiple'], 'id_array')) !== false) {
+										if ($cpt > 0)
+											echo ', ' . $row['element'];
+										else
+											echo $row['element'];
+										$cpt++;
+									}
 								}
-
 							}
 ?>
 						</span><br />

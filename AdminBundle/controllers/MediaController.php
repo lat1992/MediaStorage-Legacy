@@ -100,7 +100,7 @@ class MediaController {
 			}
 		}
 
-		$title = PROGRAM_LIST_TITLE;
+		$title['title'] = PROGRAM_LIST_TITLE;
 
 		include ('AdminBundle/views/media/program_list.php');
 	}
@@ -146,7 +146,7 @@ class MediaController {
 			}
 		}
 
-		$title = CONTENT_LIST_TITLE;
+		$title['title'] = CONTENT_LIST_TITLE;
 
 		include ('AdminBundle/views/media/content_list.php');
 	}
@@ -237,7 +237,7 @@ class MediaController {
 			}
 		}
 
-		$title = CREATE_MEDIA_PROGRAM;
+		$title['title'] = CREATE_MEDIA_PROGRAM;
 
 		include ('AdminBundle/views/media/media_create_program.php');
 	}
@@ -329,7 +329,7 @@ class MediaController {
 			}
 		}
 
-		$title = CREATE_MEDIA_CONTENT;
+		$title['title'] = CREATE_MEDIA_CONTENT;
 
 		include ('AdminBundle/views/media/media_create_content.php');
 	}
@@ -448,7 +448,7 @@ class MediaController {
 			}
 		}
 
-		$title = CREATE_MEDIA_CONTENT;
+		$title['title'] = CREATE_MEDIA_CONTENT;
 
 		include ('AdminBundle/views/media/media_create_content.php');
 	}
@@ -559,7 +559,7 @@ class MediaController {
 
 		$type = 1;
 
-		$title = EDIT_MEDIA_PROGRAM;
+		$title['title'] = EDIT_MEDIA_PROGRAM;
 
 		include ('AdminBundle/views/media/media_create_program.php');
 	}
@@ -685,7 +685,7 @@ class MediaController {
 
 		$type = 2;
 
-		$title = EDIT_MEDIA_CONTENT;
+		$title['title'] = EDIT_MEDIA_CONTENT;
 		include ('AdminBundle/views/media/media_create_content.php');
 	}
 

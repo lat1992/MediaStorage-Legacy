@@ -10,7 +10,13 @@
 		<li><a href="?page=folder"><?= FOLDER_MENU ?></a></li>
 		<li><a href="?page=program"><?= PROGRAM_MENU ?></a></li>
 		<li><a href="?page=list_content"><?= CONTENT_MENU ?></a></li>
-		<li><a href="?page=cart"><?= CART ?></a></li>
+<?php
+		if (isset($_SESSION['permits'][PERMIT_DOWNLOAD_CONTENT])) {
+?>
+			<li><a href="?page=cart"><?= CART ?></a></li>
+<?php
+		}
+?>
 		<!--<li><a href="?page=sharelist"><?= SHARELIST ?></a></li>-->
 	</ul>
 </div>
