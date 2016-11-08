@@ -2,6 +2,7 @@
 
 require_once('CoreBundle/managers/SearchManager.php');
 require_once('CoreBundle/managers/DesignManager.php');
+require_once('CoreBundle/managers/ToolboxManager.php');
 
 class SearchPageController {
 
@@ -12,6 +13,7 @@ class SearchPageController {
 	public function __construct() {
 		$this->_searchManager = new SearchManager();
 		$this->_designManager = new DesignManager();
+		$this->_toolboxManager = new ToolboxManager();
 		$this->_errorArray = array();
 	}
 
