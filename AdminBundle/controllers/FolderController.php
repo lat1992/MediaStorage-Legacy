@@ -311,4 +311,11 @@ class FolderController {
         }
 
 	}
+
+	public function deleteAction() {
+		$_SESSION['flash_message'] = 'Action non fonctionnelle pour le moment';
+		header('Location:' . '?page=list_folder_admin');
+		exit;
+
+	}
 }

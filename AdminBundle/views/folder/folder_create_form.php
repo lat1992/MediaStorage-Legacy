@@ -21,9 +21,10 @@
 ?>
 				<select name="id_parent_mediastorage[]" id="id_parent_mediastorage" class="parent_mediastorage">
 <?php
+					$cpt = 0;
 					foreach ($select['folders'] as $key => $option) {
 						// In order to have the first emmpty select
-						if ($key == 0) {
+						if ($cpt == 0) {
 ?>
 							<option value=""></option>
 <?php
@@ -34,6 +35,7 @@
 ?>
 						<option value="<?= $option['id'] ?>" <?= $selected ?> ><?= $option['translate'] ?></option>
 <?php
+						$cpt++;
 					}
 ?>
 				</select>
