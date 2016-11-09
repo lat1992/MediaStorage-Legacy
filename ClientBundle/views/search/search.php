@@ -24,7 +24,7 @@ require_once('ClientBundle/views/layout/header.php');
     <form method="get">
     	<div class="search-form">
     		<input type="hidden" name="page" value="search">
-        	<input type="text" id="keyword" name="keyword" onkeyup="ajaxRefreshLiveSearch(this.value)" autocomplete="off" />
+        	<input type="text" id="keyword" name="keyword" onkeyup="ajaxRefreshLiveSearch(this.value)" autocomplete="off" value="<?php if (isset($_GET['keyword'])) echo $_GET['keyword']; ?>" />
     		<input type="hidden" name="paginate" value="1">
         	<input type="submit" value="&#x1f50d;" id="submitButton" />
         </div>

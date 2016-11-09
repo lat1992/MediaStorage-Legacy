@@ -220,6 +220,7 @@ define('DELIVERY', 'Delivery');
 define('VALIDATE_THE', 'Validate the ');
 define('GENERAL_CONDITION', 'general conditions');
 define('DOWNLOAD', 'Download');
+define('CART_HISTORY_TITLE', 'History of order');
 
 // Design
 define('DESIGN', 'Design');

@@ -68,7 +68,7 @@ class Cart extends Model {
 		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, media_file.filename, user_download_token.token, user_download_token.date FROM cart'.
 			' LEFT JOIN media_file ON cart.id_media_file = media_file.id'.
 			' LEFT JOIN user_download_token ON user_download_token.id_media_file = media_file.id'.
-			' WHERE cart.type LIKE "Download" AND cart.id_user = '.$id_user);
+			' WHERE cart.type LIKE "Download" AND cart.id_user = '.$id_user .' LIMIT 1');
 
 		return array(
 			'data' => $data,
@@ -84,6 +84,17 @@ class Cart extends Model {
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'findAllTranscodeByUserId: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findAllDownloadHistoryByUserId($id_user) {
+		$data = $this->_mysqli->query('SELECT media_file.filename, user_download_token.token, user_download_token.date FROM user_download_token'.
+			' LEFT JOIN media_file ON user_download_token.id_media_file = media_file.id'.
+			' WHERE user_download_token.id_user = '.$id_user);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllDownloadHistoryByUserId: ' . $this->_mysqli->error : '',
 		);
 	}
 
