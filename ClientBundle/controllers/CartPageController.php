@@ -189,8 +189,9 @@ class CartPageController {
 	}
 
 	public function historyAction() {
-		$cart_download = $this->_cartManager->getAllDownloadDB();
+		$cart_download = $this->_cartManager->getAllDownloadHistoryDB();
 		$this->mergeErrorArray($cart_download);
+		$cart_data = $cart_download['data'];
 
 		if (isset($_SESSION['id_platform_organization'])) {
 
