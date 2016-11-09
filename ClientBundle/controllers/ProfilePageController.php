@@ -4,6 +4,8 @@ require_once('CoreBundle/managers/UserManager.php');
 require_once('CoreBundle/managers/OrganizationManager.php');
 require_once('CoreBundle/managers/RoleManager.php');
 require_once('CoreBundle/managers/LanguageManager.php');
+require_once('CoreBundle/managers/ToolboxManager.php');
+require_once('CoreBundle/managers/DesignManager.php');
 
 class ProfilePageController {
 
@@ -13,14 +15,18 @@ class ProfilePageController {
 	private $_organizationManager;
 	private $_roleManager;
 	private $_languageManager;
+	private $_toolboxManager;
+	private $_designManager;
 
 	public function __construct() {
-		 $this->_userManager = new UserManager();
-		 $this->_organizationManager = new OrganizationManager();
-		 $this->_roleManager = new RoleManager();
-		 $this->_languageManager = new LanguageManager();
+		$this->_userManager = new UserManager();
+		$this->_organizationManager = new OrganizationManager();
+		$this->_roleManager = new RoleManager();
+		$this->_languageManager = new LanguageManager();
+		$this->_toolboxManager = new ToolboxManager();
+		$this->_designManager = new DesignManager();
 
-		 $this->_errorArray = array();
+		$this->_errorArray = array();
 	}
 
 	private function mergeErrorArray($errorArray) {
@@ -82,6 +88,16 @@ class ProfilePageController {
 
 			$user = array_merge($user, $user_info);
 
+		}
+
+		if (isset($_SESSION['id_platform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
 		}
 
 		$title['title'] = PROFILE;

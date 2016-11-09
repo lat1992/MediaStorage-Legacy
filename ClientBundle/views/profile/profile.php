@@ -5,10 +5,35 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
 
 <link rel="stylesheet" href="ClientBundle/ressources/profile/css/profile.css">
+<link rel="stylesheet" type="text/css" href="ClientBundle/ressources/content/css/button.css" />
+
+<style>
+
+form a.margin-left {
+    margin: 0 0 0 30px;
+}
+
+form a.margin-top {
+    margin-top: 30px;
+}
+
+<?php
+    if (isset($designs)) {
+
+        foreach ($designs as $design) {
+?>
+            <?= $design['selector'] ?> {
+                <?= $design['property'] ?> : <?= $design['value'] ?>;
+            }
+<?php
+        }
+    }
+?>
+</style>
 
 <div id="container">
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
+    <form id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
         <label for="username_mediastorage"><?= USERNAME ?> :</label>
         <input type="text" name="username_mediastorage" id="username_mediastorage" value="<?= (isset($user['username'])) ? $user['username'] : '' ?>" /><br />
 
@@ -67,9 +92,10 @@ require_once('ClientBundle/views/layout/header.php');
 
         <div class="clear"></div>
 
-        <a id="cancel_button" class="form_button" href="?page=folder"><?= CANCEL ?></a>
+        <a class="button button-delete margin-left" href="?page=folder"><?= CANCEL ?></a>
 
-        <input id="validate_button" type="submit" class="submit form_button" value="<?= VALIDATE ?>" />
+        <a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
+
     </form>
 
 </div>
