@@ -120,6 +120,8 @@ define('DROP_FILES_HERE', 'Drop files here');
 define('UPLOAD_A_FILE', 'Upload a file');
 define('MULTIPLE_QUALIFICATION', 'Multiple qualification');
 define('QUALIFY', 'Qualify');
+define('NO_DESCRIPTION_AVAILABLE', 'Description unavailable');
+define('NO_CONTENT_PREVIEW', 'Content preview unaivalable');
 
 // Media info
 define('MEDIA_INFO', 'Media information');
