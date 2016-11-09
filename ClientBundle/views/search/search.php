@@ -52,7 +52,7 @@ require_once('ClientBundle/views/layout/header.php');
                 <div class="folder_image_div">
                     <!-- <img src="ClientBundle/ressources/folder/img/default.png" /> -->
                     <a href="?page=folder&parent_id=<?= $folder['id']; ?>" >
-                        <img class="folder_image" src="<?php if file_exists('uploads/thumbnails/files/'.$_SESSION['id_organization'].'/folders/thumbnail_folder_'.$folder['id'].'.png') echo 'uploads/thumbnails/files/'.$_SESSION['id_organization'].'/folders/thumbnail_folder_'.$folder['id'].'.png'; else echo 'ClientBundle/ressources/folder/img/default_folder.png'; ?>" />
+                        <img class="folder_image" src="<?php if (file_exists('uploads/thumbnails/files/'.$_SESSION['id_organization'].'/folders/thumbnail_folder_'.$folder['id'].'.png')) echo 'uploads/thumbnails/files/'.$_SESSION['id_organization'].'/folders/thumbnail_folder_'.$folder['id'].'.png'; else echo 'ClientBundle/ressources/folder/img/default_folder.png'; ?>" />
                     </a>
                 </div>
 
