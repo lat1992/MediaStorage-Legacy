@@ -14,6 +14,9 @@ define('NO_TITLE', 'No title');
 define('INFO_MULTIPLE_SELECT', '');
 define('ACTION', 'Action');
 define('YES', 'Yes');
+define('CLOSE', 'Close');
+define('FORGOT_PASSWORD', 'Forgot password');
+define('CONTACT_ADMIN', 'Contact admin');
 
 // Information
 define('ACTION_SUCCESS', 'Successful Action');
@@ -205,3 +208,9 @@ define('OVERVIEW', 'Overview');
 define('DESCRIPTIVE', 'Descriptive');
 define('USAGE', 'Usage');
 define('NO_DATA_AVAILABLE', 'No data available');
+define('DELIVERY', 'Delivery');
+define('VALIDATE_THE', 'Validate the ');
+define('GENERAL_CONDITION', 'general condition');
+
+// General Condition
+define('GENERAL_CONDITION_TITLE', 'General Condition');
