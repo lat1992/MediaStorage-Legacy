@@ -94,7 +94,7 @@ class Cart extends Model {
 		$tmp = $this->_mysqli->query('SELECT * FROM media_file WHERE id = '.$id_media_file);
 		if ($row = $tmp->fetch_assoc()) {
 			if ($row['right_download'] == 1) {
-				$result = $this->_mysqli->query('INSERT INTO user_download_token (id_user, id_media_file, token, `date`) VALUES ('. $id_user .', '. $id_media_file .', "'. md5(uniqid(rand(), true)) .', NOW()")');
+				$result = $this->_mysqli->query('INSERT INTO user_download_token (id_user, id_media_file, token, `date`) VALUES ('. $id_user .', '. $id_media_file .', "'. md5(uniqid(rand(), true)) .'", NOW())');
 				$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file)' .
 					' VALUES ('. $id_user . ', ' . $id_media_file . ');'
 				);
