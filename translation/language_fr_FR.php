@@ -365,3 +365,4 @@ define('INVALID_PASSWORD', 'Mot de passe invalide');
 define('INVALID_USERNAME', 'Nom d\'utilisateur invalide');
 define('CART_HISTORY_TITLE', 'Historique des commandes');
 define('DISPLAY_IN_CARD', 'Afficher dans la cartouche');
+define('DESCRIPTIVE_NOTICE', 'Notice descriptive');

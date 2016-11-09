@@ -43,7 +43,10 @@ require_once('ClientBundle/views/layout/header.php');
 
 		<div class="left-block-form">
 
-		<h2><?= MEDIA ?></h2>
+		<a class="button button-delete margin-top" href="?page=list_content_admin"><?= CANCEL ?></a>
+		<a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
+
+		<h2><?= DESCRIPTIVE_NOTICE ?></h2>
 <?php 
 		$path = "";
 		if (isset($_GET['media_id'])) {
@@ -54,8 +57,6 @@ require_once('ClientBundle/views/layout/header.php');
 		require_once('AdminBundle/views/media/media_create_form.php');
 ?>
 		<br />
-
-		<h2><?= MEDIA_INFO ?></h2>
 
 		<?php require_once('AdminBundle/views/media/media_info_create_form.php'); ?>
 

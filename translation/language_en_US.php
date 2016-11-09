@@ -229,3 +229,4 @@ define('DESIGN', 'Design');
 define('GENERAL_CONDITION_TITLE', 'General Condition');
 
 define('DISPLAY_IN_CARD', 'Display in card');
+define('DESCRIPTIVE_NOTICE', 'Descriptive notice');

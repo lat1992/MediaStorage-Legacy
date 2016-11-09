@@ -39,7 +39,11 @@ require_once('ClientBundle/views/layout/header.php');
 
 		<form id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
 
-		<h2><?= MEDIA ?></h2>
+		<a class="button button-delete margin-top" href="?page=list_program_admin"><?= CANCEL ?></a>
+		<a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
+
+
+		<h2><?= DESCRIPTIVE_NOTICE ?></h2>
 
 <?php
 		$path = "";
@@ -52,8 +56,6 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
 
 		<br />
-
-		<h2><?= MEDIA_INFO ?></h2>
 
 		<?php require_once('AdminBundle/views/media/media_info_create_form.php'); ?>
 

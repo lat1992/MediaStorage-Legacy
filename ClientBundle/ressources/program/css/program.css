@@ -1,6 +1,7 @@
 .program_info {
     text-align: left;
     margin: 15px 0 0 0;
+    font-size: 0.8em;
 }
 
 .program_info_image_div {
@@ -27,6 +28,7 @@
 div.first_div, div.second_div {
 	text-align: left;
   color: #4f4f4f;
+  padding-right: 10px;
 }
 
 #description_div, #download_link_div {
