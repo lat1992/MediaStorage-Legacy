@@ -261,11 +261,24 @@ require_once('ClientBundle/views/layout/header.php');
                 </a>
 
                 <div class="content_image_div">
-                    <!-- <img src="ClientBundle/ressources/content/img/default.png" /> -->
+<?php
+                if (file_exists("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/contents/thumbnail_content_" . $content['id'] . ".png")) {
+?>
                     <a href="?page=content&media_id=<?= $content['id']; ?>" >
-                        <img class="content_image" src="<?php if (file_exists('uploads/thumbnails/files/'.$_SESSION['id_organization'].'/contents/thumbnail_content_'.$content['id'].'.png')) echo 'uploads/thumbnails/files/'.$$_SESSION['id_organization'].'/contents/thumbnail_content_'.$content['id'].'.png'; else echo 'ClientBundle/ressources/content/img/default_content.png';?>" />
+                        <img class="content_image" id="content_image_preview" src="uploads/thumbnails/files/<?= $_SESSION['id_organization'] ?>/contents/thumbnail_content_<?= $content['id'] ?>.png" height=100 width=100/>
                     </a>
+<?php
+                }
+                else {
+?>
+                    <a href="?page=content&media_id=<?= $content['id']; ?>" >
+                        <img class="content_image" id="content_image_preview" src="ClientBundle/ressources/content/img/default_content.png" height=100 width=100/>
+                    </a>
+<?php
+                }
+?>
                 </div>
+
 
                 <div class="content_description">
 
