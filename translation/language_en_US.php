@@ -102,6 +102,7 @@ define('CODE', 'Code');
 define('FOLDER', 'Folder');
 define('FOLDER_LIST_TITLE', 'Folder list');
 define('FOLDER_CREATION_TITLE', 'Add folder');
+define('FOLDER_EDIT_TITLE', 'Edit folder');
 
 // Media
 define('MEDIA', 'Media');
@@ -217,7 +218,7 @@ define('USAGE', 'Usage');
 define('NO_DATA_AVAILABLE', 'No data available');
 define('DELIVERY', 'Delivery');
 define('VALIDATE_THE', 'Validate the ');
-define('GENERAL_CONDITION', 'general condition');
+define('GENERAL_CONDITION', 'general conditions');
 define('DOWNLOAD', 'Download');
 
 // Design

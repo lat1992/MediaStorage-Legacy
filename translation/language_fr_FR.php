@@ -168,6 +168,7 @@ define('INFO_MOVE_DIRECTORY', 'Laisser vide si aucun déplacement');
 define('INVALID_PARENT_ID', 'Dossier parent invalide');
 define('FOLDER_PARENT', 'Dossier parent');
 define('FOLDER_LIST_TITLE', 'Liste des dossiers');
+define('FOLDER_EDIT_TITLE', 'Edition d\'un dossier');
 
 // Media
 
