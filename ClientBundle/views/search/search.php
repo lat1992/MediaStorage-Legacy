@@ -52,7 +52,7 @@ require_once('ClientBundle/views/layout/header.php');
                 <div class="folder_image_div">
                     <!-- <img src="ClientBundle/ressources/folder/img/default.png" /> -->
                     <a href="?page=folder&parent_id=<?= $folder['id']; ?>" >
-                        <img class="folder_image" src="ClientBundle/ressources/folder/img/default_folder.png" />
+                        <img class="folder_image" src="<?php if file_exists('uploads/thumbnails/files/'.$_SESSION['id_organization'].'/folders/thumbnail_folder_'.$folder['id'].'.png') echo 'uploads/thumbnails/files/'.$_SESSION['id_organization'].'/folders/thumbnail_folder_'.$folder['id'].'.png'; else echo 'ClientBundle/ressources/folder/img/default_folder.png'; ?>" />
                     </a>
                 </div>
 
@@ -100,7 +100,7 @@ require_once('ClientBundle/views/layout/header.php');
                 <div class="program_image_div">
                     <!-- <img src="ClientBundle/ressources/program/img/default.png" /> -->
                     <a href="?page=program&media_id=<?= $program['id']; ?>" >
-                        <img class="program_image" src="<?php if (file_exists('uploads/thumbnails/files/8/programs/thumbnail_program_'.$program['id'].'.png')) echo 'uploads/thumbnails/files/8/programs/thumbnail_program_'.$program['id'].'.png'; else echo 'ClientBundle/ressources/program/img/default_program.png'; ?>" />
+                        <img class="program_image" src="<?php if (file_exists('uploads/thumbnails/files/'.$_SESSION['id_organization'].'/programs/thumbnail_program_'.$program['id'].'.png')) echo 'uploads/thumbnails/files/'.$_SESSION['id_organization'].'/programs/thumbnail_program_'.$program['id'].'.png'; else echo 'ClientBundle/ressources/program/img/default_program.png'; ?>" />
                     </a>
                 </div>
 
@@ -147,7 +147,7 @@ require_once('ClientBundle/views/layout/header.php');
                 <div class="content_image_div">
                     <!-- <img src="ClientBundle/ressources/content/img/default.png" /> -->
                     <a href="?page=content&media_id=<?= $content['id']; ?>" >
-                        <img class="content_image" src="ClientBundle/ressources/content/img/default_content.png" />
+                        <img class="content_image" src="<?php if (file_exists('uploads/thumbnails/files/'.$_SESSION['id_organization'].'/contents/thumbnail_content_'.$content['id'].'.png')) echo 'uploads/thumbnails/files/'.$_SESSION['id_organization'].'/contents/thumbnail_content_'.$content['id'].'.png'; else echo 'ClientBundle/ressources/content/img/default_content.png'; ?>" />
                     </a>
                 </div>
 
