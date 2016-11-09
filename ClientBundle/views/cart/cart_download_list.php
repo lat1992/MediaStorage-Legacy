@@ -5,6 +5,8 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
 
 <link rel="stylesheet" href="CoreBundle/ressources/layout/css/form.css">
+<link rel="stylesheet" href="ClientBundle/ressources/content/css/button.css">
+
 
 <style>
 
@@ -40,7 +42,7 @@ require_once('ClientBundle/views/layout/header.php');
                 <tr>
                     <td style="word-wrap: break-word;white-space: normal;" ><?= $cart_item['filename'] ?></td>
                     <td style="word-wrap: break-word;white-space: normal;" ><?= $cart_item['date'] ?></td>
-                    <td class="button_td download" ><a href="?page=download_file&token=<?= $cart_item['token'] ?>" class="button_a download" target="_blank"><?= DOWNLOAD ?></a></td>
+                    <td class="td-link" ><a href="?page=download_file&token=<?= $cart_item['token'] ?>" class="td-link-button button-add" target="_blank"><?= DOWNLOAD ?></a></td>
                 </tr>
 <?php
             }
