@@ -158,7 +158,7 @@ if (isset($current_media_file) && strpos($current_media_file['mime_type'], "vide
 				// timeArray = (time % 60).toFixed(2).toString().split(".");
 			 //    video_timer.innerHTML = min.toString() + ":" + timeArray[0] + ":" + timeArray[1];
 
-			 totalSec = video_player.currentTime.toFixed(2);
+			 totalSec = video_player.currentTime.round();
 
 				var hours = parseInt( totalSec / 3600 ) % 24;
 				var minutes = parseInt( totalSec / 60 ) % 60;
@@ -166,7 +166,8 @@ if (isset($current_media_file) && strpos($current_media_file['mime_type'], "vide
 
 				var result = (hours < 10 ? "0" + hours : hours) + "-" + (minutes < 10 ? "0" + minutes : minutes) + "-" + (seconds  < 10 ? "0" + seconds : seconds);
 
-			    video_timer_second.innerHTML = result;
+				video_timer.innerHTML = result
+			    video_timer_second.innerHTML = totalSec;
 			});
 
 			var prev_button = document.getElementById('prev_button');
