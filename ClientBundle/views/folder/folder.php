@@ -263,7 +263,7 @@ require_once('ClientBundle/views/layout/header.php');
                 <div class="content_image_div">
                     <!-- <img src="ClientBundle/ressources/content/img/default.png" /> -->
                     <a href="?page=content&media_id=<?= $content['id']; ?>" >
-                        <img class="content_image" src="ClientBundle/ressources/content/img/default_content.png" />
+                        <img class="content_image" src="<?php if (file_exists('uploads/thumbnails/files/'.$id_organization.'/contents/thumbnail_content_'.$content['id'].'.png')) echo 'uploads/thumbnails/files/'.$id_organization.'/contents/thumbnail_content_'.$content['id'].'.png'; else echo 'ClientBundle/ressources/content/img/default_content.png';?>" />
                     </a>
                 </div>
 
