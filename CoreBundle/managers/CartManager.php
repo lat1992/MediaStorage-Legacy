@@ -30,10 +30,6 @@ class CartManager {
 		return $this->_cartModel->findAllDownloadByUserId($_SESSION['user_id_mediastorage']);
 	}
 
-	public function getAllDownloadDB() {
-		return $this->_cartModel->findAllDownloadByUserId($_SESSION['user_id_mediastorage']);
-	}
-
 	public function getAllTranscode() {
 		return $this->_cartModel->findAllTranscodeByUserId($_SESSION['user_id_mediastorage']);
 	}
