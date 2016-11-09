@@ -166,7 +166,7 @@ if (isset($current_media_file) && strpos($current_media_file['mime_type'], "vide
 
 				var result = (hours < 10 ? "0" + hours : hours) + "-" + (minutes < 10 ? "0" + minutes : minutes) + "-" + (seconds  < 10 ? "0" + seconds : seconds);
 
-			    video_timer_second.innerHTML = time;
+			    video_timer_second.innerHTML = result;
 			});
 
 			var prev_button = document.getElementById('prev_button');
