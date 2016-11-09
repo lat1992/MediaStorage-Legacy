@@ -148,6 +148,7 @@ define('EDIT_MEDIA_CONTENT', 'Edit content');
 define('FILENAME', 'File name');
 define('RIGHT_DOWNLOAD', 'Right downloading');
 define('RIGHT_ADDTOCART', 'Right adding to cart');
+define('MEDIA_FILE_UPLOAD_TITLE', 'File upload');
 
 // Field
 define('FIELD', 'Field');

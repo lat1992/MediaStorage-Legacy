@@ -39,7 +39,7 @@ class SearchPageController {
 				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 			}
 		}
-		
+
 		if (isset($_GET['keyword']) && isset($_GET['filtre'])) {
 			$result = $this->_searchManager->quickSearch($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage']);
 			$this->mergeErrorArray($result);
