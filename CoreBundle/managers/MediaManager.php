@@ -16,7 +16,7 @@ class MediaManager {
 	private $_mediaExtraFieldManager;
 	private $_mediaExtraManager;
 
-	private $_rowNbPerPages = 10;
+	private $_rowNbPerPages = 9;
 	private $_rowNbPerViewPages = 9;
 
 	public function __construct() {
