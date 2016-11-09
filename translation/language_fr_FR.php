@@ -362,3 +362,4 @@ define('INVALID_TC_OUT_EMPTY', 'Tc out vide');
 define('INVALID_NAME_EMPTY', 'Nom vide');
 define('INVALID_PASSWORD', 'Mot de passe invalide');
 define('INVALID_USERNAME', 'Nom d\'utilisateur invalide');
+define('CART_HISTORY_TITLE', 'Historique des commandes');
