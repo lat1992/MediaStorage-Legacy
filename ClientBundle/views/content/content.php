@@ -60,10 +60,10 @@ require_once('ClientBundle/views/layout/header.php');
 							</span>
 						</div>
 
-						<div class="div_video_control div-video-padding">Seconde :
+<!-- 						<div class="div_video_control div-video-padding">Seconde :
 							<span  id="video_timer_second">00.00
 							</span>
-						</div>
+						</div> -->
 
 						<div class="div_video_control video_frame"><a class="button-video-control" id="prev_button" href="#"><<</a>
 						</div>
@@ -153,10 +153,6 @@ if (isset($current_media_file) && strpos($current_media_file['mime_type'], "vide
 			});
 
 			video_player.addEventListener('timeupdate',function(){
-				// time = video_player.currentTime.toFixed(2);
-				// min = Math.floor(time / 60);
-				// timeArray = (time % 60).toFixed(2).toString().split(".");
-			 //    video_timer.innerHTML = min.toString() + ":" + timeArray[0] + ":" + timeArray[1];
 
 			 totalSec = Math.round(video_player.currentTime);
 
@@ -167,7 +163,7 @@ if (isset($current_media_file) && strpos($current_media_file['mime_type'], "vide
 				var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
 
 				video_timer.innerHTML = result
-			    video_timer_second.innerHTML = totalSec;
+			    // video_timer_second.innerHTML = totalSec;
 			});
 
 			var prev_button = document.getElementById('prev_button');
