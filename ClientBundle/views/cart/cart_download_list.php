@@ -29,6 +29,7 @@ require_once('ClientBundle/views/layout/header.php');
         <thead>
             <tr>
                 <th><?= FILENAME ?></th>
+                <th><?= ORDER_DATE ?></th>
                 <th><?= ACTION ?></th>
             </tr>
         </thead>
@@ -38,6 +39,7 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
                 <tr>
                     <td style="word-wrap: break-word;white-space: normal;" ><?= $cart_item['filename'] ?></td>
+                    <td style="word-wrap: break-word;white-space: normal;" ><?= $cart_item['date'] ?></td>
                     <td class="button_td download" ><a href="?page=download_file&token=<?= $cart_item['token'] ?>" class="button_a download" target="_blank"><?= DOWNLOAD ?></a></td>
                 </tr>
 <?php

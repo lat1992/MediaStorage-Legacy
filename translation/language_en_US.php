@@ -17,6 +17,7 @@ define('YES', 'Yes');
 define('CLOSE', 'Close');
 define('FORGOT_PASSWORD', 'Forgot password');
 define('CONTACT_ADMIN', 'Contact admin');
+define('ORDER_DATE', 'Order date');
 
 // Information
 define('ACTION_SUCCESS', 'Successful Action');

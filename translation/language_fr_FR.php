@@ -18,6 +18,7 @@ define('RETURN_HOMEPAGE', 'Retourner a la page d\'accueil');
 define('ID', 'Id');
 define('NEXT', 'Suivant');
 define('HOME', 'Page d\'accueil');
+define('ORDER_DATE', 'Date de commande');
 
 // Errors
 
