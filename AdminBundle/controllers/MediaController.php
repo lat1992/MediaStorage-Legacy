@@ -69,6 +69,7 @@ class MediaController {
 		$table_header = array(
 				'<th>' . REFERENCE . '</th>',
 				'<th>' . REFERENCE_CLIENT . '</th>',
+				'<th>' . TITLE . '</th>';
 				'<th>' . RIGHT_VIEW . '</th>',
 				'<th></th>',
 				'<th></th>',
@@ -79,9 +80,12 @@ class MediaController {
 		if (count($this->_errorArray) == 0) {
 
 			while ($media = $medias['data']->fetch_assoc()) {
+				$mediainfo = $this->_mediaInfoManager->getMediaInfoByIdDb($media['id']);
+				$info = $this->_toolboxManager->mysqliResultToData($mediaInfo);
 				$table_data[] = array(
 					'<td>' . $media['reference'] . '</td>',
 					'<td>' . $media['reference_client'] . '</td>',
+					'<td>' . $info['title'] . '</td>',
 					'<td>' . (($media['right_view'] == 1) ? YES : NON) . '</td>',
 					'<td class="td-link" ><a href="?page=edit_program_admin&media_id=' . $media['id'] . '" class="td-link-button button-edit">' . EDIT . '</a></td>',
 					'<td class="td-link" ><a href="?page=delete_program_admin&media_id=' . $media['id'] . '" class="td-link-button button-delete">' . DELETE . '</a></td>',
