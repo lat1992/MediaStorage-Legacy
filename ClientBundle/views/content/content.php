@@ -153,10 +153,19 @@ if (isset($current_media_file) && strpos($current_media_file['mime_type'], "vide
 			});
 
 			video_player.addEventListener('timeupdate',function(){
-				time = video_player.currentTime.toFixed(2);
-				min = Math.floor(time / 60);
-				timeArray = (time % 60).toFixed(2).toString().split(".");
-			    video_timer.innerHTML = min.toString() + ":" + timeArray[0] + ":" + timeArray[1];
+				// time = video_player.currentTime.toFixed(2);
+				// min = Math.floor(time / 60);
+				// timeArray = (time % 60).toFixed(2).toString().split(".");
+			 //    video_timer.innerHTML = min.toString() + ":" + timeArray[0] + ":" + timeArray[1];
+
+			 totalSec = video_player.currentTime.toFixed(2);
+
+				var hours = parseInt( totalSec / 3600 ) % 24;
+				var minutes = parseInt( totalSec / 60 ) % 60;
+				var seconds = totalSec % 60;
+
+				var result = (hours < 10 ? "0" + hours : hours) + "-" + (minutes < 10 ? "0" + minutes : minutes) + "-" + (seconds  < 10 ? "0" + seconds : seconds);
+
 			    video_timer_second.innerHTML = time;
 			});
 
