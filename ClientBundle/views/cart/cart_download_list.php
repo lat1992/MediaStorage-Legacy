@@ -27,9 +27,10 @@ require_once('ClientBundle/views/layout/header.php');
 
 <div class="container">
 
-    <div style="max-width: 1200px;font-weight: bold;">
+    <div style="max-width: 1200px;font-weight: bold;margin: 0 auto;">
+    <br />
     <p>Les fichiers demandés en livraison on été notifiés à l'administrateur; dès son accord vous recevrez les médias demandés.</p>
-
+    <br />
     <p>Les téléchargements demandés sont disponibles ci-après :</p>
     </div>
 
