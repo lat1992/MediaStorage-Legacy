@@ -69,7 +69,7 @@ class MediaController {
 		$table_header = array(
 				'<th>' . REFERENCE . '</th>',
 				'<th>' . REFERENCE_CLIENT . '</th>',
-				'<th>' . TITLE . '</th>';
+				'<th>' . TITLE . '</th>',
 				'<th>' . RIGHT_VIEW . '</th>',
 				'<th></th>',
 				'<th></th>',
