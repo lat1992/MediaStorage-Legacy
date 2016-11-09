@@ -286,7 +286,7 @@ class MediaManager {
 		if (strlen($_POST['reference_client_mediastorage']) == 0) {
 			$error_media[] = EMPTY_MEDIA_REFERENCE;
 		}
-		if (strlen($_POST['reference_client_mediastorage']) > 10) {
+		if (strlen($_POST['reference_client_mediastorage']) > 100) {
 			$error_media[] = INVALID_MEDIA_REFERENCE_TOO_LONG;
 		}
 
