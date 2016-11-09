@@ -10,10 +10,10 @@ class WorkFlowManager {
 		$this->_workFlowModel = new WorkFlowModel();
 	}
 
-	public function transcoding($id_file, $file_path) {
+	public function transcoding($id_file, $file_path, $id_media) {
 		$wf_type = mime_content_type($file_path);
 		if (strpos($wf_type, 'video') !== false || strpos($wf_type, 'application/mxf') !== false || (strpos($wf_type, 'application/octet-stream') !== false && strpos(pathinfo($file_path, PATHINFO_EXTENSION), 'mxf') !== false))
-			return $this->_workFlowModel->transcodingVideo($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_DIRNAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization']);
+			return $this->_workFlowModel->transcodingVideo($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_DIRNAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization'], $id_media);
 		else if (strpos($wf_type, 'image') !== false || strpos($wf_type, 'application/x-photoshop') !== false || strpos($wf_type, 'application/photoshop') !== false || strpos($wf_type, 'application/psd') !== false || strpos($wf_type, 'application/x-indesign') || (strpos($wf_type, 'application/pdf') !== false && strpos(pathinfo($file_path, PATHINFO_EXTENSION), 'ai') !== false))
 			return $this->_workFlowModel->transcodingImage($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_DIRNAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization']);
 		else if (strpos($wf_type, 'audio') !== false)

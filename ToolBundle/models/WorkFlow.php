@@ -29,7 +29,7 @@ class WorkFlowModel extends Model {
 		return ($result);
 	}
 
-	public function transcodingVideo($id_media_file, $input_file, $input_dir, $output_file, $id_organization) {
+	public function transcodingVideo($id_media_file, $input_file, $input_dir, $output_file, $id_organization, $id_media) {
 		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "video" AND upload = 1');
 		$profile = $data->fetch_assoc();
 		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
@@ -44,7 +44,7 @@ class WorkFlowModel extends Model {
 			'path_out_' => $this->_output_dir . $id_organization.'/videos/',
 			'path_final_' => $this->_final_path . $id_organization.'/'. $this->_mysqli->insert_id .'_',
 			'thumbnail_path' => 'uploads/thumbnails/files/'.$id_organization.'/contents/',
-			'thumbnail_file' => 'thumbnail_content_'.$POST['id_media_mediastorage'].'.png',
+			'thumbnail_file' => 'thumbnail_content_'.$id_media.'.png',
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_video_default'),
 			'validWf' => 'ok'
 		);
