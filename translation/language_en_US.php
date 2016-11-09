@@ -162,6 +162,9 @@ define('ARRAY_MUTIPLE', 'Array mutiple choice');
 define('ARRAY_UNIQUE', 'Array single choice');
 define('T_BOOLEAN', 'Check box');
 define('MANDATORY', 'Mandatory');
+define('MEDIA_TYPE', 'Media type');
+define('TABLE_VALUE', 'Table value');
+define('FIELD_NAME', 'Field name');
 
 // Group
 define('GROUP', 'Group');
@@ -216,5 +219,10 @@ define('VALIDATE_THE', 'Validate the ');
 define('GENERAL_CONDITION', 'general condition');
 define('DOWNLOAD', 'Download');
 
+// Design
+define('DESIGN', 'Design');
+
 // General Condition
 define('GENERAL_CONDITION_TITLE', 'General Condition');
+
+define('DISPLAY_IN_CARD', 'Display in card');

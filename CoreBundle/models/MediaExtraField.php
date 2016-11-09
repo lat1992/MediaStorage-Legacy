@@ -19,9 +19,10 @@ class MediaExtraField extends Model {
 	}
 
 	public function findAllMediaExtraFieldsWithOrganization($id_organization) {
-		$data = $this->_mysqli->query('SELECT media_extra_field.id, media_extra_field.type, media_extra_field.id_organization, media_extra_field_language.data AS name' .
+		$data = $this->_mysqli->query('SELECT media_extra_field.id, media_extra_field.type,media_type_field.id_type, media_extra_field.id_organization, media_extra_field_language.data AS name' .
 			' FROM ' . $this->_table .
 			' JOIN `media_extra_field_language` ON media_extra_field.id = media_extra_field_language.id_field' .
+			' JOIN media_type_field ON media_type_field.id_field = media_extra_field.id' .
 			' WHERE id_language = ' . $_SESSION['id_language_mediastorage'] . ' AND id_organization = ' . $id_organization. ';'
 		);
 
@@ -53,8 +54,9 @@ class MediaExtraField extends Model {
 		$id_organization = $this->_mysqli->real_escape_string($data['id_organization_mediastorage']);
 		$type = $this->_mysqli->real_escape_string($data['type_mediastorage']);
 		$mandatory = $this->_mysqli->real_escape_string($data['mandatory_mediastorage']);
+		$display_in_card = $this->_mysqli->real_escape_string($data['display_in_card_mediastorage']);
 
-		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_organization, type, mandatory) VALUES (' . $id_organization . ', "' . $type . '", ' . $mandatory . ');'
+		$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_organization, type, mandatory, display_in_card) VALUES (' . $id_organization . ', "' . $type . '", ' . $mandatory . ', ' . $display_in_card .');'
 		);
 
 		return array(
@@ -68,9 +70,10 @@ class MediaExtraField extends Model {
 		$id_organization = $this->_mysqli->real_escape_string($data['id_organization_mediastorage']);
 		$type = $this->_mysqli->real_escape_string($data['type_mediastorage']);
 		$mandatory = $this->_mysqli->real_escape_string($data['mandatory_mediastorage']);
+		$display_in_card = $this->_mysqli->real_escape_string($data['display_in_card_mediastorage']);
 
 		$data = $this->_mysqli->query('UPDATE ' . $this->_table .
-			' SET id_organization = ' . $id_organization . ', type = "' . $type . '", mandatory =' . $mandatory .
+			' SET id_organization = ' . $id_organization . ', type = "' . $type . '", mandatory =' . $mandatory . ', display_in_card = ' . $display_in_card .
 			' WHERE id = ' . $media_extra_field_id . ';'
 		);
 
@@ -82,7 +85,7 @@ class MediaExtraField extends Model {
 
 	public function findMediaExtraFieldById($media_extra_field_id) {
 		$media_extra_field_id = $this->_mysqli->real_escape_string($media_extra_field_id);
-		$data = $this->_mysqli->query('SELECT media_extra_field.id, media_extra_field.type, media_extra_field.id_organization, media_extra_field_language.data AS name' .
+		$data = $this->_mysqli->query('SELECT media_extra_field.id, media_extra_field.type, media_extra_field.display_in_card, media_extra_field.id_organization, media_extra_field_language.data AS name' .
 			' FROM ' . $this->_table .
 			' JOIN `media_extra_field_language` ON media_extra_field.id = media_extra_field_language.id_field' .
 			' WHERE id_language = ' . $_SESSION['id_language_mediastorage'] . ' AND media_extra_field.id = ' . $media_extra_field_id . ';'

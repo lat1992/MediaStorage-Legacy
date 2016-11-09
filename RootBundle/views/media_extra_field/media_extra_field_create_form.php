@@ -62,6 +62,12 @@
 		<input type="hidden" name="mandatory_mediastorage" id="mandatory_mediastorage" value="0"/>
 		<input type="checkbox" class="input_checkbox" name="mandatory_mediastorage" id="mandatory_mediastorage" value="1" <?= (isset($mediaExtraField['mandatory']) && intval($mediaExtraField['mandatory']) == 1) ? 'checked' : '' ?> /><br />
 		<div class="clear"></div>
+
+		<label for="display_in_card_mediastorage"><?= DISPLAY_IN_CARD ?> : </label>
+		<input type="hidden" name="display_in_card_mediastorage" id="display_in_card_mediastorage" value="0"/>
+		<input type="checkbox" class="input_checkbox" name="display_in_card_mediastorage" id="display_in_card_mediastorage" value="1" <?= (isset($mediaExtraField['display_in_card']) && intval($mediaExtraField['display_in_card']) == 1) ? 'checked' : '' ?> /><br />
+		<div class="clear"></div>
+
 <?php
 		foreach ($groupLanguages as $groupLanguage) {
 			$mediaExtraFieldLanguageText = '';
