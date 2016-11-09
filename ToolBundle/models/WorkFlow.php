@@ -43,6 +43,8 @@ class WorkFlowModel extends Model {
 			'file_out_' => $this->_mysqli->insert_id .'_' . $output_file,
 			'path_out_' => $this->_output_dir . $id_organization.'/videos/',
 			'path_final_' => $this->_final_path . $id_organization.'/'. $this->_mysqli->insert_id .'_',
+			'thumbnail_path' => 'uploads/thumbnails/files/'.$id_oragnization.'/contents/',
+			'thumbnail_file' => 'thumbnail_contents_'.$id_media_file.'.png',
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_video_default'),
 			'validWf' => 'ok'
 		);
