@@ -211,6 +211,7 @@ define('NO_DATA_AVAILABLE', 'No data available');
 define('DELIVERY', 'Delivery');
 define('VALIDATE_THE', 'Validate the ');
 define('GENERAL_CONDITION', 'general condition');
+define('DOWNLOAD', 'Download');
 
 // General Condition
 define('GENERAL_CONDITION_TITLE', 'General Condition');
