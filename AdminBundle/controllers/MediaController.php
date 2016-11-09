@@ -69,6 +69,7 @@ class MediaController {
 		$table_header = array(
 				'<th>' . REFERENCE . '</th>',
 				'<th>' . REFERENCE_CLIENT . '</th>',
+				'<th>' . TITLE . '</th>',
 				'<th>' . RIGHT_VIEW . '</th>',
 				'<th></th>',
 				'<th></th>',
@@ -79,9 +80,14 @@ class MediaController {
 		if (count($this->_errorArray) == 0) {
 
 			while ($media = $medias['data']->fetch_assoc()) {
+
+				$media_info = $this->_mediaInfoManager->getMediaInfoByMediaIdAndLanguageIdDb($media['id'], $_SESSION['id_language_mediastorage']);
+				$media_info = $this->_toolboxManager->mysqliResultToData($media_info);
+
 				$table_data[] = array(
 					'<td>' . $media['reference'] . '</td>',
 					'<td>' . $media['reference_client'] . '</td>',
+					'<td>' . $media_info['title'] . '</td>',
 					'<td>' . (($media['right_view'] == 1) ? YES : NON) . '</td>',
 					'<td class="td-link" ><a href="?page=edit_program_admin&media_id=' . $media['id'] . '" class="td-link-button button-edit">' . EDIT . '</a></td>',
 					'<td class="td-link" ><a href="?page=delete_program_admin&media_id=' . $media['id'] . '" class="td-link-button button-delete">' . DELETE . '</a></td>',
@@ -115,6 +121,7 @@ class MediaController {
 		$table_header = array(
 				'<th>' . REFERENCE . '</th>',
 				'<th>' . REFERENCE_CLIENT . '</th>',
+				'<th>' . TITLE . '</th>',
 				'<th>' . RIGHT_VIEW . '</th>',
 				'<th></th>',
 				(isset($_SESSION['permits'][PERMIT_DELETE_CONTENT])) ? '<th></th>' : '',
@@ -125,9 +132,14 @@ class MediaController {
 		if (count($this->_errorArray) == 0) {
 
 			while ($media = $medias['data']->fetch_assoc()) {
+
+				$media_info = $this->_mediaInfoManager->getMediaInfoByMediaIdAndLanguageIdDb($media['id'], $_SESSION['id_language_mediastorage']);
+				$media_info = $this->_toolboxManager->mysqliResultToData($media_info);
+
 				$table_data[] = array(
 					'<td>' . $media['reference'] . '</td>',
 					'<td>' . $media['reference_client'] . '</td>',
+					'<td>' . $media_info['title'] . '</td>',
 					'<td>' . (($media['right_view'] == 1) ? YES : NON) . '</td>',
 					'<td class="td-link" ><a href="?page=edit_content_admin&media_id=' . $media['id'] . '" class="td-link-button button-edit">' . EDIT . '</a></td>',
 					(isset($_SESSION['permits'][PERMIT_DELETE_CONTENT])) ? '<td class="td-link" ><a href="?page=delete_content_admin&media_id=' . $media['id'] . '" class="td-link-button button-delete">' . DELETE . '</a></td>' : '',
