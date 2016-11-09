@@ -134,6 +134,7 @@ class MediaExtraFieldManager {
 
 			$media_extra[$id_info_field]['data'][] = $media_extra_temp;
 			$media_extra[$id_info_field]['type'] = $media_extra_temp['type'];
+			$media_extra[$id_info_field]['display_in_card'] = $media_extra_temp['display_in_card'];
 		}
 
 		return $media_extra;

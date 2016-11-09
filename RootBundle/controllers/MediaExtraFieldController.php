@@ -78,6 +78,7 @@ class MediaExtraFieldController {
 				'<th>' . ID . '</th>',
 				'<th>' . TYPE . '</th>',
 				'<th>' . NAME . '</th>',
+				'<th>' . MEDIA_TYPE . '</th>',
 				'<th></th>',
 				'<th></th>',
 			);
@@ -91,6 +92,7 @@ class MediaExtraFieldController {
 					'<td>' . $mediaExtraField['id'] . '</td>',
 					'<td>' . $mediaExtraField['type'] . '</td>',
 					'<td>' . $mediaExtraField['name'] . '</td>',
+					'<td>' . ((intval($mediaExtraField['id_type']) == 1) ? PROGRAM : CONTENT) . '</td>',
 					'<td class="button_td edit" ><a href="?page=edit_media_extra_field_root&media_extra_field_id=' . $mediaExtraField['id'] . '" class="button_a edit">' . EDIT . '</a></td>',
 					'<td class="button_td delete" ><a href="?page=delete_media_extra_field_root&media_extra_field_id=' . $mediaExtraField['id'] . '" class="button_a delete">' . DELETE . '</a></td>',
 				);

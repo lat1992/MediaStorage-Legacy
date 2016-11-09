@@ -132,6 +132,8 @@ class FolderController {
 			}
 		}
 
+		$title['title'] = FOLDER_CREATION_TITLE;
+
 		include ('AdminBundle/views/folder/folder_create.php');
 	}
 
@@ -201,6 +203,8 @@ class FolderController {
 				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 			}
 		}
+
+		$title['title'] = FOLDER_EDIT_TITLE;
 
 		include ('AdminBundle/views/folder/folder_create.php');
 	}

@@ -4,6 +4,11 @@ require_once('CoreBundle/managers/FolderManager.php');
 require_once('CoreBundle/managers/MediaManager.php');
 require_once('CoreBundle/managers/DesignManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
+require_once('CoreBundle/managers/MediaExtraManager.php');
+require_once('CoreBundle/managers/LanguageManager.php');
+require_once('CoreBundle/managers/MediaExtraFieldManager.php');
+require_once('CoreBundle/managers/MediaInfoManager.php');
+
 
 class FolderPageController {
 
@@ -11,6 +16,10 @@ class FolderPageController {
 	private $_mediaManager;
 	private $_designManager;
 	private $_toolboxManager;
+	private $_mediaExtraManager;
+	private $_languageManager;
+	private $_mediaExtraFieldManager;
+	private $_mediaInfoManager;
 
 	private $_errorArray;
 
@@ -19,6 +28,10 @@ class FolderPageController {
 		$this->_mediaManager = new MediaManager();
 		$this->_designManager = new DesignManager();
 		$this->_toolboxManager = new ToolboxManager();
+		$this->_mediaExtraManager = new MediaExtraManager();
+		$this->_languageManager = new LanguageManager();
+		$this->_mediaExtraFieldManager = new MediaExtraFieldManager();
+		$this->_mediaInfoManager = new MediaInfoManager();
 
 		$this->_errorArray = array();
 	}
@@ -78,6 +91,19 @@ class FolderPageController {
 				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 			}
 		}
+
+		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(1);
+		$this->mergeErrorArray($media_extra_data);
+		$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
+
+		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
+		$this->mergeErrorArray($languages_data);
+		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
+
+		$media_extra_data_content = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(2);
+		$this->mergeErrorArray($media_extra_data_content);
+		$media_extra_content = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data_content);
+
 
 		include ('ClientBundle/views/folder/folder.php');
 	}

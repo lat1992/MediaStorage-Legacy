@@ -9,6 +9,7 @@ require_once('CoreBundle/managers/ToolboxManager.php');
 require_once('CoreBundle/managers/DesignManager.php');
 require_once('CoreBundle/managers/ChapterManager.php');
 require_once('CoreBundle/managers/ChapterLanguageManager.php');
+require_once('CoreBundle/managers/LanguageManager.php');
 
 class ContentPageController {
 
@@ -21,6 +22,7 @@ class ContentPageController {
 	private $_designManager;
 	private $_chapterManager;
 	private $_chapterLanguageManager;
+	private $_languageManager;
 
 	private $_errorArray;
 
@@ -34,6 +36,7 @@ class ContentPageController {
 		$this->_designManager = new DesignManager();
 		$this->_chapterManager = new ChapterManager();
 		$this->_chapterLanguageManager = new ChapterLanguageManager();
+		$this->_languageManager = new LanguageManager();
 
 		$this->_errorArray = array();
 	}
@@ -67,6 +70,19 @@ class ContentPageController {
 				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 			}
 		}
+
+		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(1);
+		$this->mergeErrorArray($media_extra_data);
+		$media_extra = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data);
+
+		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
+		$this->mergeErrorArray($languages_data);
+		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
+
+		$media_extra_data_content = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(2);
+		$this->mergeErrorArray($media_extra_data_content);
+		$media_extra_content = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data_content);
+
 
 		$total_pages = $this->_mediaManager->getPageNumberDb(2);
 		$this->_mediaManager->setCurrentPage($current_page);

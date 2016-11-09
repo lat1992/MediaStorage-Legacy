@@ -105,6 +105,10 @@ class ProgramPageController {
 		$this->mergeErrorArray($languages_data);
 		$languages = $this->_toolboxManager->mysqliResultToArray($languages_data);
 
+		$media_extra_data_content = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(2);
+		$this->mergeErrorArray($media_extra_data_content);
+		$media_extra_content = $this->_mediaExtraFieldManager->prepareDataForView($media_extra_data_content);
+
 		include ('ClientBundle/views/program/program.php');
 	}
 }
