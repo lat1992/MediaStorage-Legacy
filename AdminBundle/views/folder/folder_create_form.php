@@ -2,6 +2,11 @@
 
 	<form id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
 
+		<a class="button button-delete margin-top" href="?page=list_folder_admin"><?= CANCEL ?></a>
+		<a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
+		<div class="clear" style="margin-bottom: 20px"></div>
+
+
 <?php
 		// Drawing tree of folders for parent folder selection
 		if (isset($parent_folder_data) && count($parent_folder_data) > 1) {

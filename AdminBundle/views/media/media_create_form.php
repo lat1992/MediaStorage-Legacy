@@ -3,15 +3,14 @@
 <?php
 		if (isset($parents)) {
 ?>
-			<label for="id_parent_mediastorage"><?= MEDIA_PARENT ?></label>
+			<label for="id_parent_mediastorage"><?= PROGRAM ?></label>
 			<select name="id_parent_mediastorage[]" id="id_parent_mediastorage" class="parent_mediastorage">
 				<option value=""></option>
 <?php
 
-				$selected = "";
 
 				while ($parent = $parents['data']->fetch_assoc()) {
-
+					$selected = "";
 					if (isset($media)) {
 						if (intval($parent['id']) == intval($media['id_parent']))
 							$selected = "selected";
@@ -24,13 +23,6 @@
 			<div class="clear"></div>
 
 <?php
-			if (isset($_GET['media_id']))  {
-?>
-				<label></label>
-				<span class="info_multiple_select"><?= INFO_MOVE_DIRECTORY ?></span>
-				<div class="clear"></div>
-<?php
-			}
 		}
 ?>
 
