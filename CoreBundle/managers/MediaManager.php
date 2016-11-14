@@ -71,7 +71,6 @@ class MediaManager {
 		$current_page = (isset($_GET['paginate'])) ? intval($_GET['paginate']) : 1;
 	}
 
-
 	public function getAllProgramsByIdOrganizationDb() {
 		// This is in order to paginate the results
 		$page = 0;
@@ -86,6 +85,10 @@ class MediaManager {
 		$offset = $page * $size;
 
 		return $this->_mediaModel->findAllmediasByIdOrganizationAndIdType($_SESSION['id_organization'], 1, $_SESSION['id_language_mediastorage'], $offset, $size);
+	}
+
+	public function getAllProgramsByIdOrganizationNoLimitDb() {
+		return $this->_mediaModel->findAllmediasByIdOrganizationAndIdTypeNoLimit($_SESSION['id_organization'], 1, $_SESSION['id_language_mediastorage']);
 	}
 
 	public function getAllContentsByIdOrganizationDb() {
