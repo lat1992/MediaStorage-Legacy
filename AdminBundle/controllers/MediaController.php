@@ -660,7 +660,7 @@ class MediaController {
 		$enums = $this->_mediaFileManager->getEnumOfTypeDb();
 		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(2);
-		$parents = $this->_mediaManager->getAllProgramsByIdOrganizationDb();
+		$parents = $this->_mediaManager->getAllProgramsByIdOrganizationNoLimitDb();
 		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
 		$media_files_linked = $this->_mediaFileManager->getAllMediaFilesByMediaIdDb($_GET['media_id']);
 
