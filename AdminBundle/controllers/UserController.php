@@ -33,6 +33,8 @@ class UserController {
 	}
 
 	public function listAction() {
+		$this->_toolboxManager->setLastPageInSession();
+
 		$id_organization = $_SESSION['id_organization'];
 
 		// Get table view data to send to view
@@ -80,6 +82,8 @@ class UserController {
 			}
 		}
 
+		$this->_toolboxManager->getCancelUrl($cancel_url, '?page=list_users_admin');
+
 		include ('AdminBundle/views/user/user_create.php');
 	}
 
@@ -106,6 +110,8 @@ class UserController {
 				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 			}
 		}
+
+		$this->_toolboxManager->getCancelUrl($cancel_url, '?page=list_users_admin');
 
 		include ('AdminBundle/views/user/user_create.php');
 

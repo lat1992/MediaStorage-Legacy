@@ -13,8 +13,55 @@ require_once('ClientBundle/views/layout/header.php');
 
 <style>
 
+#modal {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	display: none;
+	background-color: white;
+	opacity: 0.5;
+	z-index: 9999;
+}
 
+#modal_content {
+	width: 50%;
+	height: 70%;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	display: none;
+	background-color: white;
+	z-index: 99991;
 
+	-webkit-box-shadow: 0 0 10px #666666;
+        box-shadow: 0 0 10px #666666;
+
+    padding: 0px 10px 10px 20px;
+}
+
+#modal_content label {
+	margin: 5px 0 5px 0;
+	display: inline-block;
+}
+
+#modal_content h3 {
+	width: 60%;
+	margin-right: 0;
+	float: left;
+}
+
+#modal_content a.button-close {
+	float: right;
+	margin-top: 10px;
+}
 
 <?php
     if (isset($designs)) {

@@ -43,7 +43,7 @@ require_once('ClientBundle/views/layout/header.php');
 
 		<div class="left-block-form">
 
-		<a class="button button-delete margin-top" href="?page=list_content_admin"><?= CANCEL ?></a>
+		<a class="button button-delete margin-top" href="<?= $cancel_url ?>"><?= CANCEL ?></a>
 		<a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 
 		<h2><?= DESCRIPTIVE_NOTICE ?></h2>
@@ -66,7 +66,7 @@ require_once('ClientBundle/views/layout/header.php');
 		<input type="hidden" name="id_media_create_mediastorage" value="895143" />
 
 		<div class="hide-mobile">
-			<a class="button button-delete margin-top" href="?page=list_content_admin"><?= CANCEL ?></a>
+			<a class="button button-delete margin-top" href="<?= $cancel_url ?>"><?= CANCEL ?></a>
 			<a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 		</div>
 
@@ -105,7 +105,7 @@ require_once('ClientBundle/views/layout/header.php');
 
 		</div>
 		<div class="hide-desktop">
-			<a class="button button-delete margin-top" href="?page=list_content_admin"><?= CANCEL ?></a>
+			<a class="button button-delete margin-top" href="<?= $cancel_url ?>"><?= CANCEL ?></a>
 			<a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 		</div>
 

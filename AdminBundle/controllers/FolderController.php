@@ -45,6 +45,7 @@ class FolderController {
 	}
 
 	public function listAction() {
+		$this->_toolboxManager->setLastPageInSession();
 		$folders = $this->_folderManager->getAllFoldersDb();
 		$total_pages = $this->_folderManager->getPageNumberDb();
 		$this->_folderManager->setCurrentPage($current_page);
@@ -106,6 +107,9 @@ class FolderController {
 					$this->mergeErrorArray($return_value);
 
 					if (count($this->_errorArray) == 0) {
+
+						$this->_toolboxManager->redirectOnLastPageInSession();
+
 						$_SESSION['flash_message'] = ACTION_SUCCESS;
 						header('Location:' . '?page=create_folder_admin');
 						exit;
@@ -133,6 +137,8 @@ class FolderController {
 		}
 
 		$title['title'] = FOLDER_CREATION_TITLE;
+
+		$this->_toolboxManager->getCancelUrl($cancel_url, '?page=list_folder_admin');
 
 		include ('AdminBundle/views/folder/folder_create.php');
 	}
@@ -178,6 +184,9 @@ class FolderController {
 						$this->mergeErrorArray($return_value);
 
 						if (count($this->_errorArray) == 0) {
+
+							$this->_toolboxManager->redirectOnLastPageInSession();
+
 							$_SESSION['flash_message'] = ACTION_SUCCESS;
 							header('Location:' . '?page=list_folder_admin');
 							exit;
@@ -205,6 +214,8 @@ class FolderController {
 		}
 
 		$title['title'] = FOLDER_EDIT_TITLE;
+
+		$this->_toolboxManager->getCancelUrl($cancel_url, '?page=list_folder_admin');
 
 		include ('AdminBundle/views/folder/folder_create.php');
 	}

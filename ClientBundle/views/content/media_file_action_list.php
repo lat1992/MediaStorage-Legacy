@@ -2,15 +2,20 @@
 
     <h2 class="content_subtitle"><?= ACTION ?></h2>
 
-    <div id="temp" style="width: 50%; height: 50%; position: absolute;top:0;bottom: 0;left: 0;right: 0;margin: auto;display: none; background-color: white">
-        <span>Livraison</span>
+    <div id="modal">
+    </div>
+
+    <div id="modal_content">
+        <h3>Livraison</h3>
+        <a href="#" class="button button-close">X</a>
+        <div class="clear"></div>
         <form>
-            <label><?= USAGE ?></label>
+            <label><?= USAGE ?> : </label>
             <select name="usage_select" id="usage_select">
                 <option value="1"><?= SOURCE_FILE ?></option>
                 <option value="2"><?= WATCHING_FILE ?></option>
                 <option value="3"><?= CUT_FILE ?></option>
-                <option value="4"><?= TRANSCODAGE ?></option>
+                <option value="4"><?= TRANSCODE ?></option>
             </select>
             <div id="dynamic_form">
 
@@ -51,8 +56,10 @@
                         }
 ?>
 
-                        <?php /*<td style="padding: 0"><?= ($media_file['right_addtocart']) ? '<a class="add_action" href="#temp">' . ADDTOCART . '</a>' : '' ?></td> */ ?>
-                        <!-- <td style="padding: 0"><?= '<a class="add_action" href="?page=add_sharelist_media&media_file_id=' . $media_file['id'] . '&original_id='. $_GET['media_id'] . '">' . ADDTOSHARELIST . '</a>' ?></td> -->
+<!--                         <td style="padding: 0">
+                            <a class="add_action_custom" href="#"><?= ADDTOCART ?></a>
+                        </td>
+ -->                        <!-- <td style="padding: 0"><?= '<a class="add_action" href="?page=add_sharelist_media&media_file_id=' . $media_file['id'] . '&original_id='. $_GET['media_id'] . '">' . ADDTOSHARELIST . '</a>' ?></td> -->
                     </tr>
 <?php
                 }

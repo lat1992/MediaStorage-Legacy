@@ -423,6 +423,8 @@ class UserManager {
 
 			$this->createUserInDatabase($errors);
 
+			$this->_toolboxManager->redirectOnLastPageInSession();
+
 			$this->redirectOnSuccess($errors, $success_redirect_url);
 		}
 
@@ -458,6 +460,8 @@ class UserManager {
 				return;
 
 			$this->editUserInDatabase($errors, $user);
+
+			$this->_toolboxManager->redirectOnLastPageInSession();
 
 			$this->redirectOnSuccess($errors, $success_redirect_url);
 		}

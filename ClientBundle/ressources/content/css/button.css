@@ -97,12 +97,12 @@ a.button-delete:hover {
 	color: #ffffff;
 }
 
-a.chapter-button {
+a.chapter-button, a.button-close {
 	background-color: #999999;
 	color: #ffffff;
 }
 
-a.chapter-button:hover {
+a.chapter-button:hover, a.button-close:hover {
 	background-color: #777777;
 	color: #ffffff;
 }

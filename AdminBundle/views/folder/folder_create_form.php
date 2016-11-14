@@ -2,7 +2,7 @@
 
 	<form id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
 
-		<a class="button button-delete margin-top" href="?page=list_folder_admin"><?= CANCEL ?></a>
+		<a class="button button-delete margin-top" href="<?= $cancel_url ?>"><?= CANCEL ?></a>
 		<a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 		<div class="clear" style="margin-bottom: 20px"></div>
 
@@ -137,7 +137,7 @@
 ?>
 		<input type="hidden" name="id_folder_create_mediastorage" value="984156" />
 
-		<a class="button button-delete margin-top" href="?page=list_folder_admin"><?= CANCEL ?></a>
+		<a class="button button-delete margin-top" href="<?= $cancel_url ?>"><?= CANCEL ?></a>
 		<a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 
 	</form>

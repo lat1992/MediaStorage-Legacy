@@ -71,7 +71,7 @@
 
 		<input type="hidden" name="id_user_create_mediastorage" value="98475" />
 
-		<a class="button button-delete margin-top" href="?page=list_users_admin"><?= CANCEL ?></a>
+		<a class="button button-delete margin-top" href="<?= $cancel_url ?>"><?= CANCEL ?></a>
 		<a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
 
 	</form>

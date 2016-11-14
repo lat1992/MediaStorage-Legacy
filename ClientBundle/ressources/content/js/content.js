@@ -8,11 +8,35 @@ $( document ).ready(function() {
 
 	    // })
 
-	    // OVERLAY
+	    let modal = $('#modal');
+	    let modal_content = $('#modal_content');
+	    let body = $('body');
+	    let button_close = $('#modal_content .button-close');
 
-	    $('.add_action').click(function(){
-	    	$(this).jOverlay();
-	    })
+	    modal.appendTo(body);
+	    modal_content.appendTo(body);
+
+	    function closeModal() {
+	    	modal.css('display', 'none');
+	    	modal_content.css('display', 'none');
+	    }
+
+	    function openModal() {
+	    	modal.css('display', 'block');
+	    	modal_content.css('display', 'block');
+	    }
+
+	    $('.add_action_custom').on('click', function() {
+	    	openModal();
+	    });
+
+	    button_close.on('click', function (){
+	    	closeModal();
+	    });
+
+	    modal.on('click', function (){
+	    	closeModal();
+	    });
 
 	    // OVERLAY OPTION CHANGES
 

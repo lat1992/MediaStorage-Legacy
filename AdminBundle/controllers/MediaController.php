@@ -60,6 +60,7 @@ class MediaController {
 	}
 
 	public function listProgramAction() {
+		$this->_toolboxManager->setLastPageInSession();
 		$medias = $this->_mediaManager->getAllProgramsByIdOrganizationDb();
 		$total_pages = $this->_mediaManager->getPageNumberDb(1);
 		$this->_mediaManager->setCurrentPage($current_page);
@@ -112,6 +113,7 @@ class MediaController {
 	}
 
 	public function listContentAction() {
+		$this->_toolboxManager->setLastPageInSession();
 		$medias = $this->_mediaManager->getAllContentsByIdOrganizationDb();
 		$total_pages = $this->_mediaManager->getPageNumberDb(2);
 		$this->_mediaManager->setCurrentPage($current_page);
@@ -206,6 +208,8 @@ class MediaController {
 								$this->_tagManager->createOrDeleteMultipleTagDb();
 
 								if (count($this->_errorArray) == 0) {
+
+									$this->_toolboxManager->redirectOnLastPageInSession();
 									$_SESSION['flash_message'] = ACTION_SUCCESS;
 									header('Location:' . '?page=list_program_admin');
 									exit;
@@ -250,6 +254,8 @@ class MediaController {
 		}
 
 		$title['title'] = CREATE_MEDIA_PROGRAM;
+
+		$this->_toolboxManager->getCancelUrl($cancel_url, '?page=list_program_admin');
 
 		include ('AdminBundle/views/media/media_create_program.php');
 	}
@@ -297,6 +303,8 @@ class MediaController {
 								$this->_tagManager->createOrDeleteMultipleTagDb();
 
 								if (count($this->_errorArray) == 0) {
+									$this->_toolboxManager->redirectOnLastPageInSession();
+
 									$_SESSION['flash_message'] = ACTION_SUCCESS;
 									header('Location:' . '?page=list_content_admin');
 									exit;
@@ -342,6 +350,8 @@ class MediaController {
 		}
 
 		$title['title'] = CREATE_MEDIA_CONTENT;
+
+		$this->_toolboxManager->getCancelUrl($cancel_url, '?page=list_content_admin');
 
 		include ('AdminBundle/views/media/media_create_content.php');
 	}
@@ -462,6 +472,8 @@ class MediaController {
 
 		$title['title'] = CREATE_MEDIA_CONTENT;
 
+		$this->_toolboxManager->getCancelUrl($cancel_url, '?page=list_program_admin');
+
 		include ('AdminBundle/views/media/media_create_content.php');
 	}
 
@@ -511,6 +523,9 @@ class MediaController {
 
 									if (count($this->_errorArray) == 0) {
 										$_SESSION['flash_message'] = ACTION_SUCCESS;
+
+										$this->_toolboxManager->redirectOnLastPageInSession();
+
 										header('Location:' . '?page=list_program_admin');
 										exit;
 									}
@@ -573,6 +588,8 @@ class MediaController {
 
 		$title['title'] = EDIT_MEDIA_PROGRAM;
 
+		$this->_toolboxManager->getCancelUrl($cancel_url, '?page=list_program_admin');
+
 		include ('AdminBundle/views/media/media_create_program.php');
 	}
 
@@ -622,6 +639,8 @@ class MediaController {
 									$this->_tagManager->createOrDeleteMultipleTagDb();
 
 									if (count($this->_errorArray) == 0) {
+										$this->_toolboxManager->redirectOnLastPageInSession();
+
 										$_SESSION['flash_message'] = ACTION_SUCCESS;
 										header('Location:' . '?page=list_content_admin');
 										exit;
@@ -698,6 +717,9 @@ class MediaController {
 		$type = 2;
 
 		$title['title'] = EDIT_MEDIA_CONTENT;
+
+		$this->_toolboxManager->getCancelUrl($cancel_url, '?page=list_content_admin');
+
 		include ('AdminBundle/views/media/media_create_content.php');
 	}
 
