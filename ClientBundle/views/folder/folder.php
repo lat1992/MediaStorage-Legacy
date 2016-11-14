@@ -26,6 +26,14 @@ require_once('ClientBundle/views/layout/header.php');
 
 </style>
 
+<?php
+    if (isset($_SESSION['permits'][PERMIT_EDIT_CONTENT]) && isset($_GET['parent_id'])) {
+?>
+        <a class="button button-edit" style="margin-top: 15px; margin-left: 5px;" href="?page=edit_folder_admin&folder_id=<?= $_GET['parent_id'] ?>"><?= EDIT ?></a>
+<?php
+    }
+?>
+
 <div class="container">
 
 <?php

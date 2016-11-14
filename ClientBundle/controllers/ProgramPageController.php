@@ -47,6 +47,8 @@ class ProgramPageController {
 
 	public function programPageAction() {
 
+		$this->_toolboxManager->setLastPageInSession();
+
 		if (isset($_GET['media_id'])) {
 			$contents = $this->_mediaManager->getAllContentsByIdOrganizationAndParentIdDb($_GET['media_id']);
 			$this->mergeErrorArray($contents);

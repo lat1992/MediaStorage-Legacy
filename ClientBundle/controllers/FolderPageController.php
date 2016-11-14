@@ -50,6 +50,8 @@ class FolderPageController {
 
 	public function folderPageAction() {
 
+		$this->_toolboxManager->setLastPageInSession();
+
 		if (isset($_GET['parent_id'])) {
 			$folders = $this->_folderManager->getFolderByParentIdAndOrganizationIdDb($_GET['parent_id']);
 			$programs = $this->_mediaManager->getAllProgramsByIdOrganizationAndFolderIdDb($_GET['parent_id']);

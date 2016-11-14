@@ -80,6 +80,14 @@ require_once('ClientBundle/views/layout/header.php');
 
 <div class="container">
 
+<?php
+    if (isset($_SESSION['permits'][PERMIT_EDIT_CONTENT]) && isset($_GET['media_id'])) {
+?>
+        <a class="button button-edit" style="margin-top: 15px; margin-left: 5px;" href="?page=edit_content_admin&media_id=<?= $_GET['media_id'] ?>"><?= EDIT ?></a>
+<?php
+    }
+?>
+
 	<div id="video_div">
 
 <?php

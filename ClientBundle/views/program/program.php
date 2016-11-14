@@ -34,7 +34,7 @@ if (isset($_GET['media_id'])) {
 ?>
 <div class="program_info">
 
-    <div class="program_info_image_div">
+    <div class="program_info_image_div" style="width: 100px;">
 <?php
     if (file_exists("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/programs/thumbnail_program_" . $_GET['media_id'] . ".png")) {
 ?>
@@ -46,7 +46,14 @@ if (isset($_GET['media_id'])) {
         <img class="program_info_image" id="program_image_preview" src="ClientBundle/ressources/program/img/default_program.png" height=100 width=100/>
 <?php
     }
+
+    if (isset($_SESSION['permits'][PERMIT_EDIT_CONTENT]) && isset($_GET['media_id'])) {
 ?>
+        <a class="button button-edit" style="margin-top: 40px;" href="?page=edit_content_admin&media_id=<?= $_GET['media_id'] ?>"><?= EDIT ?></a>
+<?php
+    }
+?>
+
     </div>
 
     <?php require_once('ClientBundle/views/content/media_info_description_list.php'); ?>

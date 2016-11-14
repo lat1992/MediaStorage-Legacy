@@ -55,6 +55,8 @@ class ContentPageController {
 
 	public function listContentAction() {
 
+		$this->_toolboxManager->setLastPageInSession();
+
 		$contents = $this->_mediaManager->getAllContentsByIdOrganizationDb();
 		$this->mergeErrorArray($contents);
 		$contents = $this->_mediaManager->formatProgramPageContentForCard($contents);
@@ -92,6 +94,8 @@ class ContentPageController {
 	}
 
 	public function contentPageAction() {
+
+		$this->_toolboxManager->setLastPageInSession();
 
 		if (isset($_POST) && isset($_POST['chapter_create'])) {
 
