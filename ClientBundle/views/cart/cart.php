@@ -42,7 +42,7 @@ require_once('ClientBundle/views/layout/header.php');
             while ($cart_item = $cart_data['data']->fetch_assoc()) {
 ?>
                 <tr>
-                    <td><img src="<?= (isset($cart_data['iconpath']) ? $cart_data['iconpath'] : 'ClientBundle/ressources/content/img/default_content.png') ?>" height="100" width="100"></td>
+                    <td><img src="<?= (file_exists('uploads/thumbnails/files/'.$_SESSION['id_organization'].'/contents/thumbnail_content_'.$cart_item['id_media'].'.png') ? 'uploads/thumbnails/files/'.$_SESSION['id_organization'].'/contents/thumbnail_content_'.$cart_item['id_media'].'.png' : 'ClientBundle/ressources/content/img/default_content.png') ?>" height="100" width="100"></td>
                     <td><?= $cart_item['filename'] ?></td>
                     <td class="td-descriptive">
                         <?= TITLE ?> : <a href="?page=content&media_id=<?= $cart_item['id_media'] ?>"><?= $cart_item['translate_title'] ?></a><br/>
