@@ -221,7 +221,7 @@ class MediaController {
 			}
 		}
 
-		$folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
+		// $folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
 		$enums = $this->_mediaFileManager->getEnumOfTypeDb();
 		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(1);
@@ -231,7 +231,7 @@ class MediaController {
 		$tags_proposition_data = $this->_toolboxManager->mysqliResultToArray($tags_proposition_data);
 		$tags_proposition_data = $this->_tagManager->formatTagsDataArray($tags_proposition_data);
 
-		$this->mergeErrorArray($folders);
+		// $this->mergeErrorArray($folders);
 		$this->mergeErrorArray($enums);
 		$this->mergeErrorArray($languages_data);
 		$this->mergeErrorArray($media_extra_data);
@@ -557,12 +557,12 @@ class MediaController {
 
 		$media_user_extras = $this->_mediaExtraManager->formatMediaExtraDataForView($media_user_extras);
 
-		$folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
+		// $folders = $this->_folderManager->getAllFoldersWithoutParentsByOrganizationDb();
 		$enums = $this->_mediaFileManager->getEnumOfTypeDb();
 		$languages_data = $this->_languageManager->getAllLanguagesByGroupDb();
 		$media_extra_data = $this->_mediaExtraFieldManager->getAllMediaExtraFieldByOrganizationAndType(1);
 		$media_files = $this->_mediaFileManager->getAllMediaFilesWithoutMediaIdDb();
-		$parent_folder_data = $this->_folderManager->getParentFolderDataByMediaDb($media);
+		// $parent_folder_data = $this->_folderManager->getParentFolderDataByMediaDb($media);
 
 		$tags_proposition_data = $this->_tagManager->getAllTagsByIdLanguageDb();
 		$tags_proposition_data = $this->_toolboxManager->mysqliResultToArray($tags_proposition_data);
@@ -572,7 +572,7 @@ class MediaController {
 		$actual_tags = $this->_toolboxManager->mysqliResultToArray($actual_tags);
 		$actual_tags = $this->_tagManager->formatTagsDataArray($actual_tags);
 
-		$this->mergeErrorArray($folders);
+		// $this->mergeErrorArray($folders);
 		$this->mergeErrorArray($enums);
 		$this->mergeErrorArray($languages_data);
 		$this->mergeErrorArray($media_extra_data);

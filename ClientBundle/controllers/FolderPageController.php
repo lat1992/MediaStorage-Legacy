@@ -54,7 +54,7 @@ class FolderPageController {
 
 		if (isset($_GET['parent_id'])) {
 			$folders = $this->_folderManager->getFolderByParentIdAndOrganizationIdDb($_GET['parent_id']);
-			$programs = $this->_mediaManager->getAllProgramsByIdOrganizationAndFolderIdDb($_GET['parent_id']);
+			$programs = $this->_mediaManager->getAllProgramsByIdOrganizationAndContentAndFolderIdDb($_GET['parent_id']);
 			$total_pages_program = $this->_mediaManager->getPageNumberForFolderViewDb($_GET['parent_id'], 1);
 
 			$contents = $this->_mediaManager->getAllContentsByIdOrganizationAndFolderIdDb($_GET['parent_id']);

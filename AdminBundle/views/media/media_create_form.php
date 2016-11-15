@@ -66,7 +66,7 @@
 <?php
 			}
 		}
-		else {
+		elseif (isset($folders)) {
 			// Drawing the base empty tree
 ?>
 			<label for="id_folder_mediastorage"><?= PARENT_FOLDER ?></label>

@@ -69,6 +69,8 @@ if (isset($_GET['media_id'])) {
 <?php
     if (isset($programs)) {
 
+        $folder_url = (isset($_GET['id_folder'])) ? '&id_folder=' .  $_GET['id_folder'] : '';
+
         if (isset($programs['data']->num_rows) && intval($programs['data']->num_rows) != 0) {
 ?>
             <span class="category_title category_title_program" ><?= PROGRAM ?></span>
@@ -79,7 +81,7 @@ if (isset($_GET['media_id'])) {
 ?>
             <div class="hvr-grow col program">
 
-                <a href="?page=program&media_id=<?= $program['id']; ?>" >
+                <a href="?page=program&media_id=<?= $program['id'] . $folder_url; ?>" >
                     <div class="program_title_div">
                         <span class="program_title_span" ><?= $program['translate'] ?></span>
                     </div>
@@ -89,14 +91,14 @@ if (isset($_GET['media_id'])) {
 <?php
                 if (file_exists("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/programs/thumbnail_program_" . $program['id'] . ".png")) {
 ?>
-                    <a href="?page=program&media_id=<?= $program['id']; ?>" >
+                    <a href="?page=program&media_id=<?= $program['id'] . $folder_url; ?>" >
                         <img class="program_image" id="program_image_preview" src="uploads/thumbnails/files/<?= $_SESSION['id_organization'] ?>/programs/thumbnail_program_<?= $program['id'] ?>.png" height=100 width=100/>
                     </a>
 <?php
                 }
                 else {
 ?>
-                    <a href="?page=program&media_id=<?= $program['id']; ?>" >
+                    <a href="?page=program&media_id=<?= $program['id'] . $folder_url; ?>" >
                         <img class="program_image" id="program_image_preview" src="ClientBundle/ressources/program/img/default_program.png" height=100 width=100/>
                     </a>
 <?php
@@ -242,6 +244,8 @@ if (isset($_GET['media_id'])) {
 
     if (isset($contents)) {
         if (count($contents)) {
+
+            $folder_url = (isset($_GET['id_folder'])) ? '&id_folder=' .  $_GET['id_folder'] : '';
 ?>
             <span class="category_title category_title_content" ><?= CONTENT ?></span>
 <?php
@@ -250,7 +254,7 @@ if (isset($_GET['media_id'])) {
 ?>
             <div class="hvr-grow col content">
 
-                <a href="?page=content&media_id=<?= $content['id']; ?>" >
+                <a href="?page=content&media_id=<?= $content['id'] . $folder_url; ?>" >
                     <div class="content_title_div">
                         <span class="content_title_span" ><?= $content['translate'] ?></span>
                     </div>
@@ -260,14 +264,14 @@ if (isset($_GET['media_id'])) {
 <?php
                 if (file_exists("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/contents/thumbnail_content_" . $content['id'] . ".png")) {
 ?>
-                    <a href="?page=content&media_id=<?= $content['id']; ?>" >
+                    <a href="?page=content&media_id=<?= $content['id'] . $folder_url; ?>" >
                         <img class="content_image" id="content_image_preview" src="uploads/thumbnails/files/<?= $_SESSION['id_organization'] ?>/contents/thumbnail_content_<?= $content['id'] ?>.png" height=100 width=100/>
                     </a>
 <?php
                 }
                 else {
 ?>
-                    <a href="?page=content&media_id=<?= $content['id']; ?>" >
+                    <a href="?page=content&media_id=<?= $content['id'] . $folder_url; ?>" >
                         <img class="content_image" id="content_image_preview" src="ClientBundle/ressources/content/img/default_content.png" height=100 width=100/>
                     </a>
 <?php

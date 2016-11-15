@@ -108,7 +108,7 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
             <div class="hvr-grow col program">
 
-                <a  href="?page=program&media_id=<?= $program['id']; ?>" >
+                <a  href="?page=program&media_id=<?= $program['id']; ?>&id_folder=<?= $_GET['parent_id'] ?>" >
                     <div class="program_title_div">
                         <span class="program_title_span" ><?= $program['translate'] ?></span>
                     </div>
@@ -116,7 +116,7 @@ require_once('ClientBundle/views/layout/header.php');
 
                 <div class="program_image_div">
                     <!-- <img src="ClientBundle/ressources/program/img/default.png" /> -->
-                    <a  href="?page=program&media_id=<?= $program['id']; ?>" >
+                    <a  href="?page=program&media_id=<?= $program['id']; ?>&id_folder=<?= $_GET['parent_id'] ?>" >
                         <img class="program_image" src="<?php if (file_exists('uploads/thumbnails/files/'.$_SESSION['id_organization'].'/programs/thumbnail_program_'.$program['id'].'.png')) echo 'uploads/thumbnails/files/'.$_SESSION['id_organization'].'/programs/thumbnail_program_'.$program['id'].'.png'; else echo 'ClientBundle/ressources/program/img/default_program.png'; ?>" />
                     </a>
                 </div>
@@ -262,7 +262,7 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
             <div class="hvr-grow col content">
 
-                <a href="?page=content&media_id=<?= $content['id']; ?>" >
+                <a href="?page=content&media_id=<?= $content['id']; ?>&id_folder=<?= $_GET['parent_id'] ?>" >
                     <div class="content_title_div">
                         <span class="content_title_span" ><?= $content['translate'] ?></span>
                     </div>
@@ -272,14 +272,14 @@ require_once('ClientBundle/views/layout/header.php');
 <?php
                 if (file_exists("uploads/thumbnails/files/" . $_SESSION['id_organization'] . "/contents/thumbnail_content_" . $content['id'] . ".png")) {
 ?>
-                    <a href="?page=content&media_id=<?= $content['id']; ?>" >
+                    <a href="?page=content&media_id=<?= $content['id']; ?>&id_folder=<?= $_GET['parent_id'] ?>" >
                         <img class="content_image" id="content_image_preview" src="uploads/thumbnails/files/<?= $_SESSION['id_organization'] ?>/contents/thumbnail_content_<?= $content['id'] ?>.png" height=100 width=100/>
                     </a>
 <?php
                 }
                 else {
 ?>
-                    <a href="?page=content&media_id=<?= $content['id']; ?>" >
+                    <a href="?page=content&media_id=<?= $content['id']; ?>&id_folder=<?= $_GET['parent_id'] ?>" >
                         <img class="content_image" id="content_image_preview" src="ClientBundle/ressources/content/img/default_content.png" height=100 width=100/>
                     </a>
 <?php
