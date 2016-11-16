@@ -114,8 +114,8 @@ class CartPageController {
 		$cart_data = $this->_cartManager->emptyCartDb();
 		$this->mergeErrorArray($cart_data);
 		if (count($this->_errorArray) == 0) {
-			$_SESSION['flash_message'] = ACTION_SUCCESS;
 			if (!$cart_download['data']->num_rows) {
+				$_SESSION['flash_message'] = ACTION_SUCCESS;
 				$title['title'] = CART;
 				header('Location:'.'?page=cart');
 			}
