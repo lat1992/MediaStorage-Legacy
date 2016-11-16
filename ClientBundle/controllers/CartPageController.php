@@ -167,7 +167,6 @@ class CartPageController {
 		}
 		$title['title'] = CART;
 		include ('ClientBundle/views/cart/cart_download_list.php');
-		exit;
 	}
 
 	public function downloadAction() {
