@@ -115,9 +115,10 @@ class CartPageController {
 		$this->mergeErrorArray($cart_data);
 		if (count($this->_errorArray) == 0) {
 			$_SESSION['flash_message'] = ACTION_SUCCESS;
+			$title['title'] = CART;
+			include ('ClientBundle/views/cart/cart_download_list.php');
 			exit;
 		}
-		include ('CoreBundle/views/common/error.php');
 	}
 
 	public function createCartAction() {
@@ -164,8 +165,6 @@ class CartPageController {
 				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 			}
 		}
-		$title['title'] = CART;
-		include ('ClientBundle/views/cart/cart_download_list.php');
 	}
 
 	public function downloadAction() {
