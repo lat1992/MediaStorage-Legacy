@@ -148,7 +148,7 @@ class Media extends Model {
 		$offset = $this->_mysqli->real_escape_string($offset);
 		$size = $this->_mysqli->real_escape_string($size);
 
-		$data = $this->_mysqli->query('SELECT media.id, media.id_parent, media.reference, media.id_type, media.id_organization, media.reference_client, media.right_view,
+		$data = $this->_mysqli->query('SELECT DISTINCT media.id, media.id_parent, media.reference, media.id_type, media.id_organization, media.reference_client, media.right_view,
 			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT title FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS translate,
 			 IF ((SELECT id FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1) IS NOT NULL,(SELECT subtitle FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $user_id_language . ' LIMIT 1), (SELECT subtitle FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS subtitle_translate
 			 FROM ' . $this->_table .
