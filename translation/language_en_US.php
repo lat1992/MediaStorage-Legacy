@@ -221,6 +221,8 @@ define('VALIDATE_THE', 'Validate the ');
 define('GENERAL_CONDITION', 'general conditions');
 define('DOWNLOAD', 'Download');
 define('CART_HISTORY_TITLE', 'History of order');
+define('MAIL_SUBJECT_DELIVERY', '[MediaStorage]Delivery');
+define('MAIL_BODY_DELIVERY', 'The client %s (id: %d) (Email: %s) from platform MediaStorage %s (id: %d) has order a delivery %d.<br/>MediaStorage');
 
 // Design
 define('DESIGN', 'Design');

@@ -114,7 +114,11 @@ class CartPageController {
 		$cart_data = $this->_cartManager->emptyCartDb();
 		$this->mergeErrorArray($cart_data);
 		if (count($this->_errorArray) == 0) {
-			$_SESSION['flash_message'] = ACTION_SUCCESS;
+			if (!$cart_download['data']->num_rows) {
+				$_SESSION['flash_message'] = ACTION_SUCCESS;
+				$title['title'] = CART;
+				header('Location:'.'?page=cart');
+			}
 			exit;
 		}
 		include ('CoreBundle/views/common/error.php');
@@ -133,9 +137,6 @@ class CartPageController {
 			header('Location:' . '?page=content&media_id=' . $_GET['original_id']);
 			exit;
 		}
-
-		$title['title'] = CART;
-
 		include ('CoreBundle/views/common/error.php');
 	}
 
@@ -163,6 +164,9 @@ class CartPageController {
 			if (count($this->_errorArray) == 0) {
 				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 			}
+		}
+		if (count($this->_errorArray) == 0) {
+			$_SESSION['flash_message'] = ACTION_SUCCESS;
 		}
 		$title['title'] = CART;
 		include ('ClientBundle/views/cart/cart_download_list.php');
