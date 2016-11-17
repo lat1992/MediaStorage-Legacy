@@ -68,7 +68,7 @@ class Cart extends Model {
 		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, media_file.filename, user_download_token.token, user_download_token.date FROM cart'.
 			' LEFT JOIN media_file ON cart.id_media_file = media_file.id'.
 			' LEFT JOIN user_download_token ON user_download_token.id_media_file = media_file.id'.
-			' WHERE cart.type LIKE "Download" AND cart.id_user = '.$id_user .' LIMIT 1');
+			' WHERE cart.type LIKE "Download" AND cart.id_user = '.$id_user .'');
 
 		return array(
 			'data' => $data,
