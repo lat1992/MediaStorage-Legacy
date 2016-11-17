@@ -176,7 +176,6 @@ class CartPageController {
 		$token = $_GET['token'];
 		$data = $this->_mediaFileManager->getMediaFileByToken($token);
 		$this->_mediaFileManager->getMediaFileStreamByData($data);
-		exit;
 	}
 
 	private function sendEmailForDelivery($cart_data, $id_user) {
