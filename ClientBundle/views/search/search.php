@@ -22,14 +22,14 @@ require_once('ClientBundle/views/layout/header.php');
 </style>
 <div class="search-box">
     <form method="get">
-    	<div class="search-form">
+    	<div class="search-form" style="margin-top: 20px; margin-left: 20px;border: 1px solid #dddddd; width: 400px;">
     		<input type="hidden" name="page" value="search">
-        	<input type="text" id="keyword" name="keyword" onkeyup="ajaxRefreshLiveSearch(this.value)" autocomplete="off" value="<?php if (isset($_GET['keyword'])) echo $_GET['keyword']; ?>" />
+        	<input placeholder="<?= SEARCH . '...' ?>" type="text" id="keyword" name="keyword" onkeyup="ajaxRefreshLiveSearchOnSearchPage(this.value)" autocomplete="off" value="<?php if (isset($_GET['keyword'])) echo $_GET['keyword']; ?>" style="width: 360px"/>
     		<input type="hidden" name="paginate" value="1">
         	<input type="submit" value="&#x1f50d;" id="submitButton" />
         </div>
         <div style="clear:both"></div>
-    	<div class="live-search" id="livesearch"></div>
+    	<div class="live-search" id="livesearchonsearchpage" style="max-width: 360px;"></div>
     </form>
 </div>
     <div class="container">
@@ -176,34 +176,7 @@ require_once('ClientBundle/views/layout/header.php');
 ?>
     </div>
 
-<script>
-	function ajaxRefreshLiveSearch(value) {
-		if (value){
-			$.ajax({
-				url: "?page=ajax_refresh_live_search&keyword="+value,
-				type: 'GET',
-				success: function(result, status) {
-					if (!result) {
-						return ;
-					}
-					var data = JSON.parse(result);
-					var $html = '';
-					for (var i = 0; i < data.length; i++) {
-						$html += '<div class="livesearch-result"><a href="?page=search&keyword='+ data[i].data +'&paginate=1">' + data[i].data + '</a></div>';
-					}
-					$('#livesearch').html($html);
-				},
-				error: function(result, status, error) {
-					console.log('ERROR : ');
-					console.log(error);
-				}
-			});
-		}
-		else {
-			$('#livesearch').html('');
-		}
-	}
-</script>
+    <script type="text/javascript" src="ClientBundle/ressources/search/js/main.js"></script>
 
 <?php
 require_once('ClientBundle/views/layout/footer.php');
