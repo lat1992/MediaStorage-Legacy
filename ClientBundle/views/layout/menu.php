@@ -22,7 +22,7 @@
 			</div>
 		</li>
 
-		<li><a href="?page=search"><?= SEARCH_MENU ?></a></li>
+		<!-- <li><a href="?page=search"><?= SEARCH_MENU ?></a></li> -->
 		<li><a href="?page=folder"><?= FOLDER_MENU ?></a></li>
 		<li><a href="?page=program"><?= PROGRAM_MENU ?></a></li>
 		<li><a href="?page=list_content"><?= CONTENT_MENU ?></a></li>

@@ -118,6 +118,10 @@ a.link_div_folder, a.link_div_program, a.link_div_content {
     margin: 0;
 }
 
+.search-box {
+    margin: 20px 0 20px 0;
+}
+
 .livesearch-result a {
     height: auto;
     line-height: 40px;
