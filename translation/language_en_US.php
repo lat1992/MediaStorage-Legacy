@@ -18,6 +18,8 @@ define('CLOSE', 'Close');
 define('FORGOT_PASSWORD', 'Forgot password');
 define('CONTACT_ADMIN', 'Contact admin');
 define('ORDER_DATE', 'Order date');
+define('THUMBNAIL', 'Thumbnail');
+define('PREVIEW', 'Preview');
 
 // Information
 define('ACTION_SUCCESS', 'Successful Action');
@@ -124,6 +126,7 @@ define('MULTIPLE_QUALIFICATION', 'Multiple qualification');
 define('QUALIFY', 'Qualify');
 define('NO_DESCRIPTION_AVAILABLE', 'Description unavailable');
 define('NO_CONTENT_PREVIEW', 'Content preview unaivalable');
+define('DROP_FILE_HERE', 'Drop your files here');
 
 // Media info
 define('MEDIA_INFO', 'Media information');

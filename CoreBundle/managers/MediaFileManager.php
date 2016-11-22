@@ -92,6 +92,9 @@ class MediaFileManager {
 
 	public function getMediaFileStreamByData($data) {
 		if ($row = $data['data']->fetch_assoc()) {
+			if (ob_get_level()) {
+      			ob_end_clean();
+    		}
 			header('Content-type: application/octet-stream');
 			header('Content-Disposition: attachment; filename="'.$row['filename'].'"');
 			header('Content-Transfer-Encoding: binary\n');

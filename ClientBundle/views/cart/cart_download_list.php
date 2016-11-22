@@ -29,7 +29,7 @@ require_once('ClientBundle/views/layout/header.php');
 
     <div style="max-width: 1200px;font-weight: bold;margin: 0 auto;">
     <br />
-    <p>Les fichiers demandés en livraison on été notifiés à l'administrateur; dès son accord vous recevrez les médias demandés.</p>
+    <p>Les fichiers demandés en livraison ont été notifiés à l'administrateur; dès son accord vous recevrez les médias demandés.</p>
     <br />
     <p>Les téléchargements demandés sont disponibles ci-après :</p>
     </div>
@@ -39,6 +39,7 @@ require_once('ClientBundle/views/layout/header.php');
             <tr>
                 <th><?= FILENAME ?></th>
                 <th><?= ORDER_DATE ?></th>
+                <th><?= TYPE ?></th>
                 <th><?= ACTION ?></th>
             </tr>
         </thead>
@@ -49,6 +50,7 @@ require_once('ClientBundle/views/layout/header.php');
                 <tr>
                     <td style="word-wrap: break-word;white-space: normal;" ><?= $cart_item['filename'] ?></td>
                     <td style="word-wrap: break-word;white-space: normal;" ><?= $cart_item['date'] ?></td>
+                    <td style="word-wrap: break-word;white-space: normal;" ><?= $cart_item['type'] ?></td>
                     <td class="td-link" ><a href="?page=download_file&token=<?= $cart_item['token'] ?>" class="td-link-button button-add" target="_blank"><?= DOWNLOAD ?></a></td>
                 </tr>
 <?php
