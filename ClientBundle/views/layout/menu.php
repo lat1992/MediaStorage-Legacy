@@ -19,6 +19,11 @@
 			        <div style="clear:both"></div>
 			    	<div class="live-search" id="livesearch"></div>
 			    </form>
+
+				<div class="clear"></div>
+				<div>
+					<a id="advanced_search_link" href="#"><?= ADVANCED_SEARCH ?></a>
+				</div>
 			</div>
 		</li>
 
