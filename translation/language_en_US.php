@@ -58,6 +58,7 @@ define('ADMINISTRATOR', 'Administrator');
 // Menu
 define('MENU', 'Menu');
 define('SEARCH_MENU', 'Search');
+define('ADVANCED_SEARCH', 'Advenced search');
 define('FOLDER_MENU', 'All folders');
 define('PROGRAM_MENU', 'All programs');
 define('CONTENT_MENU', 'All contents');
