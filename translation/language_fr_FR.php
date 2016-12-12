@@ -19,6 +19,7 @@ define('ID', 'Id');
 define('NEXT', 'Suivant');
 define('HOME', 'Page d\'accueil');
 define('ORDER_DATE', 'Date de commande');
+define('ADVANCED_SEARCH', 'Recherche avancée');
 
 // Errors
 
