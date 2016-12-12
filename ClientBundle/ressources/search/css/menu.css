@@ -95,7 +95,12 @@ a.link_div_folder, a.link_div_program, a.link_div_content {
     font-weight: bold;
 }
 
-#keyword {
+.search-box form {
+    display: inline;
+    width: 100%;
+}
+
+.search-box form div.search-form input#keyword {
     line-height: 40px;
     margin: 0;
     width: 80%;
@@ -105,12 +110,13 @@ a.link_div_folder, a.link_div_program, a.link_div_content {
     font-size: 16px;
 }
 
-#submitButton {
+.search-box form div.search-form input#submitButton {
     height: 40px;
     width: 20%;
     border: none;
     padding: 0 6px 0 6px;
-    float: right
+    float: right;
+    margin: 0;
 }
 
 .search-box form {
