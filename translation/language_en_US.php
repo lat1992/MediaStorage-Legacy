@@ -20,6 +20,8 @@ define('CONTACT_ADMIN', 'Contact admin');
 define('ORDER_DATE', 'Order date');
 define('THUMBNAIL', 'Thumbnail');
 define('PREVIEW', 'Preview');
+define('INVALID_USERNAME', 'Can\'t found this username');
+define('INVALID_PASSWORD', 'The password isn\'t correct');
 
 // Information
 define('ACTION_SUCCESS', 'Successful Action');
