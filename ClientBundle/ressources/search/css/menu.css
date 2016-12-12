@@ -15,7 +15,6 @@
 }
 
 .search-box .search-form {
-	float: left;
 }
 
 .live-search .livesearch-result a {
@@ -99,7 +98,7 @@ a.link_div_folder, a.link_div_program, a.link_div_content {
 #keyword {
     line-height: 40px;
     margin: 0;
-    width: 215px;
+    width: 80%;
     padding: 0 5px 0 14px;
     border: none;
     float: left;
@@ -108,10 +107,10 @@ a.link_div_folder, a.link_div_program, a.link_div_content {
 
 #submitButton {
     height: 40px;
-    width: 40px;
+    width: 20%;
     border: none;
     padding: 0 6px 0 6px;
-    float: left;
+    float: right
 }
 
 .search-box form {
