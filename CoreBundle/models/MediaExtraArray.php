@@ -138,4 +138,22 @@ class MediaExtraArray extends Model {
 			'error' => ($this->_mysqli->error) ? 'findMediaExtraArrayByIdFieldAndIdLanguageAndIdOrder: ' . $this->_mysqli->error : '',
 		);
 	}
+
+	public function findExtraArrayByIdOrganizationAndIdLanguage($id_organization, $id_language) {
+		$id_organization = $this->_mysqli->real_escape_string($id_organization);
+		$id_language = $this->_mysqli->real_escape_string($id_language);
+
+		$data = $this->_mysqli->query(
+			'SELECT id_field, element, media_extra_array.id' .
+			' FROM ' . $this->_table .
+			' LEFT JOIN media_extra_field ON media_extra_field.id = media_extra_array.id_field' .
+			' WHERE media_extra_field.id_organization = ' . $id_organization .
+			' AND media_extra_array.id_language = ' . $id_language
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findExtraArrayByIdOrganization: ' . $this->_mysqli->error : '',
+		);
+	}
 }

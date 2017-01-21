@@ -118,4 +118,8 @@ class MediaExtraArrayManager {
 
 		return $return_array;
 	}
+
+	public function getMediaExtraArrayByIdOrganizationAndIdLanguage($id_organization) {
+		return $this->_mediaExtraArrayModel->findExtraArrayByIdOrganizationAndIdLanguage($id_organization, $_SESSION['id_language_mediastorage']);
+	}
 }

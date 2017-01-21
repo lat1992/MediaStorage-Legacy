@@ -3,6 +3,7 @@
 require_once('CoreBundle/managers/SearchManager.php');
 require_once('CoreBundle/managers/DesignManager.php');
 require_once('CoreBundle/managers/ToolboxManager.php');
+require_once('CoreBundle/managers/MediaExtraFieldManager.php');
 
 class SearchPageController {
 
@@ -79,5 +80,53 @@ class SearchPageController {
 		}
 		echo '';
 		return ;
+	}
+
+	public function AdvancedSearchPageAction() {
+
+		$media_extra_field = $this->_searchManager->getFormInputsData();
+
+		if (isset($_POST['validator'])) {
+
+			var_dump($_POST);exit;
+			// $result = $this->_searchManager->
+
+		}
+
+		// Get design data
+
+		if (isset($_SESSION['id_platform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
+			$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+		}
+
+		// Quicksearch ?
+
+		if (isset($_GET['keyword']) && isset($_GET['filtre'])) {
+			$result = $this->_searchManager->quickSearch($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage']);
+			$this->mergeErrorArray($result);
+			if (count($this->_errorArray) == 0) {
+				while ($row = $result['data']->fetch_assoc())
+					var_dump($row);
+			}
+		}
+		else if (isset($_GET['keyword']) && isset($_GET['paginate'])) {
+			$folder_result = $this->_searchManager->searchFolder($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage'], $_GET['paginate'], 10);
+			$program_result = $this->_searchManager->searchMediaProgram($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage'], $_GET['paginate'], 10);
+			$content_result = $this->_searchManager->searchMediaContent($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage'], $_GET['paginate'], 10);
+			$this->mergeErrorArray($folder_result);
+			$this->mergeErrorArray($program_result);
+			$this->mergeErrorArray($content_result);
+			if (count($this->_errorArray) == 0) {
+				$folder_data = $folder_result['data'];
+				$program_data = $program_result['data'];
+				$content_data = $content_result['data'];
+			}
+		}
+
+		$title['title'] = ADVANCED_SEARCH;
+
+		include ('ClientBundle/views/search/advanced_search.php');
 	}
 }

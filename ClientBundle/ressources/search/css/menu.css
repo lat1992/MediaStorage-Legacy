@@ -17,6 +17,10 @@
 .search-box .search-form {
 }
 
+.search-form {
+    width: 100%;
+}
+
 .live-search .livesearch-result a {
     color: black;
     text-decoration: none;
@@ -139,4 +143,16 @@ a.link_div_folder, a.link_div_program, a.link_div_content {
 
 .off-canvas .search-box .livesearch-result a:hover {
     background-color: #eeeeee;
+}
+
+.off-canvas a#advanced_search_link {
+    font-size: 0.8em;
+    padding: 0;
+    text-align: center;
+    background-color: #666666
+}
+
+.off-canvas a#advanced_search_link:hover {
+    color: white;
+    background-color: #777777
 }

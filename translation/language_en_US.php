@@ -210,6 +210,7 @@ define('MAIL_EDIT_TITLE', 'Edit mail');
 
 // Search
 define('SEARCH', 'Search');
+define('ADVANCED_SEARCH', 'Advanced Search');
 
 // Chapter
 define('CHAPTER', 'Chapter');

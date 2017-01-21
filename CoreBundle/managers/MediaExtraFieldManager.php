@@ -11,16 +11,12 @@ class MediaExtraFieldManager {
 		$this->_mediaExtraFieldModel = new MediaExtraField();
 	}
 
-	public function getAllMediaExtraFieldsWithMediaExtraFieldLanguageAndLanguageDb() {
-		return $this->_mediaExtraFieldModel->findAllMediaExtraFieldsWithMediaExtraFieldLanguageAndLanguage();
-	}
-
 	public function getAllMediaExtraFieldsDb() {
 		return $this->_mediaExtraFieldModel->findAllMediaExtraFields();
 	}
 
 	public function getAllMediaExtraFieldsWithOrganizationDb($id_organization) {
-		return $this->_mediaExtraFieldModel->findAllMediaExtraFieldsWithOrganization($id_organization);
+		return $this->_mediaExtraFieldModel->findAllMediaExtraFieldsWithOrganizationAndIdLanguage($id_organization, $_SESSION['id_language_mediastorage']);
 	}
 
 	public function formatSelectOrganizationWithPostData() {

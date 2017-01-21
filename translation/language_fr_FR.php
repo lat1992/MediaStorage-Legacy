@@ -19,7 +19,6 @@ define('ID', 'Id');
 define('NEXT', 'Suivant');
 define('HOME', 'Page d\'accueil');
 define('ORDER_DATE', 'Date de commande');
-define('ADVANCED_SEARCH', 'Recherche avancée');
 
 // Errors
 
@@ -217,6 +216,7 @@ define('MEDIA_TYPE_FIELD_CREATION_TITLE', 'media_type_field_creation_title');
 define('FIELD', 'Champ');
 
 define('SEARCH', 'Recherche');
+define('ADVANCED_SEARCH', 'Recherche Avancée');
 define('CONTENT', 'Contenu');
 
 define('ORGANIZATION_LIST_TITLE', 'Liste des organizations');
