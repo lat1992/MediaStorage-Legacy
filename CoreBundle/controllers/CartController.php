@@ -33,7 +33,7 @@ class CartController {
 	}
 
 	// public function listAction() {
-	// 	$users = $this->_cartManager->getAllCartsDb();
+	// 	$carts = $this->_cartManager->getAllCartsDb();
 
 	// 	$this->mergeErrorArray($carts);
 

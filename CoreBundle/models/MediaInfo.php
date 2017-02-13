@@ -48,6 +48,10 @@ class MediaInfo extends Model {
 			' SET title = "' . $title . '", subtitle = "' . $subtitle . '", description = "' . $description . '", id_media = ' . $id_media . ', id_language = ' . $id_language.
 			' WHERE id = ' . $media_info_id . ';'
 		);
+		/*echo 'UPDATE ' . $this->_table .
+			' SET title = "' . $title . '", subtitle = "' . $subtitle . '", description = "' . $description . '", id_media = ' . $id_media . ', id_language = ' . $id_language.
+			' WHERE id = ' . $media_info_id . ';';
+		exit;*/
 
 		return array(
 			'data' => $data,

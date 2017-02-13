@@ -43,6 +43,10 @@ class MediaFileManager {
 		return $this->_mediaFileModel->createMediaFile($_POST, $_SESSION['id_organization']);
 	}
 
+	public function getMediaFileByIdDb($id_media_file) {
+		return $this->_mediaFileModel->findMediaFileById($id_media_file);
+	}
+
 	public function updateMultipleMediaFilesDb() {
 		$return_value = null;
 

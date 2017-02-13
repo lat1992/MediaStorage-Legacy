@@ -53,6 +53,9 @@ define('USER_CREATION_TITLE', 'Creation utilisateur');
 define('USER_LIST_TITLE', 'Liste d\'utilisateur');
 define('USER_EDIT_TITLE', 'Edition utilisateur');
 
+define('TITLE_FORGOT_PASSWORD', 'Formulaire de demande de mot de passe');
+define('INPUT_FORGOT_PASSWORD', 'Veuillez remplir votre e-mail :');
+
 define('USER_CREATION_DATABASE_ERROR', 'Creation d\'utilisateur impossible : Ajout impossible en database');
 define('EMPTY_USERNAME', 'Nom d\'utilisateur vide');
 define('DUPLICATE_USERNAME', 'Nom d\'utilisateur déjà existant');
@@ -142,6 +145,10 @@ define('TAG_LANGUAGE_CREATION_TITLE', 'Ajout d\'une langue a tag');
 // Cart
 
 define('CART_CREATION_TITLE', 'Création d\'un panier');
+define('CHOSE', 'Choisir');
+define('TRANSCODE_MODE', 'Mode de transcodage');
+define('DELIVERY_MODE', 'Méthode de livraison');
+define('WITHOUT_TRANSCODE', 'Pas de transcodage');
 
 // Chapter
 

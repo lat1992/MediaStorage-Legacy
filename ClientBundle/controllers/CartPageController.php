@@ -125,19 +125,25 @@ class CartPageController {
 	}
 
 	public function createCartAction() {
-		$_POST['id_user_mediastorage'] = $_SESSION['user_id_mediastorage'];
-		$_POST['id_media_file_mediastorage'] = $_GET['media_file_id'];
+		$id_user_mediastorage = $_SESSION['user_id_mediastorage'];
+		$id_media_file = $_GET['media_file_id'];
 
-		$cart_data = $this->_cartManager->cartCreateDb();
-
-		$this->mergeErrorArray($cart_data);
-
+		$media_file_data = $this->_mediaFileManager->getMediaFileByIdDb($id_media_file);
+		if (isset($_POST['id_cart_validate_mediastorage']) && !strcmp($_POST['id_cart_validate_mediastorage'], '86452312')) {
+			//$cart_data = $this->_cartManager->cartCreateDb();
+			//$this->mergeErrorArray($cart_data);
+			header('Location:' . '?page=content&media_id=' . $_GET['original_id']);
+			exit;
+		}
+		$title['title'] = ADDTOCART;
+		include ('ClientBundle/views/cart/cart_add.php');
+/*
 		if (count($this->_errorArray) == 0) {
 			$_SESSION['flash_message'] = ACTION_SUCCESS;
 			header('Location:' . '?page=content&media_id=' . $_GET['original_id']);
 			exit;
 		}
-		include ('CoreBundle/views/common/error.php');
+		include ('CoreBundle/views/common/error.php');*/
 	}
 
 	public function deleteCartAction() {

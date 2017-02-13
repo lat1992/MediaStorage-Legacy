@@ -54,6 +54,7 @@ require_once('ClientBundle/views/layout/header.php');
                         (!strcmp($cart_item['type'], 'Delivery') ? DELIVERY : '').
                         (!strcmp($cart_item['type'], 'Transcode') ? TRANSCODE : '').
                         (!strcmp($cart_item['type'], 'Cut') ? CUT : '').
+                        (!strcmp($cart_item['type'], 'TransCut') ?  CUT .' & '. TRANSCODE : '').
                         (isset($cart_item['tc_in']) && isset($cart_item['tc_out']) ? '<br/> '. TIMECODE_IN . ' : ' . $cart_item['tc_in'] .'<br/>'. TIMECODE_OUT . ' : ' . $cart_item['tc_out'] : '') ?>
                     </td>
                     <td class="td-link" style="padding-right: 5px;" ><a href="?page=delete_cart&cart_id=<?= $cart_item['id'] ?>" style="padding-left: 5px;" class="td-link-button button-delete"><?= DELETE ?></a></td>

@@ -115,7 +115,7 @@ class Cart extends Model {
 					' VALUES ('. $id_user . ', ' . $id_media_file . ', "Delivery");'
 				);
 			}
-		}
+		} 
 
 		return array(
 			'data' => $data,
@@ -133,7 +133,7 @@ class Cart extends Model {
 
 		return array(
 			'data' => $data,
-			'error' => ($this->_mysqli->error) ? 'createNewCart: ' . $this->_mysqli->error : '',
+			'error' => ($this->_mysqli->error) ? 'createNewCartWithChapter: ' . $this->_mysqli->error : '',
 		);
 	}
 

@@ -21,17 +21,17 @@
 ?>
 
     </style>
-
   </head>
     <body>
-        <div>
-            <h1>Formulaire de demande de mot de passe</h1>
+        <div style="text-align: center">
+            <h1><?= TITLE_FORGOT_PASSWORD ?></h1>
             <form>
-                <span>Veuillez remplir votre e-mail :</span>
+                <span><?= INPUT_FORGOT_PASSWORD ?></span>
                 <input type="text" name="mail">
                 <input type="hidden" name="id_login_mediastorage" value="98374">
                 <input type="submit" value="<?= VALIDATE ?>">
             </form>
         </div>
     </body>
+
 </html>

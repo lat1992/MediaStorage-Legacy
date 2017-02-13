@@ -77,6 +77,8 @@ define('HOME', 'Home page');
 // Login
 define('USERNAME', 'Username');
 define('PASSWORD', 'Password');
+define('TITLE_FORGOT_PASSWORD', 'Password reset');
+define('INPUT_FORGOT_PASSWORD', 'Please type your email :');
 
 // Profile
 define('PROFILE', 'Profile');

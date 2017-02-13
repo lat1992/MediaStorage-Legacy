@@ -103,12 +103,9 @@ class UserController {
 				if (isset($result['id_default_language']))
 					$_SESSION['id_language_mediastorage'] = $result['id_default_language'];
 			}
-			if (isset($_GET['token'])) {
-				if (isset($_POST['id_login_mediastorage']) && (strcmp($_POST['id_login_mediastorage'], '98374') == 0)) {
-
-
-				}
-				include('ClientBundle/views/login/set_password.php');
+			if (isset($_GET['id_login_mediastorage']) && (strcmp($_GET['id_login_mediastorage'], "98374") == 0)) {
+				
+				header("Location: ". "?page=login");
 			}
 			if (isset($_SESSION['id_platform_organization'])) {
 				$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
@@ -117,6 +114,10 @@ class UserController {
 				if (count($this->_errorArray) == 0) {
 					$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 				}
+			}
+			if (isset($_GET['token'])) {
+				include('ClientBundle/views/login/set_password.php');
+				exit;
 			}
 			include('ClientBundle/views/login/user_forgot_password.php');
 		}

@@ -31,6 +31,17 @@ class MediaFile extends Model {
 		);
 	}
 
+	public function findMediaFileById($id_media_file) {
+		$data = $this->_mysqli->query('SELECT * FROM ' . $this->_table .
+			' WHERE id = '. $id_media_file
+		);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findMediaFileById: ' . $this->_mysqli->error : '',
+		);
+	}
+
 	public function createMediaFile($data, $id_organization) {
 		$id_media = $this->_mysqli->real_escape_string($data['id_media_mediastorage']);
 		$type = $this->_mysqli->real_escape_string($data['type_mediastorage']);
