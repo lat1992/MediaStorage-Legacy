@@ -1,3 +1,4 @@
 config.ini.php
 uploads
 .htaccess
+ClientBundle/ressources/organization
