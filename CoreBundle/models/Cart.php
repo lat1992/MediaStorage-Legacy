@@ -23,14 +23,13 @@ class Cart extends Model {
 		$id_user = $this->_mysqli->real_escape_string($id_user);
 		$id_language = $this->_mysqli->real_escape_string($id_language);
 
-		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, cart.type, media_file.filename, chapter.tc_in, chapter.tc_out, media.id as id_media,'.
+		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, cart.type, media_file.filename, cart.tc_in, cart.tc_out, media.id as id_media,'.
 			' IF ((SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $id_language . ' LIMIT 1) IS NOT NULL,(SELECT title FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $id_language . ' LIMIT 1), (SELECT title FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS translate_title,' .
 			' IF ((SELECT subtitle FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $id_language . ' LIMIT 1) IS NOT NULL,(SELECT subtitle FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $id_language . ' LIMIT 1), (SELECT subtitle FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS translate_subtitle,'.
 			' IF ((SELECT description FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $id_language . ' LIMIT 1) IS NOT NULL,(SELECT description FROM media_info WHERE media_info.id_media = media.id AND id_language = ' . $id_language . ' LIMIT 1), (SELECT description FROM media_info WHERE media_info.id_media = media.id LIMIT 1)) AS translate_description'.
 			' FROM ' . $this->_table .
 			' LEFT JOIN media_file ON media_file.id = cart.id_media_file' .
 			' LEFT JOIN media ON media.id = media_file.id_media' .
-			' LEFT JOIN chapter ON cart.id_chapter = chapter.id'.
  			' WHERE id_user = ' . $id_user
 		);
 
