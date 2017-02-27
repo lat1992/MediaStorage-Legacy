@@ -105,7 +105,7 @@ require_once('ClientBundle/views/layout/header.php');
 <?php
 				if (strpos($current_media_file['mime_type'], "video/mp4") !== false) {
 ?>
-					<video controls preload="none" width="100%" id="video_player" poster="ClientBundle/ressources/content/img/logo-video-play.png">
+					<video controls autoplay preload="none" width="100%" id="video_player" poster="ClientBundle/ressources/content/img/logo-video-play.png">
 			    		<source  src="<?= $current_media_file['filepath']?>" type="<?= $current_media_file['mime_type'] ?>">
 			    		Your browser does not support HTML5 video.
 					</video>
