@@ -98,24 +98,20 @@ class Cart extends Model {
 		);
 	}
 
-	public function createNewCart($data) {
-		$id_user = $this->_mysqli->real_escape_string($data['id_user_mediastorage']);
-		$id_media_file = $this->_mysqli->real_escape_string($data['id_media_file_mediastorage']);
-
-		$tmp = $this->_mysqli->query('SELECT * FROM media_file WHERE id = '.$id_media_file);
-		if ($row = $tmp->fetch_assoc()) {
-			if ($row['right_download'] == 1) {
-				$result = $this->_mysqli->query('INSERT INTO user_download_token (id_user, id_media_file, token, `date`) VALUES ('. $id_user .', '. $id_media_file .', "'. md5(uniqid(rand(), true)) .'", NOW())');
-				$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file)' .
-					' VALUES ('. $id_user . ', ' . $id_media_file . ');'
-				);
-			}
-			else {
-				$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file, type)' .
-					' VALUES ('. $id_user . ', ' . $id_media_file . ', "Delivery");'
-				);
-			}
-		} 
+	public function createNewCart($id_user, $id_media_file, $mode, $wf) {
+		if (strcmp($mode, 'Download') !== false) {
+			$result = $this->_mysqli->query('INSERT INTO user_download_token (id_user, id_media_file, token, `date`)'.
+				' VALUES ('. $id_user .', '. $id_media_file .', "'. md5(uniqid(rand(), true)) .'", NOW())'
+			);
+			$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file, id_workflow, type)' .
+				' VALUES ('. $id_user . ', ' . $id_media_file . ', '. $wf .', "'. $mode .'");'
+			);
+		}
+		else {
+			$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file, id_workflow, type)' .
+				' VALUES ('. $id_user . ', ' . $id_media_file . ', '. $wf .', "'. $mode .'");'
+			);
+		}
 
 		return array(
 			'data' => $data,

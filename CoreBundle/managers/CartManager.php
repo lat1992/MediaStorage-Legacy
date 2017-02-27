@@ -53,8 +53,9 @@ class CartManager {
 		return $error_cart;
 	}
 
-	public function cartCreateDb() {
-		return $this->_cartModel->createNewCart($_POST);
+	public function cartCreateDb($id_user, $id_media_file, $mode, $wf) {
+		return $this->_cartModel->createNewCart($id_user, $id_media_file, $mode, $wf);
+	//	return $this->_cartModel->createNewCart($_POST);
 	}
 
 	public function getCartByIdDb($cart_id) {

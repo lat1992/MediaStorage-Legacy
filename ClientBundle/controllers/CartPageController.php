@@ -125,25 +125,36 @@ class CartPageController {
 	}
 
 	public function createCartAction() {
+		if (isset($_SESSION['id_platform_organization'])) {
+
+			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
+			$this->mergeErrorArray($designs_data);
+
+			if (count($this->_errorArray) == 0) {
+				$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
+			}
+		}
+
 		$id_user_mediastorage = $_SESSION['user_id_mediastorage'];
 		$id_media_file = $_GET['media_file_id'];
-
 		$media_file_data = $this->_mediaFileManager->getMediaFileByIdDb($id_media_file);
-		if (isset($_POST['id_cart_validate_mediastorage']) && !strcmp($_POST['id_cart_validate_mediastorage'], '86452312')) {
-			//$cart_data = $this->_cartManager->cartCreateDb();
-			//$this->mergeErrorArray($cart_data);
-			header('Location:' . '?page=content&media_id=' . $_GET['original_id']);
-			exit;
+		$mediafile = $media_file_data['data']->fetch_assoc();
+		(strpos($mediafile['mime_type'], 'video') !== false ? $type = 'video' : (strpos($mediafile['mime_type'], 'application/octet-stream') !== false ? $type = 'video' : (strpos($mediafile['mime_type'], 'image') !== false ? $type = 'image' : (strpos($mediafile['mime_type'], 'audio') !== false ? $type = 'audio' : $type = 'none'))));
+		$workflows = $this->_workFlowManager->getAllWorkflowProfile($_SESSION['id_platform_organization'], $type, 2);
+		if (isset($_POST['id_cart_validate_mediastorage']) && (strcmp($_POST['id_cart_validate_mediastorage'], '86452312') == 0)) {
+			$mode = $_POST['delivery_mode'];
+			$wf = $_POST['workflow_id'];
+			$cart_data = $this->_cartManager->cartCreateDb($id_user_mediastorage, $id_media_file, $mode, $wf);
+			$this->mergeErrorArray($cart_data);
+
+			if (count($this->_errorArray) == 0) {
+				$_SESSION['flash_message'] = ACTION_SUCCESS;
+				header('Location:' . '?page=content&media_id=' . $_GET['original_id']);
+				exit;
+			}
 		}
 		$title['title'] = ADDTOCART;
 		include ('ClientBundle/views/cart/cart_add.php');
-/*
-		if (count($this->_errorArray) == 0) {
-			$_SESSION['flash_message'] = ACTION_SUCCESS;
-			header('Location:' . '?page=content&media_id=' . $_GET['original_id']);
-			exit;
-		}
-		include ('CoreBundle/views/common/error.php');*/
 	}
 
 	public function deleteCartAction() {
@@ -194,7 +205,8 @@ class CartPageController {
 		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 		$headers .= 'From: Mediastorage <' . $this->_mail_addr_server . '>'. "\r\n" .
 		'Cc: ' . $cc . "\r\n";
-		mail($to, MAIL_SUBJECT_DELIVERY, sprintf(MAIL_BODY_DELIVERY, $row['username'], $id_user, $row['email'], $_GET['platform'], $_SESSION['id_platform_organization'], $row_cart['id_media_file']), $headers);
+		$body = sprintf(MAIL_BODY_DELIVERY, $row['username'], $id_user, $row['email'], $_GET['platform'], $_SESSION['id_platform_organization'], $row_cart['id_media_file']);
+		mail($to, MAIL_SUBJECT_DELIVERY, $body, $headers);
 	}
 
 	public function historyAction() {

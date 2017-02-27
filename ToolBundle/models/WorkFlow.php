@@ -191,4 +191,13 @@ class WorkFlowModel extends Model {
 		);
 	}
 
+	public function findWorkFlowProfileWithIdOrganization($id_organization, $type, $mode) {
+		$data = $this->_mysqli->query('SELECT * FROM workflow_organization WHERE id_organization = '.$id_organization . ' AND transcoding_type LIKE "'.$type.'" AND `mode` = '. $mode);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findWorkFlowProfileWithIdOrganization: ' . $this->_mysqli->error : '',
+		);
+	}
+
 }

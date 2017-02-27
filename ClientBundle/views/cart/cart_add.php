@@ -27,32 +27,34 @@ require_once('ClientBundle/views/layout/header.php');
     <form id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
         <div style="margin: 50px auto auto auto">
             <label><?= DELIVERY_MODE ?></label>
-            <select name="selection">
-                <option><?= CHOSE ?></option>
+            <select name="delivery_mode">
             <?php
                 $row = $media_file_data['data']->fetch_assoc();
                 if (strcmp($row['type'], 'MASTER') !== 0) {
             ?>
-                <option value="download"><?= DOWNLOAD ?></option>
+                <option value="Download"><?= DOWNLOAD ?></option>
             <?php
                 }
             ?>
-                <option value="delivery"><?= DELIVERY ?></option>
+                <option value="Delivery"><?= DELIVERY ?></option>
             </select>
         </div>
         <div class="clear"></div>
         <div style="margin: auto auto 50px auto">
             <label><?= TRANSCODE_MODE ?></label>
-            <select name="selection">
-                <option><?= WITHOUT_TRANSCODE ?></option>
+            <select name="workflow_id">
+                <option value="NULL"><?= WITHOUT_TRANSCODE ?></option>
+            <?php
+                while ($wf = $workflows['data']->fetch_assoc()) {
+                    echo '<option value="'.$wf['id'].'">'.$wf['name'].'</option>';
+                }
+            ?>
             </select>
         </div>
         <div class="clear"></div>
-        <input type="hidden" id="id_cart_validate_mediastorage" value="86452312">
-        <div style="margin: 50px auto">
-            <a class="button button-delete" style="padding: 2px 20px 0px 20px; margin: auto 10px" href="?page=content&media_id=<?= $_GET['original_id'] ?>"><?= CANCEL ?></a>
-            <button class="button button-validate" style="margin: auto 10px" type="submit"><?= VALIDATE ?></button>
-        </div>
+        <input type="hidden" name="id_cart_validate_mediastorage" value="86452312">
+        <a class="button button-delete" style="padding: 2px 20px 0px 20px; margin: auto 10px" href="?page=content&media_id=<?= $_GET['original_id'] ?>"><?= CANCEL ?></a>
+        <a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
     </form>
 </div>
 <script>
