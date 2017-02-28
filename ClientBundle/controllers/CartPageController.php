@@ -144,9 +144,8 @@ class CartPageController {
 		if (isset($_POST['id_cart_validate_mediastorage']) && (strcmp($_POST['id_cart_validate_mediastorage'], '86452312') == 0)) {
 			$mode = $_POST['delivery_mode'];
 			$wf = $_POST['workflow_id'];
-			if (strcmp($mode, 'Delivery'))
-				sendEmailForDelivery($id_media_file, $id_user_mediastorage);
-			$cart_data = $this->_cartManager->cartCreateDb($id_user_mediastorage, $id_media_file, $mode, $wf);
+			(isset($_POST['comment']) ? $comment = $_POST['comment'] : $comment = "");
+			$cart_data = $this->_cartManager->cartCreateDb($id_user_mediastorage, $id_media_file, $mode, $wf, $comment);
 			$this->mergeErrorArray($cart_data);
 
 			if (count($this->_errorArray) == 0) {
@@ -197,7 +196,7 @@ class CartPageController {
 		$this->_mediaFileManager->getMediaFileStreamByData($data);
 	}
 
-	private function sendEmailForDelivery($id_media_file, $id_user) {
+	private function sendEmailForDelivery($cart_data, $id_user) {
 		$user_data = $this->_userManager->getUserByIdDb($id_user);
 		$row = $user_data['data']->fetch_assoc();
 		$to = $this->_mail_addr_regie.','.$this->_mail_addr_it;
@@ -206,7 +205,10 @@ class CartPageController {
 		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 		$headers .= 'From: Mediastorage <' . $this->_mail_addr_server . '>'. "\r\n" .
 		'Cc: ' . $cc . "\r\n";
-		$body = sprintf(MAIL_BODY_DELIVERY, $row['username'], $id_user, $row['email'], $_GET['platform'], $_SESSION['id_platform_organization'], $id_media_file);
+		$body = "";
+		while ($row_cart = $cart_data->fetch_assoc()) {
+			$body .= sprintf(MAIL_BODY_DELIVERY."<br/>", $row['username'], $id_user, $row['email'], $_GET['platform'], $_SESSION['id_platform_organization'], $row_cart['id_media_file']);
+		}
 		mail($to, MAIL_SUBJECT_DELIVERY, $body, $headers);
 	}
 

@@ -21,7 +21,7 @@ $this->_route[] = array('delete_cart', 'ClientBundle/controllers/CartPageControl
 $this->_route[] = array('validate_cart', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'validateCartAction');
 $this->_route[] = array('general_condition', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'generalConditionPageAction');
 $this->_route[] = array('download_file', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'downloadAction');
-$this->_route[] = array('history', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'historyAction');
+$this->_route[] = array('cart_history', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'historyAction');
 
 $this->_route[] = array('sharelist', 'ClientBundle/controllers/SharelistPageController.php', 'SharelistPageController', 'sharelistPageAction');
 $this->_route[] = array('create_sharelist', 'ClientBundle/controllers/SharelistPageController.php', 'SharelistPageController', 'createSharelistAction');

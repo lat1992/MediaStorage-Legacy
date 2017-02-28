@@ -24,13 +24,13 @@ require_once('ClientBundle/views/layout/header.php');
 
 </style>
 <div id="container">
+
     <form id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
         <div style="margin: 50px auto auto auto">
             <label><?= DELIVERY_MODE ?></label>
             <select name="delivery_mode">
             <?php
-                $row = $media_file_data['data']->fetch_assoc();
-                if (strcmp($row['type'], 'MASTER') !== 0) {
+                if ($mediafile['right_download'] == "1") {
             ?>
                 <option value="Download"><?= DOWNLOAD ?></option>
             <?php
@@ -52,6 +52,19 @@ require_once('ClientBundle/views/layout/header.php');
             </select>
         </div>
         <div class="clear"></div>
+        <div style="margin: auto auto 50px auto">
+            <label><?= TC_IN.' & '.TC_OUT. ' ('.OPTIONAL.')' ?></label>
+            <input name="tc_in" type="text" style="width: 70px"> <input name="tc_out" type="text" style="width: 70px">
+        </div>
+        <div class="clear"></div>
+        <div style="margin: auto auto 50px auto">
+            <label><?= COMMENT ?></label>
+            <input name="comment" type="textarea" rows="2">
+        </div>
+        <div class="clear"></div>
+
+
+
         <input type="hidden" name="id_cart_validate_mediastorage" value="86452312">
         <a class="button button-delete" style="padding: 2px 20px 0px 20px; margin: auto 10px" href="?page=content&media_id=<?= $_GET['original_id'] ?>"><?= CANCEL ?></a>
         <a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>

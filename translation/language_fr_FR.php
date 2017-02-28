@@ -20,6 +20,7 @@ define('NEXT', 'Suivant');
 define('HOME', 'Page d\'accueil');
 define('ORDER_DATE', 'Date de commande');
 define('ADVANCED_SEARCH', 'Recherche avancée');
+define('OPTIONAL', 'Facultative');
 
 // Errors
 
@@ -149,6 +150,7 @@ define('CHOSE', 'Choisir');
 define('TRANSCODE_MODE', 'Mode de transcodage');
 define('DELIVERY_MODE', 'Méthode de livraison');
 define('WITHOUT_TRANSCODE', 'Pas de transcodage');
+define('COMMENT', 'Commentaire');
 
 // Chapter
 
