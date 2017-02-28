@@ -201,22 +201,23 @@ class WorkFlowModel extends Model {
 	}
 
 	public function transcodeWithProfile($cart_transcode) {
-		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "video" AND upload = 1 AND id_organization = '.$id_organization);
+		$cart = $cart_transcode->fetch_assoc();
+		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE upload = 1 AND id_organization = '.$_SESSION['id_organization'].' AND id = '. $cart['id_workflow']);
 		$profile = $data->fetch_assoc();
-		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
+		$data = $this->_mysqli->query('SELECT * FROM media_file WHERE id = '.$cart['id_media_file']);
+		$media_file = $data->fetch_assoc();
+		$this->_mysqli->query('INSERT INTO '.$this->_table.
 			' (id_media_file, transcoding_type) VALUES'.
-			' ('.$id_media_file.', "video")');
+			' ('.$cart['id_media_file'].', "transcode")');
+		$path = pathinfo($media_file['filepath']);
 		$post = array(
 			'order_id_' => $this->_mysqli->insert_id,
 			'platform' => $_GET['platform'],
-			'file_in_' => $input_file,
-			'path_in_' => $this->_input_dir . $input_dir .'/',
-			'file_out_' => $this->_mysqli->insert_id .'_' . $output_file,
-			'path_out_' => $this->_output_dir . $id_organization.'/videos/',
-			'path_final_' => $this->_final_path . $id_organization.'/'. $this->_mysqli->insert_id .'_',
-			'thumbnail_path' => 'uploads/thumbnails/files/'.$id_organization.'/contents/',
-			'thumbnail_file' => 'thumbnail_content_'.$id_media.'.png',
-			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_video_default'),
+			'file_in_' => $path['basename'],
+			'path_in_' => $path['dirname'] .'/',
+			'file_out_' => $this->_mysqli->insert_id .'_' . $path['basename'],
+			'path_out_' => $this->_output_dir . $_SESSION['id_organization'] .'/transcodes/',
+			'wfcode' => $profile['workflow_code'],
 			'validWf' => 'ok'
 		);
 		return array(
@@ -225,23 +226,25 @@ class WorkFlowModel extends Model {
 		);
 	}
 
-	public function cutWithProfile($cart_transcode) {
-		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "video" AND upload = 1 AND id_organization = '.$id_organization);
+	public function cutWithProfile($cart_cut) {
+		$cart = $cart_cut->fetch_assoc();
+		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE upload = 1 AND id_organization = '.$_SESSION['id_organization'].' AND id = '. $cart['id_workflow']);
 		$profile = $data->fetch_assoc();
-		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
+		$data = $this->_mysqli->query('SELECT * FROM media_file WHERE id = '.$cart['id_media_file']);
+		$media_file = $data->fetch_assoc();
+		$this->_mysqli->query('INSERT INTO '.$this->_table.
 			' (id_media_file, transcoding_type) VALUES'.
-			' ('.$id_media_file.', "video")');
+			' ('.$cart['id_media_file'].', "transcode")');
+		$path = pathinfo($media_file['filepath']);
 		$post = array(
 			'order_id_' => $this->_mysqli->insert_id,
 			'platform' => $_GET['platform'],
-			'file_in_' => $input_file,
-			'path_in_' => $this->_input_dir . $input_dir .'/',
-			'file_out_' => $this->_mysqli->insert_id .'_' . $output_file,
-			'path_out_' => $this->_output_dir . $id_organization.'/videos/',
-			'path_final_' => $this->_final_path . $id_organization.'/'. $this->_mysqli->insert_id .'_',
-			'thumbnail_path' => 'uploads/thumbnails/files/'.$id_organization.'/contents/',
-			'thumbnail_file' => 'thumbnail_content_'.$id_media.'.png',
-			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_video_default'),
+			'file_in_' => $path['basename'],
+			'path_in_' => $path['dirname'] .'/',
+			'file_out_' => $this->_mysqli->insert_id .'_' . $path['basename'],
+			'path_out_' => $this->_output_dir . $_SESSION['id_organization'].'/transcodes/',
+			'tc_in' => $cart['tc_in'],
+			'tc_out' => $cart['tc_out'],
 			'validWf' => 'ok'
 		);
 		return array(
@@ -251,22 +254,25 @@ class WorkFlowModel extends Model {
 	}
 
 	public function transcodeCutWithProfile($cart_transcode_cut) {
-		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE transcoding_type LIKE "video" AND upload = 1 AND id_organization = '.$id_organization);
+		$cart = $cart_transcode_cut->fetch_assoc();
+		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE upload = 1 AND id_organization = '.$_SESSION['id_organization'].' AND id = '. $cart['id_workflow']);
 		$profile = $data->fetch_assoc();
-		$data = $this->_mysqli->query('INSERT INTO '.$this->_table.
+		$data = $this->_mysqli->query('SELECT * FROM media_file WHERE id = '.$cart['id_media_file']);
+		$media_file = $data->fetch_assoc();
+		$this->_mysqli->query('INSERT INTO '.$this->_table.
 			' (id_media_file, transcoding_type) VALUES'.
-			' ('.$id_media_file.', "video")');
+			' ('.$cart['id_media_file'].', "transcode")');
+		$path = pathinfo($media_file['filepath']);
 		$post = array(
 			'order_id_' => $this->_mysqli->insert_id,
 			'platform' => $_GET['platform'],
-			'file_in_' => $input_file,
-			'path_in_' => $this->_input_dir . $input_dir .'/',
-			'file_out_' => $this->_mysqli->insert_id .'_' . $output_file,
-			'path_out_' => $this->_output_dir . $id_organization.'/videos/',
-			'path_final_' => $this->_final_path . $id_organization.'/'. $this->_mysqli->insert_id .'_',
-			'thumbnail_path' => 'uploads/thumbnails/files/'.$id_organization.'/contents/',
-			'thumbnail_file' => 'thumbnail_content_'.$id_media.'.png',
-			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_video_default'),
+			'file_in_' => $path['basename'],
+			'path_in_' => $path['dirname'] .'/',
+			'file_out_' => $this->_mysqli->insert_id .'_' . $path['basename'],
+			'path_out_' => $this->_output_dir . $_SESSION['id_organization'].'/transcodes/',
+			'tc_in' => $cart['tc_in'],
+			'tc_out' => $cart['tc_out'],
+			'wfcode' => $profile['workflow_code'],
 			'validWf' => 'ok'
 		);
 		return array(
