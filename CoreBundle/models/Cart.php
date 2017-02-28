@@ -53,7 +53,7 @@ class Cart extends Model {
 	public function findAllCutByUserId($id_user) {
 		$id_user = $this->_mysqli->real_escape_string($id_user);
 		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, cart.tc_in, cart.tc_out FROM cart'.
-			' WHERE cart.tc_in IS NOT NULL AND cart.tc_out IS NOT NULL AND cart.id_user = '.$id_user);
+			' WHERE cart.tc_in IS NOT NULL AND cart.tc_out IS NOT NULL AND cart.id_workflow IS NULL AND cart.id_user = '.$id_user);
 
 		return array(
 			'data' => $data,
@@ -66,7 +66,7 @@ class Cart extends Model {
 		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, media_file.filename, media_file.type, user_download_token.token, user_download_token.date FROM cart'.
 			' LEFT JOIN media_file ON cart.id_media_file = media_file.id'.
 			' LEFT JOIN user_download_token ON user_download_token.id_media_file = media_file.id'.
-			' WHERE cart.type LIKE "Download" AND cart.id_user = '.$id_user .' GROUP BY (cart.id)');
+			' WHERE cart.type LIKE "Download" AND cart.tc_in IS NULL AND cart.tc_out IS NULL AND id_workflow IS NULL AND cart.id_user = '.$id_user .' GROUP BY (cart.id)');
 
 		return array(
 			'data' => $data,
@@ -77,7 +77,18 @@ class Cart extends Model {
 	public function findAllTranscodeByUserId($id_user) {
 		$id_user = $this->_mysqli->real_escape_string($id_user);
 		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, cart.id_workflow FROM cart'.
-			' WHERE cart.id_workflow IS NOT NULL AND cart.id_user = '.$id_user);
+			' WHERE cart.id_workflow IS NOT NULL AND cart.tc_in IS NULL AND cart.tc_out IS NULL AND cart.id_user = '.$id_user);
+
+		return array(
+			'data' => $data,
+			'error' => ($this->_mysqli->error) ? 'findAllTranscodeByUserId: ' . $this->_mysqli->error : '',
+		);
+	}
+
+	public function findAllTranscodeCutByUserId($id_user) {
+		$id_user = $this->_mysqli->real_escape_string($id_user);
+		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, cart.id_workflow FROM cart'.
+			' WHERE cart.id_workflow IS NOT NULL AND cart.tc_in IS NOT NULL AND cart.tc_out IS NOT NULL AND cart.id_user = '.$id_user);
 
 		return array(
 			'data' => $data,
@@ -97,24 +108,26 @@ class Cart extends Model {
 		);
 	}
 
-	public function createNewCart($id_user, $id_media_file, $mode, $wf, $comment) {
+	public function createNewCart($id_user, $id_media_file, $mode, $wf, $comment, $tc_in, $tc_out) {
 		$id_user = $this->_mysqli->real_escape_string($id_user);
 		$id_media_file = $this->_mysqli->real_escape_string($id_media_file);
 		$wf = $this->_mysqli->real_escape_string($wf);
 		$mode = $this->_mysqli->real_escape_string($mode);
 		$comment = $this->_mysqli->real_escape_string($comment);
+		$tc_in = $this->_mysqli->real_escape_string($tc_in);
+		$tc_out = $this->_mysqli->real_escape_string($tc_out);
 
 		if (strcmp($mode, 'Download') !== false) {
 			$result = $this->_mysqli->query('INSERT INTO user_download_token (id_user, id_media_file, token, `date`)'.
 				' VALUES ('. $id_user .', '. $id_media_file .', "'. md5(uniqid(rand(), true)) .'", NOW())'
 			);
-			$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file, id_workflow, type, `comment`)' .
-				' VALUES ('. $id_user . ', ' . $id_media_file . ', '. $wf .', "'. $mode .'", "'.$comment.'");'
+			$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file, id_workflow, type, `comment`, tc_in, tc_out)' .
+				' VALUES ('. $id_user . ', ' . $id_media_file . ', '. $wf .', "'. $mode .'", "'.$comment.'", "'.$tc_in.'", "'.$tc_out.'");'
 			);
 		}
 		else {
-			$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file, id_workflow, type, `comment`)' .
-				' VALUES ('. $id_user . ', ' . $id_media_file . ', '. $wf .', "'. $mode .'", "'.$comment.'");'
+			$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file, id_workflow, type, `comment`, tc_in, tc_out)' .
+				' VALUES ('. $id_user . ', ' . $id_media_file . ', '. $wf .', "'. $mode .'", "'.$comment.'", "'.$tc_in.'", "'.$tc_out.'");'
 			);
 		}
 

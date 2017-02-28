@@ -58,7 +58,7 @@ require_once('ClientBundle/views/layout/header.php');
         </div>
         <div class="clear"></div>
         <div style="margin: auto auto 50px auto">
-            <label><?= COMMENT ?></label>
+            <label><?= COMMENT. ' ('.OPTIONAL.')' ?></label>
             <input name="comment" type="textarea" rows="2">
         </div>
         <div class="clear"></div>

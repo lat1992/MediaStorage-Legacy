@@ -25,6 +25,8 @@ require_once('ClientBundle/views/layout/header.php');
 
 <div class="container">
 
+<p style="text-align: center"><?= HISTORY_MESSAGE ?></p>
+
 	<table class="cart-table">
         <thead>
             <tr>

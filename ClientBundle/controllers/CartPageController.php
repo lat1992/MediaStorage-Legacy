@@ -93,7 +93,7 @@ class CartPageController {
 	}
 
 	public function validateCartAction() {
-		$cart_transcode = $this->_cartManager->getAllTranscode();
+		$cart_transcode = $this->_cartManager->getAllTranscodeDB();
 		$this->mergeErrorArray($cart_transcode);
 		$cart_delivery = $this->_cartManager->getAllDeliveryDB();
 		$this->mergeErrorArray($cart_delivery);
@@ -101,6 +101,8 @@ class CartPageController {
 		$this->mergeErrorArray($cart_cut);
 		$cart_download = $this->_cartManager->getAllDownloadDB();
 		$this->mergeErrorArray($cart_download);
+		$cart_transcode_cut = $this->_cartManager->getAllTranscodeCutDB();
+		$this->mergeErrorArray($cart_transcode_cut);
 
 		if ($cart_delivery['data']->num_rows)
 			$this->mergeErrorArray($this->sendEmailForDelivery($cart_delivery['data'], $_SESSION['user_id_mediastorage']));
@@ -110,9 +112,12 @@ class CartPageController {
 			$this->mergeErrorArray($this->_workFlowManager->cutVideo($cart_cut['data']));
 		if ($cart_transcode['data']->num_rows)
 			$this->mergeErrorArray($this->_workFlowManager->transcodeCart($cart_transcode['data']));
+		if ($cart_transcode_cut['data']->num_rows)
+			$this->mergeErrorArray($this->_workFlowManager->transcodeCutCart($cart_transcode_cut['data']));
 
 		$cart_data = $this->_cartManager->emptyCartDb();
 		$this->mergeErrorArray($cart_data);
+
 		if (count($this->_errorArray) == 0) {
 			if (!$cart_download['data']->num_rows) {
 				$_SESSION['flash_message'] = ACTION_SUCCESS;
@@ -144,8 +149,10 @@ class CartPageController {
 		if (isset($_POST['id_cart_validate_mediastorage']) && (strcmp($_POST['id_cart_validate_mediastorage'], '86452312') == 0)) {
 			$mode = $_POST['delivery_mode'];
 			$wf = $_POST['workflow_id'];
-			(isset($_POST['comment']) ? $comment = $_POST['comment'] : $comment = "");
-			$cart_data = $this->_cartManager->cartCreateDb($id_user_mediastorage, $id_media_file, $mode, $wf, $comment);
+			(isset($_POST['tc_in']) ? $tc_in = $_POST['tc_in'] : $tc_in = "NULL";
+			(isset($_POST['tc_out']) ? $tc_out = $_POST['tc_out'] : $tc_out = "NULL";
+			(isset($_POST['comment']) ? $comment = $_POST['comment'] : $comment = "NULL");
+			$cart_data = $this->_cartManager->cartCreateDb($id_user_mediastorage, $id_media_file, $mode, $wf, $comment, $tc_in, $tc_out);
 			$this->mergeErrorArray($cart_data);
 
 			if (count($this->_errorArray) == 0) {

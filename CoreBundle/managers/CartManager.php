@@ -30,8 +30,12 @@ class CartManager {
 		return $this->_cartModel->findAllDownloadByUserId($_SESSION['user_id_mediastorage']);
 	}
 
-	public function getAllTranscode() {
+	public function getAllTranscodeDB() {
 		return $this->_cartModel->findAllTranscodeByUserId($_SESSION['user_id_mediastorage']);
+	}
+
+	public function getAllTranscodeCutDB() {
+		return $this->_cartModel->findAllTranscodeCutByUserId($_SESSION['user_id_mediastorage']);
 	}
 
 	public function getAllDownloadHistoryDB() {
@@ -53,8 +57,8 @@ class CartManager {
 		return $error_cart;
 	}
 
-	public function cartCreateDb($id_user, $id_media_file, $mode, $wf, $comment) {
-		return $this->_cartModel->createNewCart($id_user, $id_media_file, $mode, $wf, $comment);
+	public function cartCreateDb($id_user, $id_media_file, $mode, $wf, $comment, $tc_in, $tc_out) {
+		return $this->_cartModel->createNewCart($id_user, $id_media_file, $mode, $wf, $comment, $tc_in, $tc_out);
 	}
 
 	public function getCartByIdDb($cart_id) {

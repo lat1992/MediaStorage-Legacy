@@ -24,8 +24,16 @@ class WorkFlowManager {
 			return $this->_workFlowModel->transcodingOther($id_file, pathinfo($file_path, PATHINFO_BASENAME), pathinfo($file_path, PATHINFO_DIRNAME), pathinfo($file_path, PATHINFO_FILENAME), $_SESSION['id_organization']);
 	}
 
-	public function transcodeCart() {
-		
+	public function transcodeCart($cart_transcode) {
+		return $this->_workFlowModel->transcodeWithProfile($cart_transcode);
+	}
+
+	public function cutVideo($cart_cut) {
+		return $this->_workFlowModel->cutWithProfile($cart_transcode);
+	}
+
+	public function transcodeCutCart($cart_transcode_cut) {
+		return $this->_workFlowModel->transcodeCutWithProfile($cart_transcode_cut);
 	}
 
 	public function postProductionWorkFlowMaster($task_id, $filepath, $filename, $right_download, $right_preview, $metadata, $type) {
