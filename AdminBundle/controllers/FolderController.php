@@ -328,7 +328,9 @@ class FolderController {
 	}
 
 	public function deleteAction() {
-		$_SESSION['flash_message'] = 'Action non fonctionnelle pour le moment';
+		$this->_folderLanguageManager->removeFolderLanguageByFolderIdDb($_GET['folder_id']);
+		$this->_folderManager->removeFolderByIdDb($_GET['folder_id']);
+		$_SESSION['flash_message'] = ACTION_SUCCESS;// 'Action non fonctionnelle pour le moment';
 		header('Location:' . '?page=list_folder_admin');
 		exit;
 	}

@@ -245,6 +245,7 @@ class WorkFlowModel extends Model {
 			'path_out_' => $this->_output_dir . $_SESSION['id_organization'].'/transcodes/',
 			'tc_in' => $cart['tc_in'],
 			'tc_out' => $cart['tc_out'],
+			'wfcode' => "mediastorage_cut_video",
 			'validWf' => 'ok'
 		);
 		return array(

@@ -29,6 +29,37 @@ class Organization extends Model {
 			' VALUES ("'. $reference . '", "' . $name . '",' . $id_group . ', ' . $id_default_language . ');'
 		);
 
+		$id = $this->_mysqli->insert_id;
+		mkdir('/var/www/html/mediastorage/uploads/media_files/chunks/'.$id, 0755);
+		mkdir('/var/www/html/mediastorage/uploads/media_files/files/'.$id, 0755);
+		mkdir('/var/www/html/mediastorage/uploads/media_files/files/'.$id.'/tmp', 0755);
+		mkdir('/var/www/html/mediastorage/uploads/media_files/files/'.$id.'/tmp_to_move', 0755);
+		mkdir('/var/www/html/mediastorage/uploads/thumbnails/chunks/'.$id.'/contents', 0755);
+		mkdir('/var/www/html/mediastorage/uploads/thumbnails/chunks/'.$id.'/folders', 0755);
+		mkdir('/var/www/html/mediastorage/uploads/thumbnails/chunks/'.$id.'/programs', 0755);
+		mkdir('/var/www/html/mediastorage/uploads/thumbnails/files/'.$id.'/contents', 0755);
+		mkdir('/var/www/html/mediastorage/uploads/thumbnails/files/'.$id.'/folders', 0755);
+		mkdir('/var/www/html/mediastorage/uploads/thumbnails/files/'.$id.'/programs', 0755);
+		mkdir('/var/www/html/mediastorage/uploads/thumbnails/files/'.$id.'/contents/tmp', 0755);
+		mkdir('/var/www/html/mediastorage/uploads/thumbnails/files/'.$id.'/folders/tmp', 0755);
+		mkdir('/var/www/html/mediastorage/uploads/thumbnails/files/'.$id.'/programs/tmp', 0755);
+		mkdir('/var/www/html/mediastorage/files/'.$id, 0755);
+		mkdir('/var/www/html/mediastorage/files/'.$id.'/audios', 0755);
+		mkdir('/var/www/html/mediastorage/files/'.$id.'/audios/HR', 0755);
+		mkdir('/var/www/html/mediastorage/files/'.$id.'/audios/LR', 0755);
+		mkdir('/var/www/html/mediastorage/files/'.$id.'/documents', 0755);
+		mkdir('/var/www/html/mediastorage/files/'.$id.'/documents/PDF', 0755);
+		mkdir('/var/www/html/mediastorage/files/'.$id.'/images', 0755);
+		mkdir('/var/www/html/mediastorage/files/'.$id.'/images/HR', 0755);
+		mkdir('/var/www/html/mediastorage/files/'.$id.'/images/LR', 0755);
+		mkdir('/var/www/html/mediastorage/files/'.$id.'/others', 0755);
+		mkdir('/var/www/html/mediastorage/files/'.$id.'/videos', 0755);
+		mkdir('/var/www/html/mediastorage/files/'.$id.'/videos/HR', 0755);
+		mkdir('/var/www/html/mediastorage/files/'.$id.'/videos/LR', 0755);
+		mkdir('/var/www/html/mediastorage/archives/'.$id, 0755);
+		mkdir('/var/www/html/mediastorage/ClientBundle/ressources/organization/'.$id, 0755);
+		mkdir('/var/www/html/mediastorage/ClientBundle/ressources/organization/'.$id.'/img', 0755);
+
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'createNewOrganization: ' . $this->_mysqli->error : '',

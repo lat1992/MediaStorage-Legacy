@@ -17,7 +17,7 @@
 		<?php require_once('ClientBundle/views/layout/menu.php'); ?>
 
 		<?php require_once('AdminBundle/views/layout/menu.php'); ?>
-
+		
 			<nav canvas class="nav_canvas">
 
 				<div id="header_div">

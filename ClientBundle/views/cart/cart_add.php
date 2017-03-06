@@ -52,11 +52,17 @@ require_once('ClientBundle/views/layout/header.php');
             </select>
         </div>
         <div class="clear"></div>
+<?php
+        if ($type == 'video') {
+?>
         <div style="margin: auto auto 50px auto">
             <label><?= TC_IN.' & '.TC_OUT. ' ('.OPTIONAL.')' ?></label>
             <input name="tc_in" type="text" style="width: 70px"> <input name="tc_out" type="text" style="width: 70px">
         </div>
         <div class="clear"></div>
+<?php
+        }
+?>
         <div style="margin: auto auto 50px auto">
             <label><?= COMMENT. ' ('.OPTIONAL.')' ?></label>
             <input name="comment" type="textarea" rows="2">
