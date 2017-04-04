@@ -104,15 +104,15 @@ class CartPageController {
 		$cart_transcode_cut = $this->_cartManager->getAllTranscodeCutDB();
 		$this->mergeErrorArray($cart_transcode_cut);
 
-		if ($cart_delivery['data']->num_rows)
-			$this->mergeErrorArray($this->sendEmailForDelivery($cart_delivery['data'], $_SESSION['user_id_mediastorage']));
-		if ($cart_download['data']->num_rows)
-			$this->mergeErrorArray($this->showDownloadLink($cart_download['data'], $_SESSION['user_id_mediastorage']));
-		if ($cart_cut['data']->num_rows)
+		if (isset($cart_delivery['data']->num_rows) && $cart_delivery['data']->num_rows)
+			$this->sendEmailForDelivery($cart_delivery['data'], $_SESSION['user_id_mediastorage']);
+		if (isset($cart_download['data']->num_rows) && $cart_download['data']->num_rows)
+			$this->showDownloadLink($cart_download['data'], $_SESSION['user_id_mediastorage']);
+		if (isset($cart_cut['data']->num_rows) && $cart_cut['data']->num_rows)
 			$this->mergeErrorArray($this->_workFlowManager->cutVideo($cart_cut['data']));
-		if ($cart_transcode['data']->num_rows)
+		if (isset($cart_transcode['data']->num_rows) && $cart_transcode['data']->num_rows)
 			$this->mergeErrorArray($this->_workFlowManager->transcodeCart($cart_transcode['data']));
-		if ($cart_transcode_cut['data']->num_rows)
+		if (isset($cart_transcode_cut['data']->num_rows) && $cart_transcode_cut['data']->num_rows)
 			$this->mergeErrorArray($this->_workFlowManager->transcodeCutCart($cart_transcode_cut['data']));
 
 		$cart_data = $this->_cartManager->emptyCartDb();

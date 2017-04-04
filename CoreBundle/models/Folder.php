@@ -129,8 +129,8 @@ class Folder extends Model {
 		$id_language = $this->_mysqli->real_escape_string($id_language);
 
 		$data = $this->_mysqli->query('SELECT id, id_parent, id_organization, IF ((SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = ' . $id_language . ' LIMIT 1) IS NOT NULL,(SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = ' . $id_language . ' LIMIT 1), (SELECT data FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate, IF ((SELECT description FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = '.$_SESSION['id_language_mediastorage'].' LIMIT 1) IS NOT NULL,(SELECT description FROM folder_language WHERE folder_language.id_folder = folder.id AND id_language = '.$_SESSION['id_language_mediastorage'].' LIMIT 1), (SELECT description FROM folder_language WHERE folder_language.id_folder = folder.id LIMIT 1)) AS translate_description ' .
-									' FROM ' . $this->_table .
-									' WHERE id = ' . $folder_id . ';'
+			' FROM ' . $this->_table .
+			' WHERE id = ' . $folder_id . ';'
 		);
 
 		return array(

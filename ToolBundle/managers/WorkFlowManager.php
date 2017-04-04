@@ -29,7 +29,7 @@ class WorkFlowManager {
 	}
 
 	public function cutVideo($cart_cut) {
-		return $this->_workFlowModel->cutWithProfile($cart_transcode);
+		return $this->_workFlowModel->cutWithProfile($cart_cut);
 	}
 
 	public function transcodeCutCart($cart_transcode_cut) {

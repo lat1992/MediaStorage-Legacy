@@ -49,7 +49,7 @@ if (isset($_GET['media_id'])) {
 
     if (isset($_SESSION['permits'][PERMIT_EDIT_CONTENT]) && isset($_GET['media_id'])) {
 ?>
-        <a class="button button-edit" style="margin-top: 40px;" href="?page=edit_content_admin&media_id=<?= $_GET['media_id'] ?>"><?= EDIT ?></a>
+        <a class="button button-edit" style="margin-top: 40px;" href="?page=edit_program_admin&media_id=<?= $_GET['media_id'] ?>"><?= EDIT ?></a>
 <?php
     }
 ?>

@@ -109,6 +109,13 @@ class Cart extends Model {
 	}
 
 	public function createNewCart($id_user, $id_media_file, $mode, $wf, $comment, $tc_in, $tc_out) {
+		if ($tc_in != "NULL") {
+			$tc_in = '"'.$tc_in.'"';
+		}
+		if ($tc_out != "NULL") {
+			$tc_out = '"'.$tc_out.'"';
+		}
+
 		$id_user = $this->_mysqli->real_escape_string($id_user);
 		$id_media_file = $this->_mysqli->real_escape_string($id_media_file);
 		$wf = $this->_mysqli->real_escape_string($wf);
@@ -122,12 +129,12 @@ class Cart extends Model {
 				' VALUES ('. $id_user .', '. $id_media_file .', "'. md5(uniqid(rand(), true)) .'", NOW())'
 			);
 			$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file, id_workflow, type, `comment`, tc_in, tc_out)' .
-				' VALUES ('. $id_user . ', ' . $id_media_file . ', '. $wf .', "'. $mode .'", "'.$comment.'", "'.$tc_in.'", "'.$tc_out.'");'
+				' VALUES ('. $id_user . ', ' . $id_media_file . ', '. $wf .', "'. $mode .'", "'.$comment.'", '.$tc_in.', '.$tc_out.');'
 			);
 		}
 		else {
 			$data = $this->_mysqli->query('INSERT INTO ' . $this->_table . '(id_user, id_media_file, id_workflow, type, `comment`, tc_in, tc_out)' .
-				' VALUES ('. $id_user . ', ' . $id_media_file . ', '. $wf .', "'. $mode .'", "'.$comment.'", "'.$tc_in.'", "'.$tc_out.'");'
+				' VALUES ('. $id_user . ', ' . $id_media_file . ', '. $wf .', "'. $mode .'", "'.$comment.'", '.$tc_in.', '.$tc_out.');'
 			);
 		}
 
@@ -196,7 +203,7 @@ class Cart extends Model {
 
 	public function emptyCart() {
 		$data = $this->_mysqli->query('DELETE FROM ' . $this->_table . ' WHERE id_user = ' . $_SESSION['user_id_mediastorage']);
-
+		
 		return array(
 			'data' => $data,
 			'error' => ($this->_mysqli->error) ? 'emptyCart: ' . $this->_mysqli->error : '',
