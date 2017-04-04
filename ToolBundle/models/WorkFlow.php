@@ -68,6 +68,8 @@ class WorkFlowModel extends Model {
 			'file_out_' => $this->_mysqli->insert_id .'_' . $output_file,
 			'path_out_' => $this->_output_dir.$id_organization.'/images/',
 			'path_final_' => $this->_final_path.$id_organization.'/'. $this->_mysqli->insert_id .'_',
+			'thumbnail_path' => 'uploads/thumbnails/files/'.$id_organization.'/contents/',
+			'thumbnail_file' => 'thumbnail_content_'.$id_media.'.png',
 			'wfcode' => (isset($profile['workflow_code']) ? $profile['workflow_code'] : 'ms_image_default'),
 			'validWf' => 'ok'
 		);
@@ -228,6 +230,7 @@ class WorkFlowModel extends Model {
 
 	public function cutWithProfile($cart_cut) {
 		$cart = $cart_cut->fetch_assoc();
+		var_dump($cart);
 		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE upload = 1 AND id_organization = '.$_SESSION['id_organization'].' AND id = '. $cart['id_workflow']);
 		$profile = $data->fetch_assoc();
 		$data = $this->_mysqli->query('SELECT * FROM media_file WHERE id = '.$cart['id_media_file']);
