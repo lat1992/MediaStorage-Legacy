@@ -56,6 +56,7 @@ class Organization extends Model {
 		mkdir('files/'.$id.'/videos', 0755);
 		mkdir('files/'.$id.'/videos/HR', 0755);
 		mkdir('files/'.$id.'/videos/LR', 0755);
+		mkdir('files/'.$id.'/transcodes', 0755);
 		mkdir('archives/'.$id, 0755);
 		mkdir('ClientBundle/ressources/organization/'.$id, 0755);
 		mkdir('ClientBundle/ressources/organization/'.$id.'/img', 0755);

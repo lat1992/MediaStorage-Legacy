@@ -93,6 +93,19 @@ class CartPageController {
 	}
 
 	public function validateCartAction() {
+
+		$cart_data = $this->_cartManager->getAllCartsByUserIdDb();
+
+		$this->mergeErrorArray($cart_data);
+
+		$data = array(
+			'error' => "Cette fonction est en cours de mettre à jour, veuillez réessayer ultérieurement. En cas urgent, veuillez nous contacter au +33 1 43 79 68 00",
+		);
+		$this->mergeErrorArray($data);
+		include ('ClientBundle/views/cart/cart.php');
+
+/*
+		//à changer
 		$cart_transcode = $this->_cartManager->getAllTranscodeDB();
 		$this->mergeErrorArray($cart_transcode);
 		$cart_delivery = $this->_cartManager->getAllDeliveryDB();
@@ -106,18 +119,18 @@ class CartPageController {
 
 		if (isset($cart_delivery['data']->num_rows) && $cart_delivery['data']->num_rows)
 			$this->sendEmailForDelivery($cart_delivery['data'], $_SESSION['user_id_mediastorage']);
-		if (isset($cart_download['data']->num_rows) && $cart_download['data']->num_rows)
-			$this->showDownloadLink($cart_download['data'], $_SESSION['user_id_mediastorage']);
 		if (isset($cart_cut['data']->num_rows) && $cart_cut['data']->num_rows)
 			$this->mergeErrorArray($this->_workFlowManager->cutVideo($cart_cut['data']));
 		if (isset($cart_transcode['data']->num_rows) && $cart_transcode['data']->num_rows)
 			$this->mergeErrorArray($this->_workFlowManager->transcodeCart($cart_transcode['data']));
 		if (isset($cart_transcode_cut['data']->num_rows) && $cart_transcode_cut['data']->num_rows)
 			$this->mergeErrorArray($this->_workFlowManager->transcodeCutCart($cart_transcode_cut['data']));
+		if (isset($cart_download['data']->num_rows) && $cart_download['data']->num_rows)
+			$this->showDownloadLink($cart_download['data'], $_SESSION['user_id_mediastorage']);
 
 		$cart_data = $this->_cartManager->emptyCartDb();
 		$this->mergeErrorArray($cart_data);
-
+*/
 		if (count($this->_errorArray) == 0) {
 			if (!$cart_download['data']->num_rows) {
 				$_SESSION['flash_message'] = ACTION_SUCCESS;
@@ -126,7 +139,6 @@ class CartPageController {
 			}
 			exit;
 		}
-		include ('CoreBundle/views/common/error.php');
 	}
 
 	public function createCartAction() {

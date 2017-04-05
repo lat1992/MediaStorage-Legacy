@@ -228,10 +228,10 @@ class WorkFlowModel extends Model {
 		);
 	}
 
-	public function cutWithProfile($cart_cut) {
+	public function cutWithWorkFlow($cart_cut) {
 		$cart = $cart_cut->fetch_assoc();
 		var_dump($cart);
-		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE upload = 1 AND id_organization = '.$_SESSION['id_organization'].' AND id = '. $cart['id_workflow']);
+		$data = $this->_mysqli->query('SELECT workflow_code FROM workflow_organization WHERE upload = 1 AND id_organization = '.$_SESSION['id_organization']);
 		$profile = $data->fetch_assoc();
 		$data = $this->_mysqli->query('SELECT * FROM media_file WHERE id = '.$cart['id_media_file']);
 		$media_file = $data->fetch_assoc();
