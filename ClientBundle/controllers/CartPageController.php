@@ -149,9 +149,9 @@ class CartPageController {
 		if (isset($_POST['id_cart_validate_mediastorage']) && (strcmp($_POST['id_cart_validate_mediastorage'], '86452312') == 0)) {
 			$mode = $_POST['delivery_mode'];
 			$wf = $_POST['workflow_id'];
-			(isset($_POST['tc_in']) ? $tc_in = $_POST['tc_in'] : $tc_in = "NULL");
-			(isset($_POST['tc_out']) ? $tc_out = $_POST['tc_out'] : $tc_out = "NULL");
-			(isset($_POST['comment']) ? $comment = $_POST['comment'] : $comment = "NULL");
+			(isset($_POST['tc_in']) ? $tc_in = $_POST['tc_in'] : $tc_in = "");
+			(isset($_POST['tc_out']) ? $tc_out = $_POST['tc_out'] : $tc_out = "");
+			(isset($_POST['comment']) ? $comment = $_POST['comment'] : $comment = "");
 			$cart_data = $this->_cartManager->cartCreateDb($id_user_mediastorage, $id_media_file, $mode, $wf, $comment, $tc_in, $tc_out);
 			$this->mergeErrorArray($cart_data);
 

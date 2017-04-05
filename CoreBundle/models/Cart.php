@@ -109,11 +109,11 @@ class Cart extends Model {
 	}
 
 	public function createNewCart($id_user, $id_media_file, $mode, $wf, $comment, $tc_in, $tc_out) {
-		if ($tc_in != "NULL") {
-			$tc_in = '"'.$tc_in.'"';
+		if ($tc_in == "") {
+			$tc_in = 'NULL';
 		}
-		if ($tc_out != "NULL") {
-			$tc_out = '"'.$tc_out.'"';
+		if ($tc_out == "") {
+			$tc_out = 'NULL';
 		}
 
 		$id_user = $this->_mysqli->real_escape_string($id_user);
@@ -123,6 +123,7 @@ class Cart extends Model {
 		$comment = $this->_mysqli->real_escape_string($comment);
 		$tc_in = $this->_mysqli->real_escape_string($tc_in);
 		$tc_out = $this->_mysqli->real_escape_string($tc_out);
+
 
 		if (strcmp($mode, 'Download') !== false) {
 			$result = $this->_mysqli->query('INSERT INTO user_download_token (id_user, id_media_file, token, `date`)'.
