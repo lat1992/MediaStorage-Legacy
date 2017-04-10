@@ -93,19 +93,6 @@ class CartPageController {
 	}
 
 	public function validateCartAction() {
-
-		$cart_data = $this->_cartManager->getAllCartsByUserIdDb();
-
-		$this->mergeErrorArray($cart_data);
-
-		$data = array(
-			'error' => "Cette fonction est en cours de mettre à jour, veuillez réessayer ultérieurement. En cas urgent, veuillez nous contacter au +33 1 43 79 68 00",
-		);
-		$this->mergeErrorArray($data);
-		include ('ClientBundle/views/cart/cart.php');
-
-/*
-		//à changer
 		$cart_transcode = $this->_cartManager->getAllTranscodeDB();
 		$this->mergeErrorArray($cart_transcode);
 		$cart_delivery = $this->_cartManager->getAllDeliveryDB();
@@ -130,7 +117,7 @@ class CartPageController {
 
 		$cart_data = $this->_cartManager->emptyCartDb();
 		$this->mergeErrorArray($cart_data);
-*/
+
 		if (count($this->_errorArray) == 0) {
 			if (!$cart_download['data']->num_rows) {
 				$_SESSION['flash_message'] = ACTION_SUCCESS;
