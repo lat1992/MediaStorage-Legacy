@@ -75,5 +75,3 @@
         </tbody>
     </table>
 </div>
-
-<div class="clear"></div>

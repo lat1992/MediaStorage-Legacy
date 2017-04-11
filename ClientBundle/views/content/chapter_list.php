@@ -9,9 +9,10 @@
 	<form id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
 		<div id="chapter_create">
 			<label class="label label-chapter"><?= NAME ?></label> : <input type="text" name="data_mediastorage" class="input-line-height">
+            <button type="submit" class="button button-validate" class="submit"><?= VALIDATE ?></button>
 			<div class="clear"></div>
 			<a href="#" id="tc_in_button" class="button button-chapter"><label><?= TC_IN ?></label></a> : <input id="tc_in_input" type="text" class="input-line-height" name="tc_in_mediastorage" readonly />
-			<div class="clear"></div>
+			<!--<div class="clear"></div>-->
 			<a href="#" id="tc_out_button" class="button button-chapter"><label><?= TC_OUT ?></label></a> : <input id="tc_out_input" class="input-line-height" type="text" name="tc_out_mediastorage" readonly />
 			<div class="clear"></div>
 
@@ -19,7 +20,6 @@
 
 		<input type="hidden" name="id_media_mediastorage" value="<?= $_GET['media_id'] ?>" />
 		<input type="hidden" name="chapter_create" value="5437" />
-		<button type="submit" class="button button-validate" class="submit"><?= VALIDATE ?></button>
 
 	</form>
 
