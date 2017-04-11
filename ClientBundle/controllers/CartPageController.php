@@ -126,6 +126,8 @@ class CartPageController {
 			}
 			exit;
 		}
+		$title['title'] = CART;
+		include ('ClientBundle/views/cart/cart.php');
 	}
 
 	public function createCartAction() {

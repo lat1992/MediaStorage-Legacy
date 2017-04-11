@@ -66,7 +66,7 @@ class Cart extends Model {
 		$data = $this->_mysqli->query('SELECT cart.id, cart.id_user, cart.id_media_file, media_file.filename, media_file.type, user_download_token.token, user_download_token.date FROM cart'.
 			' LEFT JOIN media_file ON cart.id_media_file = media_file.id'.
 			' LEFT JOIN user_download_token ON user_download_token.id_media_file = media_file.id'.
-			' WHERE cart.type LIKE "Download" AND cart.tc_in IS NULL AND cart.tc_out IS NULL AND id_workflow IS NULL AND cart.id_user = '.$id_user .' GROUP BY (cart.id)');
+			' WHERE cart.type LIKE "Download" AND cart.tc_in IS NULL AND cart.tc_out IS NULL AND cart.id_workflow IS NULL AND cart.id_user = '.$id_user .' GROUP BY (cart.id)');
 
 		return array(
 			'data' => $data,
