@@ -28,7 +28,13 @@ table {
 	max-height: 500px;
 }
 
-#description_div, #chapter_div, #download_link_div {
+#chapter_div {
+	float: left;
+	width: 95%;
+	margin: 10px 0px 0px 5px;
+}
+
+#description_div, #download_link_div {
 	float: left;
 	width: 42%;
 	margin: 10px 0px 0px 5px;
