@@ -18,12 +18,13 @@ class MediaExtraField extends Model {
 		);
 	}
 
-	public function findAllMediaExtraFieldsWithOrganization($id_organization) {
+	public function findAllMediaExtraFieldsWithOrganizationAndIdLanguage($id_organization, $id_language) {
 		$data = $this->_mysqli->query('SELECT media_extra_field.id, media_extra_field.type,media_type_field.id_type, media_extra_field.id_organization, media_extra_field_language.data AS name' .
 			' FROM ' . $this->_table .
 			' JOIN `media_extra_field_language` ON media_extra_field.id = media_extra_field_language.id_field' .
 			' JOIN media_type_field ON media_type_field.id_field = media_extra_field.id' .
-			' WHERE id_language = ' . $_SESSION['id_language_mediastorage'] . ' AND id_organization = ' . $id_organization. ';'
+			' WHERE id_language = ' . $id_language .
+			' AND id_organization = ' . $id_organization . ';'
 		);
 
 		return array(

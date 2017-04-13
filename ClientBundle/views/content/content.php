@@ -10,6 +10,7 @@ require_once('ClientBundle/views/layout/header.php');
 
 <script src="ClientBundle/ressources/jOverlay-master/src/jquery.jOverlay.js"></script>
 <script src="ClientBundle/ressources/content/js/content.js"></script>
+<script src="ClientBundle/ressources/VideoFrame/VideoFrame.min.js"></script>
 
 <style>
 
@@ -203,6 +204,11 @@ if (isset($current_media_file) && strpos($current_media_file['mime_type'], "vide
 
 			var video_player = document.getElementById('video_player');
 			var video_timer = document.getElementById('video_timer');
+			var frame_rate = 25;
+			var video = VideoFrame({
+				id: 'video_player',
+				frameRate: frame_rate,
+			});
 
 			video_player.addEventListener('click',function(){
 				if (video_player.paused)
@@ -213,16 +219,16 @@ if (isset($current_media_file) && strpos($current_media_file['mime_type'], "vide
 
 			video_player.addEventListener('timeupdate',function(){
 
-			 totalSec = Math.round(video_player.currentTime);
-
+				/*totalSec = Math.round(video_player.currentTime);
+	
 				var hours = parseInt( totalSec / 3600 ) % 24;
 				var minutes = parseInt( totalSec / 60 ) % 60;
 				var seconds = totalSec % 60;
 
-				var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+				var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);*/
 
-				video_timer.innerHTML = result
-			    // video_timer_second.innerHTML = totalSec;
+				//video_timer.innerHTML = result;
+			    video_timer.innerHTML = video.toSMPTE();
 			});
 
 			var prev_button = document.getElementById('prev_button');
@@ -231,13 +237,13 @@ if (isset($current_media_file) && strpos($current_media_file['mime_type'], "vide
 			prev_button.addEventListener("click", function(event) {
 				video_player.play();
 				video_player.pause();
-				video_player.currentTime = video_player.currentTime - 0.1;
+				video_player.currentTime = video_player.currentTime - (1/frame_rate);
 			});
 
 			next_button.addEventListener("click", function(event) {
 				video_player.play();
 				video_player.pause();
-				video_player.currentTime = video_player.currentTime + 0.1;
+				video_player.currentTime = video_player.currentTime + (1/frame_rate);
 			});
 
 			var tc_in_button = document.getElementById('tc_in_button');
@@ -246,11 +252,13 @@ if (isset($current_media_file) && strpos($current_media_file['mime_type'], "vide
 			var tc_out_input = document.getElementById('tc_out_input');
 
 			tc_in_button.addEventListener("click", function(event) {
-				tc_in_input.value = video_player.currentTime.toFixed(2);
+				tc_in_input.value = video.toSMPTE();
+				//tc_in_input.value = video_player.currentTime.toFixed(2);
 			});
 
 			tc_out_button.addEventListener("click", function(event) {
-				tc_out_input.value = video_player.currentTime.toFixed(2);
+				tc_out_input.value = video.toSMPTE();
+				//tc_out_input.value = video_player.currentTime.toFixed(2);
 			});
 
 			$(".chapter_link").on("click", function(event) {
