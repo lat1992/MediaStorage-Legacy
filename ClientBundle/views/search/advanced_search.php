@@ -17,7 +17,7 @@ require_once('ClientBundle/views/layout/header.php');
     }
 ?>
 </style>
-<div class="search-box">
+<!--<div class="search-box">
     <form method="get">
     	<div class="search-form" style="margin-top: 20px; margin-left: 20px;border: 1px solid #dddddd; width: 400px;">
     		<input type="hidden" name="page" value="search">
@@ -28,12 +28,13 @@ require_once('ClientBundle/views/layout/header.php');
         <div style="clear:both"></div>
     	<div class="live-search" id="livesearchonsearchpage" style="max-width: 360px;"></div>
     </form>
-</div>
+</div>-->
 
 <!-- Form For advanced search -->
 
-<div>
-    <form id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?' . $_SERVER['QUERY_STRING']); ?>" method="POST">
+<div style="width: 90%; margin: auto; text-align: center;">
+    <form id="form" method="GET">
+        <input type="hidden" name="page" value="advanced_search">
         <label><?= TITLE ?></label>
         <input type="text" name="title"/>
         <div class="clear"></div>
@@ -49,7 +50,7 @@ require_once('ClientBundle/views/layout/header.php');
         <?php require_once('ClientBundle/views/search/media_extra_field_form.php') ?>
 
         <input type="hidden" name="validator" />
-        <a class="button button-validate margin-left margin-top" href="#" onclick="document.getElementById('form').submit(); return false;"><?= VALIDATE ?></a>
+        <input style="width: 70px; margin: 5px auto 50px auto" type="submit" value="&#x1f50d;" id="submitButton" />
 
     </form>
 </div>

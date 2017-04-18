@@ -138,6 +138,9 @@ class MediaController {
 				$media_info = $this->_mediaInfoManager->getMediaInfoByMediaIdAndLanguageIdDb($media['id'], $_SESSION['id_language_mediastorage']);
 				$media_info = $this->_toolboxManager->mysqliResultToData($media_info);
 
+				if (empty($media_info['title'])) {
+					$media_info['title'] = '';
+				}
 				$table_data[] = array(
 					'<td>' . $media['reference'] . '</td>',
 					'<td>' . $media['reference_client'] . '</td>',

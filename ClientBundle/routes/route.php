@@ -14,7 +14,7 @@ $this->_route[] = array('profile', 'ClientBundle/controllers/ProfilePageControll
 
 $this->_route[] = array('search', 'ClientBundle/controllers/SearchPageController.php', 'SearchPageController', 'searchPageAction');
 $this->_route[] = array('ajax_refresh_live_search', 'ClientBundle/controllers/SearchPageController.php', 'SearchPageController', 'ajaxRefreshLiveSearchAction');
-$this->_route[] = array('advanced_search', 'ClientBundle/controllers/SearchPageController.php', 'SearchPageController', 'AdvancedSearchPageAction');
+$this->_route[] = array('advanced_search', 'ClientBundle/controllers/SearchPageController.php', 'SearchPageController', 'advancedSearchPageAction');
 
 $this->_route[] = array('cart', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'cartPageAction');
 $this->_route[] = array('add_cart', 'ClientBundle/controllers/CartPageController.php', 'CartPageController', 'createCartAction');

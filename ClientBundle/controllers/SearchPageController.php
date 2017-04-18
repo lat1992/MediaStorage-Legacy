@@ -82,11 +82,12 @@ class SearchPageController {
 		return ;
 	}
 
-	public function AdvancedSearchPageAction() {
+	public function advancedSearchPageAction() {
 		$media_extra_field = $this->_searchManager->getFormInputsData();
 
-		if (isset($_POST['validator'])) {
-			var_dump($_POST);exit;
+		if (isset($_GET['validator'])) {
+			var_dump($_GET);
+			exit;
 			// $result = $this->_searchManager->
 		}
 		// Get design data

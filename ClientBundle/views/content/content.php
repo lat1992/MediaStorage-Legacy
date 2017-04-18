@@ -262,12 +262,13 @@ if (isset($current_media_file) && strpos($current_media_file['mime_type'], "vide
 			});
 
 			$(".chapter_link").on("click", function(event) {
-				video_player.currentTime = $(this).parent().parent().find(".tc_in").html();
-
+				//video_player.currentTime = $(this).parent().parent().find(".tc_in").html();
+				video_player.currentTime = video.toMilliseconds($(this).parent().parent().find(".tc_in").html()) / 1000;
 				if (video_player.paused)
 					video_player.play();
 
-				tc_out_time = parseInt($(this).parent().parent().find(".tc_out").html());
+				//tc_out_time = parseInt($(this).parent().parent().find(".tc_out").html());
+				tc_out_time = video.toMilliseconds($(this).parent().parent().find(".tc_out").html()) / 1000;
 
 				video_player.addEventListener('timeupdate',function(){
 					if (video_player.currentTime > tc_out_time) {
