@@ -4,6 +4,10 @@ body {
 	padding-bottom: 20px;
 }
 
+body .div_canvas {
+	height: calc(100vh - 50px);
+}
+
 div[canvas] {
 	margin: 50px 0 0 0;
 	padding: 0 0 50px 0;

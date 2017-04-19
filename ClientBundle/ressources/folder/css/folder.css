@@ -7,7 +7,7 @@ a.link_div_folder, a.link_div_program, a.link_div_content {
 
 .category_title {
     height: 20px;
-    width: 100%;
+    width: calc(100vw - 36px);
     display: inline-block;
     padding: 10px 0 10px 20px;
     margin: 20px 0 0 0 ;

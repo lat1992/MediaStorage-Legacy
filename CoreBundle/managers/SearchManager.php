@@ -28,6 +28,14 @@ class SearchManager {
 		//return $this->_searchModel->searchAll($keyword, $id_organization, $id_language);
 	}
 
+	public function advancedSearchProgram($condition, $id_organization, $id_language, $paginate, $gap) {
+		return $this->_searchModel->advancedSearchMedia($condition, 1, $id_organization, $id_language, $paginate, $gap);
+	}
+
+	public function advancedSearchContent($condition, $id_organization, $id_language, $paginate, $gap) {
+		return $this->_searchModel->advancedSearchContent($condition, 2, $id_organization, $id_language, $paginate, $gap);
+	}
+
 	public function searchFolder($keyword, $id_organization, $id_language, $paginate, $gap) {
 		return $this->_searchModel->searchFolder($keyword, $id_organization, $id_language, $paginate, $gap);
 	}

@@ -22,7 +22,7 @@
 
 				<div class="clear"></div>
 				<div>
-					<a id="advanced_search_link" href="#"><?= ADVANCED_SEARCH ?></a>
+					<a id="advanced_search_link" href="?page=advanced_search"><?= ADVANCED_SEARCH ?></a>
 				</div>
 			</div>
 		</li>

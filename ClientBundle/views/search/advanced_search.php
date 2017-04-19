@@ -32,25 +32,29 @@ require_once('ClientBundle/views/layout/header.php');
 
 <!-- Form For advanced search -->
 
-<div style="width: 90%; margin: auto; text-align: center;">
+<div id="container">
     <form id="form" method="GET">
         <input type="hidden" name="page" value="advanced_search">
         <label><?= TITLE ?></label>
         <input type="text" name="title"/>
-        <div class="clear"></div>
+
+        <label><?= REFERENCE ?></label>
+        <input type="text" name="reference"/>
 
         <label><?= SUBTITLE ?></label>
         <input type="text" name="subtitle"/>
-        <div class="clear"></div>
 
         <label><?= DESCRIPTION ?></label>
         <input type="text" name="description"/>
-        <div class="clear"></div>
+
+        <label><?= CHAPTER ?></label>
+        <input type="text" name="chapter"/>
 
         <?php require_once('ClientBundle/views/search/media_extra_field_form.php') ?>
 
-        <input type="hidden" name="validator" />
-        <input style="width: 70px; margin: 5px auto 50px auto" type="submit" value="&#x1f50d;" id="submitButton" />
+        <input type="hidden" name="search" />
+        <div style="clear: both;"></div>
+        <a class="button" href="#" onclick="document.getElementById('form').submit(); return false;">&#x1f50d;</a>
 
     </form>
 </div>

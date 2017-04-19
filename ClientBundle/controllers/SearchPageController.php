@@ -41,15 +41,9 @@ class SearchPageController {
 			}
 		}
 
-		if (isset($_GET['keyword']) && isset($_GET['filtre'])) {
-			$result = $this->_searchManager->quickSearch($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage']);
-			$this->mergeErrorArray($result);
-			if (count($this->_errorArray) == 0) {
-				while ($row = $result['data']->fetch_assoc())
-					var_dump($row);
-			}
-		}
-		else if (isset($_GET['keyword']) && isset($_GET['paginate'])) {
+		if (isset($_GET['keyword'])) {
+			if (!isset($_GET['paginate']))
+				$_GET['paginate'] = 1;
 			$folder_result = $this->_searchManager->searchFolder($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage'], $_GET['paginate'], 10);
 			$program_result = $this->_searchManager->searchMediaProgram($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage'], $_GET['paginate'], 10);
 			$content_result = $this->_searchManager->searchMediaContent($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage'], $_GET['paginate'], 10);
@@ -85,29 +79,51 @@ class SearchPageController {
 	public function advancedSearchPageAction() {
 		$media_extra_field = $this->_searchManager->getFormInputsData();
 
-		if (isset($_GET['validator'])) {
+		/*if (isset($_GET['search'])) {
 			var_dump($_GET);
 			exit;
-			// $result = $this->_searchManager->
-		}
+		}*/
 		// Get design data
 		if (isset($_SESSION['id_platform_organization'])) {
 			$designs_data = $this->_designManager->getAllDesignWithOrganizationDb($_SESSION['id_platform_organization']);
 			$designs = $this->_toolboxManager->mysqliResultToArray($designs_data);
 		}
-		// Quicksearch ?
-		if (isset($_GET['keyword']) && isset($_GET['filtre'])) {
-			$result = $this->_searchManager->quickSearch($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage']);
-			$this->mergeErrorArray($result);
-			if (count($this->_errorArray) == 0) {
-				while ($row = $result['data']->fetch_assoc())
-					var_dump($row);
+
+		if (isset($_GET['search'])) {
+			$conds = array();
+			if (isset($_GET['title']) && strcmp($_GET['title'], ''))
+				$conds[] = 'memory_media_info.title LIKE "%'.$_GET['title'].'%"';
+			if (isset($_GET['subtitle']) && strcmp($_GET['subtitle'],''))
+				$conds[] = 'memory_media_info.subtitle LIKE "%'.$_GET['subtitle'].'%"';
+			if (isset($_GET['description']) && strcmp($_GET['description'], ''))
+				$conds[] = 'memory_media_info.description LIKE "%'.$_GET['description'].'%"';
+			if (isset($_GET['chapter']) && strcmp($_GET['chapter'], ''))
+				$conds[] = 'memory_chapter_language.data LIKE "%'.$_GET['chapter'].'%"';
+			if (isset($_GET['reference']) && strcmp($_GET['reference'], ''))
+				$conds[] = 'memory_media.reference_client LIKE "'.$_GET['reference'].'"';
+
+			$condition = ' (';
+			$i = 0;
+			while (isset($conds[$i])) {
+				$condition .= $conds[$i];
+				if (isset($conds[$i + 1]))
+					$condition .= ' AND ';
+				else
+					$condition .= ')';
+				$i++;
 			}
+			echo $condition;
+			exit;
+
+			$condition = '(memory_folder_language.data LIKE "%'.$keyword.'%" AND memory_media_extra.data LIKE "%'.$keyword.'%" AND memory_media_extra_array.element LIKE "%'.$keyword.'%" AND memory_media_file.filename LIKE "%'.$keyword.'%"  AND memory_tag_language.data LIKE "%'.$keyword.'%")';
 		}
-		else if (isset($_GET['keyword']) && isset($_GET['paginate'])) {
-			$folder_result = $this->_searchManager->searchFolder($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage'], $_GET['paginate'], 10);
-			$program_result = $this->_searchManager->searchMediaProgram($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage'], $_GET['paginate'], 10);
-			$content_result = $this->_searchManager->searchMediaContent($_GET['keyword'], $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage'], $_GET['paginate'], 10);
+
+		if (isset($condition)) {
+			if (!isset($_GET['paginate']))
+				$_GET['paginate'] = 1;
+			$folder_result = $this->_searchManager->searchFolder($condition, $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage'], $_GET['paginate'], 10);
+			$program_result = $this->_searchManager->searchMediaProgram($condition, $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage'], $_GET['paginate'], 10);
+			$content_result = $this->_searchManager->searchMediaContent($condition, $_SESSION['id_platform_organization'], $_SESSION['id_language_mediastorage'], $_GET['paginate'], 10);
 			$this->mergeErrorArray($folder_result);
 			$this->mergeErrorArray($program_result);
 			$this->mergeErrorArray($content_result);
